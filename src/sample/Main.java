@@ -31,6 +31,7 @@ public class Main extends Application {
 
         OrderController orderController = new OrderController(pageController);
         SampleController sampleController = new SampleController(pageController);
+        System.out.print("OK");
 
     }
 
