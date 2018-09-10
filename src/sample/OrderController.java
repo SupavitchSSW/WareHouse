@@ -54,15 +54,15 @@ public class OrderController implements Controller{
         order_table.getColumns().addAll(idColumn,nameColumn);
         order_table.setItems(orders);
 
-        TableColumn<Order,String> itemColumn = new TableColumn<>("Item");
-        TableColumn<Order,String> numColumn = new TableColumn<>("Num");
-        itemColumn.setMinWidth(200);
-        numColumn.setMinWidth(50);
-        itemColumn.setCellValueFactory(new PropertyValueFactory<>("item"));
-        numColumn.setCellValueFactory(new PropertyValueFactory<>("num"));
-        ObservableList<OrderDetail> ordersDetail = getOrderDetail(orders);
-        orderDetail_table.getColumns().addAll(itemColumn,numColumn);
-        order_table.setItems(ordersDetail);
+//        TableColumn<Order,String> itemColumn = new TableColumn<>("Item");
+//        TableColumn<Order,String> numColumn = new TableColumn<>("Num");
+//        itemColumn.setMinWidth(200);
+//        numColumn.setMinWidth(50);
+//        itemColumn.setCellValueFactory(new PropertyValueFactory<>("item"));
+//        numColumn.setCellValueFactory(new PropertyValueFactory<>("num"));
+//        ObservableList<OrderDetail> ordersDetail = getOrderDetail(orders);
+//        orderDetail_table.getColumns().addAll(itemColumn,numColumn);
+//        order_table.setItems(ordersDetail);
     }
 
     @Override
@@ -80,38 +80,38 @@ public class OrderController implements Controller{
         return orders;
     }
 
-    public ObservableList<OrderDetail> getOrderDetail(ObservableList<Order> orders){
-        ObservableList<OrderDetail> ordersDetail = FXCollections.observableArrayList();
-        orders.forEach(order->{
-
-            ordersDetail.add(new OrderDetail("A",45));System.out.print(order.getId());
-        });
-        return ordersDetail;
-    }
+//    public ObservableList<OrderDetail> getOrderDetail(ObservableList<Order> orders){
+//        ObservableList<OrderDetail> ordersDetail = FXCollections.observableArrayList();
+//        orders.forEach(order->{
+//
+//            ordersDetail.add(new OrderDetail("A",45));System.out.print(order.getId());
+//        });
+//        return ordersDetail;
+//    }
 }
-
-class OrderDetail extends Order{
-    String item;
-    int num;
-
-    public OrderDetail(String item, int num) {
-        this.item = item;
-        this.num = num;
-    }
-
-    public String getItem() {
-        return item;
-    }
-
-    public void setItem(String item) {
-        this.item = item;
-    }
-
-    public int getNum() {
-        return num;
-    }
-
-    public void setNum(int num) {
-        this.num = num;
-    }
-}
+//
+//class OrderDetail extends Order{
+//    String item;
+//    int num;
+//
+//    public OrderDetail(String item, int num) {
+//        this.item = item;
+//        this.num = num;
+//    }
+//
+//    public String getItem() {
+//        return item;
+//    }
+//
+//    public void setItem(String item) {
+//        this.item = item;
+//    }
+//
+//    public int getNum() {
+//        return num;
+//    }
+//
+//    public void setNum(int num) {
+//        this.num = num;
+//    }
+//}
