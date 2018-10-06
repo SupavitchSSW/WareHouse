@@ -29,7 +29,7 @@ public class Main extends Application {
         pageController.active("orderManagement");
 
 
-        OrderController orderController = new OrderController(pageController);
+        OrderListController orderController = new OrderListController(pageController);
         SampleController sampleController = new SampleController(pageController);
 
 

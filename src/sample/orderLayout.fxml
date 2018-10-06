@@ -6,8 +6,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button id="switchScene" layoutX="280.0" layoutY="110.0" mnemonicParsing="false" text="Button" />
-      <TableView id="order_table" layoutX="14.0" layoutY="110.0" prefHeight="484.0" prefWidth="245.0" />
-      <TableView id="orderDetail_table" layoutX="352.0" layoutY="110.0" prefHeight="484.0" prefWidth="541.0" />
+      <Button id="switchScene" layoutX="861.0" layoutY="117.0" mnemonicParsing="false" text="Button" />
+      <TableView id="order_table" layoutX="78.0" layoutY="148.0" prefHeight="425.0" prefWidth="835.0" />
    </children>
 </AnchorPane>
