@@ -17,19 +17,21 @@ import javafx.util.Callback;
 
 public class OrderListController implements Controller{
     PageController pageController;
+    OrderDetailController orderDetailController;
 
-    public OrderListController(PageController pageController){
+    public OrderListController(PageController pageController,OrderDetailController orderDetailController){
         this.pageController = pageController;
-        initilize();
+        this.orderDetailController = orderDetailController;
     }
 
 
     public void initilize(){
-        Scene scene = pageController.getScene("orderManagement");
+        Scene scene = pageController.getScene("orderList");
         Button btn = (Button) scene.lookup("#switchScene");
 
-        TableView order_table = (TableView) scene.lookup("#order_table");
 
+        //table setup
+        TableView order_table = (TableView) scene.lookup("#order_table");
 
         TableColumn<Order,Integer> idColumn = new TableColumn<>("ID");
         TableColumn<Order,String> nameColumn = new TableColumn<>("NAME");
@@ -44,16 +46,17 @@ public class OrderListController implements Controller{
         ObservableList<Order> orders = getOrder();
         order_table.setItems(orders);
 
-
-
-        btn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        btn.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent event){
                 //get select order id
+
                 Order o = (Order) order_table.getSelectionModel().getSelectedItem();
-                System.out.print(o.getId());
-                //change page
-                pageController.active("sample");
+                if(o != null){
+                    //change page
+                    orderDetailController.setOrder_id(o.getId());
+                    pageController.active("orderDetail");
+                }
             }
         });
 

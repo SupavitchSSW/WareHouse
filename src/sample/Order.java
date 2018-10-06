@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Order {
 
-    private int id;
+    private int id,quantity;
     private String name;
 
 
@@ -37,4 +37,11 @@ public class Order {
         this.id = id;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }

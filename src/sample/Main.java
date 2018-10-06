@@ -2,12 +2,7 @@ package sample;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.*;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -17,20 +12,24 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Pane orderPane = FXMLLoader.load(getClass().getResource("orderLayout.fxml"));
-        Pane samplePane = FXMLLoader.load(getClass().getResource("sample.fxml"));
 
-        PageController pageController = new PageController(primaryStage);
+        Pane orderListPane = FXMLLoader.load(getClass().getResource("orderList.fxml"));
+        Pane orderDetailPane = FXMLLoader.load(getClass().getResource("orderDetail.fxml"));
 
-        pageController.addPage("orderManagement",orderPane);
-        pageController.addPage("sample",samplePane);
+        Scene scene = new Scene(orderListPane,1000,600);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        PageController pageController = new PageController(scene);
+
+        OrderDetailController orderDetailController = new OrderDetailController(pageController);
+        OrderListController orderListController = new OrderListController(pageController,orderDetailController);
+
+        pageController.addPage("orderList",orderListPane,orderListController);
+        pageController.addPage("orderDetail",orderDetailPane,orderDetailController);
 
         primaryStage.setTitle("Hello World");
-        pageController.active("orderManagement");
+        pageController.active("orderList");
 
-
-        OrderListController orderController = new OrderListController(pageController);
-        SampleController sampleController = new SampleController(pageController);
 
 
     }

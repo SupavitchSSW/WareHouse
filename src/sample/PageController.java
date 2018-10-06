@@ -14,11 +14,24 @@ import java.util.HashMap;
 
 class PageClass{
     private Pane pane;
-    private Scene scene;
+    private boolean isInit = false;
+    private Controller controller;
 
-    public PageClass(Pane pane) {
+    public PageClass(Pane pane,Controller controller) {
         this.pane = pane;
-        this.scene = new Scene(pane,1280,800);
+        this.controller = controller;
+    }
+
+    public void onActive(){
+        getController().onActive();
+    }
+
+    public Controller getController() {
+        return controller;
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
     }
 
     public Pane getPane() {
@@ -29,33 +42,47 @@ class PageClass{
         this.pane = pane;
     }
 
-    public Scene getScene() {
-        return scene;
+    public boolean isInit() {
+        return isInit;
     }
 
-    public void setScene(Scene scene) {
-        this.scene = scene;
+    public void setInit(boolean init) {
+        isInit = init;
     }
 }
 
 public class PageController {
     private HashMap<String,PageClass> pageMap = new HashMap<String, PageClass>();
-    private Stage window;
+    private Scene main;
 
-    public PageController(Stage window) {
-        this.window = window;
+    public PageController(Scene scene) {
+        this.main = scene;
     }
 
-    public void addPage(String name, Pane pane){
-        pageMap.put(name,new PageClass(pane));
+    public Scene getMain() {
+        return main;
+    }
+
+    public void setMain(Scene main) {
+        this.main = main;
+    }
+
+    public void addPage(String name, Pane pane, Controller controller){
+        pageMap.put(name,new PageClass(pane,controller));
     }
 
     public void active(String name){
-        window.setScene(pageMap.get(name).getScene());
-        window.show();
+        PageClass page = pageMap.get(name);
+        main.setRoot(page.getPane());
+        if(!page.isInit()){
+            page.getController().initilize();
+            page.setInit(true);
+        }
+        page.onActive();
+
     }
 
     public Scene getScene(String name){
-        return pageMap.get(name).getScene();
+        return this.main;
     }
 }
