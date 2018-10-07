@@ -1,13 +1,23 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.Date;
 
 public class Order {
 
     private int id,quantity;
     private String name;
+    ObservableList<Product> products;
 
+    public ObservableList<Product> getProducts() {
+        return products;
+    }
 
+    public void addProduct(Product product) {
+        this.products.add(product);
+    }
 
     public Order(){
         this.name = "";
@@ -18,8 +28,8 @@ public class Order {
     public Order(int id, String name) {
         this.name = name;
         this.id = id;
-
     }
+
 
     public String getName() {
         return name;

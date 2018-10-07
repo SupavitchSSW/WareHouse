@@ -18,6 +18,7 @@ import javafx.util.Callback;
 public class OrderListController implements Controller{
     PageController pageController;
     OrderDetailController orderDetailController;
+    private TableView order_table;
 
     public OrderListController(PageController pageController,OrderDetailController orderDetailController){
         this.pageController = pageController;
@@ -31,8 +32,9 @@ public class OrderListController implements Controller{
 
 
         //table setup
-        TableView order_table = (TableView) scene.lookup("#order_table");
+        order_table = (TableView) scene.lookup("#order_table");
 
+        // column name
         TableColumn<Order,Integer> idColumn = new TableColumn<>("ID");
         TableColumn<Order,String> nameColumn = new TableColumn<>("NAME");
 
@@ -42,9 +44,6 @@ public class OrderListController implements Controller{
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         order_table.getColumns().addAll(idColumn,nameColumn);
-
-        ObservableList<Order> orders = getOrder();
-        order_table.setItems(orders);
 
         btn.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override
@@ -66,7 +65,8 @@ public class OrderListController implements Controller{
 
     @Override
     public void onActive() {
-
+        ObservableList<Order> orders = getOrder();
+        order_table.setItems(orders);
     }
 
     public ObservableList<Order> getOrder(){
