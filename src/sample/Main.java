@@ -15,26 +15,30 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
+        // add your fxml here
         Pane orderListPane = FXMLLoader.load(getClass().getResource("../ordermanagement/orderList.fxml"));
         Pane orderDetailPane = FXMLLoader.load(getClass().getResource("../ordermanagement/orderDetail.fxml"));
 
+        //create scene
         Scene scene = new Scene(orderListPane,1000,600);
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        //create pageController obj
         PageController pageController = new PageController(scene);
 
+        //crate controller obj
         OrderDetailController orderDetailController = new OrderDetailController(pageController);
         OrderListController orderListController = new OrderListController(pageController,orderDetailController);
 
+        //add page to pageController
         pageController.addPage("orderList",orderListPane,orderListController);
         pageController.addPage("orderDetail",orderDetailPane,orderDetailController);
 
-        primaryStage.setTitle("Hello World");
-        pageController.active("orderList");
 
-        //field 1
-        //fon1
-        //field 2
+        //start page
+        primaryStage.setTitle("WarHouse");
+        pageController.active("orderList");
 
     }
 
