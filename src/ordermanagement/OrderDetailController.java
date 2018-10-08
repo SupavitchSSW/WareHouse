@@ -4,16 +4,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import ordermanagement.Order;
 import sample.Controller;
 import sample.PageController;
 import sample.Product;
+
+import java.util.Optional;
 
 
 public class OrderDetailController implements Controller {
@@ -75,6 +74,44 @@ public class OrderDetailController implements Controller {
             @Override
             public void handle(MouseEvent event){
                 pageController.active("orderList");
+            }
+        });
+
+        approve_btn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("Approve this order ?");
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK){
+                    // ... user chose OK
+                    System.out.println("approve order id : "+getOrder_id());
+                    pageController.active("orderList");
+                } else {
+                    // ... user chose CANCEL or closed the dialog
+                }
+            }
+        });
+
+        reject_btn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("Reject this order ?");
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK){
+                    // ... user chose OK
+                    System.out.println("reject order id : "+getOrder_id());
+                    pageController.active("orderList");
+                } else {
+                    // ... user chose CANCEL or closed the dialog
+                }
             }
         });
 
