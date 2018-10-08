@@ -43,7 +43,7 @@ public class Main extends Application {
         pageController.addPage("productList",mainPane,mainController);
 
         //start page
-        primaryStage.setTitle("WarHouse");
+        primaryStage.setTitle("WareHouse");
         pageController.active("productList");
 
     }
