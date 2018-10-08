@@ -4,6 +4,13 @@ public class Product {
     private int id,quantity;
     private String name,brand;
 
+    public Product(){
+        this.id = -1;
+        this.quantity = 0;
+        this.name = "null";
+        this.brand = "null";
+    }
+
     public Product(int id, int quantity, String name, String brand) {
         this.id = id;
         this.quantity = quantity;

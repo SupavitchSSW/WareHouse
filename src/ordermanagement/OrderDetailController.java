@@ -1,4 +1,4 @@
-package sample;
+package ordermanagement;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,10 +10,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import ordermanagement.Order;
+import sample.Controller;
+import sample.PageController;
+import sample.Product;
 
-import java.util.ArrayList;
 
-public class OrderDetailController implements Controller{
+public class OrderDetailController implements Controller {
     PageController pageController;
     int order_id;
     Order order = new Order(50,"cookie");
@@ -44,17 +47,24 @@ public class OrderDetailController implements Controller{
         TableColumn<Product,Integer> idColumn = new TableColumn<>("Product ID");
         TableColumn<Product,String> nameColumn = new TableColumn<>("Product NAME");
         TableColumn<Product,Integer> brandColumn = new TableColumn<>("BLAND");
-        TableColumn<Product,Integer> quantityColumn = new TableColumn<>("QUANTITY");
+        TableColumn<Product,Integer> orderQuantityColumn = new TableColumn<>("ORDER QUANTITY");
+        TableColumn<Product,Integer> warehouseQuantityColumn = new TableColumn<>("WAREHOUSE QUANTITY");
 
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         brandColumn.setCellValueFactory(new PropertyValueFactory<>("brand"));
-        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        detail_table.getColumns().addAll(idColumn,nameColumn,brandColumn,quantityColumn);
+        orderQuantityColumn.setCellValueFactory(new PropertyValueFactory<>("orderQuantity"));
+        warehouseQuantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        detail_table.getColumns().addAll(idColumn,nameColumn,brandColumn,orderQuantityColumn,warehouseQuantityColumn);
 
-        ObservableList<Product> products = getProductList(order);
-        detail_table.setItems(products);
+
+//        ObservableList<Product> products = getProductList(order);
+//        detail_table.setItems(products);
+
+        ObservableList<OrderProduct> orderProducts = getOrderProductList();
+        detail_table.setItems(orderProducts);
+
 
         //set button
         Button goBack_btn = (Button) scene.lookup("#goBack");
@@ -82,10 +92,16 @@ public class OrderDetailController implements Controller{
         return products;
     }
 
+    private ObservableList<OrderProduct> getOrderProductList(){
+        ObservableList<OrderProduct> orderProducts = FXCollections.observableArrayList();
+        orderProducts.add(new OrderProduct(11,1000,"beer","leo",30));
+        orderProducts.add(new OrderProduct(10,5000,"coockie","m&m",20));
+        return orderProducts;
+    }
+
     @Override
     public void onActive() {
         System.out.println("display detail order ID : "+getOrder_id());
-
     }
 
     public int getOrder_id() {

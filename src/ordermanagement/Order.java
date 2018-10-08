@@ -1,7 +1,8 @@
-package sample;
+package ordermanagement;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import sample.Product;
 
 import java.util.Date;
 

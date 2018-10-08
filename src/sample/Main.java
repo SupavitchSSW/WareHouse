@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import ordermanagement.OrderDetailController;
+import ordermanagement.OrderListController;
 
 import java.io.IOException;
 
@@ -13,8 +15,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        Pane orderListPane = FXMLLoader.load(getClass().getResource("orderList.fxml"));
-        Pane orderDetailPane = FXMLLoader.load(getClass().getResource("orderDetail.fxml"));
+        Pane orderListPane = FXMLLoader.load(getClass().getResource("../ordermanagement/orderList.fxml"));
+        Pane orderDetailPane = FXMLLoader.load(getClass().getResource("../ordermanagement/orderDetail.fxml"));
 
         Scene scene = new Scene(orderListPane,1000,600);
         primaryStage.setScene(scene);
@@ -29,8 +31,6 @@ public class Main extends Application {
 
         primaryStage.setTitle("Hello World");
         pageController.active("orderList");
-
-
 
     }
 
