@@ -34,6 +34,10 @@ public class Product {
         this.quantity = quantity;
     }
 
+    public void setQuantity(String quantity) {
+        this.quantity = Integer.parseInt(quantity);
+    }
+
     public String getName() {
         return name;
     }
