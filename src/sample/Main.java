@@ -7,6 +7,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import ordermanagement.OrderDetailController;
 import ordermanagement.OrderListController;
+import productManagement.mainController;
 
 import java.io.IOException;
 
@@ -19,8 +20,10 @@ public class Main extends Application {
         Pane orderListPane = FXMLLoader.load(getClass().getResource("../ordermanagement/orderList.fxml"));
         Pane orderDetailPane = FXMLLoader.load(getClass().getResource("../ordermanagement/orderDetail.fxml"));
 
+        Pane mainPane = FXMLLoader.load(getClass().getResource("../productManagement/mainPage.fxml"));
+
         //create scene
-        Scene scene = new Scene(orderListPane,1000,600);
+        Scene scene = new Scene(mainPane,1000,600);
         primaryStage.setScene(scene);
         primaryStage.show();
 
@@ -31,14 +34,17 @@ public class Main extends Application {
         OrderDetailController orderDetailController = new OrderDetailController(pageController);
         OrderListController orderListController = new OrderListController(pageController,orderDetailController);
 
+        mainController mainController = new mainController(pageController);
+
         //add page to pageController
         pageController.addPage("orderList",orderListPane,orderListController);
         pageController.addPage("orderDetail",orderDetailPane,orderDetailController);
 
+        pageController.addPage("productList",mainPane,mainController);
 
         //start page
         primaryStage.setTitle("WarHouse");
-        pageController.active("orderList");
+        pageController.active("productList");
 
     }
 

@@ -31,7 +31,7 @@ public class mainController implements Controller {
 
 
         //table setup
-        warehouse = (TableView) scene.lookup("#order_table");
+        warehouse = (TableView) scene.lookup("#productList");
 
         // column name
 //        TableColumn<Order,Integer> idColumn = new TableColumn<>("ID");
@@ -64,8 +64,8 @@ public class mainController implements Controller {
 
     @Override
     public void onActive() {
-        ObservableList<Order> orders = getOrder();
-        warehouse.setItems(orders);
+//        ObservableList<Order> orders = getOrder();
+//        warehouse.setItems(orders);
     }
 
 //    public ObservableList<Order> getOrder(){
