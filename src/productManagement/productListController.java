@@ -39,7 +39,11 @@ public class productListController implements Controller {
 
     public void initilize(){
         Scene scene = pageController.getScene("mainPage");
-        Button editBt = (Button) scene.lookup("#editButton");
+        Button mainBt = (Button) scene.lookup("#mainButton");
+        Button addProductBt = (Button) scene.lookup("#addProductButton");
+        Button summeryBt = (Button) scene.lookup("#summeryButton");
+        Button orderBt = (Button) scene.lookup("#orderButton");
+        Button userSearchBt = (Button) scene.lookup("#userSearchButton");
 
         //table setup
         productListTable = (TableView) scene.lookup("#productList");
@@ -126,11 +130,48 @@ public class productListController implements Controller {
                             products.get(index).setBrand(brand.getText());
                             products.get(index).setQuantity(amount.getText());
                         } else if (editResult.get() == deleteButtonType) {
-                            System.out.printf("Del");
-                            products.remove(index);
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                            alert.setTitle("Delete Product");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Are you sure to delete this product?");
+                            Optional<ButtonType> result = alert.showAndWait();
+                            if (result.get() == ButtonType.OK){
+                                products.remove(index);
+                            }
                         }
                     }
                 }
+            }
+        });
+
+        mainBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                pageController.active("productList");
+            }
+        });
+        addProductBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+        summeryBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+        orderBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                pageController.active("orderList");
+            }
+        });
+        userSearchBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
             }
         });
     }
