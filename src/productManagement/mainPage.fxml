@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<SplitPane dividerPositions="0.19230769230769232" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="172.0" prefWidth="998.0">
+         <children>
+            <Circle id="userMenu" fill="#a91909" layoutX="63.0" layoutY="57.0" radius="44.0" stroke="BLACK" strokeType="INSIDE" />
+            <Button id="mainMenu" layoutX="152.0" layoutY="36.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="78.0" text="Main" />
+            <Button id="summeryMenu" layoutX="275.0" layoutY="36.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="78.0" text="Summery" />
+            <Button id="addMenu" layoutX="404.0" layoutY="36.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="102.0" text="Add Product" />
+            <Button id="delMenu" layoutX="560.0" layoutY="36.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="102.0" text="Del Product" />
+            <Button id="orderMenu" layoutX="720.0" layoutY="36.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="102.0" text="Order" />
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         <children>
+            <TableView layoutX="94.0" layoutY="77.0" prefHeight="352.0" prefWidth="801.0">
+              <columns>
+                <TableColumn id="id" prefWidth="166.32508850097656" text="ID" />
+                <TableColumn id="name" prefWidth="234.67495727539062" text="Name" />
+                  <TableColumn id="brand" prefWidth="246.05465698242188" text="Brand" />
+                  <TableColumn id="amount" prefWidth="153.81646728515625" text="Amount" />
+              </columns>
+            </TableView>
+            <TextField id="searchBox" layoutX="94.0" layoutY="35.0" prefHeight="27.0" prefWidth="192.0" />
+            <Button id="editButton" layoutX="840.0" layoutY="35.0" mnemonicParsing="false" text="Edit" />
+         </children></AnchorPane>
+  </items>
+</SplitPane>
