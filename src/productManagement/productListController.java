@@ -31,7 +31,7 @@ public class productListController implements Controller {
     PageController pageController;
     private TableView productListTable;
     private ObservableList<Product> products = getOrder();
-    private int index;
+    private int index, lastID;
 
     public productListController(PageController pageController){
         this.pageController = pageController;
@@ -126,9 +126,18 @@ public class productListController implements Controller {
                         editDialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL, deleteButtonType);
                         Optional<ButtonType> editResult = editDialog.showAndWait();
                         if (editResult.get() == ButtonType.OK) {
-                            products.get(index).setName(name.getText());
-                            products.get(index).setBrand(brand.getText());
-                            products.get(index).setQuantity(quantity.getText());
+                            if (tryParse(quantity.getText()) == null) {
+                                Alert alertError = new Alert(Alert.AlertType.ERROR);
+                                alertError.setTitle("Error to Edit Product");
+                                alertError.setHeaderText(null);
+                                alertError.setContentText("Invalid information");
+                                alertError.showAndWait();
+                            } else {
+                                products.get(index).setName(name.getText());
+                                products.get(index).setBrand(brand.getText());
+                                products.get(index).setQuantity(quantity.getText());
+                                productListTable.refresh();
+                            }
                         } else if (editResult.get() == deleteButtonType) {
                             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                             alert.setTitle("Delete Product");
@@ -153,14 +162,11 @@ public class productListController implements Controller {
                 GridPane addProductGrid = new GridPane();
                 addProductGrid.setHgap(10);
                 addProductGrid.setVgap(20);
-                addProductGrid.setPadding(new Insets(20, 250, 10, 20));
+                addProductGrid.setPadding(new Insets(20, 150, 10, 20));
 
                 TextField productName = new TextField();
-//                productName.setText(products.get(index).getName());
                 TextField productBrand = new TextField();
-//                brand.setText(products.get(index).getBrand());
                 TextField productQuantity = new TextField();
-//                quantity.setText(Integer.toString(products.get(index).getQuantity()));
 
                 addProductGrid.add(new Label("Name:"), 0, 1);
                 addProductGrid.add(productName, 1, 1);
@@ -174,7 +180,23 @@ public class productListController implements Controller {
                 addProductDialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
                 Optional<ButtonType> addProductResult = addProductDialog.showAndWait();
                 if (addProductResult.get() == ButtonType.OK) {
-                    products.add(new Product(1,Integer.parseInt(productQuantity.getText()),productName.getText(),productBrand.getText()));
+                    if (productName.getText().isEmpty() || productBrand.getText().isEmpty() || productQuantity.getText().isEmpty()) {
+                        Alert alertError = new Alert(Alert.AlertType.ERROR);
+                        alertError.setTitle("Error to Add Product");
+                        alertError.setHeaderText(null);
+                        alertError.setContentText("Invalid information");
+                        alertError.showAndWait();
+                    } else {
+                        if (tryParse(productQuantity.getText()) == null) {
+                            Alert alertError = new Alert(Alert.AlertType.ERROR);
+                            alertError.setTitle("Error to Add Product");
+                            alertError.setHeaderText(null);
+                            alertError.setContentText("Invalid information");
+                            alertError.showAndWait();
+                        } else {
+                            products.add(new Product(++lastID, Integer.parseInt(productQuantity.getText()), productName.getText(), productBrand.getText()));
+                        }
+                    }
                 }
             }
         });
@@ -215,6 +237,15 @@ public class productListController implements Controller {
         products.add(new Product(1,12,"ยาสีฟัน","ฝนฝน"));
         products.add(new Product(2,2,"dss","Por_shop2"));
         products.add(new Product(3,22,"dsd","Por_shop3"));
+        lastID = products.size();
         return products;
+    }
+
+    public static Integer tryParse(String text) {
+        try {
+            return Integer.parseInt(text);
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 }
