@@ -49,21 +49,21 @@ public class productListController implements Controller {
         productListTable = (TableView) scene.lookup("#productList");
 
         // column name
-        TableColumn<Product,Integer> idColumn = new TableColumn<>("ID");
-        TableColumn<Product,String> nameColumn = new TableColumn<>("NAME");
-        TableColumn<Product,String> brandColumn = new TableColumn<>("BRAND");
-        TableColumn<Product,Integer> amountColumn = new TableColumn<>("AMOUNT");
+        TableColumn<Product,Integer> idColumn = new TableColumn<>("Product ID");
+        TableColumn<Product,String> nameColumn = new TableColumn<>("Product Name");
+        TableColumn<Product,String> brandColumn = new TableColumn<>("Product Brand");
+        TableColumn<Product,Integer> quantityColumn = new TableColumn<>("Product Quantity");
 
-        idColumn.setMinWidth(200);
-        nameColumn.setMinWidth(200);
-        brandColumn.setMinWidth(200);
-        amountColumn.setMinWidth(199);
+        idColumn.setMinWidth(100);
+        nameColumn.setMinWidth(150);
+        brandColumn.setMinWidth(150);
+        quantityColumn.setMinWidth(150);
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         brandColumn.setCellValueFactory(new PropertyValueFactory<>("brand"));
-        amountColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        productListTable.getColumns().addAll(idColumn,nameColumn,brandColumn,amountColumn);
+        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        productListTable.getColumns().addAll(idColumn,nameColumn,brandColumn,quantityColumn);
 
         productListTable.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override
@@ -86,7 +86,7 @@ public class productListController implements Controller {
                     propertyGrid.add(new Label(products.get(index).getName()), 1, 1);
                     propertyGrid.add(new Label("Product Brand:"), 0, 2);
                     propertyGrid.add(new Label(products.get(index).getBrand()), 1, 2);
-                    propertyGrid.add(new Label("Product Amount:"), 0, 3);
+                    propertyGrid.add(new Label("Product Quantity:"), 0, 3);
                     propertyGrid.add(new Label(Integer.toString(products.get(index).getQuantity())), 1, 3);
                     propertyDialog.getDialogPane().setContent(propertyGrid);
 
@@ -110,15 +110,15 @@ public class productListController implements Controller {
                         name.setText(products.get(index).getName());
                         TextField brand = new TextField();
                         brand.setText(products.get(index).getBrand());
-                        TextField amount = new TextField();
-                        amount.setText(Integer.toString(products.get(index).getQuantity()));
+                        TextField quantity = new TextField();
+                        quantity.setText(Integer.toString(products.get(index).getQuantity()));
 
                         editGrid.add(new Label("Name:"), 0, 1);
                         editGrid.add(name, 1, 1);
                         editGrid.add(new Label("Brand:"), 0, 2);
                         editGrid.add(brand, 1, 2);
-                        editGrid.add(new Label("Amount:"), 0, 3);
-                        editGrid.add(amount, 1, 3);
+                        editGrid.add(new Label("Quantity:"), 0, 3);
+                        editGrid.add(quantity, 1, 3);
 
                         ButtonType deleteButtonType = new ButtonType("Delete Product");
 
@@ -128,12 +128,12 @@ public class productListController implements Controller {
                         if (editResult.get() == ButtonType.OK) {
                             products.get(index).setName(name.getText());
                             products.get(index).setBrand(brand.getText());
-                            products.get(index).setQuantity(amount.getText());
+                            products.get(index).setQuantity(quantity.getText());
                         } else if (editResult.get() == deleteButtonType) {
                             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                             alert.setTitle("Delete Product");
                             alert.setHeaderText(null);
-                            alert.setContentText("Are you sure to delete this product?");
+                            alert.setContentText("Are you sure you want to delete this product?");
                             Optional<ButtonType> result = alert.showAndWait();
                             if (result.get() == ButtonType.OK){
                                 products.remove(index);
@@ -143,17 +143,46 @@ public class productListController implements Controller {
                 }
             }
         });
+        addProductBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Dialog<ButtonType> addProductDialog = new Dialog<>();
+                addProductDialog.initStyle(StageStyle.UTILITY);
+                addProductDialog.setTitle("Add Product");
+
+                GridPane addProductGrid = new GridPane();
+                addProductGrid.setHgap(10);
+                addProductGrid.setVgap(20);
+                addProductGrid.setPadding(new Insets(20, 250, 10, 20));
+
+                TextField productName = new TextField();
+//                productName.setText(products.get(index).getName());
+                TextField productBrand = new TextField();
+//                brand.setText(products.get(index).getBrand());
+                TextField productQuantity = new TextField();
+//                quantity.setText(Integer.toString(products.get(index).getQuantity()));
+
+                addProductGrid.add(new Label("Name:"), 0, 1);
+                addProductGrid.add(productName, 1, 1);
+                addProductGrid.add(new Label("Brand:"), 0, 2);
+                addProductGrid.add(productBrand, 1, 2);
+                addProductGrid.add(new Label("Quantity:"), 0, 3);
+                addProductGrid.add(productQuantity, 1, 3);
+
+                addProductDialog.getDialogPane().setContent(addProductGrid);
+
+                addProductDialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+                Optional<ButtonType> addProductResult = addProductDialog.showAndWait();
+                if (addProductResult.get() == ButtonType.OK) {
+                    products.add(new Product(1,Integer.parseInt(productQuantity.getText()),productName.getText(),productBrand.getText()));
+                }
+            }
+        });
 
         mainBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 pageController.active("productList");
-            }
-        });
-        addProductBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
             }
         });
         summeryBt.setOnMouseClicked(new EventHandler<MouseEvent>() {

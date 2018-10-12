@@ -15,8 +15,8 @@
       <Button id="mainButton" layoutX="134.0" layoutY="40.0" mnemonicParsing="false" text="Main" />
       <Button id="orderButton" layoutX="511.0" layoutY="40.0" mnemonicParsing="false" text="Order" />
       <Button id="summeryButton" layoutX="384.0" layoutY="40.0" mnemonicParsing="false" text="Summery" />
-      <Button id="addProductButton" layoutX="240.0" layoutY="40.0" mnemonicParsing="false" text="Add Product" />
-      <Button id="userSearchButton" layoutX="619.0" layoutY="40.0" mnemonicParsing="false" text="User Search" />
+      <Button id="addProductButton" layoutX="808.0" layoutY="136.0" mnemonicParsing="false" text="Add Product" />
+      <Button id="userSearchButton" layoutX="243.0" layoutY="40.0" mnemonicParsing="false" text="User Search" />
       <Circle fill="DODGERBLUE" layoutX="61.0" layoutY="53.0" radius="42.0" stroke="BLACK" strokeType="INSIDE" />
    </children>
 </AnchorPane>
