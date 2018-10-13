@@ -19,6 +19,8 @@ public class OrderDetailController implements Controller {
     PageController pageController;
     int order_id;
     Order order = new Order(50,"12356479","por");
+    TableView detail_table;
+    ObservableList<OrderProduct> orderProducts = getOrderProductList();
 
     public OrderDetailController(PageController pageController) {
         this.pageController = pageController;
@@ -29,19 +31,29 @@ public class OrderDetailController implements Controller {
 
         Scene scene = pageController.getScene("orderDetail");
 
+        //search setup
+        TextField search_TextField = (TextField) scene.lookup("#searchBox");
+        search_TextField.textProperty().addListener((observable, oldVal, newVal) -> {
+            handleSearchByKey((String) oldVal, (String) newVal);
+        });
+
 
         //text box
+        TextField orderName_TextField = (TextField) scene.lookup("#orderName");
+        orderName_TextField.setEditable(false);
+        orderName_TextField.setText(order.getName());
+
         TextField orderOwner_TextField = (TextField) scene.lookup("#orderOwner");
         orderOwner_TextField.setEditable(false);
-        orderOwner_TextField.setText("Por-shop");
+        orderOwner_TextField.setText(order.getOwner());
 
         TextField orderDate_TextField  = (TextField) scene.lookup("#orderDate");
         orderDate_TextField.setEditable(false);
-        orderDate_TextField.setText("12/12/15");
+        orderDate_TextField.setText(order.getDate().toLocaleString());
 
 
         //table setup
-        TableView detail_table = (TableView) scene.lookup("#detail_table");
+        detail_table = (TableView) scene.lookup("#detail_table");
 
         TableColumn<Product,Integer> idColumn = new TableColumn<>("Product ID");
         TableColumn<Product,String> nameColumn = new TableColumn<>("Product NAME");
@@ -112,10 +124,32 @@ public class OrderDetailController implements Controller {
                 }
             }
         });
+    }
 
+    private void handleSearchByKey(String oldValue, String newValue) {
+        if ( oldValue != null && (newValue.length() < oldValue.length()) ) {
+            detail_table.setItems(orderProducts);
+        }
 
+        String[] parts = newValue.toUpperCase().split(" ");
 
+        ObservableList<OrderProduct> subEntries = FXCollections.observableArrayList();
+        for ( Object entry: detail_table.getItems() ) {
+            boolean match = true;
+            OrderProduct entryP = (OrderProduct) entry;
+            String detailEntryP = entryP.getId()+entryP.getName().toUpperCase()+entryP.getBrand().toUpperCase();
+            for ( String part: parts ) {
+                if ( ! detailEntryP.contains(part) ) {
+                    match = false;
+                    break;
+                }
+            }
 
+            if ( match ) {
+                subEntries.add(entryP);
+            }
+        }
+        detail_table.setItems(subEntries);
     }
 
 

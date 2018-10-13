@@ -59,7 +59,7 @@ public class OrderListController implements Controller {
                 Order o = (Order) order_table.getSelectionModel().getSelectedItem();
                 if (o != null) {
                     //change page
-                    orderDetailController.setOrder_id(o.getId());
+                    orderDetailController.order = o;
                     pageController.active("orderDetail");
                 }
             }

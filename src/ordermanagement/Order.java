@@ -10,16 +10,10 @@ public class Order {
 
     private int id;
     private String name,owner;
-    private Date date = new Date(1999,9,9);
-    ObservableList<Product> products;
+    private Date date = new Date(100,9,9,18,10);
+    private ObservableList<Product> products;
 
-    public ObservableList<Product> getProducts() {
-        return products;
-    }
 
-    public void addProduct(Product product) {
-        this.products.add(product);
-    }
 
     public Order(){
         this.name = "";
@@ -31,6 +25,13 @@ public class Order {
         this.name = name;
         this.id = id;
         this.owner = owner;
+    }
+
+    public ObservableList<Product> getProducts() {
+        return products;
+    }
+    public void addProduct(Product product) {
+        this.products.add(product);
     }
 
     public String getOwner() {
