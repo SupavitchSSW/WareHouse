@@ -18,7 +18,7 @@ import java.util.Optional;
 public class OrderDetailController implements Controller {
     PageController pageController;
     int order_id;
-    Order order = new Order(50,"cookie");
+    Order order = new Order(50,"12356479","por");
 
     public OrderDetailController(PageController pageController) {
         this.pageController = pageController;
@@ -31,9 +31,9 @@ public class OrderDetailController implements Controller {
 
 
         //text box
-        TextField orderOwner_TextFielc = (TextField) scene.lookup("#orderOwner");
-        orderOwner_TextFielc.setEditable(false);
-        orderOwner_TextFielc.setText("Por-shop");
+        TextField orderOwner_TextField = (TextField) scene.lookup("#orderOwner");
+        orderOwner_TextField.setEditable(false);
+        orderOwner_TextField.setText("Por-shop");
 
         TextField orderDate_TextField  = (TextField) scene.lookup("#orderDate");
         orderDate_TextField.setEditable(false);
@@ -58,9 +58,7 @@ public class OrderDetailController implements Controller {
         detail_table.getColumns().addAll(idColumn,nameColumn,brandColumn,orderQuantityColumn,warehouseQuantityColumn);
 
 
-//        ObservableList<Product> products = getProductList(order);
-//        detail_table.setItems(products);
-
+        //get OrderProduct list in order
         ObservableList<OrderProduct> orderProducts = getOrderProductList();
         detail_table.setItems(orderProducts);
 
@@ -120,14 +118,6 @@ public class OrderDetailController implements Controller {
 
     }
 
-    private ObservableList<Product> getProductList(Order order) {
-        //return order.getProducts();
-        ObservableList<Product> products = FXCollections.observableArrayList();
-        products.add(new Product(51,20,"cookie","m&m"));
-        products.add(new Product(12,11,"bomb","aka"));
-
-        return products;
-    }
 
     private ObservableList<OrderProduct> getOrderProductList(){
         ObservableList<OrderProduct> orderProducts = FXCollections.observableArrayList();
