@@ -32,6 +32,8 @@ public class productListController implements Controller {
     PageController pageController;
     private TableView productListTable;
     private ObservableList<Product> products = getOrder();
+    private ObservableList<Product> subEntries;
+    private Product selectedProduct;
     private int index, lastID;
 
     public productListController(PageController pageController){
@@ -87,14 +89,20 @@ public class productListController implements Controller {
                     propertyGrid.setVgap(20);
                     propertyGrid.setPadding(new Insets(20, 250, 10, 20));
 
+                    if (productListTable.getItems() == subEntries) {
+                        selectedProduct = subEntries.get(index);
+                    } else {
+                        selectedProduct = products.get(index);
+                    }
+
                     propertyGrid.add(new Label("Product ID:"), 0, 0);
-                    propertyGrid.add(new Label(Integer.toString(products.get(index).getId())), 1, 0);
+                    propertyGrid.add(new Label(Integer.toString(selectedProduct.getId())), 1, 0);
                     propertyGrid.add(new Label("Product Name:"), 0, 1);
-                    propertyGrid.add(new Label(products.get(index).getName()), 1, 1);
+                    propertyGrid.add(new Label(selectedProduct.getName()), 1, 1);
                     propertyGrid.add(new Label("Product Brand:"), 0, 2);
-                    propertyGrid.add(new Label(products.get(index).getBrand()), 1, 2);
+                    propertyGrid.add(new Label(selectedProduct.getBrand()), 1, 2);
                     propertyGrid.add(new Label("Product Quantity:"), 0, 3);
-                    propertyGrid.add(new Label(Integer.toString(products.get(index).getQuantity())), 1, 3);
+                    propertyGrid.add(new Label(Integer.toString(selectedProduct.getQuantity())), 1, 3);
                     propertyDialog.getDialogPane().setContent(propertyGrid);
 
                     ButtonType editButtonType = new ButtonType("Edit");
@@ -106,7 +114,7 @@ public class productListController implements Controller {
                         Dialog<ButtonType> editDialog = new Dialog<>();
                         editDialog.initStyle(StageStyle.UTILITY);
                         editDialog.setTitle("Edit Product Property");
-                        editDialog.setHeaderText("Product ID: \t" + Integer.toString(products.get(index).getId()));
+                        editDialog.setHeaderText("Product ID: \t" + Integer.toString(selectedProduct.getId()));
 
                         GridPane editGrid = new GridPane();
                         editGrid.setHgap(10);
@@ -114,11 +122,11 @@ public class productListController implements Controller {
                         editGrid.setPadding(new Insets(10, 180, 20, 20));
 
                         TextField name = new TextField();
-                        name.setText(products.get(index).getName());
+                        name.setText(selectedProduct.getName());
                         TextField brand = new TextField();
-                        brand.setText(products.get(index).getBrand());
+                        brand.setText(selectedProduct.getBrand());
                         TextField quantity = new TextField();
-                        quantity.setText(Integer.toString(products.get(index).getQuantity()));
+                        quantity.setText(Integer.toString(selectedProduct.getQuantity()));
 
                         editGrid.add(new Label("Name:"), 0, 1);
                         editGrid.add(name, 1, 1);
@@ -140,9 +148,9 @@ public class productListController implements Controller {
                                 alertError.setContentText("Invalid information");
                                 alertError.showAndWait();
                             } else {
-                                products.get(index).setName(name.getText());
-                                products.get(index).setBrand(brand.getText());
-                                products.get(index).setQuantity(quantity.getText());
+                                selectedProduct.setName(name.getText());
+                                selectedProduct.setBrand(brand.getText());
+                                selectedProduct.setQuantity(quantity.getText());
                                 productListTable.refresh();
                             }
                         } else if (editResult.get() == deleteButtonType) {
@@ -152,7 +160,13 @@ public class productListController implements Controller {
                             alert.setContentText("Are you sure you want to delete this product?");
                             Optional<ButtonType> result = alert.showAndWait();
                             if (result.get() == ButtonType.OK){
-                                products.remove(index);
+                                if (productListTable.getItems() == subEntries) {
+                                    products.remove(products.indexOf(subEntries.get(index)));
+                                    searchBox.clear();
+                                    productListTable.setItems(products);
+                                } else {
+                                    products.remove(index);
+                                }
                             }
                         }
                     }
@@ -201,7 +215,12 @@ public class productListController implements Controller {
                             alertError.setContentText("Invalid information");
                             alertError.showAndWait();
                         } else {
+                            if (productListTable.getItems() == subEntries) {
+                                searchBox.clear();
+                                productListTable.setItems(products);
+                            }
                             products.add(new Product(++lastID, Integer.parseInt(productQuantity.getText()), productName.getText(), productBrand.getText()));
+                            productListTable.refresh();
                         }
                     }
                 }
@@ -244,6 +263,8 @@ public class productListController implements Controller {
         products.add(new Product(1,12,"ยาสีฟัน","ฝนฝน"));
         products.add(new Product(2,2,"dss","Por_shop2"));
         products.add(new Product(3,22,"dsd","Por_shop3"));
+        products.add(new Product(4,1,"jud","ng"));
+        products.add(new Product(5,6,"gg","pv"));
         lastID = products.size();
         return products;
     }
@@ -263,7 +284,7 @@ public class productListController implements Controller {
 
         String[] parts = newValue.toUpperCase().split(" ");
 
-        ObservableList<Product> subEntries = FXCollections.observableArrayList();
+        subEntries = FXCollections.observableArrayList();
         for ( Object entry: productListTable.getItems() ) {
             boolean match = true;
             Product entryP = (Product) entry;
