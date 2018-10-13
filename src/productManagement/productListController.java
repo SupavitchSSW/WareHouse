@@ -1,5 +1,6 @@
 package productManagement;
 
+import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -44,6 +45,12 @@ public class productListController implements Controller {
         Button summeryBt = (Button) scene.lookup("#summeryButton");
         Button orderBt = (Button) scene.lookup("#orderButton");
         Button userSearchBt = (Button) scene.lookup("#userSearchButton");
+        TextField searchBox = (TextField) scene.lookup("#searchBox");
+
+        searchBox.setPromptText("Search");
+        searchBox.textProperty().addListener((observable, oldVal, newVal) -> {
+            handleSearchByKey((String) oldVal, (String) newVal);
+        });
 
         //table setup
         productListTable = (TableView) scene.lookup("#productList");
@@ -99,7 +106,7 @@ public class productListController implements Controller {
                         Dialog<ButtonType> editDialog = new Dialog<>();
                         editDialog.initStyle(StageStyle.UTILITY);
                         editDialog.setTitle("Edit Product Property");
-                        editDialog.setHeaderText("Product ID: \t" + Integer.toString(products.get(0).getId()));
+                        editDialog.setHeaderText("Product ID: \t" + Integer.toString(products.get(index).getId()));
 
                         GridPane editGrid = new GridPane();
                         editGrid.setHgap(10);
@@ -247,5 +254,31 @@ public class productListController implements Controller {
         } catch (NumberFormatException e) {
             return null;
         }
+    }
+
+    public void handleSearchByKey(String oldValue, String newValue) {
+        if ( oldValue != null && (newValue.length() < oldValue.length()) ) {
+            productListTable.setItems(products);
+        }
+
+        String[] parts = newValue.toUpperCase().split(" ");
+
+        ObservableList<Product> subEntries = FXCollections.observableArrayList();
+        for ( Object entry: productListTable.getItems() ) {
+            boolean match = true;
+            Product entryP = (Product) entry;
+            String detailEntryP = entryP.getId()+entryP.getName().toUpperCase()+entryP.getBrand().toUpperCase();
+            for ( String part: parts ) {
+                if ( ! detailEntryP.contains(part) ) {
+                    match = false;
+                    break;
+                }
+            }
+
+            if ( match ) {
+                subEntries.add(entryP);
+            }
+        }
+        productListTable.setItems(subEntries);
     }
 }
