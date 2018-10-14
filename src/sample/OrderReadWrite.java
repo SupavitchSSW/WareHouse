@@ -2,9 +2,12 @@ package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import ordermanagement.Order;
+import ordermanagement.OrderProduct;
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import java.util.Date;
 
 
 public class OrderReadWrite {
@@ -33,6 +36,8 @@ public class OrderReadWrite {
             obj.put("name",p.getName());
             array.add(obj.clone());
         }
+        json.put("name","PorShop_0011");
+        json.put("date",new Date(2000,1,2).getTime());
         json.put("products",array);
 
         System.out.println(json.toString());
@@ -44,19 +49,25 @@ public class OrderReadWrite {
         JSONObject json = new JSONObject();
         JSONObject obj = new JSONObject();
         JSONArray array = new JSONArray();
-        String s = "{\"owner\":\"Por\",\"products\":[{\"name\":\"ยาสีฟัน\",\"id\":1,\"brand\":\"ฝนฝน\",\"price\":0},{\"name\":\"dss\",\"id\":2,\"brand\":\"Por_shop2\",\"price\":0},{\"name\":\"dsd\",\"id\":3,\"brand\":\"Por_shop3\",\"price\":0},{\"name\":\"jud\",\"id\":4,\"brand\":\"ng\",\"price\":0},{\"name\":\"gg\",\"id\":5,\"brand\":\"pv\",\"price\":0}]}";
+        String s = "{\"date\":60907654800000,\"name\":\"PorShop_0011\",\"owner\":\"Por\",\"products\":[{\"name\":\"ยาสีฟัน\",\"id\":1,\"brand\":\"ฝนฝน\",\"price\":0},{\"name\":\"dss\",\"id\":2,\"brand\":\"Por_shop2\",\"price\":0},{\"name\":\"dsd\",\"id\":3,\"brand\":\"Por_shop3\",\"price\":0},{\"name\":\"jud\",\"id\":4,\"brand\":\"ng\",\"price\":0},{\"name\":\"gg\",\"id\":5,\"brand\":\"pv\",\"price\":0}]}";
 
         try {
             json = (JSONObject) parser.parse(s);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        array = (JSONArray) json.get("products");
 
+        order.setOwner(json.get("owner").toString());
+        order.setName(json.get("name").toString());
+        order.setDate(new Date((Long) json.get("date")));
+
+        array = (JSONArray) json.get("products");
         for(int i =0;i<array.size();i++){
             obj = (JSONObject) array.get(i);
-            System.out.println(obj.toString());
+            order.addOrderProduct(new OrderProduct(Integer.parseInt(obj.get("id").toString())));
         }
+
+        System.out.println(order.toString());
 
 
     }

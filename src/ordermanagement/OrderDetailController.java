@@ -43,15 +43,12 @@ public class OrderDetailController implements Controller {
         //text box
         orderName_TextField = (TextField) scene.lookup("#orderName");
         orderName_TextField.setEditable(false);
-        orderName_TextField.setText(order.getName());
 
         orderOwner_TextField = (TextField) scene.lookup("#orderOwner");
         orderOwner_TextField.setEditable(false);
-        orderOwner_TextField.setText(order.getOwner());
 
         orderDate_TextField  = (TextField) scene.lookup("#orderDate");
         orderDate_TextField.setEditable(false);
-        orderDate_TextField.setText(order.getDate().toLocaleString());
 
 
         //table setup

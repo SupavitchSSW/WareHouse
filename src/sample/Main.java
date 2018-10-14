@@ -10,6 +10,7 @@ import ordermanagement.OrderListController;
 import productManagement.productListController;
 
 import java.io.IOException;
+import java.util.Date;
 
 public class Main extends Application {
 
@@ -47,6 +48,11 @@ public class Main extends Application {
         //start page
         primaryStage.setTitle("WareHouse");
         pageController.active("productList");
+
+
+
+
+
 
     }
 
