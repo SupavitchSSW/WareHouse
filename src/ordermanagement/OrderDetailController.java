@@ -19,9 +19,9 @@ import java.util.Optional;
 
 public class OrderDetailController implements Controller {
     PageController pageController;
-    private Order order = new Order(50,"12356479","por");
+    private Order order;
     private TableView detail_table;
-    private ObservableList<OrderProduct> orderProducts = getOrderProductList();
+    private ObservableList<OrderProduct> orderProducts;
 
     public OrderDetailController(PageController pageController) {
         this.pageController = pageController;
@@ -91,11 +91,6 @@ public class OrderDetailController implements Controller {
 
         detail_table.getColumns().addAll(idColumn,nameColumn,brandColumn,orderQuantityColumn,warehouseQuantityColumn,sendQuantityColumn);
 
-
-
-        //get OrderProduct list in order
-        ObservableList<OrderProduct> orderProducts = getOrderProductList();
-        detail_table.setItems(orderProducts);
 
 
         //set button
@@ -176,17 +171,22 @@ public class OrderDetailController implements Controller {
     }
 
 
-    private ObservableList<OrderProduct> getOrderProductList(){
-        ObservableList<OrderProduct> orderProducts = FXCollections.observableArrayList();
-        orderProducts.add(new OrderProduct(11,1000,"beer","leo",30));
-        orderProducts.add(new OrderProduct(10,5000,"coockie","m&m",20));
-        orderProducts.add(new OrderProduct(2,5,"vodka","tom",20));
-        return orderProducts;
+    private void getOrderProductList(){
+        //get order product from order
+        orderProducts = order.getOrderProducts();
+
+        //============================================================================
+        //           (TODO) set current warehouse quantity to each OrderProduct
+        //============================================================================
+
     }
 
     @Override
     public void onActive() {
         System.out.println("display detail order ID : "+order.getId());
+        getOrderProductList();
+        //get OrderProduct list in order
+        detail_table.setItems(orderProducts);
     }
 
     public Order getOrder() {

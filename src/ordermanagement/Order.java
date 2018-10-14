@@ -11,7 +11,7 @@ public class Order {
     private int id;
     private String name,owner;
     private Date date = new Date(100,9,9,18,10);
-    private ObservableList<Product> products;
+    private ObservableList<OrderProduct> orderProducts = FXCollections.observableArrayList();
 
 
 
@@ -27,11 +27,13 @@ public class Order {
         this.owner = owner;
     }
 
-    public ObservableList<Product> getProducts() {
-        return products;
+    public ObservableList<OrderProduct> getOrderProducts() {
+        return orderProducts;
     }
-    public void addProduct(Product product) {
-        this.products.add(product);
+
+    public void addOrderProduct(OrderProduct orderProduct) {
+        orderProducts.add(orderProduct);
+
     }
 
     public String getOwner() {

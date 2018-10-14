@@ -102,9 +102,23 @@ public class OrderListController implements Controller {
 
     public ObservableList<Order> getOrder() {
         ObservableList<Order> orders = FXCollections.observableArrayList();
-        orders.add(new Order(1, "Por_shop1","por"));
-        orders.add(new Order(2, "Por_shop2","por"));
-        orders.add(new Order(3, "Por_shop3","por"));
+
+        Order o = new Order(1, "Por_shop1","por");
+        o.addOrderProduct(new OrderProduct(10,"beer","leo",50));
+        o.addOrderProduct(new OrderProduct(11,"vodka","tom",20));
+        orders.add(o);
+
+        o = new Order(3, "Por_shop2","por");
+        o.addOrderProduct(new OrderProduct(102,"cookie","m&m",5));
+        o.addOrderProduct(new OrderProduct(1,"water","KMITL",200));
+        orders.add(o);
+
+        o = new Order(5, "Por_shop3","por");
+        o.addOrderProduct(new OrderProduct(102,"cookie","m&m",5));
+        o.addOrderProduct(new OrderProduct(1,"water","KMITL",200));
+        o.addOrderProduct(new OrderProduct(10,"beer","leo",50));
+        o.addOrderProduct(new OrderProduct(11,"vodka","tom",20));
+        orders.add(o);
         return orders;
     }
 }

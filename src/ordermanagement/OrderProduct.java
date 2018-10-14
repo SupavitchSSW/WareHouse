@@ -9,8 +9,8 @@ public class OrderProduct extends Product {
         this.orderQuantity = orderQuantity;
     }
 
-    public OrderProduct(int id, int quantity, String name, String brand, int orderQuantity) {
-        super(id, quantity, name, brand);
+    public OrderProduct(int id, String name, String brand, int orderQuantity) {
+        super(id, 0, name, brand);
         this.orderQuantity = orderQuantity;
         if(super.getQuantity() < orderQuantity) {
             sendQuantity = super.getQuantity();
