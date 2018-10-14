@@ -21,6 +21,7 @@ public class OrderDetailController implements Controller {
     PageController pageController;
     private Order order;
     private TableView detail_table;
+    private TextField orderName_TextField,orderOwner_TextField,orderDate_TextField;
     private ObservableList<OrderProduct> orderProducts;
 
     public OrderDetailController(PageController pageController) {
@@ -40,15 +41,15 @@ public class OrderDetailController implements Controller {
 
 
         //text box
-        TextField orderName_TextField = (TextField) scene.lookup("#orderName");
+        orderName_TextField = (TextField) scene.lookup("#orderName");
         orderName_TextField.setEditable(false);
         orderName_TextField.setText(order.getName());
 
-        TextField orderOwner_TextField = (TextField) scene.lookup("#orderOwner");
+        orderOwner_TextField = (TextField) scene.lookup("#orderOwner");
         orderOwner_TextField.setEditable(false);
         orderOwner_TextField.setText(order.getOwner());
 
-        TextField orderDate_TextField  = (TextField) scene.lookup("#orderDate");
+        orderDate_TextField  = (TextField) scene.lookup("#orderDate");
         orderDate_TextField.setEditable(false);
         orderDate_TextField.setText(order.getDate().toLocaleString());
 
@@ -184,6 +185,10 @@ public class OrderDetailController implements Controller {
     @Override
     public void onActive() {
         System.out.println("display detail order ID : "+order.getId());
+        orderName_TextField.setText(order.getName());
+        orderOwner_TextField.setText(order.getOwner());
+        orderDate_TextField.setText(order.getDate().toLocaleString());
+
         getOrderProductList();
         //get OrderProduct list in order
         detail_table.setItems(orderProducts);
