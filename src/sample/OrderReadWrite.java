@@ -21,12 +21,18 @@ public class OrderReadWrite {
 
     public static void run(){
         System.out.println("OrderReadWrite online ...");
+
         try {
             writeProductList();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //readOrder();
+
+        try {
+            readOrder();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void writeProductList() throws IOException {
@@ -48,9 +54,8 @@ public class OrderReadWrite {
         json.put("products",array);
 
         //write to file
+        System.out.println("Write Product list to file : ProductList.txt");
         System.out.println(json.toString());
-
-        FileReader in = null;
         FileWriter out = null;
 
         try{
@@ -81,7 +86,7 @@ public class OrderReadWrite {
         }*/
     }
 
-    public static Order readOrder(){
+    public static Order readOrder() throws IOException{
         Order order = new Order();
         JSONParser parser = new JSONParser();
         JSONObject json = new JSONObject();
@@ -89,10 +94,25 @@ public class OrderReadWrite {
         JSONArray array = new JSONArray();
 
         //read file
-        String s = "{\"date\":60907654800000,\"name\":\"PorShop_0011\",\"owner\":\"Por\",\"products\":[{\"name\":\"ยาสีฟัน\",\"id\":1,\"brand\":\"ฝนฝน\",\"amount\":20},{\"name\":\"dss\",\"id\":2,\"brand\":\"Por_shop2\",\"amount\":12},{\"name\":\"dsd\",\"id\":3,\"brand\":\"Por_shop3\",\"amount\":33},{\"name\":\"jud\",\"id\":4,\"brand\":\"ng\",\"amount\":100},{\"name\":\"gg\",\"id\":5,\"brand\":\"pv\",\"amount\":5}]}";
+        //String s = "{\"date\":60907654800000,\"name\":\"PorShop_0011\",\"owner\":\"Por\",\"products\":[{\"name\":\"ยาสีฟัน\",\"id\":1,\"brand\":\"ฝนฝน\",\"amount\":20},{\"name\":\"dss\",\"id\":2,\"brand\":\"Por_shop2\",\"amount\":12},{\"name\":\"dsd\",\"id\":3,\"brand\":\"Por_shop3\",\"amount\":33},{\"name\":\"jud\",\"id\":4,\"brand\":\"ng\",\"amount\":100},{\"name\":\"gg\",\"id\":5,\"brand\":\"pv\",\"amount\":5}]}";
+        String inputJSON ="";
+        FileReader in = null;
 
         try {
-            json = (JSONObject) parser.parse(s);
+            in = new FileReader("OrderAPI/in/order1.txt");
+            int c;
+            while ((c = in.read()) != -1) {
+                inputJSON = inputJSON+(char) c;
+            }
+        }finally {
+            if (in != null) {
+                in.close();
+            }
+        }
+
+        //convert String to json object
+        try {
+            json = (JSONObject) parser.parse(inputJSON);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -101,13 +121,15 @@ public class OrderReadWrite {
         order.setName(json.get("name").toString());
         order.setDate(new Date((Long) json.get("date")));
 
+        // add product to order
         array = (JSONArray) json.get("products");
         for(int i =0;i<array.size();i++){
             obj = (JSONObject) array.get(i);
             order.addOrderProduct(new OrderProduct(Integer.parseInt(obj.get("id").toString()),obj.get("name").toString(),obj.get("brand").toString(),Integer.parseInt(obj.get("amount").toString())));
         }
 
-        //System.out.println(order.getOrderProducts().get(1).getName());
+        System.out.println("Read JSON : "+inputJSON);
+        System.out.println(order.toString());
         return order;
     }
 
