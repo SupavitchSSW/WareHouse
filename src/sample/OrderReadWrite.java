@@ -7,6 +7,9 @@ import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Date;
 
 
@@ -18,11 +21,15 @@ public class OrderReadWrite {
 
     public static void run(){
         System.out.println("OrderReadWrite online ...");
-        //writeProductList();
-        readOrder();
+        try {
+            writeProductList();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //readOrder();
     }
 
-    public static void writeProductList(){
+    public static void writeProductList() throws IOException {
         ObservableList<Product> products = getProducts();
         JSONObject obj = new JSONObject();
         JSONObject json = new JSONObject();
@@ -40,7 +47,38 @@ public class OrderReadWrite {
         json.put("date",new Date(2000,1,2).getTime());
         json.put("products",array);
 
+        //write to file
         System.out.println(json.toString());
+
+        FileReader in = null;
+        FileWriter out = null;
+
+        try{
+            out = new FileWriter("OrderAPI/out/ProductList.txt");
+            out.write(json.toString());
+        }finally {
+            if (out != null) {
+                out.close();
+            }
+        }
+/*
+        try {
+            in = new FileReader("OrderAPI/in/input.txt");
+            out = new FileWriter("OrderAPI/out/output.txt");
+
+            int c;
+            while ((c = in.read()) != -1) {
+                read = read+(char) c;
+                out.write(c);
+            }
+        }finally {
+            if (in != null) {
+                in.close();
+            }
+            if (out != null) {
+                out.close();
+            }
+        }*/
     }
 
     public static Order readOrder(){
@@ -49,6 +87,8 @@ public class OrderReadWrite {
         JSONObject json = new JSONObject();
         JSONObject obj = new JSONObject();
         JSONArray array = new JSONArray();
+
+        //read file
         String s = "{\"date\":60907654800000,\"name\":\"PorShop_0011\",\"owner\":\"Por\",\"products\":[{\"name\":\"ยาสีฟัน\",\"id\":1,\"brand\":\"ฝนฝน\",\"amount\":20},{\"name\":\"dss\",\"id\":2,\"brand\":\"Por_shop2\",\"amount\":12},{\"name\":\"dsd\",\"id\":3,\"brand\":\"Por_shop3\",\"amount\":33},{\"name\":\"jud\",\"id\":4,\"brand\":\"ng\",\"amount\":100},{\"name\":\"gg\",\"id\":5,\"brand\":\"pv\",\"amount\":5}]}";
 
         try {
@@ -71,7 +111,9 @@ public class OrderReadWrite {
         return order;
     }
 
-    public static void writeOrderRespond(){}
+    public static void writeOrderRespond(){
+        JSONObject json = new JSONObject();
+    }
 
     public static ObservableList<Product> getProducts(){
         ObservableList<Product> products = FXCollections.observableArrayList();
