@@ -177,6 +177,10 @@ public class OrderDetailController implements Controller {
         //           (TODO) set current warehouse quantity to each OrderProduct
         //============================================================================
 
+        for(OrderProduct orderProduct:orderProducts){
+            orderProduct.setQuantity(500);
+        }
+
     }
 
     @Override

@@ -66,24 +66,6 @@ public class OrderReadWrite {
                 out.close();
             }
         }
-/*
-        try {
-            in = new FileReader("OrderAPI/in/input.txt");
-            out = new FileWriter("OrderAPI/out/output.txt");
-
-            int c;
-            while ((c = in.read()) != -1) {
-                read = read+(char) c;
-                out.write(c);
-            }
-        }finally {
-            if (in != null) {
-                in.close();
-            }
-            if (out != null) {
-                out.close();
-            }
-        }*/
     }
 
     public static Order readOrder() throws IOException{
