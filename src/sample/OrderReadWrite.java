@@ -43,13 +43,13 @@ public class OrderReadWrite {
         System.out.println(json.toString());
     }
 
-    public static void readOrder(){
+    public static Order readOrder(){
         Order order = new Order();
         JSONParser parser = new JSONParser();
         JSONObject json = new JSONObject();
         JSONObject obj = new JSONObject();
         JSONArray array = new JSONArray();
-        String s = "{\"date\":60907654800000,\"name\":\"PorShop_0011\",\"owner\":\"Por\",\"products\":[{\"name\":\"ยาสีฟัน\",\"id\":1,\"brand\":\"ฝนฝน\",\"price\":0},{\"name\":\"dss\",\"id\":2,\"brand\":\"Por_shop2\",\"price\":0},{\"name\":\"dsd\",\"id\":3,\"brand\":\"Por_shop3\",\"price\":0},{\"name\":\"jud\",\"id\":4,\"brand\":\"ng\",\"price\":0},{\"name\":\"gg\",\"id\":5,\"brand\":\"pv\",\"price\":0}]}";
+        String s = "{\"date\":60907654800000,\"name\":\"PorShop_0011\",\"owner\":\"Por\",\"products\":[{\"name\":\"ยาสีฟัน\",\"id\":1,\"brand\":\"ฝนฝน\",\"amount\":20},{\"name\":\"dss\",\"id\":2,\"brand\":\"Por_shop2\",\"amount\":12},{\"name\":\"dsd\",\"id\":3,\"brand\":\"Por_shop3\",\"amount\":33},{\"name\":\"jud\",\"id\":4,\"brand\":\"ng\",\"amount\":100},{\"name\":\"gg\",\"id\":5,\"brand\":\"pv\",\"amount\":5}]}";
 
         try {
             json = (JSONObject) parser.parse(s);
@@ -64,12 +64,11 @@ public class OrderReadWrite {
         array = (JSONArray) json.get("products");
         for(int i =0;i<array.size();i++){
             obj = (JSONObject) array.get(i);
-            order.addOrderProduct(new OrderProduct(Integer.parseInt(obj.get("id").toString())));
+            order.addOrderProduct(new OrderProduct(Integer.parseInt(obj.get("id").toString()),obj.get("name").toString(),obj.get("brand").toString(),Integer.parseInt(obj.get("amount").toString())));
         }
 
-        System.out.println(order.toString());
-
-
+        //System.out.println(order.getOrderProducts().get(1).getName());
+        return order;
     }
 
     public static void writeOrderRespond(){}
