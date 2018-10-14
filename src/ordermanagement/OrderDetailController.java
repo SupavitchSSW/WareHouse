@@ -6,7 +6,9 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
+import javafx.util.converter.IntegerStringConverter;
 import ordermanagement.Order;
 import sample.Controller;
 import sample.PageController;
@@ -17,10 +19,9 @@ import java.util.Optional;
 
 public class OrderDetailController implements Controller {
     PageController pageController;
-    int order_id;
-    Order order = new Order(50,"12356479","por");
-    TableView detail_table;
-    ObservableList<OrderProduct> orderProducts = getOrderProductList();
+    private Order order = new Order(50,"12356479","por");
+    private TableView detail_table;
+    private ObservableList<OrderProduct> orderProducts = getOrderProductList();
 
     public OrderDetailController(PageController pageController) {
         this.pageController = pageController;
@@ -54,20 +55,42 @@ public class OrderDetailController implements Controller {
 
         //table setup
         detail_table = (TableView) scene.lookup("#detail_table");
+        detail_table.setEditable(true);
 
         TableColumn<Product,Integer> idColumn = new TableColumn<>("Product ID");
         TableColumn<Product,String> nameColumn = new TableColumn<>("Product NAME");
         TableColumn<Product,Integer> brandColumn = new TableColumn<>("BLAND");
-        TableColumn<Product,Integer> orderQuantityColumn = new TableColumn<>("ORDER QUANTITY");
-        TableColumn<Product,Integer> warehouseQuantityColumn = new TableColumn<>("WAREHOUSE QUANTITY");
-
+        TableColumn<Product,Integer> orderQuantityColumn = new TableColumn<>("ORDER");
+        TableColumn<Product,Integer> warehouseQuantityColumn = new TableColumn<>("QUOTA");
+        TableColumn<Product,Integer> sendQuantityColumn = new TableColumn<>("SEND");
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         brandColumn.setCellValueFactory(new PropertyValueFactory<>("brand"));
         orderQuantityColumn.setCellValueFactory(new PropertyValueFactory<>("orderQuantity"));
         warehouseQuantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        detail_table.getColumns().addAll(idColumn,nameColumn,brandColumn,orderQuantityColumn,warehouseQuantityColumn);
+        sendQuantityColumn.setCellValueFactory(new PropertyValueFactory<>("sendQuantity"));
+
+        //set send cell
+        sendQuantityColumn.setEditable(true);
+        sendQuantityColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        sendQuantityColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Product, Integer>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Product, Integer> event) {
+                OrderProduct o = (OrderProduct) event.getTableView().getItems().get(event.getTablePosition().getRow());
+                if(event.getNewValue() > o.getQuantity() || event.getNewValue() < 0){
+                    System.out.println("Error input");
+                    detail_table.refresh();
+                }else{
+                    System.out.println(o.getName() +" : "+event.getNewValue());
+                    o.setSendQuantity(event.getNewValue());
+                }
+            }
+        });
+
+
+        detail_table.getColumns().addAll(idColumn,nameColumn,brandColumn,orderQuantityColumn,warehouseQuantityColumn,sendQuantityColumn);
+
 
 
         //get OrderProduct list in order
@@ -98,7 +121,7 @@ public class OrderDetailController implements Controller {
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
                     // ... user chose OK
-                    System.out.println("approve order id : "+getOrder_id());
+                    System.out.println("approve order id : "+order.getId());
                     pageController.active("orderList");
                 } else {
                     // ... user chose CANCEL or closed the dialog
@@ -117,7 +140,7 @@ public class OrderDetailController implements Controller {
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
                     // ... user chose OK
-                    System.out.println("reject order id : "+getOrder_id());
+                    System.out.println("reject order id : "+order.getId());
                     pageController.active("orderList");
                 } else {
                     // ... user chose CANCEL or closed the dialog
@@ -157,19 +180,20 @@ public class OrderDetailController implements Controller {
         ObservableList<OrderProduct> orderProducts = FXCollections.observableArrayList();
         orderProducts.add(new OrderProduct(11,1000,"beer","leo",30));
         orderProducts.add(new OrderProduct(10,5000,"coockie","m&m",20));
+        orderProducts.add(new OrderProduct(2,5,"vodka","tom",20));
         return orderProducts;
     }
 
     @Override
     public void onActive() {
-        System.out.println("display detail order ID : "+getOrder_id());
+        System.out.println("display detail order ID : "+order.getId());
     }
 
-    public int getOrder_id() {
-        return order_id;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setOrder_id(int order_id) {
-        this.order_id = order_id;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }
