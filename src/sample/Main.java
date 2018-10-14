@@ -42,6 +42,8 @@ public class Main extends Application {
 
         pageController.addPage("productList",productListPane,productListController);
 
+        OrderReadWrite.run();
+
         //start page
         primaryStage.setTitle("WareHouse");
         pageController.active("productList");
