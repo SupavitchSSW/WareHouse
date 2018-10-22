@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import ordermanagement.OrderDetailController;
 import ordermanagement.OrderListController;
 import productManagement.productListController;
+import report.reportController;
 import user.LoginController;
 
 import java.io.IOException;
@@ -22,6 +23,7 @@ public class Main extends Application {
         Pane orderListPane = FXMLLoader.load(getClass().getResource("../ordermanagement/orderList.fxml"));
         Pane orderDetailPane = FXMLLoader.load(getClass().getResource("../ordermanagement/orderDetail.fxml"));
         Pane productListPane = FXMLLoader.load(getClass().getResource("../productManagement/mainPage.fxml"));
+        Pane reportPane = FXMLLoader.load(getClass().getResource("../report/report.fxml"));
         Pane loginPane = FXMLLoader.load(getClass().getResource("../user/login.fxml"));
 
 
@@ -40,6 +42,7 @@ public class Main extends Application {
         OrderDetailController orderDetailController = new OrderDetailController(pageController);
         OrderListController orderListController = new OrderListController(pageController,orderDetailController);
         productListController productListController = new productListController(pageController);
+        reportController reportController = new reportController(pageController);
         LoginController loginController = new LoginController(pageController);
 
 
@@ -48,13 +51,14 @@ public class Main extends Application {
         pageController.addPage("orderList",orderListPane,orderListController);
         pageController.addPage("orderDetail",orderDetailPane,orderDetailController);
         pageController.addPage("productList",productListPane,productListController);
+        pageController.addPage("report",reportPane,reportController);
         pageController.addPage("login",loginPane,loginController);
 
         OrderReadWrite.run();
 
         //start page
         primaryStage.setTitle("WareHouse");
-        pageController.active("login");
+        pageController.active("productList");
 
 
 

@@ -235,7 +235,7 @@ public class productListController implements Controller {
         });
         summeryBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(MouseEvent event) {pageController.active("report");
 
             }
         });
