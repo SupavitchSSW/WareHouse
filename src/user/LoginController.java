@@ -28,7 +28,6 @@ public class LoginController implements Controller {
         btn.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                //System.out.println(username.getText());
                 pageController.active("productList");
             }
         });
