@@ -46,6 +46,8 @@ public class Main extends Application {
         primaryStage.setTitle("WareHouse");
         pageController.active("productList");
 
+        //yeah
+
     }
 
     public static void main(String[] args) {
