@@ -260,7 +260,7 @@ public class productListController implements Controller {
 
     public ObservableList<Product> getOrder(){
         products = FXCollections.observableArrayList();
-        products.add(new Product(1,12,"ยาสีฟัน","ฝนฝน"));
+        products.add(new Product(1,12,"sssdwq","ssfojmw"));
         products.add(new Product(2,2,"dss","Por_shop2"));
         products.add(new Product(3,22,"dsd","Por_shop3"));
         products.add(new Product(4,1,"jud","ng"));

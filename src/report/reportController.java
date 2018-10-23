@@ -20,20 +20,20 @@ public class reportController implements Controller{
 
     public ObservableList<Product> getOrder(){
         reports = FXCollections.observableArrayList();
-        reports.add(new Product(1,1,"A","ก"));
-        reports.add(new Product(2,2,"B","ข"));
-        reports.add(new Product(3,22,"C","ค"));
-        reports.add(new Product(5,1,"D","ง"));
-        reports.add(new Product(6,1,"E","ฉ"));
-        reports.add(new Product(7,1,"F","ฉ"));
-        reports.add(new Product(8,1,"G","ช"));
-        reports.add(new Product(9,1,"H","ซ"));
-        reports.add(new Product(10,150,"I","ฆ"));
-        reports.add(new Product(11,1,"G","ณ"));
-        reports.add(new Product(12,1,"K","ญ"));
-        reports.add(new Product(13,1,"L","ฎ"));
-        reports.add(new Product(14,1,"M","ฏ"));
-        reports.add(new Product(15,1,"N","ฐ"));
+        reports.add(new Product(1,1,"A","g"));
+        reports.add(new Product(2,2,"B","t"));
+        reports.add(new Product(3,22,"C","h"));
+        reports.add(new Product(5,1,"D","f"));
+        reports.add(new Product(6,1,"E","y"));
+        reports.add(new Product(7,1,"F","i"));
+        reports.add(new Product(8,1,"G","d"));
+        reports.add(new Product(9,1,"H","q"));
+        reports.add(new Product(10,150,"I","i"));
+        reports.add(new Product(11,1,"G","i"));
+        reports.add(new Product(12,1,"K","f"));
+        reports.add(new Product(13,1,"L","h"));
+        reports.add(new Product(14,1,"M","d"));
+        reports.add(new Product(15,1,"N","s"));
         return reports;
     }
 

@@ -76,7 +76,6 @@ public class OrderReadWrite {
         JSONArray array = new JSONArray();
 
         //read file
-        //String s = "{\"date\":60907654800000,\"name\":\"PorShop_0011\",\"owner\":\"Por\",\"products\":[{\"name\":\"ยาสีฟัน\",\"id\":1,\"brand\":\"ฝนฝน\",\"amount\":20},{\"name\":\"dss\",\"id\":2,\"brand\":\"Por_shop2\",\"amount\":12},{\"name\":\"dsd\",\"id\":3,\"brand\":\"Por_shop3\",\"amount\":33},{\"name\":\"jud\",\"id\":4,\"brand\":\"ng\",\"amount\":100},{\"name\":\"gg\",\"id\":5,\"brand\":\"pv\",\"amount\":5}]}";
         String inputJSON ="";
         FileReader in = null;
 
@@ -121,14 +120,12 @@ public class OrderReadWrite {
 
     public static ObservableList<Product> getProducts(){
         ObservableList<Product> products = FXCollections.observableArrayList();
-        products.add(new Product(1,12,"ยาสีฟัน","ฝนฝน"));
+        products.add(new Product(1,12,"sddffd","ddfvrv"));
         products.add(new Product(2,2,"dss","Por_shop2"));
         products.add(new Product(3,22,"dsd","Por_shop3"));
         products.add(new Product(4,1,"jud","ng"));
         products.add(new Product(5,6,"gg","pv"));
         return products;
     }
-
-    //{"owner":"Por","products":[{"name":"ยาสีฟัน","id":1,"brand":"ฝนฝน","price":0},{"name":"dss","id":2,"brand":"Por_shop2","price":0},{"name":"dsd","id":3,"brand":"Por_shop3","price":0},{"name":"jud","id":4,"brand":"ng","price":0},{"name":"gg","id":5,"brand":"pv","price":0}]}
 
 }
