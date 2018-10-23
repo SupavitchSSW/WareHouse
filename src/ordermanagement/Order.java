@@ -9,7 +9,7 @@ import java.util.Date;
 public class Order {
 
     private int id;
-    private String name,owner;
+    private String name,owner,status;
     private Date date = new Date(100,9,9,18,10);
     private ObservableList<OrderProduct> orderProducts = FXCollections.observableArrayList();
 
@@ -66,6 +66,14 @@ public class Order {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
