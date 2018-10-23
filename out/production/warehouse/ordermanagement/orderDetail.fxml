@@ -13,12 +13,15 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TextField id="orderOwner" layoutX="123.0" layoutY="172.0" />
-      <Text layoutX="45.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order owner" />
-      <Text layoutX="65.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
-      <TextField id="orderDate" layoutX="123.0" layoutY="228.0" />
+      <TextField id="orderOwner" layoutX="123.0" layoutY="230.0" />
+      <Text layoutX="45.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order owner" />
+      <Text layoutX="66.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
+      <TextField id="orderDate" layoutX="123.0" layoutY="288.0" />
       <Button id="goBack" layoutX="67.0" layoutY="498.0" mnemonicParsing="false" text="BACK" />
       <Button id="approve_btn" layoutX="211.0" layoutY="498.0" mnemonicParsing="false" text="APPROVE" />
       <Button id="reject_btn" layoutX="153.0" layoutY="498.0" mnemonicParsing="false" text="REJECT" />
+      <TextField id="orderName" layoutX="123.0" layoutY="175.0" />
+      <Text layoutX="63.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="name" />
+      <TextField id="searchBox" layoutX="311.0" layoutY="129.0" prefHeight="25.0" prefWidth="208.0" promptText="Search" />
    </children>
 </Pane>

@@ -1,7 +1,7 @@
 package sample;
 
 public class Product {
-    private int id,quantity;
+    private int id,quantity,cost=0,price=0;
     private String name,brand;
 
     public Product(){
@@ -9,6 +9,8 @@ public class Product {
         this.quantity = 0;
         this.name = "null";
         this.brand = "null";
+        this.cost = 0;
+        this.price = 0;
     }
 
     public Product(int id, int quantity, String name, String brand) {
@@ -52,5 +54,21 @@ public class Product {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

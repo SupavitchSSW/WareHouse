@@ -8,29 +8,49 @@ import java.util.Date;
 
 public class Order {
 
-    private int id,quantity;
-    private String name;
-    ObservableList<Product> products;
+    private int id;
+    private String name,owner,status;
+    private Date date = new Date(100,9,9,18,10);
+    private ObservableList<OrderProduct> orderProducts = FXCollections.observableArrayList();
 
-    public ObservableList<Product> getProducts() {
-        return products;
-    }
 
-    public void addProduct(Product product) {
-        this.products.add(product);
-    }
 
     public Order(){
         this.name = "";
         this.id = -1;
-
+        this.owner = "undefind";
     }
 
-    public Order(int id, String name) {
+    public Order(int id, String name,String owner) {
         this.name = name;
         this.id = id;
+        this.owner = owner;
     }
 
+    public ObservableList<OrderProduct> getOrderProducts() {
+        return orderProducts;
+    }
+
+    public void addOrderProduct(OrderProduct orderProduct) {
+        orderProducts.add(orderProduct);
+
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public String getName() {
         return name;
@@ -48,11 +68,22 @@ public class Order {
         this.id = id;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public String getStatus() {
+        return status;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", owner='" + owner + '\'' +
+                ", date=" + date +
+                ", orderProducts=" + orderProducts +
+                '}';
     }
 }

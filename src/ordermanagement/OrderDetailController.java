@@ -6,7 +6,9 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
+import javafx.util.converter.IntegerStringConverter;
 import ordermanagement.Order;
 import sample.Controller;
 import sample.PageController;
@@ -17,8 +19,10 @@ import java.util.Optional;
 
 public class OrderDetailController implements Controller {
     PageController pageController;
-    int order_id;
-    Order order = new Order(50,"cookie");
+    private Order order;
+    private TableView detail_table;
+    private TextField orderName_TextField,orderOwner_TextField,orderDate_TextField;
+    private ObservableList<OrderProduct> orderProducts;
 
     public OrderDetailController(PageController pageController) {
         this.pageController = pageController;
@@ -29,40 +33,62 @@ public class OrderDetailController implements Controller {
 
         Scene scene = pageController.getScene("orderDetail");
 
+        //search setup
+        TextField search_TextField = (TextField) scene.lookup("#searchBox");
+        search_TextField.textProperty().addListener((observable, oldVal, newVal) -> {
+            handleSearchByKey((String) oldVal, (String) newVal);
+        });
+
 
         //text box
-        TextField orderOwner_TextFielc = (TextField) scene.lookup("#orderOwner");
-        orderOwner_TextFielc.setEditable(false);
-        orderOwner_TextFielc.setText("Por-shop");
+        orderName_TextField = (TextField) scene.lookup("#orderName");
+        orderName_TextField.setEditable(false);
 
-        TextField orderDate_TextField  = (TextField) scene.lookup("#orderDate");
+        orderOwner_TextField = (TextField) scene.lookup("#orderOwner");
+        orderOwner_TextField.setEditable(false);
+
+        orderDate_TextField  = (TextField) scene.lookup("#orderDate");
         orderDate_TextField.setEditable(false);
-        orderDate_TextField.setText("12/12/15");
 
 
         //table setup
-        TableView detail_table = (TableView) scene.lookup("#detail_table");
+        detail_table = (TableView) scene.lookup("#detail_table");
+        detail_table.setEditable(true);
 
         TableColumn<Product,Integer> idColumn = new TableColumn<>("Product ID");
         TableColumn<Product,String> nameColumn = new TableColumn<>("Product NAME");
         TableColumn<Product,Integer> brandColumn = new TableColumn<>("BLAND");
-        TableColumn<Product,Integer> orderQuantityColumn = new TableColumn<>("ORDER QUANTITY");
-        TableColumn<Product,Integer> warehouseQuantityColumn = new TableColumn<>("WAREHOUSE QUANTITY");
-
+        TableColumn<Product,Integer> orderQuantityColumn = new TableColumn<>("ORDER");
+        TableColumn<Product,Integer> warehouseQuantityColumn = new TableColumn<>("QUOTA");
+        TableColumn<Product,Integer> sendQuantityColumn = new TableColumn<>("SEND");
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         brandColumn.setCellValueFactory(new PropertyValueFactory<>("brand"));
         orderQuantityColumn.setCellValueFactory(new PropertyValueFactory<>("orderQuantity"));
         warehouseQuantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        detail_table.getColumns().addAll(idColumn,nameColumn,brandColumn,orderQuantityColumn,warehouseQuantityColumn);
+        sendQuantityColumn.setCellValueFactory(new PropertyValueFactory<>("sendQuantity"));
+
+        //set send cell
+        sendQuantityColumn.setEditable(true);
+        sendQuantityColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        sendQuantityColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Product, Integer>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Product, Integer> event) {
+                OrderProduct o = (OrderProduct) event.getTableView().getItems().get(event.getTablePosition().getRow());
+                if(event.getNewValue() > o.getQuantity() || event.getNewValue() < 0){
+                    System.out.println("Error input");
+                    detail_table.refresh();
+                }else{
+                    System.out.println(o.getName() +" : "+event.getNewValue());
+                    o.setSendQuantity(event.getNewValue());
+                }
+            }
+        });
 
 
-//        ObservableList<Product> products = getProductList(order);
-//        detail_table.setItems(products);
+        detail_table.getColumns().addAll(idColumn,nameColumn,brandColumn,orderQuantityColumn,warehouseQuantityColumn,sendQuantityColumn);
 
-        ObservableList<OrderProduct> orderProducts = getOrderProductList();
-        detail_table.setItems(orderProducts);
 
 
         //set button
@@ -88,7 +114,7 @@ public class OrderDetailController implements Controller {
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
                     // ... user chose OK
-                    System.out.println("approve order id : "+getOrder_id());
+                    System.out.println("approve order id : "+order.getId());
                     pageController.active("orderList");
                 } else {
                     // ... user chose CANCEL or closed the dialog
@@ -107,45 +133,73 @@ public class OrderDetailController implements Controller {
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
                     // ... user chose OK
-                    System.out.println("reject order id : "+getOrder_id());
+                    System.out.println("reject order id : "+order.getId());
                     pageController.active("orderList");
                 } else {
                     // ... user chose CANCEL or closed the dialog
                 }
             }
         });
-
-
-
-
     }
 
-    private ObservableList<Product> getProductList(Order order) {
-        //return order.getProducts();
-        ObservableList<Product> products = FXCollections.observableArrayList();
-        products.add(new Product(51,20,"cookie","m&m"));
-        products.add(new Product(12,11,"bomb","aka"));
+    private void handleSearchByKey(String oldValue, String newValue) {
+        if ( oldValue != null && (newValue.length() < oldValue.length()) ) {
+            detail_table.setItems(orderProducts);
+        }
 
-        return products;
+        String[] parts = newValue.toUpperCase().split(" ");
+
+        ObservableList<OrderProduct> subEntries = FXCollections.observableArrayList();
+        for ( Object entry: detail_table.getItems() ) {
+            boolean match = true;
+            OrderProduct entryP = (OrderProduct) entry;
+            String detailEntryP = entryP.getId()+entryP.getName().toUpperCase()+entryP.getBrand().toUpperCase();
+            for ( String part: parts ) {
+                if ( ! detailEntryP.contains(part) ) {
+                    match = false;
+                    break;
+                }
+            }
+
+            if ( match ) {
+                subEntries.add(entryP);
+            }
+        }
+        detail_table.setItems(subEntries);
     }
 
-    private ObservableList<OrderProduct> getOrderProductList(){
-        ObservableList<OrderProduct> orderProducts = FXCollections.observableArrayList();
-        orderProducts.add(new OrderProduct(11,1000,"beer","leo",30));
-        orderProducts.add(new OrderProduct(10,5000,"coockie","m&m",20));
-        return orderProducts;
+
+    private void getOrderProductList(){
+        //get order product from order
+        orderProducts = order.getOrderProducts();
+
+        //============================================================================
+        //           (TODO) set current warehouse quantity to each OrderProduct
+        //============================================================================
+
+        for(OrderProduct orderProduct:orderProducts){
+            orderProduct.setQuantity(500);
+        }
+
     }
 
     @Override
     public void onActive() {
-        System.out.println("display detail order ID : "+getOrder_id());
+        System.out.println("display detail order ID : "+order.getId());
+        orderName_TextField.setText(order.getName());
+        orderOwner_TextField.setText(order.getOwner());
+        orderDate_TextField.setText(order.getDate().toLocaleString());
+
+        getOrderProductList();
+        //get OrderProduct list in order
+        detail_table.setItems(orderProducts);
     }
 
-    public int getOrder_id() {
-        return order_id;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setOrder_id(int order_id) {
-        this.order_id = order_id;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }
