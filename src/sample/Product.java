@@ -20,6 +20,14 @@ public class Product {
         this.brand = brand;
     }
 
+    public Product(int id, int quantity, String name, String brand, int price) {
+        this.id = id;
+        this.quantity = quantity;
+        this.name = name;
+        this.brand = brand;
+        this.price = price;
+    }
+
     public int getId() {
         return id;
     }
@@ -70,5 +78,9 @@ public class Product {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public void setPrice(String price) {
+        this.price = Integer.parseInt(price);
     }
 }

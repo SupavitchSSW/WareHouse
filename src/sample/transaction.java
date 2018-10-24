@@ -14,6 +14,11 @@ public class transaction {
         this.type = type;
     }
 
+    @Override
+    public String toString() {
+        return "Id:"+this.productId+"\t"+this.changedQuantity+"\nDate:"+this.date+"\tType:"+this.type;
+    }
+
     public int getProductId() {
         return productId;
     }
