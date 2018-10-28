@@ -11,6 +11,9 @@ import sample.PageController;
 
 public class LoginController implements Controller {
     PageController pageController;
+    String user = "test";
+    String pw = "password";
+    String checkUser, checkPw;
 
     public LoginController(PageController pageController) {
         this.pageController = pageController;
@@ -28,7 +31,15 @@ public class LoginController implements Controller {
         btn.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                pageController.active("productList");
+                checkUser = username.getText().toString();
+                checkPw = password.getText().toString();
+                if(checkUser.equals(user) && checkPw.equals(pw)){
+                    pageController.active("productList");
+                }
+                else{
+                    System.out.println("Incorrect Username or Password");
+                }
+
             }
         });
 
