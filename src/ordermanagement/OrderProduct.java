@@ -19,6 +19,14 @@ public class OrderProduct extends Product {
         }
     }
 
+    @Override
+    public String toString() {
+        return "OrderProduct{" +
+                "orderQuantity=" + orderQuantity +
+                ", sendQuantity=" + sendQuantity +
+                '}';
+    }
+
     public int getOrderQuantity() {
         return orderQuantity;
     }
