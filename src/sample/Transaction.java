@@ -2,12 +2,12 @@ package sample;
 
 import java.util.Date;
 
-public class transaction {
+public class Transaction {
     private int productId,changedQuantity;
     private Date date;
     private String type;
 
-    public transaction(int productId, int changedQuantity, Date date, String type) {
+    public Transaction(int productId, int changedQuantity, Date date, String type) {
         this.productId = productId;
         this.changedQuantity = changedQuantity;
         this.date = date;

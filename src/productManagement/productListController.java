@@ -24,7 +24,7 @@ import javafx.util.Pair;
 import sample.Controller;
 import sample.PageController;
 import sample.Product;
-import sample.transaction;
+import sample.Transaction;
 
 import java.util.Date;
 import java.util.Optional;
@@ -162,7 +162,7 @@ public class productListController implements Controller {
                                 if (Integer.parseInt(quantity.getText()) != selectedProduct.getQuantity()) {
                                     int newQt = Integer.parseInt(quantity.getText());
                                     Date date = new Date();
-                                    System.out.println(new transaction(selectedProduct.getId(),newQt-selectedProduct.getQuantity(),date,"editQuantity").toString());
+                                    System.out.println(new Transaction(selectedProduct.getId(),newQt-selectedProduct.getQuantity(),date,"editQuantity").toString());
                                 }
                                 selectedProduct.setName(name.getText());
                                 selectedProduct.setBrand(brand.getText());
@@ -241,7 +241,7 @@ public class productListController implements Controller {
                             }
                             products.add(new Product(++lastID, Integer.parseInt(productQuantity.getText()), productName.getText(), productBrand.getText(),Integer.parseInt(productPrice.getText())));
                             Date date = new Date();
-                            System.out.println(new transaction(lastID,Integer.parseInt(productQuantity.getText()),date,"addProduct").toString());
+                            System.out.println(new Transaction(lastID,Integer.parseInt(productQuantity.getText()),date,"addProduct").toString());
                             productListTable.refresh();
                         }
                     }

@@ -13,8 +13,11 @@ import ordermanagement.Order;
 import sample.Controller;
 import sample.PageController;
 import sample.Product;
+import sample.Transaction;
 
+import java.util.Date;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 
 public class OrderDetailController implements Controller {
@@ -114,7 +117,20 @@ public class OrderDetailController implements Controller {
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
                     // ... user chose OK
-                    System.out.println("approve order id : "+order.getId());
+                    // (TODO) change order status
+
+                    //create transaction
+                    for ( Object entry: detail_table.getItems() ) {
+                        OrderProduct orderProduct = (OrderProduct) entry;
+                        System.out.println(orderProduct.toString());
+                        Date date = new Date();
+                        System.out.println(new Transaction(orderProduct.getId(),orderProduct.getSendQuantity()*-1,date,"approveOrder").toString());
+                    }
+
+
+
+
+
                     pageController.active("orderList");
                 } else {
                     // ... user chose CANCEL or closed the dialog
