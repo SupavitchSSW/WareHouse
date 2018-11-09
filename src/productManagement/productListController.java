@@ -269,9 +269,7 @@ public class productListController implements Controller {
         });
         userSearchBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event) {
-
-            }
+            public void handle(MouseEvent event) { pageController.active("user"); }
         });
     }
 

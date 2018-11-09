@@ -12,7 +12,7 @@ import sample.PageController;
 public class LoginController implements Controller {
     PageController pageController;
     String user = "test";
-    String pw = "password";
+    String pw = "1234";
     String checkUser, checkPw;
 
     public LoginController(PageController pageController) {

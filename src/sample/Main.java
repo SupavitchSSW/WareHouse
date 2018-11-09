@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import ordermanagement.OrderDetailController;
 import ordermanagement.OrderListController;
 import productManagement.productListController;
+import report.UserController;
 import report.reportController;
 import user.LoginController;
 import user.SignupController;
@@ -27,6 +28,7 @@ public class Main extends Application {
         Pane reportPane = FXMLLoader.load(getClass().getResource("../report/report.fxml"));
         Pane loginPane = FXMLLoader.load(getClass().getResource("../user/login.fxml"));
         Pane signupPane = FXMLLoader.load(getClass().getResource("../user/signup.fxml"));
+        Pane userPane = FXMLLoader.load(getClass().getResource("../user/userPage.fxml"));
 
 
 
@@ -47,6 +49,7 @@ public class Main extends Application {
         reportController reportController = new reportController(pageController);
         LoginController loginController = new LoginController(pageController);
         SignupController signupController = new SignupController(pageController);
+        UserController userController = new UserController(pageController);
 
 
 
@@ -57,6 +60,7 @@ public class Main extends Application {
         pageController.addPage("report",reportPane,reportController);
         pageController.addPage("login",loginPane,loginController);
         pageController.addPage("signup",signupPane, signupController);
+        pageController.addPage("user",userPane, userController);
         OrderReadWrite.run();
 
         //start page

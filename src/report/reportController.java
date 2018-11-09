@@ -34,6 +34,7 @@ public class reportController implements Controller{
         reports.add(new Product(13,1,"L","h"));
         reports.add(new Product(14,1,"M","d"));
         reports.add(new Product(15,1,"N","s"));
+
         return reports;
     }
 
@@ -97,9 +98,7 @@ public class reportController implements Controller{
         });
         userSearchBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event) {
-
-            }
+            public void handle(MouseEvent event) { pageController.active("user"); }
         });
 
     }

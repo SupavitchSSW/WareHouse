@@ -34,6 +34,7 @@ public class UserController implements Controller{
         users.add(new Product(13,1,"L","h"));
         users.add(new Product(14,1,"M","d"));
         users.add(new Product(15,1,"N","s"));
+
         return users;
     }
 
@@ -42,8 +43,9 @@ public class UserController implements Controller{
     }
 
     public void initilize(){
-        Scene scene = pageController.getScene("report");
+        Scene scene = pageController.getScene("userPage");
         Button mainBt = (Button) scene.lookup("#mainButton");
+        Button summeryBt = (Button) scene.lookup("#summeryButton");
         Button reportBt = (Button) scene.lookup("#reportButton");
         Button orderBt = (Button) scene.lookup("#orderButton");
         Button userSearchBt = (Button) scene.lookup("#userSearchButton");
@@ -54,7 +56,7 @@ public class UserController implements Controller{
             handleSearchByKey((String) oldVal, (String) newVal);
         });
 
-        userTable = (TableView) scene.lookup("#report");
+        userTable = (TableView) scene.lookup("#userList");
 
         TableColumn <Product,Integer> idCol = new TableColumn("ID");
         idCol.setMinWidth(100);
@@ -76,16 +78,24 @@ public class UserController implements Controller{
         quanCol.setCellValueFactory(
                 new PropertyValueFactory<>("quantity"));
 
-        UserTable.getColumns().addAll(idCol,nameCol,brandCol,quanCol);
+        userTable.getColumns().addAll(idCol,nameCol,brandCol,quanCol);
         mainBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 pageController.active("productList");
             }
         });
+        summeryBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                pageController.active("report");
+
+            }
+        });
         reportBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event) {pageController.active("report");
+            public void handle(MouseEvent event) {
+                pageController.active("report");
 
             }
         });
@@ -98,24 +108,24 @@ public class UserController implements Controller{
         userSearchBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                pageController.active("user");
             }
         });
 
     }
 
     public void onActive() {
-        UserTable.setItems(users);
+        userTable.setItems(users);
     }
     public void handleSearchByKey(String oldValue, String newValue) {
         if ( oldValue != null && (newValue.length() < oldValue.length()) ) {
-            UserTable.setItems(users);
+            userTable.setItems(users);
         }
 
         String[] parts = newValue.toUpperCase().split(" ");
 
         subEntries = FXCollections.observableArrayList();
-        for ( Object entry: UserTable.getItems() ) {
+        for ( Object entry: userTable.getItems() ) {
             boolean match = true;
             Product entryP = (Product) entry;
             String detailEntryP = entryP.getId()+entryP.getName().toUpperCase()+entryP.getBrand().toUpperCase();
@@ -130,7 +140,7 @@ public class UserController implements Controller{
                 subEntries.add(entryP);
             }
         }
-        UserTable.setItems(subEntries);
+        userTable.setItems(subEntries);
     }
 
 }
