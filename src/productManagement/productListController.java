@@ -58,7 +58,7 @@ public class productListController implements Controller {
         Button userSearchBt = (Button) scene.lookup("#userSearchButton");
         TextField searchBox = (TextField) scene.lookup("#searchBox");
 
-        searchBox.setPromptText("  Search");
+        searchBox.setPromptText("Search");
         searchBox.textProperty().addListener((observable, oldVal, newVal) -> {
             handleSearchByKey((String) oldVal, (String) newVal);
         });
