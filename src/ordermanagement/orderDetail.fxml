@@ -28,7 +28,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button id="reject_btn" layoutX="99.0" layoutY="394.0" mnemonicParsing="false" style="-fx-background-radius: 50px; -fx-background-color: #1350f7;" text="REJECT" textFill="WHITE">
+            <Button id="reject_btn" layoutX="100.0" layoutY="394.0" mnemonicParsing="false" style="-fx-background-radius: 50px; -fx-background-color: #1350f7;" text="REJECT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

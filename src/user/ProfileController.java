@@ -12,6 +12,7 @@ public class ProfileController implements Controller {
     PageController pageController;
     User currentUser;
     TextField nameTF,surnameTF,roleTF,telTF;
+    private boolean isEdit = false;
     public ProfileController(PageController pageController) {
         this.pageController = pageController;
         currentUser = new User("field","naja","0836889001","staff","123456");
@@ -26,7 +27,6 @@ public class ProfileController implements Controller {
         Button userSearchBt = (Button) scene.lookup("#userSearchButton");
 
         Button editBtn = (Button) scene.lookup("#editButton");
-        Button logoutBtn = (Button) scene.lookup("#logoutButton");
 
         nameTF = (TextField) scene.lookup("#nameTextField");
         surnameTF = (TextField) scene.lookup("#surnameTextField");
@@ -37,6 +37,30 @@ public class ProfileController implements Controller {
         surnameTF.setEditable(false);
         telTF.setEditable(false);
         roleTF.setEditable(false);
+
+        editBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(isEdit){
+                    //save
+                    isEdit = false;
+                    editBtn.setText("Edit");
+                    currentUser.setName(nameTF.getText());
+                    currentUser.setSurname(surnameTF.getText());
+                    currentUser.setTel(telTF.getText());
+                    nameTF.setEditable(false);
+                    surnameTF.setEditable(false);
+                    telTF.setEditable(false);
+                }else{
+                    //edit
+                    isEdit = true;
+                    editBtn.setText("Save");
+                    nameTF.setEditable(true);
+                    surnameTF.setEditable(true);
+                    telTF.setEditable(true);
+                }
+            }
+        });
 
         mainBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -67,6 +91,10 @@ public class ProfileController implements Controller {
 
     @Override
     public void onActive() {
+        setProfile();
+    }
+
+    public void setProfile(){
         nameTF.setText(currentUser.getName());
         surnameTF.setText(currentUser.getSurname());
         telTF.setText(currentUser.getTel());

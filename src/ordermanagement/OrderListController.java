@@ -31,6 +31,11 @@ public class OrderListController implements Controller {
     public void initilize() {
         Scene scene = pageController.getScene("orderList");
         Button nextBtn = (Button) scene.lookup("#nextBtn");
+        Button mainBt = (Button) scene.lookup("#mainButton");
+        Button addProductBt = (Button) scene.lookup("#addProductButton");
+        Button summeryBt = (Button) scene.lookup("#summeryButton");
+        Button orderBt = (Button) scene.lookup("#orderButton");
+        Button logoutBt = (Button) scene.lookup("#logoutButton");
         TextField search_TextField = (TextField) scene.lookup("#searchBox");
 
         //search setup
@@ -50,6 +55,30 @@ public class OrderListController implements Controller {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         ownerColumn.setCellValueFactory(new PropertyValueFactory<>("owner"));
         order_table.getColumns().addAll(idColumn, nameColumn,ownerColumn);
+
+        mainBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                pageController.active("productList");
+            }
+        });
+        summeryBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {pageController.active("report");
+
+            }
+        });
+        orderBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                pageController.active("orderList");
+            }
+        });
+
+        logoutBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) { pageController.active("login"); }
+        });
 
         nextBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
