@@ -198,6 +198,8 @@ public class productListController implements Controller {
                                     database.removeProduct(selectedProduct.getId());
 //                                    products.remove(index);
                                 }
+                                products = getAllProduct();
+                                productListTable.setItems(products);
                                 productListTable.refresh();
                             }
                         }
@@ -258,6 +260,8 @@ public class productListController implements Controller {
 //                            products.add(new Product(++lastID, Integer.parseInt(productQuantity.getText()), productName.getText(), productBrand.getText(),Integer.parseInt(productPrice.getText())));
                             Date date = new Date();
                             System.out.println(new Transaction(lastID,Integer.parseInt(productQuantity.getText()),date,"addProduct").toString());
+                            products = getAllProduct();
+                            productListTable.setItems(products);
                             productListTable.refresh();
                         }
                     }
