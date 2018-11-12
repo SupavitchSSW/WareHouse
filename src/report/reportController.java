@@ -15,6 +15,7 @@ import sample.Product;
 public class reportController implements Controller{
     PageController pageController;
     private TableView reportTable;
+    private Report report;
     private ObservableList<Product> reports = getOrder();
     private ObservableList<Product> subEntries;
 
@@ -49,6 +50,7 @@ public class reportController implements Controller{
         Button orderBt = (Button) scene.lookup("#orderButton");
         Button userSearchBt = (Button) scene.lookup("#userSearchButton");
         TextField searchBox = (TextField) scene.lookup("#searchBox");
+        Button detialBt = (Button) scene.lookup("#detailButton");
 
         searchBox.setPromptText("Search");
         searchBox.textProperty().addListener((observable, oldVal, newVal) -> {

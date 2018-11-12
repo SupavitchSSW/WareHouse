@@ -14,7 +14,6 @@ import user.LoginController;
 import user.SignupController;
 
 import java.io.IOException;
-import java.util.Date;
 
 public class Main extends Application {
 
@@ -65,7 +64,7 @@ public class Main extends Application {
 
         //start page
         primaryStage.setTitle("WareHouse");
-        pageController.active("login");
+        pageController.active("productList");
 
 
 
