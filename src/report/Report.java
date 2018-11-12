@@ -9,21 +9,31 @@ import java.util.Date;
 public class Report {
 
     private int productId;
+    private String dateMonth;
     private Date date;
     private ObservableList<Transaction> transactions = FXCollections.observableArrayList();
 
-    public Report(){
-        this.productId = -1;
+    public Report(Date date,int productId) {
+        this.date = date;
+        this.productId = productId;
     }
 
-    public Report(int id) {
-        this.productId = id;
+    public Report(String dateMonth) {
+        this.dateMonth = dateMonth;
+
     }
 
     public ObservableList<Transaction> getTransactions() {
         return transactions;
     }
 
+    public String getDateMonth() {
+        return dateMonth;
+    }
+
+    public void setDate(String dateMonth) {
+        this.dateMonth = dateMonth;
+    }
 
     public Date getDate() {
         return date;
@@ -45,9 +55,9 @@ public class Report {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "productId=" + productId +
+        return "Report{" +
                 ", date=" + date +
+                "productId=" + productId +
                 ", transactions=" + transactions+
                 '}';
     }

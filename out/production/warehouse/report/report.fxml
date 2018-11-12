@@ -19,6 +19,7 @@
         <Button id="orderButton" layoutX="511.0" layoutY="50.0" mnemonicParsing="false" text="Order" />
         <Button id="userSearchButton" layoutX="243.0" layoutY="50.0" mnemonicParsing="false" text="User Search" />
         <Button id="reportButton" layoutX="384.0" layoutY="50.0" mnemonicParsing="false" text="Report" />
+        <Button id="reportDetail" layoutX="861.0" layoutY="117.0" mnemonicParsing="false" text="Detail" />
         <TextField id="searchBox" layoutX="105.0" layoutY="140.0" prefHeight="27.0" prefWidth="192.0" />
 
 
