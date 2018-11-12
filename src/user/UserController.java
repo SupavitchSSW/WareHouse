@@ -38,7 +38,6 @@ public class UserController implements Controller{
         users.add(new User("Itiwat","Supensilp","59011578","Staff","134340"));
 
 
-
         return users;
     }
 
@@ -49,11 +48,14 @@ public class UserController implements Controller{
     public void initilize(){
         Scene scene = pageController.getScene("userPage");
         Button mainBt = (Button) scene.lookup("#mainButton");
-        Button summeryBt = (Button) scene.lookup("#summeryButton");
+        Button summaryBt = (Button) scene.lookup("#summaryButton");
 
         Button orderBt = (Button) scene.lookup("#orderButton");
         Button userSearchBt = (Button) scene.lookup("#userSearchButton");
         TextField searchBox = (TextField) scene.lookup("#searchBox");
+
+        Button logoutBt = (Button) scene.lookup("#logoutButton");
+        Button userInfoBt = (Button) scene.lookup("#userInfo");
 
         searchBox.setPromptText("Search");
         searchBox.textProperty().addListener((observable, oldVal, newVal) -> {
@@ -94,7 +96,7 @@ public class UserController implements Controller{
                 pageController.active("productList");
             }
         });
-        summeryBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        summaryBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 pageController.active("reportMain");
@@ -172,6 +174,15 @@ public class UserController implements Controller{
                     }
                 }
             }
+        });
+
+        logoutBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) { pageController.active("login"); }
+        });
+        userInfoBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) { pageController.active("profile"); }
         });
 
     }

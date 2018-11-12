@@ -51,9 +51,11 @@ public class reportMainController implements Controller {
     public void initilize() {
         Scene scene = pageController.getScene("reportMain");
         Button mainBt = (Button) scene.lookup("#mainButton");
-        Button reportBt = (Button) scene.lookup("#reportButton");
+        Button reportBt = (Button) scene.lookup("#summaryButton");
         Button orderBt = (Button) scene.lookup("#orderButton");
         Button userSearchBt = (Button) scene.lookup("#userSearchButton");
+        Button logoutBt = (Button) scene.lookup("#logoutButton");
+        Button userInfoBt = (Button) scene.lookup("#userInfo");
         TextField searchBox = (TextField) scene.lookup("#searchBox");
 
 
@@ -93,6 +95,14 @@ public class reportMainController implements Controller {
         userSearchBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) { pageController.active("user"); }
+        });
+        logoutBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) { pageController.active("login"); }
+        });
+        userInfoBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) { pageController.active("profile"); }
         });
         reportTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override

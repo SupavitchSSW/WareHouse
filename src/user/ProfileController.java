@@ -22,9 +22,10 @@ public class ProfileController implements Controller {
     public void initilize() {
         Scene scene = pageController.getScene("userPage");
         Button mainBt = (Button) scene.lookup("#mainButton");
-        Button summeryBt = (Button) scene.lookup("#summeryButton");
+        Button summaryBt = (Button) scene.lookup("#summaryButton");
         Button orderBt = (Button) scene.lookup("#orderButton");
         Button userSearchBt = (Button) scene.lookup("#userSearchButton");
+        Button logoutBt = (Button) scene.lookup("#logoutButton");
 
         Button editBtn = (Button) scene.lookup("#editButton");
 
@@ -68,7 +69,7 @@ public class ProfileController implements Controller {
                 pageController.active("productList");
             }
         });
-        summeryBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        summaryBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 pageController.active("reportMain");
@@ -86,6 +87,10 @@ public class ProfileController implements Controller {
             public void handle(MouseEvent event) {
                 pageController.active("user");
             }
+        });
+        logoutBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) { pageController.active("login"); }
         });
     }
 

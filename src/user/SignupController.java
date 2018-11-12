@@ -2,10 +2,7 @@ package user;
 
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import sample.Controller;
 import sample.PageController;
@@ -26,6 +23,7 @@ public class SignupController implements Controller {
         TextField firstname = (TextField) scene.lookup("#fninfo");
         TextField surname = (TextField) scene.lookup("#sninfo");
         TextField phonenum = (TextField) scene.lookup("#phoneinfo");
+        Hyperlink goBack = (Hyperlink) scene.lookup("#goBack");
 
 
         btn.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -40,6 +38,13 @@ public class SignupController implements Controller {
                     return;
                 }
 
+                pageController.active("login");
+            }
+        });
+
+        goBack.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
                 pageController.active("login");
             }
         });

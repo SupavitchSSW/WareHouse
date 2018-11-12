@@ -36,6 +36,13 @@ public class OrderDetailController implements Controller {
 
         Scene scene = pageController.getScene("orderDetail");
 
+        Button mainBt = (Button) scene.lookup("#mainButton");
+        Button summaryBt = (Button) scene.lookup("#summaryButton");
+        Button orderBt = (Button) scene.lookup("#orderButton");
+        Button logoutBt = (Button) scene.lookup("#logoutButton");
+        Button userSearchBt = (Button) scene.lookup("#userSearchButton");
+        Button userInfoBt = (Button) scene.lookup("#userInfo");
+
         //search setup
         TextField search_TextField = (TextField) scene.lookup("#searchBox");
         search_TextField.textProperty().addListener((observable, oldVal, newVal) -> {
@@ -104,6 +111,36 @@ public class OrderDetailController implements Controller {
             public void handle(MouseEvent event){
                 pageController.active("orderList");
             }
+        });
+        mainBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                pageController.active("productList");
+            }
+        });
+        summaryBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {pageController.active("reportMain");
+
+            }
+        });
+        orderBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                pageController.active("orderList");
+            }
+        });
+        userSearchBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) { pageController.active("user"); }
+        });
+        logoutBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) { pageController.active("login"); }
+        });
+        userInfoBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) { pageController.active("profile"); }
         });
 
         approve_btn.setOnMouseClicked(new EventHandler<MouseEvent>() {

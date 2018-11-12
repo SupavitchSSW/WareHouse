@@ -33,9 +33,11 @@ public class OrderListController implements Controller {
         Button nextBtn = (Button) scene.lookup("#nextBtn");
         Button mainBt = (Button) scene.lookup("#mainButton");
         Button addProductBt = (Button) scene.lookup("#addProductButton");
-        Button summeryBt = (Button) scene.lookup("#summeryButton");
+        Button summaryBt = (Button) scene.lookup("#summaryButton");
         Button orderBt = (Button) scene.lookup("#orderButton");
         Button logoutBt = (Button) scene.lookup("#logoutButton");
+        Button userSearchBt = (Button) scene.lookup("#userSearchButton");
+        Button userInfoBt = (Button) scene.lookup("#userInfo");
         TextField search_TextField = (TextField) scene.lookup("#searchBox");
 
         //search setup
@@ -62,9 +64,9 @@ public class OrderListController implements Controller {
                 pageController.active("productList");
             }
         });
-        summeryBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        summaryBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event) {pageController.active("report");
+            public void handle(MouseEvent event) {pageController.active("reportMain");
 
             }
         });
@@ -78,6 +80,16 @@ public class OrderListController implements Controller {
         logoutBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) { pageController.active("login"); }
+        });
+
+        userSearchBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) { pageController.active("user"); }
+        });
+
+        userInfoBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) { pageController.active("profile"); }
         });
 
         nextBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {

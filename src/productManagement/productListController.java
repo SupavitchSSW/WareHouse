@@ -52,10 +52,11 @@ public class productListController implements Controller {
         Scene scene = pageController.getScene("mainPage");
         Button mainBt = (Button) scene.lookup("#mainButton");
         Button addProductBt = (Button) scene.lookup("#addProductButton");
-        Button summeryBt = (Button) scene.lookup("#summeryButton");
+        Button summaryBt = (Button) scene.lookup("#summaryButton");
         Button orderBt = (Button) scene.lookup("#orderButton");
         Button logoutBt = (Button) scene.lookup("#logoutButton");
         Button userSearchBt = (Button) scene.lookup("#userSearchButton");
+        Button userInfoBt = (Button) scene.lookup("#userInfo");
         TextField searchBox = (TextField) scene.lookup("#searchBox");
 
         searchBox.setPromptText("Search");
@@ -276,7 +277,7 @@ public class productListController implements Controller {
                 pageController.active("productList");
             }
         });
-        summeryBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        summaryBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {pageController.active("reportMain");
 
@@ -295,6 +296,10 @@ public class productListController implements Controller {
         logoutBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) { pageController.active("login"); }
+        });
+        userInfoBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) { pageController.active("profile"); }
         });
     }
 
