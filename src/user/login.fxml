@@ -3,23 +3,35 @@
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
-    <Button id="btn" layoutX="183.0" layoutY="218.0" mnemonicParsing="false" prefWidth="234.0" text="Login" />
-    <TextField id="id" layoutX="183.0" layoutY="126.0" prefWidth="233.0771484375" />
-    <TextField id="pw" layoutX="183.0" layoutY="178.0" prefWidth="233.0771484375" />
-    <Text id="password" layoutX="183.0" layoutY="168.0" scaleX="1.0" scaleY="1.002447381302007" strikethrough="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
-    <Text id="username" layoutX="183.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
-    <Text id="don't have" layoutX="183.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account yet?" />
-    <Text id="wm" fontSmoothingType="GRAY" layoutX="183.0" layoutY="82.0" scaleX="1.0039589015841892" scaleY="1.0" stroke="BLACK" strokeType="CENTERED" strokeWidth="1.0" text="WAREHOUSE MANAGEMENT" textAlignment="CENTER">
+    <Button id="btn" contentDisplay="CENTER" disable="false" focusTraversable="true" layoutX="292.0" layoutY="352.0" mnemonicParsing="false" opacity="1.0" prefHeight="30.0" prefWidth="416.0" text="Login" textFill="WHITE" visible="true" wrapText="false">
+      <effect>
+        <ColorAdjust contrast="1.0" hue="-0.6870229007633588" saturation="0.32061068702290063" />
+      </effect>
       <font>
-        <Font size="18.0" />
+        <Font name="System Bold" size="16.0" fx:id="x1" />
+      </font>
+    </Button>
+    <TextField id="id" layoutX="292.0" layoutY="218.0" prefHeight="30.0" prefWidth="416.0" />
+    <TextField id="pw" layoutX="292.0" layoutY="306.0" prefHeight="30.0" prefWidth="416.0" />
+    <Text id="password" font="$x1" layoutX="292.0" layoutY="296.0" scaleX="1.0" scaleY="1.002447381302007" strikethrough="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+    <Text id="username" font="$x1" layoutX="292.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
+    <Text id="don't have" layoutX="338.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account yet?">
+      <font>
+        <Font size="16.0" />
       </font>
     </Text>
-    <Hyperlink id="register" layoutX="328.0" layoutY="250.0" text="Create Account" textFill="#cc0000" underline="true" />
+    <Text id="wm" fontSmoothingType="GRAY" layoutX="283.0" layoutY="146.0" scaleX="1.0039589015841892" scaleY="1.0" stroke="BLACK" strokeType="CENTERED" strokeWidth="1.0" text="WAREHOUSE MANAGEMENT" textAlignment="CENTER">
+      <font>
+        <Font name="System Bold Italic" size="32.0" />
+      </font>
+    </Text>
+    <Hyperlink id="register" font="$x1" layoutX="529.0" layoutY="392.0" text="Create Account" textFill="#cc0000" underline="true" />
   </children>
 </AnchorPane>

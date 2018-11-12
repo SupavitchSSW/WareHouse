@@ -59,17 +59,17 @@ public class UserController implements Controller{
                 new PropertyValueFactory<>("id"));
 
         TableColumn <Product,String> nameCol = new TableColumn("Name");
-        nameCol.setMinWidth(270);
+        nameCol.setMinWidth(390);
         nameCol.setCellValueFactory(
                 new PropertyValueFactory<>("Name"));
 
-        TableColumn <Product,String> brandCol = new TableColumn("Brand");
-        brandCol.setMinWidth(270);
+        TableColumn <Product,String> brandCol = new TableColumn("Phone Number");
+        brandCol.setMinWidth(250);
         brandCol.setCellValueFactory(
                 new PropertyValueFactory<>("brand"));
 
-        TableColumn <Product, Double> quanCol = new TableColumn("Quantity");
-        quanCol.setMinWidth(150);
+        TableColumn <Product, Double> quanCol = new TableColumn("Role");
+        quanCol.setMinWidth(50);
         quanCol.setCellValueFactory(
                 new PropertyValueFactory<>("quantity"));
 
