@@ -23,23 +23,29 @@ import javafx.util.Callback;
 import javafx.util.Pair;
 import sample.Controller;
 import sample.PageController;
-import sample.Product;
+import product.Product;
 import sample.Transaction;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.*;
+import connectionDB.*;
 
 public class productListController implements Controller {
     PageController pageController;
+    serviceDB database;
     private TableView productListTable;
-    private ObservableList<Product> products = getOrder();
+    private ObservableList<Product> products;
     private ObservableList<Product> subEntries;
     private Product selectedProduct;
     private int index, lastID;
 
-    public productListController(PageController pageController){
+    public productListController(PageController pageController, serviceDB database){
+        this.database = database;
         this.pageController = pageController;
+        this.products = getAllProduct();
     }
 
     public void initilize(){
@@ -159,15 +165,21 @@ public class productListController implements Controller {
                                 alertError.setContentText("Invalid information");
                                 alertError.showAndWait();
                             } else {
+//                                <<<<< edit quantity create Transaction >>>>>
                                 if (Integer.parseInt(quantity.getText()) != selectedProduct.getQuantity()) {
                                     int newQt = Integer.parseInt(quantity.getText());
                                     Date date = new Date();
                                     System.out.println(new Transaction(selectedProduct.getId(),newQt-selectedProduct.getQuantity(),date,"editQuantity").toString());
                                 }
-                                selectedProduct.setName(name.getText());
-                                selectedProduct.setBrand(brand.getText());
-                                selectedProduct.setQuantity(quantity.getText());
-                                selectedProduct.setPrice(price.getText());
+//                                <<<<< edit Product >>>>>
+                                database.setProductName(selectedProduct.getId(),name.getText());
+                                database.setProductBrand(selectedProduct.getId(),brand.getText());
+                                database.setProductQuantity(selectedProduct.getId(),Integer.parseInt(quantity.getText()));
+                                database.setProductPrice(selectedProduct.getId(),Integer.parseInt(price.getText()));
+//                                selectedProduct.setName(name.getText());
+//                                selectedProduct.setBrand(brand.getText());
+//                                selectedProduct.setQuantity(quantity.getText());
+//                                selectedProduct.setPrice(price.getText());
                                 productListTable.refresh();
                             }
                         } else if (editResult.get() == deleteButtonType) {
@@ -178,12 +190,15 @@ public class productListController implements Controller {
                             Optional<ButtonType> result = alert.showAndWait();
                             if (result.get() == ButtonType.OK){
                                 if (productListTable.getItems() == subEntries) {
-                                    products.remove(products.indexOf(subEntries.get(index)));
+                                    database.removeProduct(selectedProduct.getId());
+//                                    products.remove(products.indexOf(subEntries.get(index)));
                                     searchBox.clear();
                                     productListTable.setItems(products);
                                 } else {
-                                    products.remove(index);
+                                    database.removeProduct(selectedProduct.getId());
+//                                    products.remove(index);
                                 }
+                                productListTable.refresh();
                             }
                         }
                     }
@@ -239,7 +254,8 @@ public class productListController implements Controller {
                                 searchBox.clear();
                                 productListTable.setItems(products);
                             }
-                            products.add(new Product(++lastID, Integer.parseInt(productQuantity.getText()), productName.getText(), productBrand.getText(),Integer.parseInt(productPrice.getText())));
+                            database.createProduct(productName.getText(), productBrand.getText(),Integer.parseInt(productPrice.getText()), Integer.parseInt(productQuantity.getText()));
+//                            products.add(new Product(++lastID, Integer.parseInt(productQuantity.getText()), productName.getText(), productBrand.getText(),Integer.parseInt(productPrice.getText())));
                             Date date = new Date();
                             System.out.println(new Transaction(lastID,Integer.parseInt(productQuantity.getText()),date,"addProduct").toString());
                             productListTable.refresh();
@@ -278,14 +294,12 @@ public class productListController implements Controller {
         productListTable.setItems(products);
     }
 
-    public ObservableList<Product> getOrder(){
-        products = FXCollections.observableArrayList();
-        products.add(new Product(1,12,"sssdwq","ssfojmw"));
-        products.add(new Product(2,2,"dss","Por_shop2"));
-        products.add(new Product(3,22,"dsd","Por_shop3"));
-        products.add(new Product(4,1,"jud","ng"));
-        products.add(new Product(5,6,"gg","pv"));
-        lastID = products.size();
+    public ObservableList<Product> getAllProduct(){
+        List<Product> results = database.getAllProduct();
+        for (Product p : results) {
+            System.out.println(p);
+        }
+        ObservableList<Product> products = FXCollections.observableArrayList(results);
         return products;
     }
 
@@ -299,7 +313,7 @@ public class productListController implements Controller {
 
     public void handleSearchByKey(String oldValue, String newValue) {
         if ( oldValue != null && (newValue.length() < oldValue.length()) ) {
-            productListTable.setItems(products);
+            productListTable.setItems((ObservableList) products);
         }
 
         String[] parts = newValue.toUpperCase().split(" ");

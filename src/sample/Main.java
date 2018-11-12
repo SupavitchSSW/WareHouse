@@ -12,8 +12,11 @@ import report.UserController;
 import report.reportController;
 import user.LoginController;
 import user.SignupController;
-
+import javax.persistence.*;
+import connectionDB.*;
+import product.Product;
 import java.io.IOException;
+import java.util.List;
 
 public class Main extends Application {
 
@@ -40,16 +43,30 @@ public class Main extends Application {
         PageController pageController = new PageController(scene);
 
 
+        //oak db
+        serviceDB database = new serviceDB();
+//        List<Product> results = database.getAllProduct();
+//        database.createProduct("qwe","qee",23,20);
+//        database.createProduct("gtq","ggg",13,40);
+//        database.createProduct("ofp","hpn",56,50);
+//        database.createProduct("bnp","dfo",78,100);
+//        database.createProduct("vxs","hfp",77,29);
+//        database.createProduct("ipw","opd",90,48);
+////        s.setProductBrand(2,"luis");
+//        for (Product p : results) {
+//            System.out.println(p);
+//        }
+//        database.closeConnection();
+
 
         // >>>>>>> add controller class here <<<<<<
         OrderDetailController orderDetailController = new OrderDetailController(pageController);
         OrderListController orderListController = new OrderListController(pageController,orderDetailController);
-        productListController productListController = new productListController(pageController);
+        productListController productListController = new productListController(pageController,database);
         reportController reportController = new reportController(pageController);
         LoginController loginController = new LoginController(pageController);
         SignupController signupController = new SignupController(pageController);
         UserController userController = new UserController(pageController);
-
 
 
         // >>>>>>>> add page to pageController <<<<<<<<
@@ -60,13 +77,11 @@ public class Main extends Application {
         pageController.addPage("login",loginPane,loginController);
         pageController.addPage("signup",signupPane, signupController);
         pageController.addPage("user",userPane, userController);
-        OrderReadWrite.run();
+//        OrderReadWrite.run();
 
         //start page
         primaryStage.setTitle("WareHouse");
         pageController.active("productList");
-
-
 
 
 
