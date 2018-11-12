@@ -2,13 +2,13 @@ package user;
 
 public class User {
     private int id=-1;
-    private String name,surname,role,tel,password;
+    private String name,surname,tel,role,password;
 
-    public User(String name, String surname, String role, String tel, String password) {
+    public User(String name, String surname, String tel,String role , String password) {
         this.name = name;
         this.surname = surname;
-        this.role = role;
         this.tel = tel;
+        this.role = role;
         this.password = password;
     }
 
