@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import ordermanagement.OrderDetailController;
 import ordermanagement.OrderListController;
 import productManagement.productListController;
-import user.UserController;
+import report.UserController;
 import report.reportController;
 import user.LoginController;
 import user.SignupController;
