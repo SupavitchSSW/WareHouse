@@ -2,7 +2,7 @@ package sample;
 
 public class Product {
     private int id,quantity,cost=0,price=0;
-    private String name,brand;
+    private String name,brand,date;
 
     public Product(){
         this.id = -1;
@@ -18,6 +18,11 @@ public class Product {
         this.quantity = quantity;
         this.name = name;
         this.brand = brand;
+    }
+
+    public Product(String date) {
+        this.date = date;
+
     }
 
     public Product(int id, int quantity, String name, String brand, int price) {
@@ -62,6 +67,14 @@ public class Product {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public int getCost() {
