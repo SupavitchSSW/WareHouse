@@ -8,10 +8,9 @@ import javafx.stage.Stage;
 import ordermanagement.OrderDetailController;
 import ordermanagement.OrderListController;
 import productManagement.productListController;
-import user.UserController;
+import user.*;
 import report.reportController;
-import user.LoginController;
-import user.SignupController;
+
 import javax.persistence.*;
 import connectionDB.*;
 import product.Product;
@@ -19,6 +18,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class Main extends Application {
+    private User currentUser;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -31,6 +31,7 @@ public class Main extends Application {
         Pane loginPane = FXMLLoader.load(getClass().getResource("../user/login.fxml"));
         Pane signupPane = FXMLLoader.load(getClass().getResource("../user/signup.fxml"));
         Pane userPane = FXMLLoader.load(getClass().getResource("../user/userPage.fxml"));
+        Pane profilePane = FXMLLoader.load(getClass().getResource("../user/profile.fxml"));
 
 
 
@@ -67,6 +68,7 @@ public class Main extends Application {
         LoginController loginController = new LoginController(pageController);
         SignupController signupController = new SignupController(pageController);
         UserController userController = new UserController(pageController);
+        ProfileController profileController = new ProfileController(pageController);
 
 
         // >>>>>>>> add page to pageController <<<<<<<<
@@ -77,11 +79,12 @@ public class Main extends Application {
         pageController.addPage("login",loginPane,loginController);
         pageController.addPage("signup",signupPane, signupController);
         pageController.addPage("user",userPane, userController);
+        pageController.addPage("profile",profilePane, profileController);
 //        OrderReadWrite.run();
 
         //start page
         primaryStage.setTitle("WareHouse");
-        pageController.active("login");
+        pageController.active("profile");
 
 
     }
