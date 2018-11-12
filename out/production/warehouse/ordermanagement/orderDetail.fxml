@@ -4,24 +4,80 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: DimGray;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView id="detail_table" layoutX="311.0" layoutY="162.0" prefHeight="361.0" prefWidth="623.0">
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TableView>
-      <TextField id="orderOwner" layoutX="123.0" layoutY="230.0" />
-      <Text layoutX="45.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order owner" />
-      <Text layoutX="66.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
-      <TextField id="orderDate" layoutX="123.0" layoutY="288.0" />
-      <Button id="goBack" layoutX="67.0" layoutY="498.0" mnemonicParsing="false" text="BACK" />
-      <Button id="approve_btn" layoutX="211.0" layoutY="498.0" mnemonicParsing="false" text="APPROVE" />
-      <Button id="reject_btn" layoutX="153.0" layoutY="498.0" mnemonicParsing="false" text="REJECT" />
-      <TextField id="orderName" layoutX="123.0" layoutY="175.0" />
-      <Text layoutX="63.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="name" />
-      <TextField id="searchBox" layoutX="311.0" layoutY="129.0" prefHeight="25.0" prefWidth="208.0" promptText="Search" />
+      <Pane layoutX="37.0" layoutY="138.0" prefHeight="443.0" prefWidth="919.0" style="-fx-background-color: white;">
+         <children>
+            <TableView id="detail_table" layoutX="274.0" layoutY="55.0" prefHeight="370.0" prefWidth="623.0">
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <TextField id="searchBox" layoutX="717.0" layoutY="14.0" prefHeight="27.0" prefWidth="180.0" style="-fx-border-color: #1350f7; -fx-border-radius: 50px; -fx-border-width: 2; -fx-background-radius: 50px;" />
+            <Button id="goBack" layoutX="13.0" layoutY="394.0" mnemonicParsing="false" style="-fx-background-radius: 50px; -fx-background-color: #1350f7;" text="BACK" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button id="approve_btn" layoutX="175.0" layoutY="394.0" mnemonicParsing="false" style="-fx-background-radius: 50px; -fx-background-color: #1350f7;" text="APPROVE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button id="reject_btn" layoutX="100.0" layoutY="394.0" mnemonicParsing="false" style="-fx-background-radius: 50px; -fx-background-color: #1350f7;" text="REJECT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <TextField id="orderOwner" layoutX="95.0" layoutY="110.0" style="-fx-background-radius: 50px; -fx-border-color: #1350f7; -fx-border-radius: 50px; -fx-border-width: 2;" />
+            <Text layoutX="36.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Owner">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="42.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <TextField id="orderDate" layoutX="95.0" layoutY="165.0" style="-fx-background-radius: 50px; -fx-border-color: #1350f7; -fx-border-radius: 50px; -fx-border-width: 2;" />
+            <TextField id="orderName" layoutX="95.0" layoutY="55.0" style="-fx-background-radius: 50px; -fx-border-color: #1350f7; -fx-border-radius: 50px; -fx-border-width: 2;" />
+            <Text layoutX="40.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Button id="mainButton" layoutX="150.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" style="-fx-background-radius: 50px; -fx-background-color: DimGray; -fx-border-color: white; -fx-border-radius: 50px; -fx-border-width: 3;" text="Main" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button id="orderButton" layoutX="645.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" style="-fx-background-radius: 50px; -fx-background-color: white; -fx-border-color: white; -fx-border-radius: 50px; -fx-border-width: 3;" text="Order" textFill="#b51b32">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button id="userSearchButton" layoutX="315.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" style="-fx-background-radius: 50px; -fx-background-color: DimGray; -fx-border-color: white; -fx-border-radius: 50px; -fx-border-width: 3;" text="User Search" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Circle id="userInfo" fill="#797979" layoutX="79.0" layoutY="73.0" radius="49.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
+      <Button id="summeryButton" layoutX="480.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" style="-fx-background-radius: 50px; -fx-background-color: DimGray; -fx-border-color: white; -fx-border-radius: 50px; -fx-border-width: 3;" text="Summery" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button id="logoutButton" layoutX="810.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" style="-fx-background-radius: 50px; -fx-background-color: DimGray; -fx-border-color: white; -fx-border-radius: 50px; -fx-border-width: 3;" text="Log out" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
 </Pane>
