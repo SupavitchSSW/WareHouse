@@ -84,7 +84,7 @@ public class Main extends Application {
 
         //start page
         primaryStage.setTitle("WareHouse");
-        pageController.active("profile");
+        pageController.active("productList");
 
 
     }
