@@ -3,7 +3,7 @@ package ordermanagement;
 import sample.Product;
 
 public class OrderProduct extends Product {
-    private int orderQuantity,sendQuantity = 0;
+    private int orderQuantity,sendQuantity = 0,productId;
 
     public OrderProduct(int orderQuantity) {
         this.orderQuantity = orderQuantity;

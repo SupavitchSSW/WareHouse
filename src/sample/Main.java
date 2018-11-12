@@ -67,10 +67,6 @@ public class Main extends Application {
         pageController.active("login");
 
 
-
-
-
-
     }
 
     public static void main(String[] args) {
