@@ -1,4 +1,4 @@
-package report;
+package user;
 
 
 import javafx.collections.FXCollections;
@@ -20,20 +20,15 @@ public class UserController implements Controller{
 
     public ObservableList<Product> getOrder(){
         users = FXCollections.observableArrayList();
-        users.add(new Product(1,1,"A","g"));
-        users.add(new Product(2,2,"B","t"));
-        users.add(new Product(3,22,"C","h"));
-        users.add(new Product(5,1,"D","f"));
-        users.add(new Product(6,1,"E","y"));
-        users.add(new Product(7,1,"F","i"));
+
+        users.add(new Product(1,2,"B","t"));
+        users.add(new Product(2,22,"C","h"));
+        users.add(new Product(3,1,"D","f"));
+        users.add(new Product(4,1,"E","y"));
+        users.add(new Product(5,1,"F","i"));
         users.add(new Product(8,1,"G","d"));
         users.add(new Product(9,1,"H","q"));
-        users.add(new Product(10,150,"I","i"));
-        users.add(new Product(11,1,"G","i"));
-        users.add(new Product(12,1,"K","f"));
-        users.add(new Product(13,1,"L","h"));
-        users.add(new Product(14,1,"M","d"));
-        users.add(new Product(15,1,"N","s"));
+
 
         return users;
     }
@@ -46,7 +41,7 @@ public class UserController implements Controller{
         Scene scene = pageController.getScene("userPage");
         Button mainBt = (Button) scene.lookup("#mainButton");
         Button summeryBt = (Button) scene.lookup("#summeryButton");
-        Button reportBt = (Button) scene.lookup("#reportButton");
+
         Button orderBt = (Button) scene.lookup("#orderButton");
         Button userSearchBt = (Button) scene.lookup("#userSearchButton");
         TextField searchBox = (TextField) scene.lookup("#searchBox");
@@ -64,17 +59,17 @@ public class UserController implements Controller{
                 new PropertyValueFactory<>("id"));
 
         TableColumn <Product,String> nameCol = new TableColumn("Name");
-        nameCol.setMinWidth(270);
+        nameCol.setMinWidth(390);
         nameCol.setCellValueFactory(
                 new PropertyValueFactory<>("Name"));
 
-        TableColumn <Product,String> brandCol = new TableColumn("Brand");
-        brandCol.setMinWidth(270);
+        TableColumn <Product,String> brandCol = new TableColumn("Phone Number");
+        brandCol.setMinWidth(250);
         brandCol.setCellValueFactory(
                 new PropertyValueFactory<>("brand"));
 
-        TableColumn <Product, Double> quanCol = new TableColumn("Quantity");
-        quanCol.setMinWidth(150);
+        TableColumn <Product, Double> quanCol = new TableColumn("Role");
+        quanCol.setMinWidth(50);
         quanCol.setCellValueFactory(
                 new PropertyValueFactory<>("quantity"));
 
@@ -86,13 +81,6 @@ public class UserController implements Controller{
             }
         });
         summeryBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                pageController.active("report");
-
-            }
-        });
-        reportBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 pageController.active("report");

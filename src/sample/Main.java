@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import ordermanagement.OrderDetailController;
 import ordermanagement.OrderListController;
 import productManagement.productListController;
-import report.UserController;
+import user.UserController;
 import report.reportController;
 import user.LoginController;
 import user.SignupController;
@@ -81,9 +81,7 @@ public class Main extends Application {
 
         //start page
         primaryStage.setTitle("WareHouse");
-        pageController.active("productList");
-
-
+        pageController.active("login");
 
 
     }

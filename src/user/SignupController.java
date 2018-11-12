@@ -30,24 +30,12 @@ public class SignupController implements Controller {
         btn.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if(username.getText().isEmpty()) {
-                    System.out.println("Put Your Username!");
-                    return;
-                }
-                if(password.getText().isEmpty()) {
-                    System.out.println("Put Your Password!");
-                    return;
-                }
-                if(firstname.getText().isEmpty()) {
-                    System.out.println("Put Your First Name!");
-                    return;
-                }
-                if(surname.getText().isEmpty()) {
-                    System.out.println("Put Your Surname!");
-                    return;
-                }
-                if(phonenum.getText().isEmpty()) {
-                    System.out.println("Put Your Phone Number!");
+                if(username.getText().isEmpty() || password.getText().isEmpty() || firstname.getText().isEmpty() || surname.getText().isEmpty() || phonenum.getText().isEmpty()) {
+                    Alert alertError = new Alert(Alert.AlertType.ERROR);
+                    alertError.setTitle("Sign Up Failed");
+                    alertError.setHeaderText(null);
+                    alertError.setContentText("Please enter your Information!");
+                    alertError.showAndWait();
                     return;
                 }
 

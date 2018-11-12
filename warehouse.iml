@@ -7,6 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+<<<<<<< HEAD
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
@@ -17,5 +18,8 @@
       </library>
     </orderEntry>
     <orderEntry type="library" exported="" name="objectdb" level="application" />
+=======
+    <orderEntry type="library" name="json-simple-1.1.1" level="project" />
+>>>>>>> master
   </component>
 </module>
