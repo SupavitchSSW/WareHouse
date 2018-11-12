@@ -19,7 +19,6 @@
       </font>
     </Button>
     <TextField id="id" layoutX="295.0" layoutY="234.0" prefHeight="30.0" prefWidth="411.765625" style="-fx-background-radius: 50px;" />
-    <TextField id="pw" layoutX="294.0" layoutY="313.0" prefHeight="30.0" prefWidth="412.0" style="-fx-background-radius: 50px;" />
     <Text id="password" font="$x1" layoutX="294.0" layoutY="296.0" scaleX="1.0" scaleY="1.002447381302007" strikethrough="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
     <Text id="username" font="$x1" layoutX="294.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
     <Text id="don't have" layoutX="332.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account yet?">
@@ -39,5 +38,6 @@
     </Hyperlink>
     <Text font="$x1" layoutX="479.0" layoutY="157.0" scaleX="1.1547553897180762" scaleY="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" />
     <Line endX="424.0" endY="-1.0" layoutX="339.0" layoutY="177.0" startX="-100.0" stroke="$x2" strokeWidth="4.2" />
+    <PasswordField id="pw" layoutX="295.0" layoutY="313.0" prefHeight="30.0" prefWidth="409.015625" style="-fx-background-radius: 50px;" />
   </children>
 </AnchorPane>
