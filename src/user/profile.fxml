@@ -17,15 +17,15 @@
     <Button id="summeryButton" layoutX="384.0" layoutY="50.0" mnemonicParsing="false" text="Summery" />
     <Button id="userSearchButton" layoutX="243.0" layoutY="50.0" mnemonicParsing="false" text="User Search" />
     <Circle fill="DODGERBLUE" layoutX="61.0" layoutY="53.0" radius="42.0" stroke="BLACK" strokeType="INSIDE" />
-      <TextField layoutX="427.0" layoutY="201.0" prefHeight="19.0" prefWidth="168.0" />
+      <TextField id="nameTextField" layoutX="427.0" layoutY="201.0" prefHeight="19.0" prefWidth="168.0" />
       <Text layoutX="368.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
-      <TextField layoutX="427.0" layoutY="258.0" prefHeight="19.0" prefWidth="168.0" />
+      <TextField id="surnameTextField" layoutX="427.0" layoutY="258.0" prefHeight="19.0" prefWidth="168.0" />
       <Text layoutX="360.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname" />
-      <TextField layoutX="427.0" layoutY="315.0" prefHeight="19.0" prefWidth="168.0" />
-      <Text layoutX="360.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname" />
-      <TextField layoutX="427.0" layoutY="365.0" prefHeight="19.0" prefWidth="168.0" />
-      <Text layoutX="360.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname" />
-      <Button layoutX="408.0" layoutY="426.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="84.0" text="Button" />
-      <Button layoutX="535.0" layoutY="426.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="84.0" text="Button" />
+      <TextField id="telTextField" layoutX="427.0" layoutY="315.0" prefHeight="19.0" prefWidth="168.0" />
+      <Text layoutX="360.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tel" />
+      <TextField id="roleTextField" layoutX="427.0" layoutY="365.0" prefHeight="19.0" prefWidth="168.0" />
+      <Text layoutX="360.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Role" />
+      <Button id="editButton" layoutX="408.0" layoutY="426.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="84.0" text="EDIT" />
+      <Button id="logoutButton" layoutX="535.0" layoutY="426.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="84.0" text="LOGOUT" />
   </children>
 </AnchorPane>

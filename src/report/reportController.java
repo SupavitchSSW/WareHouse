@@ -4,53 +4,52 @@ package report;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.stage.StageStyle;
 import sample.Controller;
 import sample.PageController;
 import sample.Product;
+import report.reportMainController;
 
-public class reportController implements Controller{
+
+import java.util.Date;
+import java.util.Optional;
+
+public class reportController implements Controller {
     PageController pageController;
     private TableView reportTable;
     private Report report;
     private ObservableList<Product> reports = getOrder();
     private ObservableList<Product> subEntries;
 
-    public ObservableList<Product> getOrder(){
+    public ObservableList<Product> getOrder() {
         reports = FXCollections.observableArrayList();
-        reports.add(new Product(1,1,"A","g"));
-        reports.add(new Product(2,2,"B","t"));
-        reports.add(new Product(3,22,"C","h"));
-        reports.add(new Product(5,1,"D","f"));
-        reports.add(new Product(6,1,"E","y"));
-        reports.add(new Product(7,1,"F","i"));
-        reports.add(new Product(8,1,"G","d"));
-        reports.add(new Product(9,1,"H","q"));
-        reports.add(new Product(10,150,"I","i"));
-        reports.add(new Product(11,1,"G","i"));
-        reports.add(new Product(12,1,"K","f"));
-        reports.add(new Product(13,1,"L","h"));
-        reports.add(new Product(14,1,"M","d"));
-        reports.add(new Product(15,1,"N","s"));
+        reports.add(new Product(1, 1, "A", "g"));
+        reports.add(new Product(2, 2, "B", "t"));
+        reports.add(new Product(3, 22, "C", "h"));
+        reports.add(new Product(5, 1, "D", "f"));
+
 
         return reports;
     }
 
-    public reportController(PageController pageController){
+    public reportController(PageController pageController) {
         this.pageController = pageController;
     }
 
-    public void initilize(){
+    public void initilize() {
         Scene scene = pageController.getScene("report");
         Button mainBt = (Button) scene.lookup("#mainButton");
         Button reportBt = (Button) scene.lookup("#reportButton");
         Button orderBt = (Button) scene.lookup("#orderButton");
         Button userSearchBt = (Button) scene.lookup("#userSearchButton");
         TextField searchBox = (TextField) scene.lookup("#searchBox");
-        Button detialBt = (Button) scene.lookup("#detailButton");
+
 
         searchBox.setPromptText("Search");
         searchBox.textProperty().addListener((observable, oldVal, newVal) -> {
@@ -58,28 +57,29 @@ public class reportController implements Controller{
         });
 
         reportTable = (TableView) scene.lookup("#report");
-
-        TableColumn <Product,Integer> idCol = new TableColumn("ID");
+//yah
+        TableColumn<Product, Integer> idCol = new TableColumn("ID");
         idCol.setMinWidth(100);
         idCol.setCellValueFactory(
                 new PropertyValueFactory<>("id"));
 
-        TableColumn <Product,String> nameCol = new TableColumn("Name");
+        TableColumn<Product, String> nameCol = new TableColumn("Name");
         nameCol.setMinWidth(270);
         nameCol.setCellValueFactory(
                 new PropertyValueFactory<>("Name"));
 
-        TableColumn <Product,String> brandCol = new TableColumn("Brand");
+        TableColumn<Product, String> brandCol = new TableColumn("Brand");
         brandCol.setMinWidth(270);
         brandCol.setCellValueFactory(
                 new PropertyValueFactory<>("brand"));
 
-        TableColumn <Product, Double> quanCol = new TableColumn("Quantity");
+        TableColumn<Product, Double> quanCol = new TableColumn("Quantity");
         quanCol.setMinWidth(150);
         quanCol.setCellValueFactory(
                 new PropertyValueFactory<>("quantity"));
 
         reportTable.getColumns().addAll(idCol,nameCol,brandCol,quanCol);
+
         mainBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -88,7 +88,7 @@ public class reportController implements Controller{
         });
         reportBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event) {pageController.active("report");
+            public void handle(MouseEvent event) {pageController.active("reportMain");
 
             }
         });
@@ -108,6 +108,8 @@ public class reportController implements Controller{
     public void onActive() {
         reportTable.setItems(reports);
     }
+
+
     public void handleSearchByKey(String oldValue, String newValue) {
         if ( oldValue != null && (newValue.length() < oldValue.length()) ) {
             reportTable.setItems(reports);
@@ -133,5 +135,12 @@ public class reportController implements Controller{
         }
         reportTable.setItems(subEntries);
     }
+    public Report getReport() {
+        return report;
+    }
 
+
+    public void setReport(Report report) {
+        this.report = report;
+    }
 }
