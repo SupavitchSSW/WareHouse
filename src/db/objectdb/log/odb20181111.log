@@ -1,0 +1,573 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 15:47:01 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\product.odb' has been recovered (tr. 1-4)
+
+[2018-11-11 15:47:01 #2 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\product.odb' is opened by 8308@DESKTOP-30F4F9S
+
+[2018-11-11 15:47:01 #3 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 19:49:04 #4 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\product.odb' is closed by 8308@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 19:56:28 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\product.odb' has been recovered (tr. 5-6)
+
+[2018-11-11 19:56:28 #2 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\product.odb' is opened by 1652@DESKTOP-30F4F9S
+
+[2018-11-11 19:56:28 #3 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 20:36:27 #4 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\product.odb' is closed by 1652@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 20:36:38 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\database\Movie.odb' is opened by 10684@DESKTOP-30F4F9S
+
+[2018-11-11 20:36:38 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 20:45:08 #3 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\database\Movie.odb' is closed by 10684@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 20:45:28 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\product.odb' is opened by 11972@DESKTOP-30F4F9S
+
+[2018-11-11 20:45:28 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 21:05:34 #3 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\product.odb' is closed by 11972@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 21:05:40 #1 store] 
+Database 'D:\objectdb-2.7.6\db\product.odb' is opened by 6352@DESKTOP-30F4F9S
+
+[2018-11-11 21:05:40 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 21:05:41 #3 store] 
+Database 'D:\objectdb-2.7.6\db\product.odb' is closed by 6352@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 21:05:54 #1 store] 
+Database 'D:\objectdb-2.7.6\db\product.odb' is opened by 2420@DESKTOP-30F4F9S
+
+[2018-11-11 21:05:54 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 21:06:52 #3 store] 
+Database 'D:\objectdb-2.7.6\db\product.odb' is closed by 2420@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 21:09:26 #1 store] 
+Database 'D:\objectdb-2.7.6\db\product.odb' is opened by 15328@DESKTOP-30F4F9S
+
+[2018-11-11 21:09:26 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 21:11:16 #3 store] 
+Database 'D:\objectdb-2.7.6\db\product.odb' is closed by 15328@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 21:11:54 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Product.odb' is opened by 956@DESKTOP-30F4F9S
+
+[2018-11-11 21:11:54 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 21:11:54 #3 type.registry] 
+New type product.Product
+
+[2018-11-11 21:11:54 #4 type] 
+Type product.Product is not enhanced.
+
+[2018-11-11 21:11:54 #5 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Product.odb' is closed by 956@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 21:12:10 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Product.odb' is opened by 11208@DESKTOP-30F4F9S
+
+[2018-11-11 21:12:10 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 21:12:10 #3 type] 
+Type product.Product is not enhanced.
+
+[2018-11-11 21:12:10 #4 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Product.odb' is closed by 11208@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 21:12:43 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Product.odb' is opened by 2804@DESKTOP-30F4F9S
+
+[2018-11-11 21:12:43 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 21:17:02 #3 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Product.odb' is closed by 2804@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 21:17:40 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 13912@DESKTOP-30F4F9S
+
+[2018-11-11 21:17:40 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 21:17:41 #3 type.registry] 
+New type product.Product
+
+[2018-11-11 21:17:41 #4 type] 
+Type product.Product is not enhanced.
+
+[2018-11-11 21:17:41 #5 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is closed by 13912@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 21:17:51 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 12436@DESKTOP-30F4F9S
+
+[2018-11-11 21:17:51 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 21:35:16 #3 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is closed by 12436@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 21:35:28 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 10800@DESKTOP-30F4F9S
+
+[2018-11-11 21:35:28 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 21:35:28 #3 type] 
+Type product.Product is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 21:35:55 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 12360@DESKTOP-30F4F9S
+
+[2018-11-11 21:35:55 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 21:35:55 #3 type.registry] 
+New type product.Product
+
+[2018-11-11 21:35:55 #4 type] 
+Type product.Product is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 21:36:05 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' has been recovered (tr. 1-4)
+
+[2018-11-11 21:36:05 #2 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 14080@DESKTOP-30F4F9S
+
+[2018-11-11 21:36:05 #3 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 21:41:24 #4 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is closed by 14080@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 21:41:44 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 15032@DESKTOP-30F4F9S
+
+[2018-11-11 21:41:44 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 21:41:44 #3 type.registry] 
+New type product.Product
+
+[2018-11-11 21:41:44 #4 type] 
+Type product.Product is not enhanced.
+
+[2018-11-11 21:41:44 #5 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is closed by 15032@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 21:43:14 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 3796@DESKTOP-30F4F9S
+
+[2018-11-11 21:43:14 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 21:43:14 #3 type] 
+Type product.Product is not enhanced.
+
+[2018-11-11 21:43:14 #4 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is closed by 3796@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 21:43:20 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 1972@DESKTOP-30F4F9S
+
+[2018-11-11 21:43:20 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 21:43:20 #3 type] 
+Type product.Product is not enhanced.
+
+[2018-11-11 21:43:20 #4 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is closed by 1972@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 21:43:26 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 15312@DESKTOP-30F4F9S
+
+[2018-11-11 21:43:26 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 21:43:26 #3 type] 
+Type product.Product is not enhanced.
+
+[2018-11-11 21:43:26 #4 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is closed by 15312@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 22:20:37 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 12152@DESKTOP-30F4F9S
+
+[2018-11-11 22:20:37 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 22:20:38 #3 type] 
+Type product.Product is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 22:21:00 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 14504@DESKTOP-30F4F9S
+
+[2018-11-11 22:21:00 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 22:21:00 #3 type] 
+Type product.Product is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 22:21:11 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 12496@DESKTOP-30F4F9S
+
+[2018-11-11 22:21:11 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 22:21:11 #3 type] 
+Type product.Product is not enhanced.
+
+[2018-11-11 22:21:11 #4 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is closed by 12496@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 22:21:19 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 13496@DESKTOP-30F4F9S
+
+[2018-11-11 22:21:19 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 22:21:19 #3 type] 
+Type product.Product is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 22:21:44 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 14196@DESKTOP-30F4F9S
+
+[2018-11-11 22:21:44 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 22:21:44 #3 type] 
+Type product.Product is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 22:22:57 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 12872@DESKTOP-30F4F9S
+
+[2018-11-11 22:22:57 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 22:22:57 #3 type] 
+Type product.Product is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 22:24:42 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 15000@DESKTOP-30F4F9S
+
+[2018-11-11 22:24:42 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 22:24:42 #3 type] 
+Type product.Product is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 22:24:57 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 8224@DESKTOP-30F4F9S
+
+[2018-11-11 22:24:57 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 22:24:57 #3 type] 
+Type product.Product is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 22:25:13 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 14432@DESKTOP-30F4F9S
+
+[2018-11-11 22:25:13 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 22:26:47 #3 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is closed by 14432@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 22:26:50 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 9344@DESKTOP-30F4F9S
+
+[2018-11-11 22:26:50 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 22:26:50 #3 type] 
+Type product.Product is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 22:29:10 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 9188@DESKTOP-30F4F9S
+
+[2018-11-11 22:29:10 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 22:29:10 #3 type] 
+Type product.Product is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 22:32:00 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 2852@DESKTOP-30F4F9S
+
+[2018-11-11 22:32:00 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 22:32:00 #3 type] 
+Type product.Product is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 22:32:20 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 3916@DESKTOP-30F4F9S
+
+[2018-11-11 22:32:20 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 22:32:20 #3 type] 
+Type product.Product is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 22:35:36 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 2716@DESKTOP-30F4F9S
+
+[2018-11-11 22:35:36 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 22:35:36 #3 type] 
+Type product.Product is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 22:36:10 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 9920@DESKTOP-30F4F9S
+
+[2018-11-11 22:36:10 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 22:36:10 #3 type] 
+Type product.Product is not enhanced.
+
+[2018-11-11 22:36:10 #4 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is closed by 9920@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 22:36:22 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 240@DESKTOP-30F4F9S
+
+[2018-11-11 22:36:22 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 22:36:22 #3 type] 
+Type product.Product is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 22:38:10 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 3752@DESKTOP-30F4F9S
+
+[2018-11-11 22:38:10 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 22:38:10 #3 type] 
+Type product.Product is not enhanced.
+
+[2018-11-11 22:38:10 #4 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is closed by 3752@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 22:38:18 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 14396@DESKTOP-30F4F9S
+
+[2018-11-11 22:38:18 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 22:38:18 #3 type] 
+Type product.Product is not enhanced.
+
+[2018-11-11 22:38:18 #4 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is closed by 14396@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 22:57:46 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 14220@DESKTOP-30F4F9S
+
+[2018-11-11 22:57:46 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 22:57:46 #3 type] 
+Type product.Product is not enhanced.
+
+[2018-11-11 22:57:46 #4 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is closed by 14220@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 22:58:12 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 8580@DESKTOP-30F4F9S
+
+[2018-11-11 22:58:12 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 22:58:12 #3 type] 
+Type product.Product is not enhanced.
+
+[2018-11-11 22:58:12 #4 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is closed by 8580@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 22:58:18 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 13568@DESKTOP-30F4F9S
+
+[2018-11-11 22:58:18 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 22:58:18 #3 type] 
+Type product.Product is not enhanced.
+
+[2018-11-11 22:58:19 #4 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is closed by 13568@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 23:00:30 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 14380@DESKTOP-30F4F9S
+
+[2018-11-11 23:00:30 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 23:00:30 #3 type] 
+Type product.Product is not enhanced.
+
+[2018-11-11 23:00:30 #4 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is closed by 14380@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 23:00:36 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 15180@DESKTOP-30F4F9S
+
+[2018-11-11 23:00:36 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 23:00:36 #3 type] 
+Type product.Product is not enhanced.
+
+[2018-11-11 23:00:36 #4 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is closed by 15180@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 23:01:41 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 9788@DESKTOP-30F4F9S
+
+[2018-11-11 23:01:41 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 23:01:41 #3 type] 
+Type product.Product is not enhanced.
+
+[2018-11-11 23:01:41 #4 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is closed by 9788@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 23:02:10 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 1184@DESKTOP-30F4F9S
+
+[2018-11-11 23:02:10 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 23:02:10 #3 type] 
+Type product.Product is not enhanced.
+
+[2018-11-11 23:02:10 #4 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is closed by 1184@DESKTOP-30F4F9S
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-11 23:03:13 #1 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is opened by 14368@DESKTOP-30F4F9S
+
+[2018-11-11 23:03:13 #2 store] 
+Configuration path: C:\Users\Oakk\IdeaProjects\testfirst\objectdb\objectdb.conf
+
+[2018-11-11 23:03:14 #3 type] 
+Type product.Product is not enhanced.
+
+[2018-11-11 23:03:14 #4 store] 
+Database 'C:\Users\Oakk\IdeaProjects\testfirst\objectdb\db\Stock.odb' is closed by 14368@DESKTOP-30F4F9S
+
