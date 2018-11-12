@@ -5,25 +5,34 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
+<?scenebuilder-background-color 0x404040ff?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: DimGray;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
-    <Text id="signup" layoutX="466.0" layoutY="185.0" stroke="BLACK" strokeType="CENTERED" strokeWidth="1.0" text="SIGN UP">
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="414.0" layoutX="236.0" layoutY="130.0" stroke="BLACK" strokeType="INSIDE" style="&#10;" width="529.0" />
+    <Text id="signup" layoutX="468.0" layoutY="159.0" stroke="BLACK" strokeType="CENTERED" strokeWidth="1.0" text="SIGN UP" underline="false">
       <font>
-        <Font size="18.0" />
+        <Font name="System Bold" size="16.0" fx:id="x1" />
       </font>
     </Text>
-    <TextField id="id" layoutX="343.0" layoutY="233.0" prefWidth="132.0" />
-    <Text id="username" layoutX="343.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
-    <Text id="password" layoutX="514.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
-    <TextField id="pw" layoutX="514.0" layoutY="233.0" prefWidth="132.0" />
-    <Text id="firstname" layoutX="343.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" />
-    <TextField id="fninfo" layoutX="343.0" layoutY="289.0" prefWidth="132.0" />
-    <Text id="surname" layoutX="514.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname" />
-    <TextField id="sninfo" layoutX="514.0" layoutY="289.0" prefWidth="131.9998779296875" />
-    <TextField id="phoneinfo" layoutX="343.0" layoutY="342.0" prefWidth="303.0" />
-    <Text id="phonenum" layoutX="343.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" />
-    <Button id="subtn" layoutX="342.0" layoutY="388.0" mnemonicParsing="false" prefWidth="303.0" text="Sign Up" />
+    <TextField id="id" layoutX="275.0" layoutY="226.0" prefHeight="29.0" prefWidth="446.0" />
+    <Text id="username" font="$x1" layoutX="275.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
+    <Text id="password" font="$x1" layoutX="275.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+    <TextField id="pw" layoutX="275.0" layoutY="286.0" prefHeight="29.0" prefWidth="446.0" />
+    <Text id="firstname" font="$x1" layoutX="275.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" />
+    <TextField id="fninfo" layoutX="275.0" layoutY="360.0" prefHeight="29.0" prefWidth="220.0" />
+    <Line endX="424.0" endY="-1.0" layoutX="338.0" layoutY="174.0" startX="-100.0" stroke="#cc0000" strokeWidth="4.2" />
+    <Text id="surname" font="$x1" layoutX="501.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname" />
+    <TextField id="sninfo" layoutX="501.0" layoutY="360.0" prefHeight="29.0" prefWidth="220.0" />
+    <TextField id="phoneinfo" layoutX="275.0" layoutY="431.0" prefHeight="29.0" prefWidth="446.0" />
+    <Text id="phonenum" font="$x1" layoutX="275.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" />
+    <Button id="subtn" font="$x1" layoutX="275.0" layoutY="474.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="446.0" style="-fx-background-radius: 50px;&#10;-fx-background-color : DodgerBlue;" text="Sign Up" textFill="WHITE" />
+    <Text id="wm" fill="WHITE" fontSmoothingType="GRAY" layoutX="276.0" layoutY="75.0" scaleX="1.0039589015841892" scaleY="1.0" smooth="true" stroke="WHITE" strokeType="CENTERED" strokeWidth="1.0" text="WAREHOUSE MANAGEMENT" textAlignment="CENTER">
+      <font>
+        <Font name="System Bold Italic" size="32.0" />
+      </font>
+    </Text>
   </children>
 </AnchorPane>
