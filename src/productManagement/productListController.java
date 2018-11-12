@@ -54,10 +54,11 @@ public class productListController implements Controller {
         Button addProductBt = (Button) scene.lookup("#addProductButton");
         Button summeryBt = (Button) scene.lookup("#summeryButton");
         Button orderBt = (Button) scene.lookup("#orderButton");
+        Button logoutBt = (Button) scene.lookup("#logoutButton");
         Button userSearchBt = (Button) scene.lookup("#userSearchButton");
         TextField searchBox = (TextField) scene.lookup("#searchBox");
 
-        searchBox.setPromptText("Search");
+        searchBox.setPromptText("  Search");
         searchBox.textProperty().addListener((observable, oldVal, newVal) -> {
             handleSearchByKey((String) oldVal, (String) newVal);
         });
@@ -290,6 +291,10 @@ public class productListController implements Controller {
         userSearchBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) { pageController.active("user"); }
+        });
+        logoutBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) { pageController.active("login"); }
         });
     }
 
