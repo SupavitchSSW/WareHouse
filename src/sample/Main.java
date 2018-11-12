@@ -9,6 +9,7 @@ import ordermanagement.OrderDetailController;
 import ordermanagement.OrderListController;
 import productManagement.productListController;
 import user.*;
+import report.reportMainController;
 import report.reportController;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ import java.util.List;
 public class Main extends Application {
     private User currentUser;
 
+
     @Override
     public void start(Stage primaryStage) throws IOException {
 
@@ -27,6 +29,7 @@ public class Main extends Application {
         Pane orderListPane = FXMLLoader.load(getClass().getResource("../ordermanagement/orderList.fxml"));
         Pane orderDetailPane = FXMLLoader.load(getClass().getResource("../ordermanagement/orderDetail.fxml"));
         Pane productListPane = FXMLLoader.load(getClass().getResource("../productManagement/mainPage.fxml"));
+        Pane reportMainPane = FXMLLoader.load(getClass().getResource("../report/reportMain.fxml"));
         Pane reportPane = FXMLLoader.load(getClass().getResource("../report/report.fxml"));
         Pane loginPane = FXMLLoader.load(getClass().getResource("../user/login.fxml"));
         Pane signupPane = FXMLLoader.load(getClass().getResource("../user/signup.fxml"));
@@ -34,9 +37,8 @@ public class Main extends Application {
         Pane profilePane = FXMLLoader.load(getClass().getResource("../user/profile.fxml"));
 
 
-
         //create scene
-        Scene scene = new Scene(productListPane,1000,600);
+        Scene scene = new Scene(productListPane, 1000, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
 
@@ -62,9 +64,10 @@ public class Main extends Application {
 
         // >>>>>>> add controller class here <<<<<<
         OrderDetailController orderDetailController = new OrderDetailController(pageController);
-        OrderListController orderListController = new OrderListController(pageController,orderDetailController);
-        productListController productListController = new productListController(pageController,database);
+        OrderListController orderListController = new OrderListController(pageController, orderDetailController);
+        productListController productListController = new productListController(pageController, database);
         reportController reportController = new reportController(pageController);
+        reportMainController reportMainController = new reportMainController(pageController, reportController);
         LoginController loginController = new LoginController(pageController);
         SignupController signupController = new SignupController(pageController);
         UserController userController = new UserController(pageController);
@@ -72,19 +75,20 @@ public class Main extends Application {
 
 
         // >>>>>>>> add page to pageController <<<<<<<<
-        pageController.addPage("orderList",orderListPane,orderListController);
-        pageController.addPage("orderDetail",orderDetailPane,orderDetailController);
-        pageController.addPage("productList",productListPane,productListController);
-        pageController.addPage("report",reportPane,reportController);
-        pageController.addPage("login",loginPane,loginController);
-        pageController.addPage("signup",signupPane, signupController);
-        pageController.addPage("user",userPane, userController);
-        pageController.addPage("profile",profilePane, profileController);
+        pageController.addPage("orderList", orderListPane, orderListController);
+        pageController.addPage("orderDetail", orderDetailPane, orderDetailController);
+        pageController.addPage("productList", productListPane, productListController);
+        pageController.addPage("reportMain", reportMainPane, reportMainController);
+        pageController.addPage("report", reportPane, reportController);
+        pageController.addPage("login", loginPane, loginController);
+        pageController.addPage("signup", signupPane, signupController);
+        pageController.addPage("user", userPane, userController);
+        pageController.addPage("profile", profilePane, profileController);
 //        OrderReadWrite.run();
 
         //start page
         primaryStage.setTitle("WareHouse");
-        pageController.active("profile");
+        pageController.active("login");
 
 
     }

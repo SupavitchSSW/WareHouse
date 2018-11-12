@@ -20,7 +20,6 @@
     <TextField id="id" layoutX="275.0" layoutY="226.0" prefHeight="29.0" prefWidth="446.0" />
     <Text id="username" font="$x1" layoutX="275.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
     <Text id="password" font="$x1" layoutX="275.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
-    <TextField id="pw" layoutX="275.0" layoutY="286.0" prefHeight="29.0" prefWidth="446.0" />
     <Text id="firstname" font="$x1" layoutX="275.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" />
     <TextField id="fninfo" layoutX="275.0" layoutY="360.0" prefHeight="29.0" prefWidth="220.0" />
     <Line endX="424.0" endY="-1.0" layoutX="338.0" layoutY="174.0" startX="-100.0" stroke="#cc0000" strokeWidth="4.2" />
@@ -34,5 +33,6 @@
         <Font name="System Bold Italic" size="32.0" />
       </font>
     </Text>
+    <PasswordField id="pw" layoutX="275.0" layoutY="289.0" prefHeight="29.0" prefWidth="446.0" />
   </children>
 </AnchorPane>

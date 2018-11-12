@@ -14,36 +14,42 @@ import javafx.stage.StageStyle;
 import sample.Controller;
 import sample.PageController;
 import sample.Product;
-import report.reportMainController;
+import report.reportController;
 
 
-import java.util.Date;
 import java.util.Optional;
 
-public class reportController implements Controller {
+public class reportMainController implements Controller {
     PageController pageController;
     private TableView reportTable;
-    private Report report;
+    reportController reportController;
     private ObservableList<Product> reports = getOrder();
     private ObservableList<Product> subEntries;
 
+    private Product selectedProduct;
+    private int index;
+
+    public reportMainController(PageController pageController, reportController reportController) {
+        this.pageController = pageController;
+        this.reportController = reportController;
+    }
+
+
     public ObservableList<Product> getOrder() {
         reports = FXCollections.observableArrayList();
-        reports.add(new Product(1, 1, "A", "g"));
-        reports.add(new Product(2, 2, "B", "t"));
-        reports.add(new Product(3, 22, "C", "h"));
-        reports.add(new Product(5, 1, "D", "f"));
+        reports.add(new Product("A"));
+        reports.add(new Product("B"));
+        reports.add(new Product("V"));
+        reports.add(new Product("D"));
+        reports.add(new Product("G"));
 
 
         return reports;
     }
 
-    public reportController(PageController pageController) {
-        this.pageController = pageController;
-    }
 
     public void initilize() {
-        Scene scene = pageController.getScene("report");
+        Scene scene = pageController.getScene("reportMain");
         Button mainBt = (Button) scene.lookup("#mainButton");
         Button reportBt = (Button) scene.lookup("#reportButton");
         Button orderBt = (Button) scene.lookup("#orderButton");
@@ -56,29 +62,15 @@ public class reportController implements Controller {
             handleSearchByKey((String) oldVal, (String) newVal);
         });
 
-        reportTable = (TableView) scene.lookup("#report");
-//yah
-        TableColumn<Product, Integer> idCol = new TableColumn("ID");
-        idCol.setMinWidth(100);
-        idCol.setCellValueFactory(
-                new PropertyValueFactory<>("id"));
+        reportTable = (TableView) scene.lookup("#reportMain");
+        TableColumn<Product, String> dateCol = new TableColumn("Date");
+        dateCol.setMinWidth(270);
+        dateCol.setCellValueFactory( new PropertyValueFactory<>("date"));
 
-        TableColumn<Product, String> nameCol = new TableColumn("Name");
-        nameCol.setMinWidth(270);
-        nameCol.setCellValueFactory(
-                new PropertyValueFactory<>("Name"));
 
-        TableColumn<Product, String> brandCol = new TableColumn("Brand");
-        brandCol.setMinWidth(270);
-        brandCol.setCellValueFactory(
-                new PropertyValueFactory<>("brand"));
+        reportTable.getColumns().addAll(dateCol);
 
-        TableColumn<Product, Double> quanCol = new TableColumn("Quantity");
-        quanCol.setMinWidth(150);
-        quanCol.setCellValueFactory(
-                new PropertyValueFactory<>("quantity"));
 
-        reportTable.getColumns().addAll(idCol,nameCol,brandCol,quanCol);
 
         mainBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -102,11 +94,21 @@ public class reportController implements Controller {
             @Override
             public void handle(MouseEvent event) { pageController.active("user"); }
         });
-
+        reportTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getClickCount() == 2) {
+                    index = reportTable.getSelectionModel().getSelectedIndex();
+                    pageController.active("report");
+                }
+            }
+        });
     }
+
 
     public void onActive() {
         reportTable.setItems(reports);
+
     }
 
 
@@ -121,7 +123,7 @@ public class reportController implements Controller {
         for ( Object entry: reportTable.getItems() ) {
             boolean match = true;
             Product entryP = (Product) entry;
-            String detailEntryP = entryP.getId()+entryP.getName().toUpperCase()+entryP.getBrand().toUpperCase();
+            String detailEntryP = entryP.getDate();
             for ( String part: parts ) {
                 if ( ! detailEntryP.contains(part) ) {
                     match = false;
@@ -135,12 +137,5 @@ public class reportController implements Controller {
         }
         reportTable.setItems(subEntries);
     }
-    public Report getReport() {
-        return report;
-    }
 
-
-    public void setReport(Report report) {
-        this.report = report;
-    }
 }

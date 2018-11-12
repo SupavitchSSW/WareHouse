@@ -71,7 +71,7 @@ public class ProfileController implements Controller {
         summeryBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                pageController.active("report");
+                pageController.active("reportMain");
 
             }
         });
