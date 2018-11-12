@@ -31,7 +31,6 @@ public class OrderListController implements Controller {
     public void initilize() {
         Scene scene = pageController.getScene("orderList");
         Button nextBtn = (Button) scene.lookup("#nextBtn");
-        Button backBtn = (Button) scene.lookup("#backBtn");
         TextField search_TextField = (TextField) scene.lookup("#searchBox");
 
         //search setup
@@ -66,12 +65,6 @@ public class OrderListController implements Controller {
             }
         });
 
-        backBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                pageController.active("productList");
-            }
-        });
     }
 
     private void handleSearchByKey(String oldValue, String newValue) {
