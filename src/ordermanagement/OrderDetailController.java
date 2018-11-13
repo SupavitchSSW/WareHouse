@@ -1,5 +1,6 @@
 package ordermanagement;
 
+import connectionDB.serviceDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -28,10 +29,12 @@ public class OrderDetailController implements Controller {
     private TextField orderName_TextField,orderOwner_TextField,orderDate_TextField;
     private ObservableList<OrderProduct> orderProducts;
     private User currentUser;
+    private serviceDB database;
 
-    public OrderDetailController(PageController pageController, User currentUser) {
+    public OrderDetailController(PageController pageController,serviceDB database, User currentUser) {
         this.pageController = pageController;
         this.currentUser = currentUser;
+        this.database = database;
     }
 
     @Override
@@ -85,19 +88,19 @@ public class OrderDetailController implements Controller {
         //set send cell
         sendQuantityColumn.setEditable(true);
         sendQuantityColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        sendQuantityColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Product, Integer>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Product, Integer> event) {
-                OrderProduct o = (OrderProduct) event.getTableView().getItems().get(event.getTablePosition().getRow());
-                if(event.getNewValue() > o.getQuantity() || event.getNewValue() < 0){
-                    System.out.println("Error input");
-                    detail_table.refresh();
-                }else{
-                    System.out.println(o.getName() +" : "+event.getNewValue());
-                    o.setSendQuantity(event.getNewValue());
-                }
-            }
-        });
+//        sendQuantityColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<OrderProduct, Integer>>() {
+//            @Override
+//            public void handle(TableColumn.CellEditEvent<OrderProduct, Integer> event) {
+//                OrderProduct o = (OrderProduct) event.getTableView().getItems().get(event.getTablePosition().getRow());
+//                if(event.getNewValue() > o.getQuantity() || event.getNewValue() < 0){
+//                    System.out.println("Error input");
+//                    detail_table.refresh();
+//                }else{
+//                    System.out.println(o.getName() +" : "+event.getNewValue());
+//                    o.setSendQuantity(event.getNewValue());
+//                }
+//            }
+//        });
 
 
         detail_table.getColumns().addAll(idColumn,nameColumn,brandColumn,orderQuantityColumn,warehouseQuantityColumn,sendQuantityColumn);
@@ -164,7 +167,7 @@ public class OrderDetailController implements Controller {
                         OrderProduct orderProduct = (OrderProduct) entry;
                         System.out.println(orderProduct.toString());
                         Date date = new Date();
-                        System.out.println(new Transaction(orderProduct.getId(),orderProduct.getSendQuantity()*-1,date,"approveOrder").toString());
+                        System.out.println(new Transaction(orderProduct.getProductId(),orderProduct.getSendQuantity()*-1,date,"approveOrder").toString());
                     }
 
 
@@ -209,7 +212,7 @@ public class OrderDetailController implements Controller {
         for ( Object entry: detail_table.getItems() ) {
             boolean match = true;
             OrderProduct entryP = (OrderProduct) entry;
-            String detailEntryP = entryP.getId()+entryP.getName().toUpperCase()+entryP.getBrand().toUpperCase();
+            String detailEntryP = entryP.getProductId()+entryP.getName().toUpperCase()+entryP.getBrand().toUpperCase();
             for ( String part: parts ) {
                 if ( ! detailEntryP.contains(part) ) {
                     match = false;
