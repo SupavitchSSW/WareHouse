@@ -36,9 +36,9 @@ public class LoginController implements Controller {
                 if(checkUser.equals(user) && checkPw.equals(pw)){
 
                     //set login user
-                    currentUser.setName("test");
+                    currentUser.setFirstname("test");
                     currentUser.setSurname("naja");
-                    currentUser.setTel("085555555");
+                    currentUser.setPhoneNumber("085555555");
                     currentUser.setRole("Staff");
                     currentUser.setId(555);
 

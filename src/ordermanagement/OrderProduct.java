@@ -1,16 +1,21 @@
 package ordermanagement;
 
-import sample.Product;
+import product.Product;
 
-public class OrderProduct extends Product {
+import javax.persistence.Entity;
+import java.io.Serializable;
+
+@Entity
+public class OrderProduct extends Product implements Serializable {
     private int orderQuantity,sendQuantity = 0,productId;
 
     public OrderProduct(int orderQuantity) {
         this.orderQuantity = orderQuantity;
     }
 
-    public OrderProduct(int id, String name, String brand, int orderQuantity) {
-        super(id, 0, name, brand);
+    public OrderProduct(int productId, String name, String brand, int orderQuantity) {
+        super(0, name, brand);
+        this.productId = productId;
         this.orderQuantity = orderQuantity;
         if(super.getQuantity() < orderQuantity) {
             sendQuantity = super.getQuantity();
@@ -24,6 +29,7 @@ public class OrderProduct extends Product {
         return "OrderProduct{" +
                 "orderQuantity=" + orderQuantity +
                 ", sendQuantity=" + sendQuantity +
+                ", productId=" + productId +
                 '}';
     }
 

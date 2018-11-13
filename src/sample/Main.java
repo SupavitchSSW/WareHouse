@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class Main extends Application {
-    public User currentUser = new User("","","","staff","");
+    public User currentUser = new User("","","","staff","","");
 
 
     @Override

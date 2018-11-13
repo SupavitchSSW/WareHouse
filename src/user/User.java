@@ -1,15 +1,22 @@
 package user;
+import java.io.Serializable;
+import javax.persistence.*;
 
-public class User {
-    private int id=-1;
-    private String name,surname,tel,role,password;
+@Entity
+public class User implements Serializable{
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    public User(String name, String surname, String tel,String role , String password) {
-        this.name = name;
-        this.surname = surname;
-        this.tel = tel;
-        this.role = role;
+    private String username,password,role,firstname,surname,phoneNumber;
+
+    public User(String username, String password, String role, String firstname, String surname, String phoneNumber) {
+        this.id = id;
+        this.username = username;
         this.password = password;
+        this.role = role;
+        this.firstname = firstname;
+        this.surname = surname;
+        this.phoneNumber = phoneNumber;
     }
 
     public int getId() {
@@ -20,36 +27,34 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", surname='" + surname + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
+    public void clearUser(){
+        this.id = 0;
+        this.username = "";
+        this.password = "";
+        this.role = "";
+        this.firstname = "";
+        this.surname = "";
+        this.phoneNumber = "";
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getUsername() {
+        return username;
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -60,22 +65,35 @@ public class User {
         this.password = password;
     }
 
-    public void clearUser(){
-        this.name = "";
-        this.surname = "";
-        this.tel = "";
-        this.role = "staff";
-        this.password = "";
+    public String getRole() {
+        return role;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", tel='" + tel + '\'' +
-                ", role='" + role + '\'' +
-                '}';
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

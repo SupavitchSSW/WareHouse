@@ -31,11 +31,11 @@ public class UserController implements Controller{
     public ObservableList<User> getOrder(){
         users = FXCollections.observableArrayList();
 
-        users.add(new User("Warisa","Saisaema","59011202","Staff","123456"));
-        users.add(new User("Supavitch","Saengsuwan","59011341","Staff","444444"));
-        users.add(new User("Sarun","Limpasatirakit","59011371","Staff","565656"));
-        users.add(new User("Satjaporn","Lertsasipakorn","59011382","Staff","777777"));
-        users.add(new User("Itiwat","Supensilp","59011578","Staff","134340"));
+//        users.add(new User("Warisa","Saisaema","59011202","Warisa","Saisaema"));
+//        users.add(new User("Supavitch","Saengsuwan","59011341","Staff","444444"));
+//        users.add(new User("Sarun","Limpasatirakit","59011371","Staff","565656"));
+//        users.add(new User("Satjaporn","Lertsasipakorn","59011382","Staff","777777"));
+//        users.add(new User("Itiwat","Supensilp","59011578","Staff","134340"));
 
 
         return users;
@@ -134,11 +134,11 @@ public class UserController implements Controller{
                     }
 
                     propertyGrid.add(new Label("Name               :"), 0, 0);
-                    propertyGrid.add(new Label(selectedProduct.getName()), 1, 0);
+                    propertyGrid.add(new Label(selectedProduct.getFirstname()), 1, 0);
                     propertyGrid.add(new Label("Surname           :"), 0, 1);
                     propertyGrid.add(new Label(selectedProduct.getSurname()), 1, 1);
                     propertyGrid.add(new Label("Phone Number :"), 0, 2);
-                    propertyGrid.add(new Label(selectedProduct.getTel()), 1, 2);
+                    propertyGrid.add(new Label(selectedProduct.getPhoneNumber()), 1, 2);
                     propertyGrid.add(new Label("Role                  :"), 0, 3);
                     propertyGrid.add(new Label(selectedProduct.getRole()), 1, 3);
                     propertyGrid.add(new Label("Password          :"), 0, 4);
@@ -207,7 +207,7 @@ public class UserController implements Controller{
         for ( Object entry: userTable.getItems() ) {
             boolean match = true;
             User entryP = (User) entry;
-            String detailEntryP = entryP.getName().toUpperCase()+entryP.getSurname().toUpperCase()+entryP.getTel();
+            String detailEntryP = entryP.getFirstname().toUpperCase()+entryP.getSurname().toUpperCase()+entryP.getPhoneNumber();
             for ( String part: parts ) {
                 if ( ! detailEntryP.contains(part) ) {
                     match = false;

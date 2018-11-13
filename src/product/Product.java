@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 public class Product implements Serializable{
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private int quantity,cost=0,price=0;

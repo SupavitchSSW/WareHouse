@@ -1,35 +1,45 @@
 package ordermanagement;
 
+import java.io.Serializable;
+import javax.persistence.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import sample.Product;
-
+import product.Product;
 import java.util.Date;
+import java.util.*;
 
-public class Order {
+@Entity
+public class Order implements Serializable{
 
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name,owner,status;
     private Date date = new Date(100,9,9,18,10);
-    private ObservableList<OrderProduct> orderProducts = FXCollections.observableArrayList();
+//    private ObservableList<OrderProduct> orderProducts = FXCollections.observableArrayList();
+    private List<OrderProduct> orderProducts = new ArrayList<OrderProduct>();
 
+    public List<OrderProduct> getOrderProducts() {
+        return orderProducts;
+    }
 
+    public void setOrderProducts(List<OrderProduct> orderProducts) {
+        this.orderProducts = orderProducts;
+    }
 
     public Order(){
         this.name = "";
-        this.id = -1;
         this.owner = "undefind";
     }
 
-    public Order(int id, String name,String owner) {
+    public Order( String name,String owner) {
         this.name = name;
-        this.id = id;
         this.owner = owner;
     }
 
-    public ObservableList<OrderProduct> getOrderProducts() {
-        return orderProducts;
-    }
+//    public ObservableList<OrderProduct> getOrderProducts() {
+//        return orderProducts;
+//    }
 
     public void addOrderProduct(OrderProduct orderProduct) {
         orderProducts.add(orderProduct);
@@ -64,10 +74,6 @@ public class Order {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -82,6 +88,7 @@ public class Order {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", owner='" + owner + '\'' +
+                ", status='" + status + '\'' +
                 ", date=" + date +
                 ", orderProducts=" + orderProducts +
                 '}';

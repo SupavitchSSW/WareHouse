@@ -47,9 +47,9 @@ public class ProfileController implements Controller {
                     //save
                     isEdit = false;
                     editBtn.setText("Edit");
-                    currentUser.setName(nameTF.getText());
+                    currentUser.setFirstname(nameTF.getText());
                     currentUser.setSurname(surnameTF.getText());
-                    currentUser.setTel(telTF.getText());
+                    currentUser.setPhoneNumber(telTF.getText());
                     nameTF.setEditable(false);
                     surnameTF.setEditable(false);
                     telTF.setEditable(false);
@@ -101,9 +101,9 @@ public class ProfileController implements Controller {
     }
 
     public void setProfile(){
-        nameTF.setText(currentUser.getName());
+        nameTF.setText(currentUser.getFirstname());
         surnameTF.setText(currentUser.getSurname());
-        telTF.setText(currentUser.getTel());
+        telTF.setText(currentUser.getPhoneNumber());
         roleTF.setText(currentUser.getRole());
     }
 }

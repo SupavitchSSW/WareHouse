@@ -12,7 +12,7 @@ import javafx.util.converter.IntegerStringConverter;
 import ordermanagement.Order;
 import sample.Controller;
 import sample.PageController;
-import sample.Product;
+import product.Product;
 import sample.Transaction;
 import user.User;
 
@@ -227,7 +227,7 @@ public class OrderDetailController implements Controller {
 
     private void getOrderProductList(){
         //get order product from order
-        orderProducts = order.getOrderProducts();
+        orderProducts = (ObservableList<OrderProduct>)  order.getOrderProducts();
 
         //============================================================================
         //           (TODO) set current warehouse quantity to each OrderProduct
