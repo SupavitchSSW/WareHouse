@@ -19,8 +19,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class Main extends Application {
-    public User currentUser = new User("","","","staff","","");
-
+    public User currentUser = new User("","","","","","");
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -69,8 +68,8 @@ public class Main extends Application {
         reportController reportController = new reportController(pageController,currentUser);
         reportMainController reportMainController = new reportMainController(pageController, reportController,currentUser);
         LoginController loginController = new LoginController(pageController,currentUser);
-        SignupController signupController = new SignupController(pageController, database,currentUser);
-        UserController userController = new UserController(pageController,database,currentUser);
+        SignupController signupController = new SignupController(pageController,currentUser);
+        UserController userController = new UserController(pageController,currentUser);
         ProfileController profileController = new ProfileController(pageController,currentUser);
 
 

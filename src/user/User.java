@@ -39,7 +39,8 @@ public class User implements Serializable{
                 ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
     }
-    public void clearUser(){
+
+    public void clearUser() {
         this.id = 0;
         this.username = "";
         this.password = "";

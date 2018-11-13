@@ -188,7 +188,7 @@ public class serviceDB {
         results.get(0).setFirstname(firstname);
         em.getTransaction().commit();
     }
-    public void setSuurname(int id,String surname){
+    public void setSurname(int id,String surname){
         String sql = "SELECT c FROM User c Where c.id =" + id +"";
         TypedQuery<User> query = em.createQuery(sql, User.class);
         List<User> results = query.getResultList();
