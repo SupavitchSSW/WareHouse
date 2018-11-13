@@ -46,7 +46,11 @@ public class Main extends Application {
 
         //oak db
         serviceDB database = new serviceDB();
-//        List<Product> results = database.getAllProduct();
+        database.addOrderproduct(2,1,"qwe","qee",200);
+        database.addOrderproduct(2,3,"qwe","qee",100);
+        database.addOrderproduct(2,9,"qwe","qee",50);
+
+        //        List<Product> results = database.getAllProduct();
 //        database.createProduct("qwe","qee",23,20);
 //        database.createProduct("gtq","ggg",13,40);
 //        database.createProduct("ofp","hpn",56,50);
@@ -61,8 +65,8 @@ public class Main extends Application {
 
 
         // >>>>>>> add controller class here <<<<<<
-        OrderDetailController orderDetailController = new OrderDetailController(pageController,currentUser);
-        OrderListController orderListController = new OrderListController(pageController, orderDetailController,currentUser);
+        OrderDetailController orderDetailController = new OrderDetailController(pageController,database,currentUser);
+        OrderListController orderListController = new OrderListController(pageController,database, orderDetailController,currentUser);
         productListController productListController = new productListController(pageController, database,currentUser);
         reportController reportController = new reportController(pageController,currentUser);
         reportMainController reportMainController = new reportMainController(pageController, reportController,currentUser);
@@ -86,6 +90,8 @@ public class Main extends Application {
         //start page
         primaryStage.setTitle("WareHouse Management");
         pageController.active("login");
+
+        //OrderReadWrite.run();
     }
 
     public static void main(String[] args) {

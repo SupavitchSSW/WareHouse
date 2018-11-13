@@ -1,5 +1,6 @@
 package ordermanagement;
 
+import connectionDB.serviceDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -20,14 +21,16 @@ import user.User;
 public class OrderListController implements Controller {
     PageController pageController;
     OrderDetailController orderDetailController;
-    private ObservableList<Order> orders = getOrder();
+    private ObservableList<Order> orders;
     private TableView order_table;
     private User currentUser;
+    private serviceDB database;
 
-    public OrderListController(PageController pageController, OrderDetailController orderDetailController,User currentUser) {
+    public OrderListController(PageController pageController,serviceDB database, OrderDetailController orderDetailController,User currentUser) {
         this.currentUser = currentUser;
         this.pageController = pageController;
         this.orderDetailController = orderDetailController;
+        this.database = database;
     }
 
 
@@ -35,7 +38,6 @@ public class OrderListController implements Controller {
         Scene scene = pageController.getScene("orderList");
         Button nextBtn = (Button) scene.lookup("#nextBtn");
         Button mainBt = (Button) scene.lookup("#mainButton");
-        Button addProductBt = (Button) scene.lookup("#addProductButton");
         Button summaryBt = (Button) scene.lookup("#summaryButton");
         Button orderBt = (Button) scene.lookup("#orderButton");
         Button logoutBt = (Button) scene.lookup("#logoutButton");
@@ -55,11 +57,13 @@ public class OrderListController implements Controller {
         TableColumn<Order, Integer> idColumn = new TableColumn<>("ID");
         TableColumn<Order, String> nameColumn = new TableColumn<>("NAME");
         TableColumn<Order, String> ownerColumn = new TableColumn<>("OWNER");
+        TableColumn<Order, String> statusColumn = new TableColumn<>("STATUS");
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         ownerColumn.setCellValueFactory(new PropertyValueFactory<>("owner"));
-        order_table.getColumns().addAll(idColumn, nameColumn,ownerColumn);
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        order_table.getColumns().addAll(idColumn, nameColumn,ownerColumn,statusColumn);
 
         mainBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -122,7 +126,7 @@ public class OrderListController implements Controller {
         for ( Object entry: order_table.getItems() ) {
             boolean match = true;
             Order entryP = (Order) entry;
-            String detailEntryP = entryP.getId()+entryP.getName().toUpperCase()+entryP.getDate();
+            String detailEntryP = entryP.getId()+entryP.getName().toUpperCase()+entryP.getDate()+entryP.getStatus();
             for ( String part: parts ) {
                 if ( ! detailEntryP.contains(part) ) {
                     match = false;
@@ -139,29 +143,12 @@ public class OrderListController implements Controller {
 
     @Override
     public void onActive() {
-        ObservableList<Order> orders = getOrder();
+        orders = getOrder();
         order_table.setItems(orders);
     }
 
     public ObservableList<Order> getOrder() {
-        ObservableList<Order> orders = FXCollections.observableArrayList();
-
-        Order o = new Order("Por_shop1","por");
-        o.addOrderProduct(new OrderProduct(10,"beer","leo",50));
-        o.addOrderProduct(new OrderProduct(11,"vodka","tom",20));
-        orders.add(o);
-
-        o = new Order("Por_shop2","por");
-        o.addOrderProduct(new OrderProduct(102,"cookie","m&m",5));
-        o.addOrderProduct(new OrderProduct(1,"water","KMITL",200));
-        orders.add(o);
-
-        o = new Order("Por_shop3","por");
-        o.addOrderProduct(new OrderProduct(102,"cookie","m&m",5));
-        o.addOrderProduct(new OrderProduct(1,"water","KMITL",200));
-        o.addOrderProduct(new OrderProduct(10,"beer","leo",50));
-        o.addOrderProduct(new OrderProduct(11,"vodka","tom",20));
-        orders.add(o);
+        ObservableList<Order> orders = FXCollections.observableArrayList(database.getAllOrder());
         return orders;
     }
 }
