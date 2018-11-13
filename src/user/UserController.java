@@ -69,6 +69,7 @@ public class UserController implements Controller{
 
         Button logoutBt = (Button) scene.lookup("#logoutButton");
         Button userInfoBt = (Button) scene.lookup("#userInfo");
+        Button addMBt = (Button) scene.lookup("#addManagerButton");
 
         searchBox.setPromptText("Search");
         searchBox.textProperty().addListener((observable, oldVal, newVal) -> {
@@ -191,6 +192,58 @@ public class UserController implements Controller{
             @Override
             public void handle(MouseEvent event) { pageController.active("login"); }
         });
+
+        addMBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Dialog<ButtonType> addManagerDialog = new Dialog<>();
+                addManagerDialog.initStyle(StageStyle.UTILITY);
+                addManagerDialog.setTitle("Add Manager Information");
+
+                GridPane addManagerGrid = new GridPane();
+                addManagerGrid.setHgap(10);
+                addManagerGrid.setVgap(20);
+                addManagerGrid.setPadding(new Insets(20, 120, 10, 20));
+
+                TextField musername = new TextField();
+                PasswordField mpassword = new PasswordField();
+                TextField mfirstname = new TextField();
+                TextField msurname = new TextField();
+                TextField mphonenum = new TextField();
+
+
+                addManagerGrid.add(new Label("Username:"), 0, 0);
+                addManagerGrid.add(musername, 1, 0);
+                addManagerGrid.add(new Label("Password:"), 0, 1);
+                addManagerGrid.add(mpassword, 1, 1);
+                addManagerGrid.add(new Label("First Name:"), 0, 2);
+                addManagerGrid.add(mfirstname, 1, 2);
+                addManagerGrid.add(new Label("Surname:"), 0, 3);
+                addManagerGrid.add(msurname, 1, 3);
+                addManagerGrid.add(new Label("Phone Number:"), 0, 4);
+                addManagerGrid.add(mphonenum, 1, 4);
+
+
+
+                addManagerDialog.getDialogPane().setContent(addManagerGrid);
+
+                ButtonType confirmButtonType = new ButtonType("Confirm");
+                ButtonType cancelButtonType = new ButtonType("Cancel");
+
+                addManagerDialog.getDialogPane().getButtonTypes().addAll(confirmButtonType, cancelButtonType);
+
+                Optional<ButtonType> addManagerResult = addManagerDialog.showAndWait();
+                if (addManagerResult.get() == confirmButtonType ) {
+                    database.createUser(musername.getText(), mpassword.getText(), "Manager", mfirstname.getText(), msurname.getText(), mphonenum.getText());
+                    users = getAllUser();
+                    userTable.setItems(users);
+                    userTable.refresh();
+
+
+                    }
+                }
+        });
+
         userInfoBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) { pageController.active("profile"); }
