@@ -1,19 +1,23 @@
 package user;
 
+import connectionDB.serviceDB;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.control.ChoiceBox;
 import sample.Controller;
 import sample.PageController;
 
 public class SignupController implements Controller {
     PageController pageController;
     private User currentUser;
+    private serviceDB database;
 
-    public SignupController(PageController pageController,User currentUser) {
+    public SignupController(PageController pageController, serviceDB database,User currentUser) {
         this.currentUser = currentUser;
         this.pageController = pageController;
+        this.database = database;
     }
 
     @Override
@@ -26,6 +30,8 @@ public class SignupController implements Controller {
         TextField surname = (TextField) scene.lookup("#sninfo");
         TextField phonenum = (TextField) scene.lookup("#phoneinfo");
         Hyperlink goBack = (Hyperlink) scene.lookup("#goBack");
+        ChoiceBox rolesel = (ChoiceBox) scene.lookup("#role");
+
 
 
         btn.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -39,6 +45,9 @@ public class SignupController implements Controller {
                     alertError.showAndWait();
                     return;
                 }
+                else{
+                    database.createUser(username.getText(), password.getText(), rolesel.getAccessibleText(), firstname.getText(), surname.getText(), phonenum.getText());
+                }
 
                 pageController.active("login");
             }
@@ -48,6 +57,13 @@ public class SignupController implements Controller {
             @Override
             public void handle(MouseEvent event) {
                 pageController.active("login");
+            }
+        });
+
+        rolesel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
             }
         });
 

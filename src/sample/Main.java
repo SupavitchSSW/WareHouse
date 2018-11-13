@@ -69,8 +69,8 @@ public class Main extends Application {
         reportController reportController = new reportController(pageController,currentUser);
         reportMainController reportMainController = new reportMainController(pageController, reportController,currentUser);
         LoginController loginController = new LoginController(pageController,currentUser);
-        SignupController signupController = new SignupController(pageController,currentUser);
-        UserController userController = new UserController(pageController,currentUser);
+        SignupController signupController = new SignupController(pageController, database,currentUser);
+        UserController userController = new UserController(pageController,database,currentUser);
         ProfileController profileController = new ProfileController(pageController,currentUser);
 
 
