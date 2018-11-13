@@ -25,7 +25,7 @@
       <Text layoutX="360.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tel" />
       <TextField id="roleTextField" layoutX="427.0" layoutY="365.0" prefHeight="19.0" prefWidth="168.0" />
       <Text layoutX="360.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Role" />
-      <Button layoutX="408.0" layoutY="426.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="84.0" text="Button" />
-      <Button layoutX="535.0" layoutY="426.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="84.0" text="Button" />
+      <Button id="editButton" layoutX="408.0" layoutY="426.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="84.0" text="EDIT" />
+      <Button id="logoutButton" layoutX="535.0" layoutY="426.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="84.0" text="LOGOUT" />
   </children>
 </AnchorPane>

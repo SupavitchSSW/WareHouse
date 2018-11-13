@@ -1,22 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <TableView id="productList" layoutX="96.0" layoutY="188.0" prefHeight="352.0" prefWidth="801.0" />
-      <TextField id="searchBox" layoutX="105.0" layoutY="140.0" prefHeight="27.0" prefWidth="192.0" />
-      <Separator layoutX="1.0" layoutY="98.0" prefHeight="19.0" prefWidth="1000.0" />
-      <Button id="mainButton" layoutX="134.0" layoutY="50.0" mnemonicParsing="false" text="Main" />
-      <Button id="orderButton" layoutX="511.0" layoutY="50.0" mnemonicParsing="false" text="Order" />
-      <Button id="summeryButton" layoutX="384.0" layoutY="50.0" mnemonicParsing="false" text="Summery" />
-      <Button id="addProductButton" layoutX="808.0" layoutY="136.0" mnemonicParsing="false" text="Add Product" />
-      <Button id="userSearchButton" layoutX="243.0" layoutY="50.0" mnemonicParsing="false" text="User Search" />
-      <Circle fill="DODGERBLUE" layoutX="61.0" layoutY="53.0" radius="42.0" stroke="BLACK" strokeType="INSIDE" />
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: DimGray;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <Pane layoutX="37.0" layoutY="138.0" prefHeight="443.0" prefWidth="919.0" style="-fx-background-color: white;">
+      <children>
+        <Button id="addProductButton" layoutX="743.0" layoutY="23.0" mnemonicParsing="false" prefWidth="120.0" style="-fx-background-color: #1350f7; -fx-background-radius: 50px;" text="Add Product" textFill="WHITE">
+          <font>
+            <Font name="System Bold" size="15.0" />
+          </font>
+        </Button>
+        <TableView id="productList" layoutX="59.0" layoutY="72.0" prefHeight="352.0" prefWidth="801.0" />
+        <TextField id="searchBox" layoutX="59.0" layoutY="23.0" prefHeight="27.0" prefWidth="180.0" style="-fx-border-color: #1350f7; -fx-border-radius: 50px; -fx-border-width: 2; -fx-background-radius: 50px;" />
+        <Text layoutX="298.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WAREHOUSE TABLE" textAlignment="CENTER" wrappingWidth="323.10107421875">
+          <font>
+            <Font name="System Bold" size="25.0" />
+          </font>
+        </Text>
+      </children>
+    </Pane>
+    <Button id="mainButton" layoutX="159.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" style="-fx-background-radius: 50px; -fx-background-color: white; -fx-border-color: white; -fx-border-radius: 50px; -fx-border-width: 3;" text="Main" textFill="#b51b32">
+      <font>
+        <Font name="System Bold" size="18.0" fx:id="x1" />
+      </font>
+    </Button>
+    <Button id="orderButton" font="$x1" layoutX="654.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" style="-fx-background-radius: 50px; -fx-background-color: DimGray; -fx-border-color: white; -fx-border-radius: 50px; -fx-border-width: 3;" text="Order" textFill="WHITE" />
+    <Button id="userSearchButton" font="$x1" layoutX="326.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" style="-fx-background-radius: 50px; -fx-background-color: DimGray; -fx-border-color: white; -fx-border-radius: 50px; -fx-border-width: 3;" text="User Search" textFill="WHITE" />
+    <Circle id="userInfo" fill="#797979" layoutX="86.0" layoutY="73.0" radius="49.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
+    <Button id="summeryButton" font="$x1" layoutX="489.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" style="-fx-background-radius: 50px; -fx-background-color: DimGray; -fx-border-color: white; -fx-border-radius: 50px; -fx-border-width: 3;" text="Summary" textFill="WHITE" />
+    <Button id="logoutButton" font="$x1" layoutX="816.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" style="-fx-background-radius: 50px; -fx-background-color: DimGray; -fx-border-color: white; -fx-border-radius: 50px; -fx-border-width: 3;" text="Log out" textFill="WHITE" />
+  </children>
 </AnchorPane>
