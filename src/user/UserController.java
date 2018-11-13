@@ -71,7 +71,7 @@ public class UserController implements Controller{
                 new PropertyValueFactory<>("Name"));
 
         TableColumn <User,String> surnameCol = new TableColumn("Surname");
-        surnameCol.setMinWidth(170);
+        surnameCol.setMinWidth(200);
         surnameCol.setCellValueFactory(
                 new PropertyValueFactory<>("Surname"));
 
@@ -81,16 +81,12 @@ public class UserController implements Controller{
                 new PropertyValueFactory<>("Tel"));
 
         TableColumn <User, String> roleCol = new TableColumn("Role");
-        roleCol.setMinWidth(100);
+        roleCol.setMinWidth(200);
         roleCol.setCellValueFactory(
                 new PropertyValueFactory<>("Role"));
 
-        TableColumn <User, String> passCol = new TableColumn("Password");
-        passCol.setMinWidth(130);
-        passCol.setCellValueFactory(
-                new PropertyValueFactory<>("Password"));
 
-        userTable.getColumns().addAll(nameCol,surnameCol,telCol,roleCol,passCol);
+        userTable.getColumns().addAll(nameCol,surnameCol,telCol,roleCol);
         mainBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -129,7 +125,7 @@ public class UserController implements Controller{
                     GridPane propertyGrid = new GridPane();
                     propertyGrid.setHgap(10);
                     propertyGrid.setVgap(20);
-                    propertyGrid.setPadding(new Insets(20, 250, 10, 20));
+                    propertyGrid.setPadding(new Insets(20, 200, 10, 20));
 
                     if (userTable.getItems() == subEntries) {
                         selectedProduct = subEntries.get(index);
@@ -155,6 +151,7 @@ public class UserController implements Controller{
                     propertyDialog.getDialogPane().getButtonTypes().addAll(deleteButtonType, doneButtonType);
 
                     Optional<ButtonType> propertyResult = propertyDialog.showAndWait();
+
                     if (propertyResult.get() == deleteButtonType) {
                         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                         alert.setTitle("Delete Product");

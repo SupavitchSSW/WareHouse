@@ -39,7 +39,7 @@ public class LoginController implements Controller {
                     currentUser.setName("test");
                     currentUser.setSurname("naja");
                     currentUser.setTel("085555555");
-                    currentUser.setRole("staff");
+                    currentUser.setRole("Staff");
                     currentUser.setId(555);
 
                     pageController.active("productList");
