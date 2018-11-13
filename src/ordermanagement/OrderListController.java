@@ -57,11 +57,13 @@ public class OrderListController implements Controller {
         TableColumn<Order, Integer> idColumn = new TableColumn<>("ID");
         TableColumn<Order, String> nameColumn = new TableColumn<>("NAME");
         TableColumn<Order, String> ownerColumn = new TableColumn<>("OWNER");
+        TableColumn<Order, String> statusColumn = new TableColumn<>("STATUS");
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         ownerColumn.setCellValueFactory(new PropertyValueFactory<>("owner"));
-        order_table.getColumns().addAll(idColumn, nameColumn,ownerColumn);
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        order_table.getColumns().addAll(idColumn, nameColumn,ownerColumn,statusColumn);
 
         mainBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
