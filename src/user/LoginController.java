@@ -85,9 +85,7 @@ public class LoginController implements Controller {
 
     @Override
     public void onActive() {
-        //logout
-//        currentUser.clearUser();
-//        System.out.println("CCC"+currentUser.toString());
+
     }
 
 }
