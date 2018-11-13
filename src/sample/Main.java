@@ -69,7 +69,7 @@ public class Main extends Application {
         LoginController loginController = new LoginController(pageController,database,currentUser);
         SignupController signupController = new SignupController(pageController,database,currentUser);
         UserController userController = new UserController(pageController,database,currentUser);
-        ProfileController profileController = new ProfileController(pageController,currentUser);
+        ProfileController profileController = new ProfileController(pageController, database,currentUser);
 
 
         // >>>>>>>> add page to pageController <<<<<<<<
@@ -84,7 +84,7 @@ public class Main extends Application {
         pageController.addPage("profile", profilePane, profileController);
 
         //start page
-        primaryStage.setTitle("WareHouse");
+        primaryStage.setTitle("WareHouse Management");
         pageController.active("login");
     }
 

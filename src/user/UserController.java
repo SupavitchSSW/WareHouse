@@ -77,10 +77,6 @@ public class UserController implements Controller{
 
         userTable = (TableView) scene.lookup("#userList");
 
-        TableColumn <User,String> nameCol = new TableColumn("Username");
-        nameCol.setMinWidth(100);
-        nameCol.setCellValueFactory(
-                new PropertyValueFactory<>("username"));
 
         TableColumn <User,String> firstNameCol = new TableColumn("First Name");
         firstNameCol.setMinWidth(200);
@@ -98,14 +94,14 @@ public class UserController implements Controller{
                 new PropertyValueFactory<>("phoneNumber"));
 
         TableColumn <User, String> roleCol = new TableColumn("Role");
-        roleCol.setMinWidth(100);
+        roleCol.setMinWidth(200);
         roleCol.setCellValueFactory(
                 new PropertyValueFactory<>("role"));
 
 
 
 
-        userTable.getColumns().addAll(nameCol,firstNameCol, surnameCol,telCol,roleCol);
+        userTable.getColumns().addAll(firstNameCol, surnameCol,telCol,roleCol);
         mainBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -160,8 +156,6 @@ public class UserController implements Controller{
                     propertyGrid.add(new Label(selectUser.getPhoneNumber()), 1, 2);
                     propertyGrid.add(new Label("Role                  :"), 0, 3);
                     propertyGrid.add(new Label(selectUser.getRole()), 1, 3);
-                    propertyGrid.add(new Label("Password          :"), 0, 4);
-                    propertyGrid.add(new Label(selectUser.getPassword()), 1, 4);
                     propertyDialog.getDialogPane().setContent(propertyGrid);
 
                     ButtonType doneButtonType = new ButtonType("Done");
@@ -179,6 +173,7 @@ public class UserController implements Controller{
                         Optional<ButtonType> result = alert.showAndWait();
                         if (result.get() == ButtonType.OK){
                             if (userTable.getItems() == subEntries) {
+
                                 searchBox.clear();
                             }
                             database.removeUser(selectUser.getId());
