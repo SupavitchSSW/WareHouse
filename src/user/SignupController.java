@@ -1,6 +1,8 @@
 package user;
 
 import connectionDB.serviceDB;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -34,10 +36,11 @@ public class SignupController implements Controller {
 
 
 
+
         btn.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if(username.getText().isEmpty() || password.getText().isEmpty() || firstname.getText().isEmpty() || surname.getText().isEmpty() || phonenum.getText().isEmpty()) {
+                if(username.getText().isEmpty() || password.getText().isEmpty() || rolesel.getSelectionModel().isEmpty() || firstname.getText().isEmpty() || surname.getText().isEmpty() || phonenum.getText().isEmpty()) {
                     Alert alertError = new Alert(Alert.AlertType.ERROR);
                     alertError.setTitle("Sign Up Failed");
                     alertError.setHeaderText(null);
@@ -46,7 +49,13 @@ public class SignupController implements Controller {
                     return;
                 }
                 else{
-                    database.createUser(username.getText(), password.getText(), rolesel.getAccessibleText(), firstname.getText(), surname.getText(), phonenum.getText());
+                    //System.out.println(rolesel.getItems());
+                    database.createUser(username.getText(), password.getText(), rolesel.getValue().toString(), firstname.getText(), surname.getText(), phonenum.getText());
+                    username.clear();
+                    password.clear();
+                    firstname.clear();
+                    surname.clear();
+                    phonenum.clear();
                 }
 
                 pageController.active("login");
@@ -60,12 +69,7 @@ public class SignupController implements Controller {
             }
         });
 
-        rolesel.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
 
-            }
-        });
 
     }
 

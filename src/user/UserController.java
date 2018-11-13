@@ -179,12 +179,11 @@ public class UserController implements Controller{
                         Optional<ButtonType> result = alert.showAndWait();
                         if (result.get() == ButtonType.OK){
                             if (userTable.getItems() == subEntries) {
-                                database.removeUser(selectUser.getId());
                                 searchBox.clear();
-                                userTable.setItems(users);
-                            } else {
-                                users.remove(index);
                             }
+                            database.removeUser(selectUser.getId());
+                            users = getAllUser();
+                            userTable.setItems(users);
                         }
 
 
@@ -205,6 +204,7 @@ public class UserController implements Controller{
     }
 
     public void onActive() {
+        users = getAllUser();
         userTable.setItems(users);
     }
 

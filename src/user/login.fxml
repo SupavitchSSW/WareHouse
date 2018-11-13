@@ -1,25 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?scenebuilder-background-color 0x404040ff?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: DimGray;&#10;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: DimGray;&#10;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="365.0" layoutX="236.0" layoutY="127.0" opacity="1.0" stroke="BLACK" strokeType="INSIDE" style="&#10;" width="529.0" />
+    <TextField id="id" layoutX="295.0" layoutY="257.0" prefHeight="30.0" prefWidth="411.765625" style="-fx-background-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2; -fx-border-radius: 50px;" />
+    <PasswordField id="pw" layoutX="295.0" layoutY="336.0" prefHeight="30.0" prefWidth="409.015625" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2;" />
     <Button id="btn" contentDisplay="CENTER" disable="false" focusTraversable="true" layoutX="295.0" layoutY="385.0" mnemonicParsing="false" opacity="1.0" prefHeight="30.0" prefWidth="412.0" style="-fx-background-color: #1350f7; -fx-background-radius: 50px; -fx-background-border: black;" text="Login" textFill="WHITE" visible="true" wrapText="false">
       <font>
         <Font name="System Bold" size="16.0" fx:id="x1" />
       </font>
     </Button>
-    <TextField id="id" layoutX="295.0" layoutY="257.0" prefHeight="30.0" prefWidth="411.765625" style="-fx-background-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2; -fx-border-radius: 50px;" />
+    <Hyperlink id="register" font="$x1" layoutX="525.0" layoutY="430.0" text="Create Account" underline="true">
+      <textFill>
+        <Color blue="0.196" green="0.106" red="0.710" fx:id="x2" />
+      </textFill>
+    </Hyperlink>
     <Text id="password" font="$x1" layoutX="295.0" layoutY="319.0" scaleX="1.0" scaleY="1.002447381302007" strikethrough="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
     <Text id="username" font="$x1" layoutX="295.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
     <Text id="don't have" layoutX="334.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account yet?">
@@ -32,12 +44,11 @@
         <Font name="System Bold Italic" size="32.0" />
       </font>
     </Text>
-    <Hyperlink id="register" font="$x1" layoutX="525.0" layoutY="430.0" text="Create Account" textFill="#b51b32" underline="true" />
     <Text layoutX="459.0" layoutY="170.0" scaleX="1.1547553897180762" scaleY="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN">
-         <font>
-            <Font name="System Bold" size="26.0" />
-         </font></Text>
-    <Line endX="424.0" endY="-1.0" layoutX="339.0" layoutY="193.0" startX="-100.0" stroke="#b51b32" strokeWidth="4.2" />
-    <PasswordField id="pw" layoutX="295.0" layoutY="336.0" prefHeight="30.0" prefWidth="409.015625" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2;" />
+      <font>
+        <Font name="System Bold" size="26.0" />
+      </font>
+    </Text>
+    <Line endX="424.0" endY="-1.0" layoutX="339.0" layoutY="193.0" startX="-100.0" stroke="$x2" strokeWidth="4.2" />
   </children>
 </AnchorPane>

@@ -27,31 +27,7 @@
       </font>
     </Text>
     <TextField id="id" layoutX="275.0" layoutY="250.0" prefHeight="29.0" prefWidth="215.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2;" />
-    <Text id="username" layoutX="275.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
-      <font>
-        <Font name="System Bold" size="16.0" fx:id="x2" />
-      </font>
-    </Text>
-    <Text id="password" font="$x2" layoutX="501.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
-    <Text id="firstname" font="$x2" layoutX="275.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" />
-    <TextField id="fninfo" layoutX="275.0" layoutY="406.0" prefHeight="29.0" prefWidth="215.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2;" />
-    <Line endX="423.0" endY="-1.0" layoutX="339.0" layoutY="193.0" startX="-100.0" strokeWidth="4.2">
-      <stroke>
-        <Color blue="0.196" green="0.106" red="0.710" fx:id="x3" />
-      </stroke>
-    </Line>
-    <Text id="surname" font="$x2" layoutX="501.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname" />
-    <TextField id="sninfo" layoutX="500.0" layoutY="406.0" prefHeight="29.0" prefWidth="220.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2;" />
-    <TextField id="phoneinfo" layoutX="500.0" layoutY="330.0" prefHeight="29.0" prefWidth="220.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2;" />
-    <Text id="phonenum" font="$x2" layoutX="501.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" />
-    <Button id="subtn" font="$x2" layoutX="275.0" layoutY="460.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="446.0" style="-fx-background-radius: 50px; -fx-background-color: #1350f7;" text="Sign Up" textFill="WHITE" />
-    <Text id="wm" fill="WHITE" fontSmoothingType="GRAY" layoutX="276.0" layoutY="75.0" scaleX="1.0039589015841892" scaleY="1.0" smooth="true" stroke="WHITE" strokeType="CENTERED" strokeWidth="1.0" text="WAREHOUSE MANAGEMENT" textAlignment="CENTER">
-      <font>
-        <Font name="System Bold Italic" size="32.0" />
-      </font>
-    </Text>
     <PasswordField id="pw" layoutX="500.0" layoutY="250.0" prefHeight="29.0" prefWidth="220.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2;" />
-    <Hyperlink id="goBack" font="$x2" layoutX="460.0" layoutY="505.0" text="Go Back" textFill="$x3" underline="true" />
     <ChoiceBox id="role" layoutX="275.0" layoutY="330.0" prefHeight="29.0" prefWidth="215.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2; -fx-background-color: white;">
       <items>
         <FXCollections fx:factory="observableArrayList">
@@ -59,6 +35,30 @@
         </FXCollections>
       </items>
     </ChoiceBox>
+    <TextField id="phoneinfo" layoutX="500.0" layoutY="330.0" prefHeight="29.0" prefWidth="220.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2;" />
+    <TextField id="fninfo" layoutX="275.0" layoutY="406.0" prefHeight="29.0" prefWidth="215.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2;" />
+    <TextField id="sninfo" layoutX="500.0" layoutY="406.0" prefHeight="29.0" prefWidth="220.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2;" />
+    <Text id="username" layoutX="275.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+      <font>
+        <Font name="System Bold" size="16.0" fx:id="x2" />
+      </font>
+    </Text>
+    <Text id="password" font="$x2" layoutX="501.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+    <Text id="firstname" font="$x2" layoutX="275.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" />
+    <Line endX="423.0" endY="-1.0" layoutX="339.0" layoutY="193.0" startX="-100.0" strokeWidth="4.2">
+      <stroke>
+        <Color blue="0.196" green="0.106" red="0.710" fx:id="x3" />
+      </stroke>
+    </Line>
+    <Text id="surname" font="$x2" layoutX="501.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname" />
+    <Text id="phonenum" font="$x2" layoutX="501.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" />
+    <Button id="subtn" font="$x2" layoutX="275.0" layoutY="460.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="446.0" style="-fx-background-radius: 50px; -fx-background-color: #1350f7;" text="Sign Up" textFill="WHITE" />
+    <Text id="wm" fill="WHITE" fontSmoothingType="GRAY" layoutX="276.0" layoutY="75.0" scaleX="1.0039589015841892" scaleY="1.0" smooth="true" stroke="WHITE" strokeType="CENTERED" strokeWidth="1.0" text="WAREHOUSE MANAGEMENT" textAlignment="CENTER">
+      <font>
+        <Font name="System Bold Italic" size="32.0" />
+      </font>
+    </Text>
+    <Hyperlink id="goBack" font="$x2" layoutX="460.0" layoutY="505.0" text="Go Back" textFill="$x3" underline="true" />
     <Text font="$x2" layoutX="275.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Role" />
   </children>
 </AnchorPane>

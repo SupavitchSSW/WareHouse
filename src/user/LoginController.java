@@ -39,8 +39,8 @@ public class LoginController implements Controller {
                 if (database.authen(checkUser,checkPw) != null) {
                     currentUser = database.authen(checkUser,checkPw);
                     pageController.active("productList");
-                    username.setText("");
-                    password.setText("");
+                    username.clear();
+                    password.clear();
                     System.out.println("CCC"+currentUser.toString());
                 }
 //                if(checkUser.equals(user) && checkPw.equals(pw)){
@@ -55,6 +55,8 @@ public class LoginController implements Controller {
 //                }
                 else{
                     Alert alertError = new Alert(Alert.AlertType.ERROR);
+                    username.clear();
+                    password.clear();
                     alertError.setTitle("Login Failed");
                     alertError.setHeaderText(null);
                     alertError.setContentText("Invalid Username or Password");
