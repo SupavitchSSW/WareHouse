@@ -14,6 +14,7 @@ import ordermanagement.Order;
 import ordermanagement.OrderDetailController;
 import sample.Controller;
 import sample.PageController;
+import user.User;
 
 
 public class OrderListController implements Controller {
@@ -21,8 +22,10 @@ public class OrderListController implements Controller {
     OrderDetailController orderDetailController;
     private ObservableList<Order> orders = getOrder();
     private TableView order_table;
+    private User currentUser;
 
-    public OrderListController(PageController pageController, OrderDetailController orderDetailController) {
+    public OrderListController(PageController pageController, OrderDetailController orderDetailController,User currentUser) {
+        this.currentUser = currentUser;
         this.pageController = pageController;
         this.orderDetailController = orderDetailController;
     }

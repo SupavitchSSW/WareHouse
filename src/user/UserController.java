@@ -25,7 +25,7 @@ public class UserController implements Controller{
     private User user;
     private ObservableList<User> users = getOrder();
     private ObservableList<User> subEntries;
-    private User selectedProduct;
+    private User selectedProduct,currentUser;
     private int index, lastID;
 
     public ObservableList<User> getOrder(){
@@ -41,7 +41,8 @@ public class UserController implements Controller{
         return users;
     }
 
-    public UserController(PageController pageController){
+    public UserController(PageController pageController,User currentUser){
+        this.currentUser = currentUser;
         this.pageController = pageController;
     }
 

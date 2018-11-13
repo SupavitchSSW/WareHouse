@@ -9,8 +9,10 @@ import sample.PageController;
 
 public class SignupController implements Controller {
     PageController pageController;
+    private User currentUser;
 
-    public SignupController(PageController pageController) {
+    public SignupController(PageController pageController,User currentUser) {
+        this.currentUser = currentUser;
         this.pageController = pageController;
     }
 

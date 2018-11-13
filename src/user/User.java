@@ -59,4 +59,23 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public void clearUser(){
+        this.name = "";
+        this.surname = "";
+        this.tel = "";
+        this.role = "staff";
+        this.password = "";
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", tel='" + tel + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }

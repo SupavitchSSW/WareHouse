@@ -15,6 +15,7 @@ import sample.Controller;
 import sample.PageController;
 import sample.Product;
 import report.reportController;
+import user.User;
 
 
 import java.util.Optional;
@@ -25,13 +26,15 @@ public class reportMainController implements Controller {
     reportController reportController;
     private ObservableList<Product> reports = getOrder();
     private ObservableList<Product> subEntries;
+    private User currentUser;
 
     private Product selectedProduct;
     private int index;
 
-    public reportMainController(PageController pageController, reportController reportController) {
+    public reportMainController(PageController pageController, reportController reportController,User currentUser) {
         this.pageController = pageController;
         this.reportController = reportController;
+        this.currentUser = currentUser;
     }
 
 

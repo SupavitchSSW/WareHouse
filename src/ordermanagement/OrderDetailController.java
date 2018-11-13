@@ -14,6 +14,7 @@ import sample.Controller;
 import sample.PageController;
 import sample.Product;
 import sample.Transaction;
+import user.User;
 
 import java.util.Date;
 import java.util.Optional;
@@ -26,9 +27,11 @@ public class OrderDetailController implements Controller {
     private TableView detail_table;
     private TextField orderName_TextField,orderOwner_TextField,orderDate_TextField;
     private ObservableList<OrderProduct> orderProducts;
+    private User currentUser;
 
-    public OrderDetailController(PageController pageController) {
+    public OrderDetailController(PageController pageController, User currentUser) {
         this.pageController = pageController;
+        this.currentUser = currentUser;
     }
 
     @Override

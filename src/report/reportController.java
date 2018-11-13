@@ -15,6 +15,7 @@ import sample.Controller;
 import sample.PageController;
 import sample.Product;
 import report.reportMainController;
+import user.User;
 
 
 import java.util.Date;
@@ -26,6 +27,7 @@ public class reportController implements Controller {
     private Report report;
     private ObservableList<Product> reports = getOrder();
     private ObservableList<Product> subEntries;
+    private User currentUser;
 
     public ObservableList<Product> getOrder() {
         reports = FXCollections.observableArrayList();
@@ -38,8 +40,9 @@ public class reportController implements Controller {
         return reports;
     }
 
-    public reportController(PageController pageController) {
+    public reportController(PageController pageController,User currentUser) {
         this.pageController = pageController;
+        this.currentUser = currentUser;
     }
 
     public void initilize() {

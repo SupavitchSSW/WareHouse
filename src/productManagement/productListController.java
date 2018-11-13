@@ -32,6 +32,7 @@ import java.util.Optional;
 
 import javax.persistence.*;
 import connectionDB.*;
+import user.User;
 
 public class productListController implements Controller {
     PageController pageController;
@@ -41,8 +42,10 @@ public class productListController implements Controller {
     private ObservableList<Product> subEntries;
     private Product selectedProduct;
     private int index, lastID;
+    private User currentUser;
 
-    public productListController(PageController pageController, serviceDB database){
+    public productListController(PageController pageController, serviceDB database,User currentUser){
+        this.currentUser = currentUser;
         this.database = database;
         this.pageController = pageController;
         this.products = getAllProduct();
@@ -306,6 +309,7 @@ public class productListController implements Controller {
     @Override
     public void onActive() {
         productListTable.setItems(products);
+        System.out.println(currentUser.toString());
     }
 
     public ObservableList<Product> getAllProduct(){

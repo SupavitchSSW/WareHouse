@@ -13,9 +13,10 @@ public class ProfileController implements Controller {
     User currentUser;
     TextField nameTF,surnameTF,roleTF,telTF;
     private boolean isEdit = false;
-    public ProfileController(PageController pageController) {
+    public ProfileController(PageController pageController,User currentUser) {
+        this.currentUser = currentUser;
         this.pageController = pageController;
-        currentUser = new User("field","naja","0836889001","staff","123456");
+        //currentUser = new User("field","naja","0836889001","staff","123456");
     }
 
     @Override

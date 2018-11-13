@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class Main extends Application {
-    private User currentUser;
+    public User currentUser = new User("","","","staff","");
 
 
     @Override
@@ -63,15 +63,15 @@ public class Main extends Application {
 
 
         // >>>>>>> add controller class here <<<<<<
-        OrderDetailController orderDetailController = new OrderDetailController(pageController);
-        OrderListController orderListController = new OrderListController(pageController, orderDetailController);
-        productListController productListController = new productListController(pageController, database);
-        reportController reportController = new reportController(pageController);
-        reportMainController reportMainController = new reportMainController(pageController, reportController);
-        LoginController loginController = new LoginController(pageController);
-        SignupController signupController = new SignupController(pageController);
-        UserController userController = new UserController(pageController);
-        ProfileController profileController = new ProfileController(pageController);
+        OrderDetailController orderDetailController = new OrderDetailController(pageController,currentUser);
+        OrderListController orderListController = new OrderListController(pageController, orderDetailController,currentUser);
+        productListController productListController = new productListController(pageController, database,currentUser);
+        reportController reportController = new reportController(pageController,currentUser);
+        reportMainController reportMainController = new reportMainController(pageController, reportController,currentUser);
+        LoginController loginController = new LoginController(pageController,currentUser);
+        SignupController signupController = new SignupController(pageController,currentUser);
+        UserController userController = new UserController(pageController,currentUser);
+        ProfileController profileController = new ProfileController(pageController,currentUser);
 
 
         // >>>>>>>> add page to pageController <<<<<<<<

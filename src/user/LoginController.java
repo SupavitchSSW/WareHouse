@@ -12,8 +12,10 @@ public class LoginController implements Controller {
     String user = "test";
     String pw = "1234";
     String checkUser, checkPw;
+    User currentUser;
 
-    public LoginController(PageController pageController) {
+    public LoginController(PageController pageController,User currentUser) {
+        this.currentUser = currentUser;
         this.pageController = pageController;
     }
 
@@ -32,6 +34,14 @@ public class LoginController implements Controller {
                 checkUser = username.getText().toString();
                 checkPw = password.getText().toString();
                 if(checkUser.equals(user) && checkPw.equals(pw)){
+
+                    //set login user
+                    currentUser.setName("test");
+                    currentUser.setSurname("naja");
+                    currentUser.setTel("085555555");
+                    currentUser.setRole("staff");
+                    currentUser.setId(555);
+
                     pageController.active("productList");
                 }
                 else{
@@ -56,6 +66,8 @@ public class LoginController implements Controller {
 
     @Override
     public void onActive() {
-
+        //logout
+        currentUser.clearUser();
     }
+
 }
