@@ -6,6 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import sample.Controller;
 import sample.PageController;
+import connectionDB.serviceDB;
 
 public class LoginController implements Controller {
     PageController pageController;
@@ -13,8 +14,10 @@ public class LoginController implements Controller {
     String pw = "1234";
     String checkUser, checkPw;
     User currentUser;
+    serviceDB database;
 
-    public LoginController(PageController pageController,User currentUser) {
+    public LoginController(PageController pageController, serviceDB database, User currentUser) {
+        this.database = database;
         this.currentUser = currentUser;
         this.pageController = pageController;
     }
@@ -31,19 +34,25 @@ public class LoginController implements Controller {
         btn.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                checkUser = username.getText().toString();
-                checkPw = password.getText().toString();
-                if(checkUser.equals(user) && checkPw.equals(pw)){
-
-                    //set login user
-                    currentUser.setFirstname("test");
-                    currentUser.setSurname("naja");
-                    currentUser.setPhoneNumber("085555555");
-                    currentUser.setRole("Staff");
-                    currentUser.setId(555);
-
+                checkUser = username.getText();
+                checkPw = password.getText();
+                if (database.authen(checkUser,checkPw) != null) {
+                    currentUser = database.authen(checkUser,checkPw);
                     pageController.active("productList");
+                    username.setText("");
+                    password.setText("");
+                    System.out.println("CCC"+currentUser.toString());
                 }
+//                if(checkUser.equals(user) && checkPw.equals(pw)){
+//                    //set login user
+//                    currentUser.setFirstname("test");
+//                    currentUser.setSurname("naja");
+//                    currentUser.setPhoneNumber("085555555");
+//                    currentUser.setRole("Staff");
+//                    currentUser.setId(555);
+//
+//                    pageController.active("productList");
+//                }
                 else{
                     Alert alertError = new Alert(Alert.AlertType.ERROR);
                     alertError.setTitle("Login Failed");
@@ -67,7 +76,8 @@ public class LoginController implements Controller {
     @Override
     public void onActive() {
         //logout
-        currentUser.clearUser();
+//        currentUser.clearUser();
+//        System.out.println("CCC"+currentUser.toString());
     }
 
 }

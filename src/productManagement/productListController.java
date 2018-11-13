@@ -174,7 +174,8 @@ public class productListController implements Controller {
                                 if (Integer.parseInt(quantity.getText()) != selectedProduct.getQuantity()) {
                                     int newQt = Integer.parseInt(quantity.getText());
                                     Date date = new Date();
-                                    System.out.println(new Transaction(selectedProduct.getId(),newQt-selectedProduct.getQuantity(),date,"editQuantity").toString());
+                                    database.createTransaction(selectedProduct.getId(),newQt-selectedProduct.getQuantity(),date,"editQuantity");
+//                                    System.out.println(new Transaction(selectedProduct.getId(),newQt-selectedProduct.getQuantity(),date,"editQuantity").toString());
                                 }
 //                                <<<<< edit Product >>>>>
                                 database.setProductName(selectedProduct.getId(),name.getText());
@@ -264,7 +265,9 @@ public class productListController implements Controller {
                             database.createProduct(productName.getText(), productBrand.getText(),Integer.parseInt(productPrice.getText()), Integer.parseInt(productQuantity.getText()));
 //                            products.add(new Product(++lastID, Integer.parseInt(productQuantity.getText()), productName.getText(), productBrand.getText(),Integer.parseInt(productPrice.getText())));
                             Date date = new Date();
-                            System.out.println(new Transaction(lastID,Integer.parseInt(productQuantity.getText()),date,"addProduct").toString());
+
+                            database.createTransaction(selectedProduct.getId(),Integer.parseInt(productQuantity.getText()),date,"addProduct");
+//                            System.out.println(new Transaction(lastID,Integer.parseInt(productQuantity.getText()),date,"addProduct").toString());
                             products = getAllProduct();
                             productListTable.setItems(products);
                             productListTable.refresh();
@@ -298,7 +301,11 @@ public class productListController implements Controller {
         });
         logoutBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event) { pageController.active("login"); }
+            public void handle(MouseEvent event) {
+                currentUser.clearUser();
+                System.out.println("CCC"+currentUser.toString());
+                pageController.active("login");
+            }
         });
         userInfoBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override

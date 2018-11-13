@@ -19,8 +19,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class Main extends Application {
-    public User currentUser = new User("","","","staff","","");
-
+    public User currentUser = new User("","","","","","");
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -49,26 +48,21 @@ public class Main extends Application {
         //oak db
         serviceDB database = new serviceDB();
 //        List<Product> results = database.getAllProduct();
-//        database.createProduct("qwe","qee",23,20);
-//        database.createProduct("gtq","ggg",13,40);
-//        database.createProduct("ofp","hpn",56,50);
-//        database.createProduct("bnp","dfo",78,100);
-//        database.createProduct("vxs","hfp",77,29);
-//        database.createProduct("ipw","opd",90,48);
-////        s.setProductBrand(2,"luis");
-//        for (Product p : results) {
-//            System.out.println(p);
-//        }
+//        database.createUser("wrs","1234","staff","warisa","saisema","0808048080");
+//        database.createUser("qww","1234","staff","warisa","saisema","0808048080");
+////        for (Product p : results) {
+////            System.out.println(p);
+////        }
 //        database.closeConnection();
 
 
         // >>>>>>> add controller class here <<<<<<
         OrderDetailController orderDetailController = new OrderDetailController(pageController,currentUser);
         OrderListController orderListController = new OrderListController(pageController, orderDetailController,currentUser);
-        productListController productListController = new productListController(pageController, database,currentUser);
+        productListController productListController = new productListController(pageController,database,currentUser);
         reportController reportController = new reportController(pageController,currentUser);
         reportMainController reportMainController = new reportMainController(pageController, reportController,currentUser);
-        LoginController loginController = new LoginController(pageController,currentUser);
+        LoginController loginController = new LoginController(pageController, database, currentUser);
         SignupController signupController = new SignupController(pageController,currentUser);
         UserController userController = new UserController(pageController,currentUser);
         ProfileController profileController = new ProfileController(pageController,currentUser);
