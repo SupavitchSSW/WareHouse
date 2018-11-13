@@ -44,6 +44,8 @@ public class LoginController implements Controller {
                     currentUser.setSurname(u.getSurname());
                     currentUser.setRole(u.getRole());
                     currentUser.setUsername(u.getUsername());
+                    currentUser.setPassword(u.getPassword());
+                    currentUser.setId(u.getId());
                     username.setText("");
                     password.setText("");
                     System.out.println("CCC"+u.toString());

@@ -93,7 +93,7 @@ public class productListController implements Controller {
         productListTable.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent event) {
-                if (event.getClickCount() == 2) {
+                if (event.getClickCount() == 2 && currentUser.getRole().equals("Manager")) {
                     index = productListTable.getSelectionModel().getSelectedIndex();
 
                     Dialog<ButtonType> propertyDialog = new Dialog<>();
@@ -216,61 +216,63 @@ public class productListController implements Controller {
         addProductBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Dialog<ButtonType> addProductDialog = new Dialog<>();
-                addProductDialog.initStyle(StageStyle.UTILITY);
-                addProductDialog.setTitle("Add Product");
+                if (currentUser.getRole().equals("Manager")) {
+                    Dialog<ButtonType> addProductDialog = new Dialog<>();
+                    addProductDialog.initStyle(StageStyle.UTILITY);
+                    addProductDialog.setTitle("Add Product");
 
-                GridPane addProductGrid = new GridPane();
-                addProductGrid.setHgap(10);
-                addProductGrid.setVgap(20);
-                addProductGrid.setPadding(new Insets(20, 150, 10, 20));
+                    GridPane addProductGrid = new GridPane();
+                    addProductGrid.setHgap(10);
+                    addProductGrid.setVgap(20);
+                    addProductGrid.setPadding(new Insets(20, 150, 10, 20));
 
-                TextField productName = new TextField();
-                TextField productBrand = new TextField();
-                TextField productQuantity = new TextField();
-                TextField productPrice = new TextField();
+                    TextField productName = new TextField();
+                    TextField productBrand = new TextField();
+                    TextField productQuantity = new TextField();
+                    TextField productPrice = new TextField();
 
-                addProductGrid.add(new Label("Name:"), 0, 1);
-                addProductGrid.add(productName, 1, 1);
-                addProductGrid.add(new Label("Brand:"), 0, 2);
-                addProductGrid.add(productBrand, 1, 2);
-                addProductGrid.add(new Label("Quantity:"), 0, 3);
-                addProductGrid.add(productQuantity, 1, 3);
-                addProductGrid.add(new Label("Price:"), 0, 4);
-                addProductGrid.add(productPrice, 1, 4);
+                    addProductGrid.add(new Label("Name:"), 0, 1);
+                    addProductGrid.add(productName, 1, 1);
+                    addProductGrid.add(new Label("Brand:"), 0, 2);
+                    addProductGrid.add(productBrand, 1, 2);
+                    addProductGrid.add(new Label("Quantity:"), 0, 3);
+                    addProductGrid.add(productQuantity, 1, 3);
+                    addProductGrid.add(new Label("Price:"), 0, 4);
+                    addProductGrid.add(productPrice, 1, 4);
 
-                addProductDialog.getDialogPane().setContent(addProductGrid);
+                    addProductDialog.getDialogPane().setContent(addProductGrid);
 
-                addProductDialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
-                Optional<ButtonType> addProductResult = addProductDialog.showAndWait();
-                if (addProductResult.get() == ButtonType.OK) {
-                    if (productName.getText().isEmpty() || productBrand.getText().isEmpty() || productQuantity.getText().isEmpty()) {
-                        Alert alertError = new Alert(Alert.AlertType.ERROR);
-                        alertError.setTitle("Error to Add Product");
-                        alertError.setHeaderText(null);
-                        alertError.setContentText("Invalid information");
-                        alertError.showAndWait();
-                    } else {
-                        if (tryParse(productQuantity.getText()) == null || tryParse(productPrice.getText()) == null) {
+                    addProductDialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+                    Optional<ButtonType> addProductResult = addProductDialog.showAndWait();
+                    if (addProductResult.get() == ButtonType.OK) {
+                        if (productName.getText().isEmpty() || productBrand.getText().isEmpty() || productQuantity.getText().isEmpty()) {
                             Alert alertError = new Alert(Alert.AlertType.ERROR);
                             alertError.setTitle("Error to Add Product");
                             alertError.setHeaderText(null);
                             alertError.setContentText("Invalid information");
                             alertError.showAndWait();
                         } else {
-                            if (productListTable.getItems() == subEntries) {
-                                searchBox.clear();
-                                productListTable.setItems(products);
-                            }
-                            database.createProduct(productName.getText(), productBrand.getText(),Integer.parseInt(productPrice.getText()), Integer.parseInt(productQuantity.getText()));
-//                            products.add(new Product(++lastID, Integer.parseInt(productQuantity.getText()), productName.getText(), productBrand.getText(),Integer.parseInt(productPrice.getText())));
-                            Date date = new Date();
+                            if (tryParse(productQuantity.getText()) == null || tryParse(productPrice.getText()) == null) {
+                                Alert alertError = new Alert(Alert.AlertType.ERROR);
+                                alertError.setTitle("Error to Add Product");
+                                alertError.setHeaderText(null);
+                                alertError.setContentText("Invalid information");
+                                alertError.showAndWait();
+                            } else {
+                                if (productListTable.getItems() == subEntries) {
+                                    searchBox.clear();
+                                    productListTable.setItems(products);
+                                }
+                                database.createProduct(productName.getText(), productBrand.getText(), Integer.parseInt(productPrice.getText()), Integer.parseInt(productQuantity.getText()));
+                                //                            products.add(new Product(++lastID, Integer.parseInt(productQuantity.getText()), productName.getText(), productBrand.getText(),Integer.parseInt(productPrice.getText())));
+                                Date date = new Date();
 
-                            database.createTransaction(selectedProduct.getId(),Integer.parseInt(productQuantity.getText()),date,"addProduct");
-//                            System.out.println(new Transaction(lastID,Integer.parseInt(productQuantity.getText()),date,"addProduct").toString());
-                            products = getAllProduct();
-                            productListTable.setItems(products);
-                            productListTable.refresh();
+                                database.createTransaction(selectedProduct.getId(), Integer.parseInt(productQuantity.getText()), date, "addProduct");
+                                //                            System.out.println(new Transaction(lastID,Integer.parseInt(productQuantity.getText()),date,"addProduct").toString());
+                                products = getAllProduct();
+                                productListTable.setItems(products);
+                                productListTable.refresh();
+                            }
                         }
                     }
                 }
@@ -285,8 +287,10 @@ public class productListController implements Controller {
         });
         summaryBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event) {pageController.active("reportMain");
-
+            public void handle(MouseEvent event) {
+                if (currentUser.getRole().equals("Manager")) {
+                    pageController.active("reportMain");
+                }
             }
         });
         orderBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -297,13 +301,16 @@ public class productListController implements Controller {
         });
         userSearchBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event) { pageController.active("user"); }
+            public void handle(MouseEvent event) {
+                if (currentUser.getRole().equals("Manager")) {
+                    pageController.active("user");
+                }
+            }
         });
         logoutBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 currentUser.clearUser();
-                System.out.println("CCC"+currentUser.toString());
                 pageController.active("login");
             }
         });
@@ -316,14 +323,13 @@ public class productListController implements Controller {
     @Override
     public void onActive() {
         productListTable.setItems(products);
-        System.out.println(currentUser.toString());
     }
 
     public ObservableList<Product> getAllProduct(){
         List<Product> results = database.getAllProduct();
-        for (Product p : results) {
-            System.out.println(p);
-        }
+//        for (Product p : results) {
+//            System.out.println(p);
+//        }
         ObservableList<Product> products = FXCollections.observableArrayList(results);
         return products;
     }

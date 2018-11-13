@@ -44,11 +44,11 @@
         <Font name="System Bold Italic" size="32.0" />
       </font>
     </Text>
-    <Text layoutX="459.0" layoutY="170.0" scaleX="1.1547553897180762" scaleY="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN">
+    <Line endX="424.0" endY="-1.0" layoutX="339.0" layoutY="193.0" startX="-100.0" stroke="$x2" strokeWidth="4.2" />
+    <Text layoutX="456.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN">
       <font>
-        <Font name="System Bold" size="26.0" />
+        <Font name="System Bold" size="28.0" />
       </font>
     </Text>
-    <Line endX="424.0" endY="-1.0" layoutX="339.0" layoutY="193.0" startX="-100.0" stroke="$x2" strokeWidth="4.2" />
   </children>
 </AnchorPane>
