@@ -36,12 +36,18 @@ public class LoginController implements Controller {
             public void handle(MouseEvent event) {
                 checkUser = username.getText();
                 checkPw = password.getText();
-                if (database.authen(checkUser,checkPw) != null) {
-                    currentUser = database.authen(checkUser,checkPw);
+                User u = database.authen(checkUser,checkPw);
+                if (u != null) {
+                    //currentUser = database.authen(checkUser,checkPw);
+                    currentUser.setFirstname(u.getFirstname());
+                    currentUser.setPhoneNumber(u.getPhoneNumber());
+                    currentUser.setSurname(u.getSurname());
+                    currentUser.setRole(u.getRole());
+                    currentUser.setUsername(u.getUsername());
+                    username.setText("");
+                    password.setText("");
+                    System.out.println("CCC"+u.toString());
                     pageController.active("productList");
-                    username.clear();
-                    password.clear();
-                    System.out.println("CCC"+currentUser.toString());
                 }
 //                if(checkUser.equals(user) && checkPw.equals(pw)){
 //                    //set login user

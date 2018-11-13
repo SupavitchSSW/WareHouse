@@ -23,7 +23,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-
         // >>>>>>> add your fxml here <<<<<
         Pane orderListPane = FXMLLoader.load(getClass().getResource("../ordermanagement/orderList.fxml"));
         Pane orderDetailPane = FXMLLoader.load(getClass().getResource("../ordermanagement/orderDetail.fxml"));
@@ -83,13 +82,10 @@ public class Main extends Application {
         pageController.addPage("signup", signupPane, signupController);
         pageController.addPage("user", userPane, userController);
         pageController.addPage("profile", profilePane, profileController);
-//        OrderReadWrite.run();
 
         //start page
         primaryStage.setTitle("WareHouse");
         pageController.active("login");
-
-
     }
 
     public static void main(String[] args) {

@@ -98,6 +98,7 @@ public class ProfileController implements Controller {
     @Override
     public void onActive() {
         setProfile();
+        System.out.println(currentUser.toString());
     }
 
     public void setProfile(){
