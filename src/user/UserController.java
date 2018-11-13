@@ -35,9 +35,9 @@ public class UserController implements Controller{
         //users = FXCollections.observableArrayList();
 
         List<User> results = database.getAllUser();
-        for(User u : results){
-            System.out.println(u);
-        }
+//        for(User u : results){
+//            System.out.println(u);
+//        }
 
 
           ObservableList<User> users = FXCollections.observableArrayList(database.getAllUser());

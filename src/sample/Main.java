@@ -46,9 +46,9 @@ public class Main extends Application {
 
         //oak db
         serviceDB database = new serviceDB();
-        database.addOrderproduct(2,1,"qwe","qee",200);
-        database.addOrderproduct(2,3,"qwe","qee",100);
-        database.addOrderproduct(2,9,"qwe","qee",50);
+//        database.createUser("admin","1234","Manager","fon","fonfon","090");
+//        database.addOrderproduct(2,3,"qwe","qee",100);
+//        database.addOrderproduct(2,9,"qwe","qee",50);
 
         //        List<Product> results = database.getAllProduct();
 //        database.createProduct("qwe","qee",23,20);
