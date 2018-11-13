@@ -126,7 +126,8 @@ public class OrderListController implements Controller {
         for ( Object entry: order_table.getItems() ) {
             boolean match = true;
             Order entryP = (Order) entry;
-            String detailEntryP = entryP.getId()+entryP.getName().toUpperCase()+entryP.getDate()+entryP.getStatus();
+            String detailEntryP = entryP.getId()+entryP.getName().toUpperCase()+entryP.getStatus();
+            System.out.println(detailEntryP);
             for ( String part: parts ) {
                 if ( ! detailEntryP.contains(part) ) {
                     match = false;
@@ -145,6 +146,7 @@ public class OrderListController implements Controller {
     public void onActive() {
         orders = getOrder();
         order_table.setItems(orders);
+        order_table.refresh();
     }
 
     public ObservableList<Order> getOrder() {

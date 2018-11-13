@@ -16,7 +16,6 @@ public class Order implements Serializable{
 
     private String name,owner,status="waiting";
     private Date date = new Date(100,9,9,18,10);
-//    private ObservableList<OrderProduct> orderProducts = FXCollections.observableArrayList();
     private List<OrderProduct> orderProducts = new ArrayList<OrderProduct>();
 
     public List<OrderProduct> getOrderProducts() {
