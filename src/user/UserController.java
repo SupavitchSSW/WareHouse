@@ -146,7 +146,7 @@ public class UserController implements Controller{
                     propertyDialog.getDialogPane().setContent(propertyGrid);
 
                     ButtonType doneButtonType = new ButtonType("Done");
-                    ButtonType deleteButtonType = new ButtonType("Delete Product");
+                    ButtonType deleteButtonType = new ButtonType("Delete User");
 
                     propertyDialog.getDialogPane().getButtonTypes().addAll(deleteButtonType, doneButtonType);
 
@@ -154,9 +154,9 @@ public class UserController implements Controller{
 
                     if (propertyResult.get() == deleteButtonType) {
                         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                        alert.setTitle("Delete Product");
+                        alert.setTitle("Delete User");
                         alert.setHeaderText(null);
-                        alert.setContentText("Are you sure you want to delete this product?");
+                        alert.setContentText("Are you sure you want to delete this user?");
                         Optional<ButtonType> result = alert.showAndWait();
                         if (result.get() == ButtonType.OK){
                             if (userTable.getItems() == subEntries) {

@@ -125,7 +125,7 @@ public class productListController implements Controller {
 
                     ButtonType editButtonType = new ButtonType("Edit");
                     ButtonType doneButtonType = new ButtonType("Done");
-                    propertyDialog.getDialogPane().getButtonTypes().addAll(doneButtonType, editButtonType);
+                    propertyDialog.getDialogPane().getButtonTypes().addAll(editButtonType, doneButtonType);
 
                     Optional<ButtonType> propertyResult = propertyDialog.showAndWait();
                     if (propertyResult.get() == editButtonType) {
