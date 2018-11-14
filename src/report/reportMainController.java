@@ -108,8 +108,8 @@ public class reportMainController implements Controller {
                 if (event.getClickCount() == 2) {
                     MonthYear monthYear = (MonthYear) reportTable.getSelectionModel().getSelectedItem();
                     if(monthYear != null){
-                        reportController.setMonth(monthYear.getMonth());
-                        reportController.setYear(monthYear.getYear());
+//                        System.out.println(monthYear.getDate().getMonth()+" "+monthYear.getDate().getYear());
+                        reportController.setSelectDate(monthYear.getDate());
                         pageController.active("report");
                     }
                 }
@@ -134,7 +134,7 @@ public class reportMainController implements Controller {
             for(;minDate.getTime() <=  maxDate.getTime();){
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(minDate);
-                my.add(new MonthYear(cal.get(Calendar.MONTH)+1,cal.get(Calendar.YEAR)));
+                my.add(new MonthYear(cal.get(Calendar.MONTH)+1,cal.get(Calendar.YEAR),new Date(minDate.getTime())));
                 minDate.setMonth(minDate.getMonth()+1);
             }
         }

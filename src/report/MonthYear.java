@@ -1,10 +1,14 @@
 package report;
 
+import java.util.Date;
+
 public class MonthYear{
     public int month,year;
-    public MonthYear(int month, int year) {
+    public Date date;
+    public MonthYear(int month, int year, Date date) {
         this.month = month;
         this.year = year;
+        this.date = date;
     }
 
     public int getMonth() {
@@ -21,5 +25,13 @@ public class MonthYear{
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

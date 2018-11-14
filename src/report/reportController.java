@@ -27,7 +27,7 @@ public class reportController implements Controller {
     private ObservableList<transaction.Transaction> reports = FXCollections.observableArrayList();
     private ObservableList<Transaction> subEntries;
     private User currentUser;
-    private int month,year;
+    private Date selectDate;
 
     public reportController(PageController pageController, serviceDB database, User currentUser) {
         this.pageController = pageController;
@@ -108,14 +108,13 @@ public class reportController implements Controller {
     }
 
     public void onActive() {
-        System.out.println(getMonth()+" "+getYear());
-        List<Transaction> transactions = database.getAllTransactionInMonth(10);
+        //System.out.println(selectDate.toLocaleString());
+        System.out.println(selectDate.getMonth()+"_"+selectDate.getYear());
+        List<Transaction> transactions = database.getAllTransactionInMonth(selectDate.getMonth(),selectDate.getYear());
         for(Transaction t : transactions){
             System.out.println(t.toString());
             reports.add(new Transaction(t.getProductId(),t.getChangedQuantity(),t.getDate(),t.getType()));
         }
-
-
         reportTable.setItems(reports);
     }
 
@@ -154,19 +153,11 @@ public class reportController implements Controller {
         this.report = report;
     }
 
-    public int getMonth() {
-        return month;
+    public Date getSelectDate() {
+        return selectDate;
     }
 
-    public void setMonth(int month) {
-        this.month = month;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
+    public void setSelectDate(Date selectDate) {
+        this.selectDate = selectDate;
     }
 }

@@ -123,8 +123,8 @@ public class serviceDB {
            em.persist(p1);
            em.getTransaction().commit();
     }
-    public List<Transaction> getAllTransactionInMonth(int month){
-           String sql = "SELECT c FROM Transaction c Where c.date.getMonth() =" + month +"";
+    public List<Transaction> getAllTransactionInMonth(int month,int year){
+           String sql = "SELECT c FROM Transaction c WHERE c.date.getMonth() =" + month +" AND c.date.getYear() = "+year;
            TypedQuery<Transaction> query = em.createQuery(sql, Transaction.class);
            List<Transaction> results = query.getResultList();
            return results;
