@@ -43,7 +43,7 @@ public class productListController implements Controller {
     private Product selectedProduct;
     private int index, lastID;
     private User currentUser;
-    private Button summaryBt,userSearchBt;
+    private Button summaryBt,userSearchBt,addProductBt;
 
     public productListController(PageController pageController, serviceDB database,User currentUser){
         this.currentUser = currentUser;
@@ -55,7 +55,7 @@ public class productListController implements Controller {
     public void initilize(){
         Scene scene = pageController.getScene("mainPage");
         Button mainBt = (Button) scene.lookup("#mainButton");
-        Button addProductBt = (Button) scene.lookup("#addProductButton");
+        addProductBt = (Button) scene.lookup("#addProductButton");
         summaryBt = (Button) scene.lookup("#summaryButton");
         Button orderBt = (Button) scene.lookup("#orderButton");
         Button logoutBt = (Button) scene.lookup("#logoutButton");
@@ -78,11 +78,11 @@ public class productListController implements Controller {
         TableColumn<Product,Integer> quantityColumn = new TableColumn<>("Product Quantity");
         TableColumn<Product,Integer> priceColumn = new TableColumn<>("Product Price");
 
-        idColumn.setMinWidth(80);
-        nameColumn.setMinWidth(130);
-        brandColumn.setMinWidth(130);
-        quantityColumn.setMinWidth(130);
-        priceColumn.setMinWidth(80);
+        idColumn.setMinWidth(140);
+        nameColumn.setMinWidth(175);
+        brandColumn.setMinWidth(175);
+        quantityColumn.setMinWidth(170);
+        priceColumn.setMinWidth(140);
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -289,9 +289,7 @@ public class productListController implements Controller {
         summaryBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if (currentUser.getRole().equals("Manager")) {
                     pageController.active("reportMain");
-                }
             }
         });
         orderBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -303,9 +301,7 @@ public class productListController implements Controller {
         userSearchBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if (currentUser.getRole().equals("Manager")) {
                     pageController.active("user");
-                }
             }
         });
         logoutBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -323,17 +319,17 @@ public class productListController implements Controller {
 
     @Override
     public void onActive() {
-        productListTable.setItems(products);
-        productListTable.refresh();
-
-        //check permission
-        if(currentUser.getRole().equals("Staff")){
-            summaryBt.setDisable(true);
-            userSearchBt.setDisable(true);
-        }else{
+        if (currentUser.getRole().equals("Manager")) {
             summaryBt.setDisable(false);
             userSearchBt.setDisable(false);
+            addProductBt.setDisable(false);
+        } else {
+            summaryBt.setDisable(true);
+            userSearchBt.setDisable(true);
+            addProductBt.setDisable(true);
         }
+        productListTable.setItems(products);
+        productListTable.refresh();
     }
 
     public ObservableList<Product> getAllProduct(){
