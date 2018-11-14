@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import ordermanagement.Order;
 import ordermanagement.OrderDetailController;
 import ordermanagement.OrderListController;
 import productManagement.productListController;
@@ -22,12 +23,10 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class Main extends Application {
-    public User currentUser = new User("","","","staff","","");
-
+    public User currentUser = new User("","","","","","");
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-
         // >>>>>>> add your fxml here <<<<<
         Pane orderListPane = FXMLLoader.load(getClass().getResource("../ordermanagement/orderList.fxml"));
         Pane orderDetailPane = FXMLLoader.load(getClass().getResource("../ordermanagement/orderDetail.fxml"));
@@ -51,35 +50,35 @@ public class Main extends Application {
 
         //oak db
         serviceDB database = new serviceDB();
-        //Calendar d = new GregorianCalendar();
-        //System.out.print(d.get(Calendar.MONTH));
-        List<Transaction> results = database.getMinMonthTransection();
-        System.out.println(results.get(0));
+        //database.createUser("admin","1234","Manager","fon","fonfon","090");
+        /*database.addOrderproduct(2,1,"qwe","qee",200);
+        database.addOrderproduct(2,3,"qwe","qee",100);
+        database.addOrderproduct(2,9,"qwe","qee",50);*/
 
-
-
-        //List<Report> results = database.getAllTransactionInMonth();
-//        database.createTransaction(10,10,new Date(),"tafca");
-//        database.createTransaction(10,10,new Date(),"tafca");
-//        database.createTransaction(10,10,new Date(),"tafca");
-//        database.createTransaction(10,10,new Date(),"tafca");
-//        database.createTransaction(10,10,new Date(),"tafca");
-        //for (Report p : results) {
-        //    System.out.println(p);
-        //}
+        //        List<Product> results = database.getAllProduct();
+//        database.createProduct("qwe","qee",23,20);
+//        database.createProduct("gtq","ggg",13,40);
+//        database.createProduct("ofp","hpn",56,50);
+//        database.createProduct("bnp","dfo",78,100);
+//        database.createProduct("vxs","hfp",77,29);
+//        database.createProduct("ipw","opd",90,48);
+////        s.setProductBrand(2,"luis");
+//        for (Product p : results) {
+//            System.out.println(p);
+//        }
 //        database.closeConnection();
 
 
         // >>>>>>> add controller class here <<<<<<
-        OrderDetailController orderDetailController = new OrderDetailController(pageController,currentUser);
-        OrderListController orderListController = new OrderListController(pageController, orderDetailController,currentUser);
+        OrderDetailController orderDetailController = new OrderDetailController(pageController,database,currentUser);
+        OrderListController orderListController = new OrderListController(pageController,database, orderDetailController,currentUser);
         productListController productListController = new productListController(pageController, database,currentUser);
-        reportController reportController = new reportController(pageController,currentUser,database);
-        reportMainController reportMainController = new reportMainController(pageController, reportController,currentUser,database);
-        LoginController loginController = new LoginController(pageController,currentUser);
-        SignupController signupController = new SignupController(pageController,currentUser);
-        UserController userController = new UserController(pageController,currentUser);
-        ProfileController profileController = new ProfileController(pageController,currentUser);
+        reportController reportController = new reportController(pageController,currentUser);
+        reportMainController reportMainController = new reportMainController(pageController, reportController,currentUser);
+        LoginController loginController = new LoginController(pageController,database,currentUser);
+        SignupController signupController = new SignupController(pageController,database,currentUser);
+        UserController userController = new UserController(pageController,database,currentUser);
+        ProfileController profileController = new ProfileController(pageController, database,currentUser);
 
 
         // >>>>>>>> add page to pageController <<<<<<<<
@@ -92,13 +91,13 @@ public class Main extends Application {
         pageController.addPage("signup", signupPane, signupController);
         pageController.addPage("user", userPane, userController);
         pageController.addPage("profile", profilePane, profileController);
-//        OrderReadWrite.run();
 
         //start page
-        primaryStage.setTitle("WareHouse");
-        pageController.active("productList");
+        primaryStage.setTitle("WareHouse Management");
+        pageController.active("login");
 
-
+        //set database to OrderReadWrite
+        OrderReadWrite.setDatabase(database);
     }
 
     public static void main(String[] args) {

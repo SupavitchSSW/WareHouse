@@ -72,11 +72,12 @@ public class serviceDB {
         results.get(0).setBrand(value);
         em.getTransaction().commit();
     }
-    public void createOrder(String name, String owner){
+    public int createOrder(String name, String owner){
         em.getTransaction().begin();
         Order o = new Order(name,owner);
         em.persist(o);
         em.getTransaction().commit();
+        return o.getId();
     }
     public List<Order> getAllOrder() {
         TypedQuery<Order> query = em.createQuery("SELECT w FROM Order w", Order.class);
@@ -198,7 +199,7 @@ public class serviceDB {
         results.get(0).setFirstname(firstname);
         em.getTransaction().commit();
     }
-    public void setSuurname(int id,String surname){
+    public void setSurname(int id,String surname){
         String sql = "SELECT c FROM User c Where c.id =" + id +"";
         TypedQuery<User> query = em.createQuery(sql, User.class);
         List<User> results = query.getResultList();

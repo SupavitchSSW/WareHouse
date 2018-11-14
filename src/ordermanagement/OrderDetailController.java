@@ -1,5 +1,6 @@
 package ordermanagement;
 
+import connectionDB.serviceDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -11,12 +12,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.converter.IntegerStringConverter;
 import ordermanagement.Order;
 import sample.Controller;
+import sample.OrderReadWrite;
 import sample.PageController;
 import product.Product;
 import sample.Transaction;
 import user.User;
 
+import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
@@ -25,13 +29,17 @@ public class OrderDetailController implements Controller {
     PageController pageController;
     private Order order;
     private TableView detail_table;
-    private TextField orderName_TextField,orderOwner_TextField,orderDate_TextField;
+    private TextField orderName_TextField,orderOwner_TextField,orderDate_TextField,status_TextField;
+    private Button goBack_btn,approve_btn,reject_btn;
+    private TableColumn<OrderProduct,Integer> sendQuantityColumn;
     private ObservableList<OrderProduct> orderProducts;
     private User currentUser;
+    private serviceDB database;
 
-    public OrderDetailController(PageController pageController, User currentUser) {
+    public OrderDetailController(PageController pageController,serviceDB database, User currentUser) {
         this.pageController = pageController;
         this.currentUser = currentUser;
+        this.database = database;
     }
 
     @Override
@@ -45,6 +53,10 @@ public class OrderDetailController implements Controller {
         Button logoutBt = (Button) scene.lookup("#logoutButton");
         Button userSearchBt = (Button) scene.lookup("#userSearchButton");
         Button userInfoBt = (Button) scene.lookup("#userInfo");
+        //set button
+        goBack_btn = (Button) scene.lookup("#goBack");
+        approve_btn = (Button) scene.lookup("#approve_btn");
+        reject_btn = (Button) scene.lookup("#reject_btn");
 
         //search setup
         TextField search_TextField = (TextField) scene.lookup("#searchBox");
@@ -63,31 +75,45 @@ public class OrderDetailController implements Controller {
         orderDate_TextField  = (TextField) scene.lookup("#orderDate");
         orderDate_TextField.setEditable(false);
 
+        status_TextField  = (TextField) scene.lookup("#status");
+        status_TextField.setEditable(false);
+
 
         //table setup
         detail_table = (TableView) scene.lookup("#detail_table");
         detail_table.setEditable(true);
 
-        TableColumn<Product,Integer> idColumn = new TableColumn<>("Product ID");
-        TableColumn<Product,String> nameColumn = new TableColumn<>("Product NAME");
-        TableColumn<Product,Integer> brandColumn = new TableColumn<>("BLAND");
-        TableColumn<Product,Integer> orderQuantityColumn = new TableColumn<>("ORDER");
-        TableColumn<Product,Integer> warehouseQuantityColumn = new TableColumn<>("QUOTA");
-        TableColumn<Product,Integer> sendQuantityColumn = new TableColumn<>("SEND");
+        TableColumn<OrderProduct,Integer> idColumn = new TableColumn<>("Product ID");
+        TableColumn<OrderProduct,String> nameColumn = new TableColumn<>("Product NAME");
+        TableColumn<OrderProduct,Integer> brandColumn = new TableColumn<>("BLAND");
+        TableColumn<OrderProduct,Integer> orderQuantityColumn = new TableColumn<>("ORDER");
+        TableColumn<OrderProduct,Integer> warehouseQuantityColumn = new TableColumn<>("QUOTA");
+        sendQuantityColumn = new TableColumn<>("SEND");
 
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         brandColumn.setCellValueFactory(new PropertyValueFactory<>("brand"));
         orderQuantityColumn.setCellValueFactory(new PropertyValueFactory<>("orderQuantity"));
         warehouseQuantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         sendQuantityColumn.setCellValueFactory(new PropertyValueFactory<>("sendQuantity"));
 
+        //check order status
+        if(order.getStatus().equals("waiting")){
+            System.out.println("status = waiting");
+            sendQuantityColumn.setEditable(true);
+            approve_btn.setDisable(false);
+            reject_btn.setDisable(false);
+        }else{
+            System.out.println("status = "+order.getStatus());
+            sendQuantityColumn.setEditable(false);
+            approve_btn.setDisable(true);
+            reject_btn.setDisable(true);
+        }
         //set send cell
-        sendQuantityColumn.setEditable(true);
         sendQuantityColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        sendQuantityColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Product, Integer>>() {
+        sendQuantityColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<OrderProduct, Integer>>() {
             @Override
-            public void handle(TableColumn.CellEditEvent<Product, Integer> event) {
+            public void handle(TableColumn.CellEditEvent<OrderProduct, Integer> event) {
                 OrderProduct o = (OrderProduct) event.getTableView().getItems().get(event.getTablePosition().getRow());
                 if(event.getNewValue() > o.getQuantity() || event.getNewValue() < 0){
                     System.out.println("Error input");
@@ -102,12 +128,6 @@ public class OrderDetailController implements Controller {
 
         detail_table.getColumns().addAll(idColumn,nameColumn,brandColumn,orderQuantityColumn,warehouseQuantityColumn,sendQuantityColumn);
 
-
-
-        //set button
-        Button goBack_btn = (Button) scene.lookup("#goBack");
-        Button approve_btn = (Button) scene.lookup("#approve_btn");
-        Button reject_btn = (Button) scene.lookup("#reject_btn");
 
         goBack_btn.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -156,24 +176,32 @@ public class OrderDetailController implements Controller {
 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
-                    // ... user chose OK
-                    // (TODO) change order status
+                    //change order status
+                    database.setOrderStatus(order.getId(),"approve");
 
                     //create transaction
+                    Date date = new Date();
                     for ( Object entry: detail_table.getItems() ) {
                         OrderProduct orderProduct = (OrderProduct) entry;
-                        System.out.println(orderProduct.toString());
-                        Date date = new Date();
-                        System.out.println(new Transaction(orderProduct.getId(),orderProduct.getSendQuantity()*-1,date,"approveOrder").toString());
+                        database.createTransaction(orderProduct.getProductId(),orderProduct.getSendQuantity()*-1,date,"approveOrder");
                     }
 
+                    //write respond back to customer via json
+                    try {
+                        OrderReadWrite.writeRespondOrder(order);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
-
+                    //update product quntity
+                    List<OrderProduct> orderProducts = order.getOrderProducts();
+                    for(OrderProduct o : orderProducts){
+                        database.setProductQuantity(o.getProductId(),o.getQuantity()-o.getSendQuantity());
+                    }
 
 
                     pageController.active("orderList");
                 } else {
-                    // ... user chose CANCEL or closed the dialog
                 }
             }
         });
@@ -188,7 +216,10 @@ public class OrderDetailController implements Controller {
 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
-                    // ... user chose OK
+                    //change order status
+                    database.setOrderStatus(order.getId(),"reject");
+
+
                     System.out.println("reject order id : "+order.getId());
                     pageController.active("orderList");
                 } else {
@@ -209,7 +240,7 @@ public class OrderDetailController implements Controller {
         for ( Object entry: detail_table.getItems() ) {
             boolean match = true;
             OrderProduct entryP = (OrderProduct) entry;
-            String detailEntryP = entryP.getId()+entryP.getName().toUpperCase()+entryP.getBrand().toUpperCase();
+            String detailEntryP = entryP.getProductId()+entryP.getName().toUpperCase()+entryP.getBrand().toUpperCase();
             for ( String part: parts ) {
                 if ( ! detailEntryP.contains(part) ) {
                     match = false;
@@ -227,24 +258,33 @@ public class OrderDetailController implements Controller {
 
     private void getOrderProductList(){
         //get order product from order
-        orderProducts = (ObservableList<OrderProduct>)  order.getOrderProducts();
-
-        //============================================================================
-        //           (TODO) set current warehouse quantity to each OrderProduct
-        //============================================================================
-
-        for(OrderProduct orderProduct:orderProducts){
-            orderProduct.setQuantity(500);
+        orderProducts = FXCollections.observableArrayList(order.getOrderProducts());
+        for ( OrderProduct entry: orderProducts ) {
+            entry.setQuantity(database.getQtbyID(entry.getProductId()));
         }
-
     }
 
     @Override
     public void onActive() {
         System.out.println("display detail order ID : "+order.getId());
+        //set text field
         orderName_TextField.setText(order.getName());
         orderOwner_TextField.setText(order.getOwner());
         orderDate_TextField.setText(order.getDate().toLocaleString());
+        status_TextField.setText(order.getStatus());
+
+        //check order status
+        if(order.getStatus().equals("waiting")){
+            System.out.println("status = waiting");
+            sendQuantityColumn.setEditable(true);
+            approve_btn.setDisable(false);
+            reject_btn.setDisable(false);
+        }else{
+            System.out.println("status = "+order.getStatus());
+            sendQuantityColumn.setEditable(false);
+            approve_btn.setDisable(true);
+            reject_btn.setDisable(true);
+        }
 
         getOrderProductList();
         //get OrderProduct list in order

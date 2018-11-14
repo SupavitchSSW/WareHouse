@@ -1,6 +1,7 @@
 package user;
 
 
+import connectionDB.serviceDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -17,33 +18,44 @@ import sample.Product;
 import sample.Transaction;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 public class UserController implements Controller{
     PageController pageController;
     private TableView userTable;
     private User user;
-    private ObservableList<User> users = getOrder();
+    private ObservableList<User> users;
     private ObservableList<User> subEntries;
-    private User selectedProduct,currentUser;
+    private User selectUser,currentUser;
     private int index, lastID;
+    private serviceDB database;
 
-    public ObservableList<User> getOrder(){
-        users = FXCollections.observableArrayList();
+    public ObservableList<User> getAllUser(){
+        //users = FXCollections.observableArrayList();
+
+        List<User> results = database.getAllUser();
+//        for(User u : results){
+//            System.out.println(u);
+//        }
+
+
+          ObservableList<User> users = FXCollections.observableArrayList(database.getAllUser());
 
 //        users.add(new User("Warisa","Saisaema","59011202","Warisa","Saisaema"));
+
 //        users.add(new User("Supavitch","Saengsuwan","59011341","Staff","444444"));
 //        users.add(new User("Sarun","Limpasatirakit","59011371","Staff","565656"));
 //        users.add(new User("Satjaporn","Lertsasipakorn","59011382","Staff","777777"));
 //        users.add(new User("Itiwat","Supensilp","59011578","Staff","134340"));
-
-
         return users;
     }
 
-    public UserController(PageController pageController,User currentUser){
+    public UserController(PageController pageController, serviceDB database,User currentUser){
         this.currentUser = currentUser;
         this.pageController = pageController;
+        this.database = database;
+        this.users = getAllUser();
     }
 
     public void initilize(){
@@ -57,6 +69,7 @@ public class UserController implements Controller{
 
         Button logoutBt = (Button) scene.lookup("#logoutButton");
         Button userInfoBt = (Button) scene.lookup("#userInfo");
+        Button addMBt = (Button) scene.lookup("#addManagerButton");
 
         searchBox.setPromptText("Search");
         searchBox.textProperty().addListener((observable, oldVal, newVal) -> {
@@ -65,28 +78,31 @@ public class UserController implements Controller{
 
         userTable = (TableView) scene.lookup("#userList");
 
-        TableColumn <User,String> nameCol = new TableColumn("Name");
-        nameCol.setMinWidth(200);
-        nameCol.setCellValueFactory(
-                new PropertyValueFactory<>("Name"));
+
+        TableColumn <User,String> firstNameCol = new TableColumn("First Name");
+        firstNameCol.setMinWidth(200);
+        firstNameCol.setCellValueFactory(
+                new PropertyValueFactory<>("firstname"));
 
         TableColumn <User,String> surnameCol = new TableColumn("Surname");
         surnameCol.setMinWidth(200);
         surnameCol.setCellValueFactory(
-                new PropertyValueFactory<>("Surname"));
+                new PropertyValueFactory<>("surname"));
 
-        TableColumn <User,String> telCol = new TableColumn("Phone Number");
+        TableColumn <User, String> telCol = new TableColumn("Phone Number");
         telCol.setMinWidth(200);
         telCol.setCellValueFactory(
-                new PropertyValueFactory<>("Tel"));
+                new PropertyValueFactory<>("phoneNumber"));
 
         TableColumn <User, String> roleCol = new TableColumn("Role");
         roleCol.setMinWidth(200);
         roleCol.setCellValueFactory(
-                new PropertyValueFactory<>("Role"));
+                new PropertyValueFactory<>("role"));
 
 
-        userTable.getColumns().addAll(nameCol,surnameCol,telCol,roleCol);
+
+
+        userTable.getColumns().addAll(firstNameCol, surnameCol,telCol,roleCol);
         mainBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -128,25 +144,23 @@ public class UserController implements Controller{
                     propertyGrid.setPadding(new Insets(20, 200, 10, 20));
 
                     if (userTable.getItems() == subEntries) {
-                        selectedProduct = subEntries.get(index);
+                        selectUser = subEntries.get(index);
                     } else {
-                        selectedProduct = users.get(index);
+                        selectUser = users.get(index);
                     }
 
                     propertyGrid.add(new Label("Name               :"), 0, 0);
-                    propertyGrid.add(new Label(selectedProduct.getFirstname()), 1, 0);
+                    propertyGrid.add(new Label(selectUser.getFirstname()), 1, 0);
                     propertyGrid.add(new Label("Surname           :"), 0, 1);
-                    propertyGrid.add(new Label(selectedProduct.getSurname()), 1, 1);
+                    propertyGrid.add(new Label(selectUser.getSurname()), 1, 1);
                     propertyGrid.add(new Label("Phone Number :"), 0, 2);
-                    propertyGrid.add(new Label(selectedProduct.getPhoneNumber()), 1, 2);
+                    propertyGrid.add(new Label(selectUser.getPhoneNumber()), 1, 2);
                     propertyGrid.add(new Label("Role                  :"), 0, 3);
-                    propertyGrid.add(new Label(selectedProduct.getRole()), 1, 3);
-                    propertyGrid.add(new Label("Password          :"), 0, 4);
-                    propertyGrid.add(new Label(selectedProduct.getPassword()), 1, 4);
+                    propertyGrid.add(new Label(selectUser.getRole()), 1, 3);
                     propertyDialog.getDialogPane().setContent(propertyGrid);
 
                     ButtonType doneButtonType = new ButtonType("Done");
-                    ButtonType deleteButtonType = new ButtonType("Delete Product");
+                    ButtonType deleteButtonType = new ButtonType("Delete User");
 
                     propertyDialog.getDialogPane().getButtonTypes().addAll(deleteButtonType, doneButtonType);
 
@@ -154,18 +168,18 @@ public class UserController implements Controller{
 
                     if (propertyResult.get() == deleteButtonType) {
                         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                        alert.setTitle("Delete Product");
+                        alert.setTitle("Delete User");
                         alert.setHeaderText(null);
-                        alert.setContentText("Are you sure you want to delete this product?");
+                        alert.setContentText("Are you sure you want to delete this user?");
                         Optional<ButtonType> result = alert.showAndWait();
                         if (result.get() == ButtonType.OK){
                             if (userTable.getItems() == subEntries) {
-                                users.remove(users.indexOf(subEntries.get(index)));
+
                                 searchBox.clear();
-                                userTable.setItems(users);
-                            } else {
-                                users.remove(index);
                             }
+                            database.removeUser(selectUser.getId());
+                            users = getAllUser();
+                            userTable.setItems(users);
                         }
 
 
@@ -178,6 +192,58 @@ public class UserController implements Controller{
             @Override
             public void handle(MouseEvent event) { pageController.active("login"); }
         });
+
+        addMBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Dialog<ButtonType> addManagerDialog = new Dialog<>();
+                addManagerDialog.initStyle(StageStyle.UTILITY);
+                addManagerDialog.setTitle("Add Manager Information");
+
+                GridPane addManagerGrid = new GridPane();
+                addManagerGrid.setHgap(10);
+                addManagerGrid.setVgap(20);
+                addManagerGrid.setPadding(new Insets(20, 120, 10, 20));
+
+                TextField musername = new TextField();
+                PasswordField mpassword = new PasswordField();
+                TextField mfirstname = new TextField();
+                TextField msurname = new TextField();
+                TextField mphonenum = new TextField();
+
+
+                addManagerGrid.add(new Label("Username:"), 0, 0);
+                addManagerGrid.add(musername, 1, 0);
+                addManagerGrid.add(new Label("Password:"), 0, 1);
+                addManagerGrid.add(mpassword, 1, 1);
+                addManagerGrid.add(new Label("First Name:"), 0, 2);
+                addManagerGrid.add(mfirstname, 1, 2);
+                addManagerGrid.add(new Label("Surname:"), 0, 3);
+                addManagerGrid.add(msurname, 1, 3);
+                addManagerGrid.add(new Label("Phone Number:"), 0, 4);
+                addManagerGrid.add(mphonenum, 1, 4);
+
+
+
+                addManagerDialog.getDialogPane().setContent(addManagerGrid);
+
+                ButtonType confirmButtonType = new ButtonType("Confirm");
+                ButtonType cancelButtonType = new ButtonType("Cancel");
+
+                addManagerDialog.getDialogPane().getButtonTypes().addAll(confirmButtonType, cancelButtonType);
+
+                Optional<ButtonType> addManagerResult = addManagerDialog.showAndWait();
+                if (addManagerResult.get() == confirmButtonType ) {
+                    database.createUser(musername.getText(), mpassword.getText(), "Manager", mfirstname.getText(), msurname.getText(), mphonenum.getText());
+                    users = getAllUser();
+                    userTable.setItems(users);
+                    userTable.refresh();
+
+
+                    }
+                }
+        });
+
         userInfoBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) { pageController.active("profile"); }
@@ -186,6 +252,7 @@ public class UserController implements Controller{
     }
 
     public void onActive() {
+        users = getAllUser();
         userTable.setItems(users);
     }
 

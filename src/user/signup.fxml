@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?scenebuilder-background-color 0x404040ff?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: DimGray;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: DimGray;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="426.0" layoutX="236.0" layoutY="127.0" stroke="BLACK" strokeType="INSIDE" style="&#10;" width="529.0" />
     <Text id="signup" layoutX="449.0" layoutY="170.0" stroke="BLACK" strokeType="CENTERED" strokeWidth="0.0" text="SIGN UP" underline="false">
@@ -19,45 +26,39 @@
         <Font name="System Bold" size="26.0" fx:id="x1" />
       </font>
     </Text>
-    <TextField id="id" layoutX="275.0" layoutY="410.0" prefHeight="29.0" prefWidth="215.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2;" />
-    <Text id="username" layoutX="275.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font></Text>
-    <Text id="password" layoutX="500.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font></Text>
-    <Text id="firstname" layoutX="275.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font></Text>
-    <TextField id="fninfo" layoutX="275.0" layoutY="250.0" prefHeight="29.0" prefWidth="215.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2;" />
-    <Line endX="423.0" endY="-1.0" layoutX="339.0" layoutY="193.0" startX="-100.0" stroke="#b51b32" strokeWidth="4.2" />
-    <Text id="surname" layoutX="500.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font></Text>
-    <TextField id="sninfo" layoutX="500.0" layoutY="250.0" prefHeight="29.0" prefWidth="220.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2;" />
-    <TextField id="phoneinfo" layoutX="275.0" layoutY="330.0" prefHeight="29.0" prefWidth="215.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2;" />
-    <Text id="phonenum" layoutX="275.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font></Text>
-    <Button id="subtn" layoutX="275.0" layoutY="460.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="446.0" style="-fx-background-radius: 50px; -fx-background-color: #1350f7;" text="Sign Up" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font></Button>
+    <TextField id="id" layoutX="275.0" layoutY="250.0" prefHeight="29.0" prefWidth="215.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2;" />
+    <PasswordField id="pw" layoutX="500.0" layoutY="250.0" prefHeight="29.0" prefWidth="220.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2;" />
+    <ChoiceBox id="role" layoutX="275.0" layoutY="330.0" prefHeight="29.0" prefWidth="215.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2; -fx-background-color: white;">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Staff" />
+        </FXCollections>
+      </items>
+    </ChoiceBox>
+    <TextField id="phoneinfo" layoutX="500.0" layoutY="330.0" prefHeight="29.0" prefWidth="220.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2;" />
+    <TextField id="fninfo" layoutX="275.0" layoutY="406.0" prefHeight="29.0" prefWidth="215.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2;" />
+    <TextField id="sninfo" layoutX="500.0" layoutY="406.0" prefHeight="29.0" prefWidth="220.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2;" />
+    <Text id="username" layoutX="275.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+      <font>
+        <Font name="System Bold" size="16.0" fx:id="x2" />
+      </font>
+    </Text>
+    <Text id="password" font="$x2" layoutX="501.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+    <Text id="firstname" font="$x2" layoutX="275.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" />
+    <Line endX="423.0" endY="-1.0" layoutX="339.0" layoutY="193.0" startX="-100.0" strokeWidth="4.2">
+      <stroke>
+        <Color blue="0.196" green="0.106" red="0.710" fx:id="x3" />
+      </stroke>
+    </Line>
+    <Text id="surname" font="$x2" layoutX="501.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname" />
+    <Text id="phonenum" font="$x2" layoutX="501.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" />
+    <Button id="subtn" font="$x2" layoutX="275.0" layoutY="460.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="446.0" style="-fx-background-radius: 50px; -fx-background-color: #1350f7;" text="Sign Up" textFill="WHITE" />
     <Text id="wm" fill="WHITE" fontSmoothingType="GRAY" layoutX="276.0" layoutY="75.0" scaleX="1.0039589015841892" scaleY="1.0" smooth="true" stroke="WHITE" strokeType="CENTERED" strokeWidth="1.0" text="WAREHOUSE MANAGEMENT" textAlignment="CENTER">
       <font>
         <Font name="System Bold Italic" size="32.0" />
       </font>
     </Text>
-    <PasswordField id="pw" layoutX="500.0" layoutY="410.0" prefHeight="29.0" prefWidth="220.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #1350f7; -fx-border-width: 2;" />
-      <Hyperlink id="goBack" layoutX="460.0" layoutY="505.0" text="Go Back" textFill="#b51b32" underline="true">
-         <font>
-            <Font name="System Bold" size="16.0" fx:id="x11" />
-         </font>
-      </Hyperlink>
+    <Hyperlink id="goBack" font="$x2" layoutX="460.0" layoutY="505.0" text="Go Back" textFill="$x3" underline="true" />
+    <Text font="$x2" layoutX="275.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Role" />
   </children>
 </AnchorPane>
