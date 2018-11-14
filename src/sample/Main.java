@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import ordermanagement.Order;
 import ordermanagement.OrderDetailController;
 import ordermanagement.OrderListController;
 import productManagement.productListController;
@@ -93,6 +94,9 @@ public class Main extends Application {
         pageController.active("login");
 
         //OrderReadWrite.run();
+        OrderReadWrite.setDatabase(database);
+        OrderReadWrite.writeProductList();
+        OrderReadWrite.readOrder();
     }
 
     public static void main(String[] args) {

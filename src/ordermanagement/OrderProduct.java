@@ -17,6 +17,8 @@ public class OrderProduct implements Serializable {
     public OrderProduct(int productId, String name, String brand, int orderQuantity) {
         this.productId = productId;
         this.orderQuantity = orderQuantity;
+        this.name = name;
+        this.brand = brand;
     }
 
     @Override

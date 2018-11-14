@@ -170,6 +170,7 @@ public class OrderDetailController implements Controller {
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
                     //change order status
+
                     database.setOrderStatus(order.getId(),"approve");
 
                     //create transaction

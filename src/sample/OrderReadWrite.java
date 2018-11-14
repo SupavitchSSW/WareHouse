@@ -1,4 +1,5 @@
 package sample;
+import connectionDB.serviceDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import ordermanagement.Order;
@@ -6,17 +7,19 @@ import ordermanagement.OrderProduct;
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import product.Product;
 
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 
 public class OrderReadWrite {
+    static serviceDB database;
 
     public OrderReadWrite() {
-
     }
 
     public static void run(){
@@ -36,7 +39,7 @@ public class OrderReadWrite {
     }
 
     public static void writeProductList() throws IOException {
-        ObservableList<Product> products = getProducts();
+        ObservableList<product.Product> products = getProducts();
         JSONObject obj = new JSONObject();
         JSONObject json = new JSONObject();
         JSONArray array = new JSONArray();
@@ -50,7 +53,7 @@ public class OrderReadWrite {
             array.add(obj.clone());
         }
         json.put("name","PorShop_0011");
-        json.put("date",new Date(2000,1,2).getTime());
+        json.put("date",new Date().getTime());
         json.put("products",array);
 
         //write to file
@@ -68,7 +71,7 @@ public class OrderReadWrite {
         }
     }
 
-    public static Order readOrder() throws IOException{
+    public static void readOrder() throws IOException{
         Order order = new Order();
         JSONParser parser = new JSONParser();
         JSONObject json = new JSONObject();
@@ -98,34 +101,40 @@ public class OrderReadWrite {
             e.printStackTrace();
         }
 
+
         order.setOwner(json.get("owner").toString());
         order.setName(json.get("name").toString());
         order.setDate(new Date((Long) json.get("date")));
 
-        // add product to order
+        // create Order
+        int id = database.createOrder(json.get("name").toString(),json.get("owner").toString());
+        // add OrderProduct to order
         array = (JSONArray) json.get("products");
         for(int i =0;i<array.size();i++){
             obj = (JSONObject) array.get(i);
-            order.addOrderProduct(new OrderProduct(Integer.parseInt(obj.get("id").toString()),obj.get("name").toString(),obj.get("brand").toString(),Integer.parseInt(obj.get("amount").toString())));
+            //order.addOrderProduct(new OrderProduct(Integer.parseInt(obj.get("id").toString()),obj.get("name").toString(),obj.get("brand").toString(),Integer.parseInt(obj.get("amount").toString())));
+            database.addOrderproduct(id,Integer.parseInt(obj.get("id").toString()),obj.get("name").toString(),obj.get("brand").toString(),Integer.parseInt(obj.get("amount").toString()));
         }
 
         System.out.println("Read JSON : "+inputJSON);
         System.out.println(order.toString());
-        return order;
     }
 
     public static void writeOrderRespond(){
         JSONObject json = new JSONObject();
     }
 
-    public static ObservableList<Product> getProducts(){
-        ObservableList<Product> products = FXCollections.observableArrayList();
-        products.add(new Product(1,12,"sddffd","ddfvrv"));
-        products.add(new Product(2,2,"dss","Por_shop2"));
-        products.add(new Product(3,22,"dsd","Por_shop3"));
-        products.add(new Product(4,1,"jud","ng"));
-        products.add(new Product(5,6,"gg","pv"));
+    public static ObservableList<product.Product> getProducts(){
+        List<product.Product> results = database.getAllProduct();
+        ObservableList<product.Product> products = FXCollections.observableArrayList(results);
         return products;
     }
 
+    public static serviceDB getDatabase() {
+        return database;
+    }
+
+    public static void setDatabase(serviceDB database) {
+        OrderReadWrite.database = database;
+    }
 }

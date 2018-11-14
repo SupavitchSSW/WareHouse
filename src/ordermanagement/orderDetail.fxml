@@ -55,7 +55,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Text>
-            <TextField id="status" layoutX="93.0" layoutY="222.0" style="-fx-background-radius: 50px; -fx-border-color: #1350f7; -fx-border-radius: 50px; -fx-border-width: 2;" />
+            <TextField id="status" layoutX="94.0" layoutY="222.0" style="-fx-background-radius: 50px; -fx-border-color: #1350f7; -fx-border-radius: 50px; -fx-border-width: 2;" />
          </children>
       </Pane>
       <Button id="mainButton" layoutX="150.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" style="-fx-background-radius: 50px; -fx-background-color: DimGray; -fx-border-color: white; -fx-border-radius: 50px; -fx-border-width: 3;" text="Main" textFill="WHITE">
