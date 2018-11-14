@@ -70,6 +70,11 @@ public class reportMainController implements Controller {
         monthCol.setCellValueFactory( new PropertyValueFactory<>("month"));
         reportTable.getColumns().addAll(yearCol,monthCol);
 
+        TextField search_TextField = (TextField) scene.lookup("#searchBox");
+        search_TextField.textProperty().addListener((observable, oldVal, newVal) -> {
+            handleSearchByKey((String) oldVal, (String) newVal);
+        });
+
 
 
         mainBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -119,8 +124,8 @@ public class reportMainController implements Controller {
 
 
     public void onActive() {
-        ObservableList<MonthYear> my = getMY();
-        reportTable.setItems(my);
+        monthYears = getMY();
+        reportTable.setItems(monthYears);
 
     }
 
@@ -139,6 +144,33 @@ public class reportMainController implements Controller {
             }
         }
         return my;
+    }
+
+
+    private void handleSearchByKey(String oldValue, String newValue) {
+        if ( oldValue != null && (newValue.length() < oldValue.length()) ) {
+            reportTable.setItems(monthYears);
+        }
+
+        String[] parts = newValue.toUpperCase().split(" ");
+
+        ObservableList<MonthYear> subEntries = FXCollections.observableArrayList();
+        for ( Object entry: reportTable.getItems() ) {
+            boolean match = true;
+            MonthYear entryP = (MonthYear) entry;
+            String detailEntryP = entryP.getMonth()+" "+entryP.getYear();
+            for ( String part: parts ) {
+                if ( ! detailEntryP.contains(part) ) {
+                    match = false;
+                    break;
+                }
+            }
+
+            if ( match ) {
+                subEntries.add(entryP);
+            }
+        }
+        reportTable.setItems(subEntries);
     }
 
 
