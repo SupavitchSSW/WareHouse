@@ -28,7 +28,7 @@ public class OrderListController implements Controller {
     private TableView order_table;
     private User currentUser;
     private serviceDB database;
-    private Button updateBt,productListBt;
+    private Button updateBt,productListBt,userSearchBt,summaryBt;
 
     public OrderListController(PageController pageController,serviceDB database, OrderDetailController orderDetailController,User currentUser) {
         this.currentUser = currentUser;
@@ -42,10 +42,10 @@ public class OrderListController implements Controller {
         Scene scene = pageController.getScene("orderList");
         Button nextBtn = (Button) scene.lookup("#nextBtn");
         Button mainBt = (Button) scene.lookup("#mainButton");
-        Button summaryBt = (Button) scene.lookup("#summaryButton");
+        summaryBt = (Button) scene.lookup("#summaryButton");
         Button orderBt = (Button) scene.lookup("#orderButton");
         Button logoutBt = (Button) scene.lookup("#logoutButton");
-        Button userSearchBt = (Button) scene.lookup("#userSearchButton");
+        userSearchBt = (Button) scene.lookup("#userSearchButton");
         Button userInfoBt = (Button) scene.lookup("#userInfo");
         updateBt = (Button) scene.lookup("#updateBtn");
         productListBt = (Button) scene.lookup("#productListBtn");
@@ -182,9 +182,13 @@ public class OrderListController implements Controller {
         if(currentUser.getRole().equals("Staff")){
             updateBt.setDisable(true);
             productListBt.setDisable(true);
+            summaryBt.setDisable(true);
+            userSearchBt.setDisable(true);
         }else{
             updateBt.setDisable(false);
             productListBt.setDisable(false);
+            summaryBt.setDisable(false);
+            userSearchBt.setDisable(false);
         }
     }
 

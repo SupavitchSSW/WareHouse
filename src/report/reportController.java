@@ -43,11 +43,10 @@ public class reportController implements Controller {
         return reports;
     }
 
-
-    public reportController(PageController pageController,User currentUser,serviceDB database) {
+    public reportController(PageController pageController, serviceDB database, User currentUser) {
         this.pageController = pageController;
-        this.currentUser = currentUser;
         this.database = database;
+        this.currentUser = currentUser;
     }
 
     public void initilize() {

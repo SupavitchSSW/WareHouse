@@ -19,6 +19,8 @@ public class ProfileController implements Controller {
     TextField nameTF,surnameTF,roleTF,telTF;
     private boolean isEdit = false;
     private serviceDB database;
+    private Button summaryBt,userSearchBt;
+
     public ProfileController(PageController pageController, serviceDB database,User currentUser) {
         this.currentUser = currentUser;
         this.pageController = pageController;
@@ -30,9 +32,9 @@ public class ProfileController implements Controller {
     public void initilize() {
         Scene scene = pageController.getScene("userPage");
         Button mainBt = (Button) scene.lookup("#mainButton");
-        Button summaryBt = (Button) scene.lookup("#summaryButton");
+        summaryBt = (Button) scene.lookup("#summaryButton");
         Button orderBt = (Button) scene.lookup("#orderButton");
-        Button userSearchBt = (Button) scene.lookup("#userSearchButton");
+        userSearchBt = (Button) scene.lookup("#userSearchButton");
         Button logoutBt = (Button) scene.lookup("#logoutButton");
         Button editBtn = (Button) scene.lookup("#editButton");
         Button cpassBt = (Button) scene.lookup("#changepassButton");
@@ -156,7 +158,15 @@ public class ProfileController implements Controller {
     @Override
     public void onActive() {
         setProfile();
-        System.out.println(currentUser.toString());
+
+        //check permission
+        if(currentUser.getRole().equals("Staff")){
+            summaryBt.setDisable(true);
+            userSearchBt.setDisable(true);
+        }else{
+            summaryBt.setDisable(false);
+            userSearchBt.setDisable(false);
+        }
     }
 
     public void setProfile(){

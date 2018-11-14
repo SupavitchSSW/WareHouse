@@ -30,7 +30,7 @@ public class OrderDetailController implements Controller {
     private Order order;
     private TableView detail_table;
     private TextField orderName_TextField,orderOwner_TextField,orderDate_TextField,status_TextField;
-    private Button goBack_btn,approve_btn,reject_btn;
+    private Button goBack_btn,approve_btn,reject_btn,userSearchBt,summaryBt;
     private TableColumn<OrderProduct,Integer> sendQuantityColumn;
     private ObservableList<OrderProduct> orderProducts;
     private User currentUser;
@@ -48,10 +48,10 @@ public class OrderDetailController implements Controller {
         Scene scene = pageController.getScene("orderDetail");
 
         Button mainBt = (Button) scene.lookup("#mainButton");
-        Button summaryBt = (Button) scene.lookup("#summaryButton");
+        summaryBt = (Button) scene.lookup("#summaryButton");
         Button orderBt = (Button) scene.lookup("#orderButton");
         Button logoutBt = (Button) scene.lookup("#logoutButton");
-        Button userSearchBt = (Button) scene.lookup("#userSearchButton");
+        userSearchBt = (Button) scene.lookup("#userSearchButton");
         Button userInfoBt = (Button) scene.lookup("#userInfo");
         //set button
         goBack_btn = (Button) scene.lookup("#goBack");
@@ -279,11 +279,15 @@ public class OrderDetailController implements Controller {
             sendQuantityColumn.setEditable(true);
             approve_btn.setDisable(false);
             reject_btn.setDisable(false);
+            summaryBt.setDisable(false);
+            userSearchBt.setDisable(false);
         }else{
             System.out.println("status = "+order.getStatus());
             sendQuantityColumn.setEditable(false);
             approve_btn.setDisable(true);
             reject_btn.setDisable(true);
+            summaryBt.setDisable(true);
+            userSearchBt.setDisable(true);
         }
 
         getOrderProductList();

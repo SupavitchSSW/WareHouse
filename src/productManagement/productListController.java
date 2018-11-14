@@ -325,6 +325,15 @@ public class productListController implements Controller {
     public void onActive() {
         productListTable.setItems(products);
         productListTable.refresh();
+
+        //check permission
+        if(currentUser.getRole().equals("Staff")){
+            summaryBt.setDisable(true);
+            userSearchBt.setDisable(true);
+        }else{
+            summaryBt.setDisable(false);
+            userSearchBt.setDisable(false);
+        }
     }
 
     public ObservableList<Product> getAllProduct(){
