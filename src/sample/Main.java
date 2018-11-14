@@ -99,10 +99,15 @@ public class Main extends Application {
         //set database to OrderReadWrite
         OrderReadWrite.setDatabase(database);
 
-        System.out.println(new Date().getYear());
-        System.out.println(new Date().getMonth());
-        System.out.println(new Date().getDate());
-        System.out.println(new Date().getTimezoneOffset());
+        Calendar date = new GregorianCalendar();
+        System.out.println(date);
+        System.out.println(date.get(Calendar.YEAR));
+        System.out.println(date.get(Calendar.MONTH));
+        System.out.println(date.get(Calendar.DATE));
+        System.out.println(date.get(Calendar.HOUR));
+        System.out.println(date.get(Calendar.HOUR_OF_DAY));
+        System.out.println(date.get(Calendar.MINUTE));
+        System.out.println(date instanceof Calendar);
     }
 
     public static void main(String[] args) {
