@@ -93,10 +93,8 @@ public class Main extends Application {
         primaryStage.setTitle("WareHouse Management");
         pageController.active("login");
 
-        //OrderReadWrite.run();
+        //set database to OrderReadWrite
         OrderReadWrite.setDatabase(database);
-        OrderReadWrite.writeProductList();
-        OrderReadWrite.readOrder();
     }
 
     public static void main(String[] args) {

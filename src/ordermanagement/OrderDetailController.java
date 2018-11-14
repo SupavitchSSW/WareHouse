@@ -12,11 +12,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.converter.IntegerStringConverter;
 import ordermanagement.Order;
 import sample.Controller;
+import sample.OrderReadWrite;
 import sample.PageController;
 import product.Product;
 import sample.Transaction;
 import user.User;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -27,6 +29,8 @@ public class OrderDetailController implements Controller {
     private Order order;
     private TableView detail_table;
     private TextField orderName_TextField,orderOwner_TextField,orderDate_TextField,status_TextField;
+    private Button goBack_btn,approve_btn,reject_btn;
+    private TableColumn<OrderProduct,Integer> sendQuantityColumn;
     private ObservableList<OrderProduct> orderProducts;
     private User currentUser;
     private serviceDB database;
@@ -49,9 +53,9 @@ public class OrderDetailController implements Controller {
         Button userSearchBt = (Button) scene.lookup("#userSearchButton");
         Button userInfoBt = (Button) scene.lookup("#userInfo");
         //set button
-        Button goBack_btn = (Button) scene.lookup("#goBack");
-        Button approve_btn = (Button) scene.lookup("#approve_btn");
-        Button reject_btn = (Button) scene.lookup("#reject_btn");
+        goBack_btn = (Button) scene.lookup("#goBack");
+        approve_btn = (Button) scene.lookup("#approve_btn");
+        reject_btn = (Button) scene.lookup("#reject_btn");
 
         //search setup
         TextField search_TextField = (TextField) scene.lookup("#searchBox");
@@ -83,7 +87,7 @@ public class OrderDetailController implements Controller {
         TableColumn<OrderProduct,Integer> brandColumn = new TableColumn<>("BLAND");
         TableColumn<OrderProduct,Integer> orderQuantityColumn = new TableColumn<>("ORDER");
         TableColumn<OrderProduct,Integer> warehouseQuantityColumn = new TableColumn<>("QUOTA");
-        TableColumn<OrderProduct,Integer> sendQuantityColumn = new TableColumn<>("SEND");
+        sendQuantityColumn = new TableColumn<>("SEND");
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -94,10 +98,12 @@ public class OrderDetailController implements Controller {
 
         //check order status
         if(order.getStatus().equals("waiting")){
+            System.out.println("status = waiting");
             sendQuantityColumn.setEditable(true);
             approve_btn.setDisable(false);
             reject_btn.setDisable(false);
         }else{
+            System.out.println("status = "+order.getStatus());
             sendQuantityColumn.setEditable(false);
             approve_btn.setDisable(true);
             reject_btn.setDisable(true);
@@ -180,6 +186,14 @@ public class OrderDetailController implements Controller {
                         database.createTransaction(orderProduct.getProductId(),orderProduct.getSendQuantity()*-1,date,"approveOrder");
                     }
 
+                    //write respond back to customer via json
+                    try {
+                        OrderReadWrite.writeRespondOrder(order);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+
                     pageController.active("orderList");
                 } else {
                 }
@@ -247,10 +261,24 @@ public class OrderDetailController implements Controller {
     @Override
     public void onActive() {
         System.out.println("display detail order ID : "+order.getId());
+        //set text field
         orderName_TextField.setText(order.getName());
         orderOwner_TextField.setText(order.getOwner());
         orderDate_TextField.setText(order.getDate().toLocaleString());
         status_TextField.setText(order.getStatus());
+
+        //check order status
+        if(order.getStatus().equals("waiting")){
+            System.out.println("status = waiting");
+            sendQuantityColumn.setEditable(true);
+            approve_btn.setDisable(false);
+            reject_btn.setDisable(false);
+        }else{
+            System.out.println("status = "+order.getStatus());
+            sendQuantityColumn.setEditable(false);
+            approve_btn.setDisable(true);
+            reject_btn.setDisable(true);
+        }
 
         getOrderProductList();
         //get OrderProduct list in order

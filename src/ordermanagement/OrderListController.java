@@ -14,8 +14,11 @@ import javafx.scene.input.MouseEvent;
 import ordermanagement.Order;
 import ordermanagement.OrderDetailController;
 import sample.Controller;
+import sample.OrderReadWrite;
 import sample.PageController;
 import user.User;
+
+import java.io.IOException;
 
 
 public class OrderListController implements Controller {
@@ -43,6 +46,8 @@ public class OrderListController implements Controller {
         Button logoutBt = (Button) scene.lookup("#logoutButton");
         Button userSearchBt = (Button) scene.lookup("#userSearchButton");
         Button userInfoBt = (Button) scene.lookup("#userInfo");
+        Button updateBt = (Button) scene.lookup("#updateBtn");
+        Button productListBt = (Button) scene.lookup("#productListBtn");
         TextField search_TextField = (TextField) scene.lookup("#searchBox");
 
         //search setup
@@ -110,6 +115,32 @@ public class OrderListController implements Controller {
                     orderDetailController.setOrder(o);
                     pageController.active("orderDetail");
                 }
+            }
+        });
+
+        updateBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("read order file");
+                try {
+                    OrderReadWrite.readOrder();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                pageController.active("orderList");
+            }
+        });
+
+        productListBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("write product list");
+                try {
+                    OrderReadWrite.writeProductList();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
 
