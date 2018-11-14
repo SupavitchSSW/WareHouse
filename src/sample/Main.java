@@ -98,6 +98,11 @@ public class Main extends Application {
 
         //set database to OrderReadWrite
         OrderReadWrite.setDatabase(database);
+
+        System.out.println(new Date().getYear());
+        System.out.println(new Date().getMonth());
+        System.out.println(new Date().getDate());
+        System.out.println(new Date().getTimezoneOffset());
     }
 
     public static void main(String[] args) {

@@ -122,13 +122,16 @@ public class reportMainController implements Controller {
 
     public ObservableList<MonthYear> getMY(){
         ObservableList<MonthYear> my = FXCollections.observableArrayList();
-//        List<Transaction> results  = database.getMinMonthTransection();
-//        System.out.println(results.get(0));
+        List<Transaction> results  = database.getMinMonthTransection();
+        if(!results.isEmpty()){
+            Date minDate = new Date(results.get(0).getDate().getTime());
+            Date maxDate = new Date();
 
-
-        my.add(new MonthYear(1,2000));
-        my.add(new MonthYear(2,2020));
-        my.add(new MonthYear(3,2030));
+            for(;minDate.getTime() <=  maxDate.getTime();){
+                my.add(new MonthYear(minDate.getMonth(),minDate.getYear()));
+                minDate.setMonth(minDate.getMonth()+1);
+            }
+        }
         return my;
     }
 

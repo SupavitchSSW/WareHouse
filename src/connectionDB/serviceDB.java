@@ -131,7 +131,7 @@ public class serviceDB {
     }
 
     public List<Transaction> getMinMonthTransection(){
-           String sql = "SELECT FIRST FROM Transaction c ";
+           String sql = "SELECT c FROM Transaction c ";
            TypedQuery<Transaction> query = em.createQuery(sql, Transaction.class);
            List<Transaction> results = query.getResultList();
            return results;
