@@ -20,6 +20,7 @@ import user.User;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
@@ -176,7 +177,6 @@ public class OrderDetailController implements Controller {
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
                     //change order status
-
                     database.setOrderStatus(order.getId(),"approve");
 
                     //create transaction
@@ -191,6 +191,12 @@ public class OrderDetailController implements Controller {
                         OrderReadWrite.writeRespondOrder(order);
                     } catch (IOException e) {
                         e.printStackTrace();
+                    }
+
+                    //update product quntity
+                    List<OrderProduct> orderProducts = order.getOrderProducts();
+                    for(OrderProduct o : orderProducts){
+                        database.setProductQuantity(o.getProductId(),o.getQuantity()-o.getSendQuantity());
                     }
 
 

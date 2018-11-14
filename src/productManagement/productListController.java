@@ -323,6 +323,7 @@ public class productListController implements Controller {
     @Override
     public void onActive() {
         productListTable.setItems(products);
+        productListTable.refresh();
     }
 
     public ObservableList<Product> getAllProduct(){
