@@ -236,7 +236,7 @@ public class UserController implements Controller{
                 if (addManagerResult.get() == confirmButtonType ) {
                     database.createUser(musername.getText(), mpassword.getText(), "Manager", mfirstname.getText(), msurname.getText(), mphonenum.getText());
                     users = getAllUser();
-                    userTable.setItems(users);
+                    userTable.setItems(users);  
                     userTable.refresh();
 
 

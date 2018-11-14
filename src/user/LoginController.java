@@ -10,11 +10,13 @@ import connectionDB.serviceDB;
 
 public class LoginController implements Controller {
     PageController pageController;
-    String user = "test";
-    String pw = "1234";
+    //String user = "test";
+    //String pw = "1234";
     String checkUser, checkPw;
     User currentUser;
     serviceDB database;
+    private TextField username;
+    private PasswordField password;
 
     public LoginController(PageController pageController, serviceDB database, User currentUser) {
         this.database = database;
@@ -26,8 +28,8 @@ public class LoginController implements Controller {
     public void initilize() {
         Scene scene = pageController.getScene("login");
         Button btn = (Button) scene.lookup("#btn");
-        TextField username = (TextField) scene.lookup("#id");
-        PasswordField password = (PasswordField) scene.lookup("#pw");
+        username = (TextField) scene.lookup("#id");
+        password = (PasswordField) scene.lookup("#pw");
         Hyperlink register = (Hyperlink) scene.lookup("#register");
 
 
@@ -85,6 +87,8 @@ public class LoginController implements Controller {
 
     @Override
     public void onActive() {
+        username.clear();
+        password.clear();
 
     }
 
