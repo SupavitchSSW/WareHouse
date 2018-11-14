@@ -83,11 +83,11 @@ public class OrderDetailController implements Controller {
         detail_table = (TableView) scene.lookup("#detail_table");
         detail_table.setEditable(true);
 
-        TableColumn<OrderProduct,Integer> idColumn = new TableColumn<>("Product ID");
-        TableColumn<OrderProduct,String> nameColumn = new TableColumn<>("Product NAME");
-        TableColumn<OrderProduct,Integer> brandColumn = new TableColumn<>("BLAND");
+        TableColumn<OrderProduct,Integer> idColumn = new TableColumn<>("ID");
+        TableColumn<OrderProduct,String> nameColumn = new TableColumn<>("NAME");
+        TableColumn<OrderProduct,Integer> brandColumn = new TableColumn<>("BRAND");
         TableColumn<OrderProduct,Integer> orderQuantityColumn = new TableColumn<>("ORDER");
-        TableColumn<OrderProduct,Integer> warehouseQuantityColumn = new TableColumn<>("QUOTA");
+        TableColumn<OrderProduct,Integer> warehouseQuantityColumn = new TableColumn<>("QUANTITY");
         sendQuantityColumn = new TableColumn<>("SEND");
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
@@ -274,7 +274,7 @@ public class OrderDetailController implements Controller {
         status_TextField.setText(order.getStatus());
 
         //check order status
-        if(order.getStatus().equals("waiting")){
+        if(order.getStatus().equals("waiting") || !currentUser.getRole().equals("Staff")){
             System.out.println("status = waiting");
             sendQuantityColumn.setEditable(true);
             approve_btn.setDisable(false);

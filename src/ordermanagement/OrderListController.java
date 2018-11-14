@@ -28,6 +28,7 @@ public class OrderListController implements Controller {
     private TableView order_table;
     private User currentUser;
     private serviceDB database;
+    private Button updateBt,productListBt;
 
     public OrderListController(PageController pageController,serviceDB database, OrderDetailController orderDetailController,User currentUser) {
         this.currentUser = currentUser;
@@ -46,8 +47,8 @@ public class OrderListController implements Controller {
         Button logoutBt = (Button) scene.lookup("#logoutButton");
         Button userSearchBt = (Button) scene.lookup("#userSearchButton");
         Button userInfoBt = (Button) scene.lookup("#userInfo");
-        Button updateBt = (Button) scene.lookup("#updateBtn");
-        Button productListBt = (Button) scene.lookup("#productListBtn");
+        updateBt = (Button) scene.lookup("#updateBtn");
+        productListBt = (Button) scene.lookup("#productListBtn");
         TextField search_TextField = (TextField) scene.lookup("#searchBox");
 
         //search setup
@@ -178,6 +179,13 @@ public class OrderListController implements Controller {
         orders = getOrder();
         order_table.setItems(orders);
         order_table.refresh();
+        if(currentUser.getRole().equals("Staff")){
+            updateBt.setDisable(true);
+            productListBt.setDisable(true);
+        }else{
+            updateBt.setDisable(false);
+            productListBt.setDisable(false);
+        }
     }
 
     public ObservableList<Order> getOrder() {

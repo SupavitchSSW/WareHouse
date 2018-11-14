@@ -43,6 +43,7 @@ public class productListController implements Controller {
     private Product selectedProduct;
     private int index, lastID;
     private User currentUser;
+    private Button summaryBt,userSearchBt;
 
     public productListController(PageController pageController, serviceDB database,User currentUser){
         this.currentUser = currentUser;
@@ -55,10 +56,10 @@ public class productListController implements Controller {
         Scene scene = pageController.getScene("mainPage");
         Button mainBt = (Button) scene.lookup("#mainButton");
         Button addProductBt = (Button) scene.lookup("#addProductButton");
-        Button summaryBt = (Button) scene.lookup("#summaryButton");
+        summaryBt = (Button) scene.lookup("#summaryButton");
         Button orderBt = (Button) scene.lookup("#orderButton");
         Button logoutBt = (Button) scene.lookup("#logoutButton");
-        Button userSearchBt = (Button) scene.lookup("#userSearchButton");
+        userSearchBt = (Button) scene.lookup("#userSearchButton");
         Button userInfoBt = (Button) scene.lookup("#userInfo");
         TextField searchBox = (TextField) scene.lookup("#searchBox");
 
