@@ -106,8 +106,12 @@ public class reportMainController implements Controller {
             @Override
             public void handle(MouseEvent event) {
                 if (event.getClickCount() == 2) {
-                    index = reportTable.getSelectionModel().getSelectedIndex();
-                    pageController.active("report");
+                    MonthYear monthYear = (MonthYear) reportTable.getSelectionModel().getSelectedItem();
+                    if(monthYear != null){
+                        reportController.setMonth(monthYear.getMonth());
+                        reportController.setYear(monthYear.getYear());
+                        pageController.active("report");
+                    }
                 }
             }
         });

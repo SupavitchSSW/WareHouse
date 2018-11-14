@@ -215,12 +215,4 @@ public class serviceDB {
         results.get(0).setPhoneNumber(number);
         em.getTransaction().commit();
     }
-
-
-
-
-
-
-
-
 }
