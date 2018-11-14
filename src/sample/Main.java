@@ -50,22 +50,24 @@ public class Main extends Application {
 
         //oak db
         serviceDB database = new serviceDB();
+//        database.createTransaction(1,2,new Date(),"dfd");
+//        database.createTransaction(1,52,new Date(),"g");
+//        database.createTransaction(1,26,new Date(),"ewa");
+//        List<transaction.Transaction> t = database.getAllTransactionInMonth(10);
+//        for (transaction.Transaction x:t){
+//            System.out.println(x);
+//        }
         //database.createUser("admin","1234","Manager","fon","fonfon","090");
         /*database.addOrderproduct(2,1,"qwe","qee",200);
         database.addOrderproduct(2,3,"qwe","qee",100);
         database.addOrderproduct(2,9,"qwe","qee",50);*/
 
-        //        List<Product> results = database.getAllProduct();
-//        database.createProduct("qwe","qee",23,20);
-//        database.createProduct("gtq","ggg",13,40);
-//        database.createProduct("ofp","hpn",56,50);
-//        database.createProduct("bnp","dfo",78,100);
-//        database.createProduct("vxs","hfp",77,29);
-//        database.createProduct("ipw","opd",90,48);
-////        s.setProductBrand(2,"luis");
-//        for (Product p : results) {
-//            System.out.println(p);
-//        }
+//        List<Transaction> results = database.getAllTransactionInMonth(11,2018);
+//        database.createTransaction(1,1,new Date(),"asdfghj");
+//        database.createTransaction(1,1,new Date(),"asdfghj");
+//        database.createTransaction(1,1,new Date(),"asdfghj");
+//        s.setProductBrand(2,"luis");
+
 //        database.closeConnection();
 
 
@@ -94,7 +96,7 @@ public class Main extends Application {
 
         //start page
         primaryStage.setTitle("WareHouse Management");
-        pageController.active("login");
+        pageController.active("reportMain");
 
         //set database to OrderReadWrite
         OrderReadWrite.setDatabase(database);
