@@ -1,6 +1,7 @@
 package report;
 
-
+import java.text.SimpleDateFormat;
+import connectionDB.serviceDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -15,38 +16,62 @@ import sample.Controller;
 import sample.PageController;
 import sample.Product;
 import report.reportController;
+import transaction.Transaction;
 import user.User;
+import connectionDB.*;
 
 
+import javax.persistence.criteria.CriteriaBuilder;
+import java.text.DateFormat;
+import java.text.DateFormatSymbols;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
+class monthYear{
+    private int month,year;
+    public monthYear(int month, int year) {
+        this.month = month;
+        this.year = year;
+    }
+}
+
 public class reportMainController implements Controller {
+    serviceDB database;
     PageController pageController;
     private TableView reportTable;
     reportController reportController;
-    private ObservableList<Product> reports = getOrder();
-    private ObservableList<Product> subEntries;
+    private ObservableList<Report> reports;
+    private ObservableList<monthYear> MY;
+    private ObservableList<Report> subEntries;
     private User currentUser;
 
     private Product selectedProduct;
     private int index;
 
-    public reportMainController(PageController pageController, reportController reportController,User currentUser) {
+    public reportMainController(PageController pageController, reportController reportController, User currentUser, serviceDB database) {
         this.pageController = pageController;
         this.reportController = reportController;
         this.currentUser = currentUser;
     }
 
 
-    public ObservableList<Product> getOrder() {
+    public void setMY(){
+        //static
+        System.out.println("wtf");
+        MY.add(new monthYear(1,2000));
+        MY.add(new monthYear(2,2000));
+        MY.add(new monthYear(3,2000));
+        MY.add(new monthYear(4,2000));
+        MY.add(new monthYear(5,2000));
+        MY.add(new monthYear(6,2000));
+    }
+    public ObservableList<Report> getOrder() {
         reports = FXCollections.observableArrayList();
-        reports.add(new Product("A"));
-        reports.add(new Product("B"));
-        reports.add(new Product("V"));
-        reports.add(new Product("D"));
-        reports.add(new Product("G"));
-
-
+        reports.add(new Report(new Date(),1));
+        reports.add(new Report(new Date(),2));
         return reports;
     }
 
@@ -62,18 +87,18 @@ public class reportMainController implements Controller {
         TextField searchBox = (TextField) scene.lookup("#searchBox");
 
 
-        searchBox.setPromptText("Search");
-        searchBox.textProperty().addListener((observable, oldVal, newVal) -> {
-            handleSearchByKey((String) oldVal, (String) newVal);
-        });
+//        searchBox.setPromptText("Search");
+//        searchBox.textProperty().addListener((observable, oldVal, newVal) -> {
+//            handleSearchByKey((String) oldVal, (String) newVal);
+//        });
 
         reportTable = (TableView) scene.lookup("#reportMain");
-        TableColumn<Product, String> dateCol = new TableColumn("Date");
-        dateCol.setMinWidth(270);
-        dateCol.setCellValueFactory( new PropertyValueFactory<>("date"));
-
-
-        reportTable.getColumns().addAll(dateCol);
+        TableColumn<monthYear, Integer> yearCol = new TableColumn("Year");
+        TableColumn<monthYear, Integer> monthCol = new TableColumn("Month");
+        //dateCol.setMinWidth(270);
+        yearCol.setCellValueFactory( new PropertyValueFactory<monthYear,Integer>("year"));
+        monthCol.setCellValueFactory( new PropertyValueFactory<monthYear,Integer>("month"));
+        reportTable.getColumns().addAll(yearCol,monthCol);
 
 
 
@@ -121,34 +146,35 @@ public class reportMainController implements Controller {
 
     public void onActive() {
         reportTable.setItems(reports);
-
+        setMY();
     }
 
 
-    public void handleSearchByKey(String oldValue, String newValue) {
-        if ( oldValue != null && (newValue.length() < oldValue.length()) ) {
-            reportTable.setItems(reports);
-        }
 
-        String[] parts = newValue.toUpperCase().split(" ");
-
-        subEntries = FXCollections.observableArrayList();
-        for ( Object entry: reportTable.getItems() ) {
-            boolean match = true;
-            Product entryP = (Product) entry;
-            String detailEntryP = entryP.getDate();
-            for ( String part: parts ) {
-                if ( ! detailEntryP.contains(part) ) {
-                    match = false;
-                    break;
-                }
-            }
-
-            if ( match ) {
-                subEntries.add(entryP);
-            }
-        }
-        reportTable.setItems(subEntries);
-    }
+//    public void handleSearchByKey(String oldValue, String newValue) {
+//        if ( oldValue != null && (newValue.length() < oldValue.length()) ) {
+//            reportTable.setItems(reports);
+//        }
+//
+//        String[] parts = newValue.toUpperCase().split(" ");
+//
+//        subEntries = FXCollections.observableArrayList();
+//        for ( Object entry: reportTable.getItems() ) {
+//            boolean match = true;
+//            Product entryP = (Product) entry;
+//            String detailEntryP = entryP.getDate();
+//            for ( String part: parts ) {
+//                if ( ! detailEntryP.contains(part) ) {
+//                    match = false;
+//                    break;
+//                }
+//            }
+//
+//            if ( match ) {
+//                subEntries.add(entryP);
+//            }
+//        }
+//        reportTable.setItems(subEntries);
+//    }
 
 }

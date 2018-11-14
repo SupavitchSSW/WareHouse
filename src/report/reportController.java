@@ -1,6 +1,7 @@
 package report;
 
 
+import connectionDB.serviceDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -15,6 +16,7 @@ import sample.Controller;
 import sample.PageController;
 import sample.Product;
 import report.reportMainController;
+import sample.Transaction;
 import user.User;
 
 
@@ -23,6 +25,7 @@ import java.util.Optional;
 
 public class reportController implements Controller {
     PageController pageController;
+    serviceDB database;
     private TableView reportTable;
     private Report report;
     private ObservableList<Product> reports = getOrder();
@@ -40,9 +43,11 @@ public class reportController implements Controller {
         return reports;
     }
 
-    public reportController(PageController pageController,User currentUser) {
+
+    public reportController(PageController pageController,User currentUser,serviceDB database) {
         this.pageController = pageController;
         this.currentUser = currentUser;
+        this.database = database;
     }
 
     public void initilize() {
@@ -63,22 +68,22 @@ public class reportController implements Controller {
 
         reportTable = (TableView) scene.lookup("#report");
 //yah
-        TableColumn<Product, Integer> idCol = new TableColumn("ID");
+        TableColumn<Transaction, Integer> idCol = new TableColumn("ID");
         idCol.setMinWidth(100);
         idCol.setCellValueFactory(
                 new PropertyValueFactory<>("id"));
 
-        TableColumn<Product, String> nameCol = new TableColumn("Name");
+        TableColumn<Transaction, String> nameCol = new TableColumn("Name");
         nameCol.setMinWidth(270);
         nameCol.setCellValueFactory(
                 new PropertyValueFactory<>("Name"));
 
-        TableColumn<Product, String> brandCol = new TableColumn("Brand");
+        TableColumn<Transaction, String> brandCol = new TableColumn("Brand");
         brandCol.setMinWidth(270);
         brandCol.setCellValueFactory(
                 new PropertyValueFactory<>("brand"));
 
-        TableColumn<Product, Double> quanCol = new TableColumn("Quantity");
+        TableColumn<Transaction, Double> quanCol = new TableColumn("Quantity");
         quanCol.setMinWidth(150);
         quanCol.setCellValueFactory(
                 new PropertyValueFactory<>("quantity"));

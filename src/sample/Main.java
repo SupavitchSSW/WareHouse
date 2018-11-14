@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 import ordermanagement.OrderDetailController;
 import ordermanagement.OrderListController;
 import productManagement.productListController;
+import report.Report;
+import transaction.Transaction;
 import user.*;
 import report.reportMainController;
 import report.reportController;
@@ -16,7 +18,8 @@ import javax.persistence.*;
 import connectionDB.*;
 import product.Product;
 import java.io.IOException;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 
 public class Main extends Application {
     public User currentUser = new User("","","","staff","","");
@@ -48,17 +51,22 @@ public class Main extends Application {
 
         //oak db
         serviceDB database = new serviceDB();
-//        List<Product> results = database.getAllProduct();
-//        database.createProduct("qwe","qee",23,20);
-//        database.createProduct("gtq","ggg",13,40);
-//        database.createProduct("ofp","hpn",56,50);
-//        database.createProduct("bnp","dfo",78,100);
-//        database.createProduct("vxs","hfp",77,29);
-//        database.createProduct("ipw","opd",90,48);
-////        s.setProductBrand(2,"luis");
-//        for (Product p : results) {
-//            System.out.println(p);
-//        }
+        //Calendar d = new GregorianCalendar();
+        //System.out.print(d.get(Calendar.MONTH));
+        List<Transaction> results = database.getMinMonthTransection();
+        System.out.println(results.get(0));
+
+
+
+        //List<Report> results = database.getAllTransactionInMonth();
+//        database.createTransaction(10,10,new Date(),"tafca");
+//        database.createTransaction(10,10,new Date(),"tafca");
+//        database.createTransaction(10,10,new Date(),"tafca");
+//        database.createTransaction(10,10,new Date(),"tafca");
+//        database.createTransaction(10,10,new Date(),"tafca");
+        //for (Report p : results) {
+        //    System.out.println(p);
+        //}
 //        database.closeConnection();
 
 
@@ -66,8 +74,8 @@ public class Main extends Application {
         OrderDetailController orderDetailController = new OrderDetailController(pageController,currentUser);
         OrderListController orderListController = new OrderListController(pageController, orderDetailController,currentUser);
         productListController productListController = new productListController(pageController, database,currentUser);
-        reportController reportController = new reportController(pageController,currentUser);
-        reportMainController reportMainController = new reportMainController(pageController, reportController,currentUser);
+        reportController reportController = new reportController(pageController,currentUser,database);
+        reportMainController reportMainController = new reportMainController(pageController, reportController,currentUser,database);
         LoginController loginController = new LoginController(pageController,currentUser);
         SignupController signupController = new SignupController(pageController,currentUser);
         UserController userController = new UserController(pageController,currentUser);
@@ -88,7 +96,7 @@ public class Main extends Application {
 
         //start page
         primaryStage.setTitle("WareHouse");
-        pageController.active("login");
+        pageController.active("productList");
 
 
     }

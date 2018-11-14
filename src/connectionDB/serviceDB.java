@@ -121,14 +121,22 @@ public class serviceDB {
            Transaction p1 = new Transaction(productId,  changedQuantity,  date, type);
            em.persist(p1);
            em.getTransaction().commit();
-
     }
-    public List<Transaction> getAllTransactionInMonth(int month){
-           String sql = "SELECT c FROM Transaction c Where c.date.getMonth() =" + month +"";
+    public List<Transaction> getAllTransactionInMonth(int month, int year){
+           String sql = "SELECT c FROM Transaction c Where c.date.getMonth() =" + month +" AND c.date.getYear() =" + year +"";
            TypedQuery<Transaction> query = em.createQuery(sql, Transaction.class);
            List<Transaction> results = query.getResultList();
            return results;
     }
+
+    public List<Transaction> getMinMonthTransection(){
+           String sql = "SELECT MIN(c.date.getTime()) FROM Transaction c";
+           TypedQuery<Transaction> query = em.createQuery(sql, Transaction.class);
+           List<Transaction> results = query.getResultList();
+           return results;
+    }
+
+
     public User authen(String username , String password){
            String sql = "SELECT c FROM User c Where c.username LIKE '"+ username +"' AND c.password LIKE '"+ password +"'";
            TypedQuery<User> query = em.createQuery(sql, User.class);
@@ -164,6 +172,8 @@ public class serviceDB {
         List<User> results = query.getResultList();
         return results.get(0);
     }
+
+
     public void setUserName(int id,String username){
         String sql = "SELECT c FROM User c Where c.id =" + id +"";
         TypedQuery<User> query = em.createQuery(sql, User.class);

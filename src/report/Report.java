@@ -8,8 +8,7 @@ import java.util.Date;
 
 public class Report {
 
-    private int productId;
-    private String dateMonth;
+    private int productId, month,year;
     private Date date;
     private ObservableList<Transaction> transactions = FXCollections.observableArrayList();
 
@@ -18,21 +17,31 @@ public class Report {
         this.productId = productId;
     }
 
-    public Report(String dateMonth) {
-        this.dateMonth = dateMonth;
-
+    public Report(int month,int year) {
+        this.month = month;
+        this.year = year;
     }
+
+
 
     public ObservableList<Transaction> getTransactions() {
         return transactions;
     }
 
-    public String getDateMonth() {
-        return dateMonth;
+    public int getMonth() {
+        return month;
     }
 
-    public void setDate(String dateMonth) {
-        this.dateMonth = dateMonth;
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 
     public Date getDate() {
