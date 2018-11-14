@@ -274,20 +274,20 @@ public class OrderDetailController implements Controller {
         status_TextField.setText(order.getStatus());
 
         //check order status
-        if(order.getStatus().equals("waiting") || !currentUser.getRole().equals("Staff")){
-            System.out.println("status = waiting");
-            sendQuantityColumn.setEditable(true);
-            approve_btn.setDisable(false);
-            reject_btn.setDisable(false);
-            summaryBt.setDisable(false);
-            userSearchBt.setDisable(false);
-        }else{
+        if(currentUser.getRole().equals("Staff") || !order.getStatus().equals("waiting")){
             System.out.println("status = "+order.getStatus());
             sendQuantityColumn.setEditable(false);
             approve_btn.setDisable(true);
             reject_btn.setDisable(true);
             summaryBt.setDisable(true);
             userSearchBt.setDisable(true);
+        }else{
+            System.out.println("status = "+order.getStatus());
+            sendQuantityColumn.setEditable(true);
+            approve_btn.setDisable(false);
+            reject_btn.setDisable(false);
+            summaryBt.setDisable(false);
+            userSearchBt.setDisable(false);
         }
 
         getOrderProductList();

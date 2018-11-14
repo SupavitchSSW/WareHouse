@@ -128,7 +128,9 @@ public class reportMainController implements Controller {
             Date maxDate = new Date();
 
             for(;minDate.getTime() <=  maxDate.getTime();){
-                my.add(new MonthYear(minDate.getMonth(),minDate.getYear()));
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(minDate);
+                my.add(new MonthYear(cal.get(Calendar.MONTH)+1,cal.get(Calendar.YEAR)));
                 minDate.setMonth(minDate.getMonth()+1);
             }
         }

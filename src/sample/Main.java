@@ -106,8 +106,6 @@ public class Main extends Application {
         System.out.println(cal.get(Calendar.YEAR));
         System.out.println(cal.get(Calendar.MONTH));
         System.out.println(cal.get(Calendar.DATE));
-        System.out.println(cal.get(Calendar.HOUR_OF_DAY));
-        System.out.println(cal.get(Calendar.MINUTE));
     }
 
     public static void main(String[] args) {

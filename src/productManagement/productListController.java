@@ -319,6 +319,7 @@ public class productListController implements Controller {
 
     @Override
     public void onActive() {
+        System.out.println(currentUser);
         if (currentUser.getRole().equals("Manager")) {
             summaryBt.setDisable(false);
             userSearchBt.setDisable(false);

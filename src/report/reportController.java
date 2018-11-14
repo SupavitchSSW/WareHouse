@@ -12,7 +12,7 @@ import javafx.scene.input.MouseEvent;
 import sample.Controller;
 import sample.PageController;
 import sample.Product;
-import sample.Transaction;
+import transaction.Transaction;
 import user.User;
 import javax.persistence.*;
 
@@ -24,7 +24,7 @@ public class reportController implements Controller {
     serviceDB database;
     private TableView reportTable;
     private Report report;
-    private ObservableList<transaction.Transaction> reports = getAllTransactionInMonth(6);
+    private ObservableList<transaction.Transaction> reports = FXCollections.observableArrayList();
     private ObservableList<Transaction> subEntries;
     private User currentUser;
 
@@ -32,20 +32,6 @@ public class reportController implements Controller {
         this.pageController = pageController;
         this.database = database;
         this.currentUser = currentUser;
-    }
-
-    public ObservableList<transaction.Transaction> getAllTransactionInMonth(int month){
-//        database.createProduct("s","s",23,12);
-//        database.createTransaction(1,2,new Date(),"dfd");
-//        List<transaction.Transaction> t = database.getAllTransactionInMonth(10);
-//        for (transaction.Transaction x:t){
-//            System.out.println(x);
-//        }
-//        List<transaction.Transaction> b = database.getAllTransactionInMonth(11);
-        ObservableList<transaction.Transaction> reports = FXCollections.observableArrayList();
-        reports.add(new transaction.Transaction(1,1,new Date(),"ee"));
-
-        return reports;
     }
 
     public void initilize() {
@@ -121,6 +107,13 @@ public class reportController implements Controller {
     }
 
     public void onActive() {
+        List<Transaction> transactions = database.getAllTransactionInMonth(10);
+        for(Transaction t : transactions){
+            System.out.println(t.toString());
+            reports.add(new Transaction(t.getProductId(),t.getChangedQuantity(),t.getDate(),t.getType()));
+        }
+
+
         reportTable.setItems(reports);
     }
 
