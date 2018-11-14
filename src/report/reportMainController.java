@@ -30,13 +30,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-class monthYear{
-    private int month,year;
-    public monthYear(int month, int year) {
-        this.month = month;
-        this.year = year;
-    }
-}
+
 
 public class reportMainController implements Controller {
     serviceDB database;
@@ -44,9 +38,9 @@ public class reportMainController implements Controller {
     private TableView reportTable;
     reportController reportController;
     private ObservableList<Report> reports;
-    private ObservableList<monthYear> MY;
     private ObservableList<Report> subEntries;
     private User currentUser;
+    private ObservableList<MonthYear> monthYears;
 
     private Product selectedProduct;
     private int index;
@@ -55,26 +49,8 @@ public class reportMainController implements Controller {
         this.pageController = pageController;
         this.reportController = reportController;
         this.currentUser = currentUser;
+        this.database = database;
     }
-
-
-    public void setMY(){
-        //static
-        System.out.println("wtf");
-        MY.add(new monthYear(1,2000));
-        MY.add(new monthYear(2,2000));
-        MY.add(new monthYear(3,2000));
-        MY.add(new monthYear(4,2000));
-        MY.add(new monthYear(5,2000));
-        MY.add(new monthYear(6,2000));
-    }
-    public ObservableList<Report> getOrder() {
-        reports = FXCollections.observableArrayList();
-        reports.add(new Report(new Date(),1));
-        reports.add(new Report(new Date(),2));
-        return reports;
-    }
-
 
     public void initilize() {
         Scene scene = pageController.getScene("reportMain");
@@ -87,17 +63,11 @@ public class reportMainController implements Controller {
         TextField searchBox = (TextField) scene.lookup("#searchBox");
 
 
-//        searchBox.setPromptText("Search");
-//        searchBox.textProperty().addListener((observable, oldVal, newVal) -> {
-//            handleSearchByKey((String) oldVal, (String) newVal);
-//        });
-
         reportTable = (TableView) scene.lookup("#reportMain");
-        TableColumn<monthYear, Integer> yearCol = new TableColumn("Year");
-        TableColumn<monthYear, Integer> monthCol = new TableColumn("Month");
-        //dateCol.setMinWidth(270);
-        yearCol.setCellValueFactory( new PropertyValueFactory<monthYear,Integer>("year"));
-        monthCol.setCellValueFactory( new PropertyValueFactory<monthYear,Integer>("month"));
+        TableColumn<MonthYear, Integer> yearCol = new TableColumn("Year");
+        TableColumn<MonthYear, Integer> monthCol = new TableColumn("Month");
+        yearCol.setCellValueFactory( new PropertyValueFactory<>("year"));
+        monthCol.setCellValueFactory( new PropertyValueFactory<>("month"));
         reportTable.getColumns().addAll(yearCol,monthCol);
 
 
@@ -145,8 +115,21 @@ public class reportMainController implements Controller {
 
 
     public void onActive() {
-        reportTable.setItems(reports);
-        setMY();
+        ObservableList<MonthYear> my = getMY();
+        reportTable.setItems(my);
+
+    }
+
+    public ObservableList<MonthYear> getMY(){
+        ObservableList<MonthYear> my = FXCollections.observableArrayList();
+//        List<Transaction> results  = database.getMinMonthTransection();
+//        System.out.println(results.get(0));
+
+
+        my.add(new MonthYear(1,2000));
+        my.add(new MonthYear(2,2020));
+        my.add(new MonthYear(3,2030));
+        return my;
     }
 
 
