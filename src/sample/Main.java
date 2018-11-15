@@ -62,10 +62,10 @@ public class Main extends Application {
         database.addOrderproduct(2,3,"qwe","qee",100);
         database.addOrderproduct(2,9,"qwe","qee",50);*/
 
-//        List<Transaction> results = database.getAllTransactionInMonth(11,2018);
-//        database.createTransaction(1,1,new Date(),"asdfghj");
-//        database.createTransaction(1,1,new Date(),"asdfghj");
-//        database.createTransaction(1,1,new Date(),"asdfghj");
+        List<Transaction> results = database.getAllTransactionInMonth(11,2018);
+        database.createTransaction(1,1,new Date(),"asdfghj");
+        database.createTransaction(1,1,new Date(),"asdfghj");
+        database.createTransaction(1,1,new Date(),"asdfghj");
 //        s.setProductBrand(2,"luis");
 
 //        database.closeConnection();

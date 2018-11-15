@@ -46,30 +46,30 @@ public class reportController implements Controller {
         TextField searchBox = (TextField) scene.lookup("#searchBox");
 
 
-//        searchBox.setPromptText("Search");
-//        searchBox.textProperty().addListener((observable, oldVal, newVal) -> {
-//            handleSearchByKey((String) oldVal, (String) newVal);
-//        });
+        searchBox.setPromptText("Search");
+        searchBox.textProperty().addListener((observable, oldVal, newVal) -> {
+            handleSearchByKey((String) oldVal, (String) newVal);
+        });
 
         reportTable = (TableView) scene.lookup("#report");
 //yah
         TableColumn<Transaction, Integer> idCol = new TableColumn("Product ID");
-        idCol.setMinWidth(100);
+        idCol.setMinWidth(160);
         idCol.setCellValueFactory(
                 new PropertyValueFactory<>("productId"));
 
         TableColumn<Transaction, Integer> nameCol = new TableColumn("Changed Quantity");
-        nameCol.setMinWidth(270);
+        nameCol.setMinWidth(200);
         nameCol.setCellValueFactory(
                 new PropertyValueFactory<>("changedQuantity"));
 
         TableColumn<Transaction, Date> brandCol = new TableColumn("Date");
-        brandCol.setMinWidth(270);
+        brandCol.setMinWidth(280);
         brandCol.setCellValueFactory(
                 new PropertyValueFactory<>("date"));
 
         TableColumn<Transaction, String> quanCol = new TableColumn("Type");
-        quanCol.setMinWidth(150);
+        quanCol.setMinWidth(170);
         quanCol.setCellValueFactory(
                 new PropertyValueFactory<>("type"));
 
@@ -119,31 +119,31 @@ public class reportController implements Controller {
     }
 
 
-//    public void handleSearchByKey(String oldValue, String newValue) {
-//        if ( oldValue != null && (newValue.length() < oldValue.length()) ) {
-//            reportTable.setItems(reports);
-//        }
-//
-//        String[] parts = newValue.toUpperCase().split(" ");
-//
-//        subEntries = FXCollections.observableArrayList();
-//        for ( Object entry: reportTable.getItems() ) {
-//            boolean match = true;
-//            Product entryP = (Product) entry;
-//            String detailEntryP = entryP.getId()+entryP.getName().toUpperCase()+entryP.getBrand().toUpperCase();
-//            for ( String part: parts ) {
-//                if ( ! detailEntryP.contains(part) ) {
-//                    match = false;
-//                    break;
-//                }
-//            }
-//
-//            if ( match ) {
-//                subEntries.add(entryP);
-//            }
-//        }
-//        reportTable.setItems(subEntries);
-//    }
+    public void handleSearchByKey(String oldValue, String newValue) {
+        if ( oldValue != null && (newValue.length() < oldValue.length()) ) {
+            reportTable.setItems(reports);
+        }
+
+        String[] parts = newValue.toUpperCase().split(" ");
+
+        subEntries = FXCollections.observableArrayList();
+        for ( Object entry: reportTable.getItems() ) {
+            boolean match = true;
+            Transaction entryP = (Transaction) entry;
+            String detailEntryP = entryP.getProductId()+entryP.getChangedQuantity()+""+entryP.getDate()+""+entryP.getType().toUpperCase();
+            for ( String part: parts ) {
+                if ( ! detailEntryP.contains(part) ) {
+                    match = false;
+                    break;
+                }
+            }
+
+            if ( match ) {
+                subEntries.add(entryP);
+            }
+        }
+        reportTable.setItems(subEntries);
+    }
     public Report getReport() {
         return report;
     }

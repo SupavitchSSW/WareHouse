@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -66,6 +67,8 @@ public class reportMainController implements Controller {
         reportTable = (TableView) scene.lookup("#reportMain");
         TableColumn<MonthYear, Integer> yearCol = new TableColumn("Year");
         TableColumn<MonthYear, Integer> monthCol = new TableColumn("Month");
+        yearCol.setMinWidth(150);
+        monthCol.setMinWidth(150);
         yearCol.setCellValueFactory( new PropertyValueFactory<>("year"));
         monthCol.setCellValueFactory( new PropertyValueFactory<>("month"));
         reportTable.getColumns().addAll(yearCol,monthCol);
