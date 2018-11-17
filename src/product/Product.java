@@ -1,5 +1,6 @@
 package product;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
@@ -7,8 +8,9 @@ public class Product implements Serializable{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private int quantity,cost=0,price=0;
+    private int quantity,cost=0,price=0,numEachPack=0;
     private String name,brand;
+    private List<Integer> idOfPallets;
 
     public Product(){
         this.quantity = 0;
@@ -31,6 +33,34 @@ public class Product implements Serializable{
         this.name = name;
         this.brand = brand;
         this.price = price;
+    }
+
+    public Product(int quantity, int price, int numEachPack, String name, String brand) {
+        this.quantity = quantity;
+        this.price = price;
+        this.numEachPack = numEachPack;
+        this.name = name;
+        this.brand = brand;
+    }
+
+    public void removePallet(int id){
+        this.idOfPallets.remove(id);
+    }
+
+    public void addPallet(int id){
+        this.idOfPallets.add(id);
+    }
+
+    public List<Integer> getIdOfPallets() {
+        return idOfPallets;
+    }
+
+    public int getNumEachPack() {
+        return numEachPack;
+    }
+
+    public void setNumEachPack(int numEachPack) {
+        this.numEachPack = numEachPack;
     }
 
     public int getId() {
