@@ -1,4 +1,6 @@
 package product;
+import sample.Pallet;
+
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
@@ -10,7 +12,7 @@ public class Product implements Serializable{
 
     private int quantity,cost=0,price=0,numEachPack=0;
     private String name,brand;
-    private List<Integer> idOfPallets;
+    private List<Pallet> pallets;
 
     public Product(){
         this.quantity = 0;
@@ -20,7 +22,17 @@ public class Product implements Serializable{
         this.price = 0;
     }
 
-    public Product( int quantity, String name, String brand) {
+
+
+    public List<Pallet> getPallets() {
+        return pallets;
+    }
+
+    public void addPallet(Pallet pallet) {
+        this.pallets.add(pallet);
+    }
+
+    public Product(int quantity, String name, String brand) {
 
         this.quantity = quantity;
         this.name = name;
