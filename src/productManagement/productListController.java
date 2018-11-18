@@ -268,7 +268,10 @@ public class productListController implements Controller {
                                 //                            products.add(new Product(++lastID, Integer.parseInt(productQuantity.getText()), productName.getText(), productBrand.getText(),Integer.parseInt(productPrice.getText())));
                                 Date date = new Date();
 
-                                database.createTransaction(selectedProduct.getId(), Integer.parseInt(productQuantity.getText()), date, "addProduct");
+                                // found ERROR!!
+
+                                List<Product> check = database.getAllProduct();
+                                database.createTransaction(check.get(check.size() - 1).getId(), Integer.parseInt(productQuantity.getText()), date, "addProduct");
                                 //                            System.out.println(new Transaction(lastID,Integer.parseInt(productQuantity.getText()),date,"addProduct").toString());
                                 products = getAllProduct();
                                 productListTable.setItems(products);

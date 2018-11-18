@@ -50,6 +50,8 @@ public class Main extends Application {
 
         //oak db
         serviceDB database = new serviceDB();
+//        database.createShelf(10,0);
+        database.addPallet(1,2,49,4,30);
 //        database.createTransaction(1,2,new Date(),"dfd");
 //        database.createTransaction(1,52,new Date(),"g");
 //        database.createTransaction(1,26,new Date(),"ewa");
@@ -98,6 +100,7 @@ public class Main extends Application {
         primaryStage.setTitle("WareHouse Management");
         pageController.active("reportMain");
 
+        
         //set database to OrderReadWrite
         OrderReadWrite.setDatabase(database);
 

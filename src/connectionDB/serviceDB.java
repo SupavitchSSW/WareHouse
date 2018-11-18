@@ -229,11 +229,20 @@ public class serviceDB {
         em.getTransaction().begin();
         em.persist(a);
         em.getTransaction().commit();
+
         em.getTransaction().begin();
         String sql = "SELECT c FROM Shelf c Where c.id =" + id_shelf +"";
         TypedQuery<Shelf> query = em.createQuery(sql, Shelf.class);
         List<Shelf> results = query.getResultList();
         results.get(0).addPallet(a);
         em.getTransaction().commit();
+
+        em.getTransaction().begin();
+        String sqlP = "SELECT c FROM Product c Where c.id =" + idProduct +"";
+        TypedQuery<Product> queryP = em.createQuery(sqlP, Product.class);
+        List<Product> resultsP = queryP.getResultList();
+        resultsP.get(0).addPallet(a);
+        em.getTransaction().commit();
     }
+//    public void removeShelf(int id )
 }
