@@ -1,13 +1,19 @@
 package sample;
-
+import java.io.Serializable;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Shelf {
-    private int id,size,numberOfPallet;
-    private List<Pallet> pallets;
+@Entity
+public class Shelf implements Serializable {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    public Shelf(int id, int size, int numberOfPallet) {
-        this.id = id;
+    private int size,numberOfPallet;
+    private List<Pallet> pallets = new ArrayList<Pallet>();
+
+    public Shelf(int size, int numberOfPallet) {
+
         this.size = size;
         this.numberOfPallet = numberOfPallet;
     }
@@ -29,9 +35,6 @@ public class Shelf {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getSize() {
         return size;
@@ -47,5 +50,15 @@ public class Shelf {
 
     public void setNumberOfPallet(int numberOfPallet) {
         this.numberOfPallet = numberOfPallet;
+    }
+
+    @Override
+    public String toString() {
+        return "Shelf{" +
+                "id=" + id +
+                ", size=" + size +
+                ", numberOfPallet=" + numberOfPallet +
+                ", pallets=" + pallets +
+                '}';
     }
 }

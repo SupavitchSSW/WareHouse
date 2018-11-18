@@ -1,22 +1,36 @@
 package sample;
+import java.io.Serializable;
+import javax.persistence.*;
 
-public class Pallet {
-    private int id,ShelfLocation,idProduct,quantityOfProduct,size;
+@Entity
+public class Pallet implements Serializable{
 
-    public Pallet(int id, int shelfLocation, int idProduct, int quantityOfProduct, int size) {
-        this.id = id;
-        ShelfLocation = shelfLocation;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private int ShelfLocation,idProduct,quantityOfProduct,size;
+
+    public Pallet(int shelfLocation, int idProduct, int quantityOfProduct, int size) {
+
+        this.ShelfLocation = shelfLocation;
         this.idProduct = idProduct;
         this.quantityOfProduct = quantityOfProduct;
         this.size = size;
     }
 
-    public int getId() {
-        return id;
+    @Override
+    public String toString() {
+        return "Pallet{" +
+                "id=" + id +
+                ", ShelfLocation=" + ShelfLocation +
+                ", idProduct=" + idProduct +
+                ", quantityOfProduct=" + quantityOfProduct +
+                ", size=" + size +
+                '}';
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getId() {
+        return id;
     }
 
     public int getShelfLocation() {
