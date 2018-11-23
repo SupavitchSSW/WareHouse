@@ -21,7 +21,7 @@ import user.User;
 import java.io.IOException;
 
 
-public class OrderListController implements Controller {
+public class OrderListUI implements Controller {
     PageController pageController;
     OrderDetailController orderDetailController;
     private ObservableList<Order> orders;
@@ -30,7 +30,7 @@ public class OrderListController implements Controller {
     private serviceDB database;
     private Button updateBt,productListBt,userSearchBt,summaryBt;
 
-    public OrderListController(PageController pageController,serviceDB database, OrderDetailController orderDetailController,User currentUser) {
+    public OrderListUI(PageController pageController, serviceDB database, OrderDetailController orderDetailController, User currentUser) {
         this.currentUser = currentUser;
         this.pageController = pageController;
         this.orderDetailController = orderDetailController;

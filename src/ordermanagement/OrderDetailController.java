@@ -181,7 +181,7 @@ public class OrderDetailController implements Controller {
 
                     //create transaction
                     Date date = new Date();
-                    for ( Object entry: detail_table.getItems() ) {
+                    for ( Object entry: detail_table.getItems()){
                         OrderProduct orderProduct = (OrderProduct) entry;
                         database.createTransaction(orderProduct.getProductId(),orderProduct.getSendQuantity()*-1,date,"approveOrder");
                     }
@@ -193,7 +193,7 @@ public class OrderDetailController implements Controller {
                         e.printStackTrace();
                     }
 
-                    //update product quntity
+                    //update product quantity
                     List<OrderProduct> orderProducts = order.getOrderProducts();
                     for(OrderProduct o : orderProducts){
                         database.setProductQuantity(o.getProductId(),o.getQuantity()-o.getSendQuantity());

@@ -5,21 +5,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import ordermanagement.Order;
 import ordermanagement.OrderDetailController;
-import ordermanagement.OrderListController;
+import ordermanagement.OrderListUI;
 import productManagement.productListController;
-import report.Report;
 import transaction.Transaction;
 import user.*;
 import report.reportMainController;
 import report.reportController;
 
-import javax.persistence.*;
 import connectionDB.*;
-import product.Product;
+
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.*;
 
 public class Main extends Application {
@@ -51,7 +47,7 @@ public class Main extends Application {
         //oak db
         serviceDB database = new serviceDB();
 //        database.createShelf(10,0);
-        database.addPallet(1,2,49,4,30);
+//        database.addPallet(1,2,49,4,30);
 //        database.createTransaction(1,2,new Date(),"dfd");
 //        database.createTransaction(1,52,new Date(),"g");
 //        database.createTransaction(1,26,new Date(),"ewa");
@@ -75,7 +71,7 @@ public class Main extends Application {
 
         // >>>>>>> add controller class here <<<<<<
         OrderDetailController orderDetailController = new OrderDetailController(pageController,database,currentUser);
-        OrderListController orderListController = new OrderListController(pageController,database, orderDetailController,currentUser);
+        OrderListUI orderListUI = new OrderListUI(pageController,database, orderDetailController,currentUser);
         productListController productListController = new productListController(pageController, database,currentUser);
         reportController reportController = new reportController(pageController,database,currentUser);
         reportMainController reportMainController = new reportMainController(pageController, reportController,currentUser,database);
@@ -86,7 +82,7 @@ public class Main extends Application {
 
 
         // >>>>>>>> add page to pageController <<<<<<<<
-        pageController.addPage("orderList", orderListPane, orderListController);
+        pageController.addPage("orderList", orderListPane, orderListUI);
         pageController.addPage("orderDetail", orderDetailPane, orderDetailController);
         pageController.addPage("productList", productListPane, productListController);
         pageController.addPage("reportMain", reportMainPane, reportMainController);

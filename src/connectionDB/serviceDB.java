@@ -24,7 +24,7 @@ public class serviceDB {
         em.persist(p1);
         em.getTransaction().commit();
     }
-    public List<Product> getAllProduct() {
+    public List<Product> getAllProduct(){
         TypedQuery<Product> query = em.createQuery("SELECT p FROM Product p", Product.class);
         List<Product> results = query.getResultList();
         return results;
@@ -74,6 +74,7 @@ public class serviceDB {
         results.get(0).setBrand(value);
         em.getTransaction().commit();
     }
+
     public int createOrder(String name, String owner){
         em.getTransaction().begin();
         Order o = new Order(name,owner);
@@ -100,7 +101,6 @@ public class serviceDB {
           em.getTransaction().begin();
           results.get(0).setStatus(status);
           em.getTransaction().commit();
-
     }
     public void addOrderproduct(int id_order,int productId, String name, String brand, int orderQuantit){
           OrderProduct a = new OrderProduct(productId,name,brand,orderQuantit);
@@ -218,6 +218,7 @@ public class serviceDB {
         results.get(0).setPhoneNumber(number);
         em.getTransaction().commit();
     }
+
     public void createShelf(int size, int numberOfPallet){
         em.getTransaction().begin();
         Shelf o = new Shelf(size,numberOfPallet);

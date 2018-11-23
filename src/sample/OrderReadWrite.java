@@ -169,7 +169,7 @@ public class OrderReadWrite {
         return database;
     }
 
-    public static void setDatabase(serviceDB database) {
+    public static void setDatabase(connectionDB.serviceDB database) {
         OrderReadWrite.database = database;
     }
 }
