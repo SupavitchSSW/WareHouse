@@ -5,7 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import ordermanagement.OrderDetailController;
+import ordermanagement.OrderController;
+import ordermanagement.OrderDetailUI;
 import ordermanagement.OrderListUI;
 import productManagement.productListController;
 import transaction.Transaction;
@@ -23,6 +24,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+
         // >>>>>>> add your fxml here <<<<<
         Pane orderListPane = FXMLLoader.load(getClass().getResource("../ordermanagement/orderList.fxml"));
         Pane orderDetailPane = FXMLLoader.load(getClass().getResource("../ordermanagement/orderDetail.fxml"));
@@ -40,9 +42,10 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
+
+
         //create pageController obj
         PageController pageController = new PageController(scene);
-
 
         //oak db
         serviceDB database = new serviceDB();
@@ -68,10 +71,12 @@ public class Main extends Application {
 
 //        database.closeConnection();
 
+        // create controller class
+        OrderController orderController = new OrderController(database,currentUser);
 
         // >>>>>>> add controller class here <<<<<<
-        OrderDetailController orderDetailController = new OrderDetailController(pageController,database,currentUser);
-        OrderListUI orderListUI = new OrderListUI(pageController,database, orderDetailController,currentUser);
+        OrderDetailUI orderDetailUI = new OrderDetailUI(pageController,orderController);
+        OrderListUI orderListUI = new OrderListUI(pageController,orderController);
         productListController productListController = new productListController(pageController, database,currentUser);
         reportController reportController = new reportController(pageController,database,currentUser);
         reportMainController reportMainController = new reportMainController(pageController, reportController,currentUser,database);
@@ -80,10 +85,9 @@ public class Main extends Application {
         UserController userController = new UserController(pageController,database,currentUser);
         ProfileController profileController = new ProfileController(pageController, database,currentUser);
 
-
         // >>>>>>>> add page to pageController <<<<<<<<
         pageController.addPage("orderList", orderListPane, orderListUI);
-        pageController.addPage("orderDetail", orderDetailPane, orderDetailController);
+        pageController.addPage("orderDetail", orderDetailPane, orderDetailUI);
         pageController.addPage("productList", productListPane, productListController);
         pageController.addPage("reportMain", reportMainPane, reportMainController);
         pageController.addPage("report", reportPane, reportController);

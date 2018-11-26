@@ -79,7 +79,6 @@ public class PageController {
             page.setInit(true);
         }
         page.onActive();
-
     }
 
     public Scene getScene(String name){

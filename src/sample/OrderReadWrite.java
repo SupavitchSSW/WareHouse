@@ -23,22 +23,6 @@ public class OrderReadWrite {
     public OrderReadWrite() {
     }
 
-    public static void run(){
-        System.out.println("OrderReadWrite online ...");
-
-        try {
-            writeProductList();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            readOrder();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public static void writeProductList() throws IOException {
         ObservableList<product.Product> products = getProducts();
         JSONObject obj = new JSONObject();

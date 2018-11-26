@@ -11,30 +11,22 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import ordermanagement.Order;
-import ordermanagement.OrderDetailController;
 import sample.Controller;
-import sample.OrderReadWrite;
 import sample.PageController;
-import user.User;
 
 import java.io.IOException;
 
 
 public class OrderListUI implements Controller {
     PageController pageController;
-    OrderDetailController orderDetailController;
     private ObservableList<Order> orders;
     private TableView order_table;
-    private User currentUser;
-    private serviceDB database;
     private Button updateBt,productListBt,userSearchBt,summaryBt;
+    private OrderController orderController;
 
-    public OrderListUI(PageController pageController, serviceDB database, OrderDetailController orderDetailController, User currentUser) {
-        this.currentUser = currentUser;
+    public OrderListUI(PageController pageController, OrderController orderController) {
         this.pageController = pageController;
-        this.orderDetailController = orderDetailController;
-        this.database = database;
+        this.orderController = orderController;
     }
 
 
@@ -113,7 +105,7 @@ public class OrderListUI implements Controller {
                 Order o = (Order) order_table.getSelectionModel().getSelectedItem();
                 if (o != null) {
                     //change page
-                    orderDetailController.setOrder(o);
+                    orderController.setSelectOrder(o);
                     pageController.active("orderDetail");
                 }
             }
@@ -124,7 +116,7 @@ public class OrderListUI implements Controller {
             public void handle(MouseEvent event) {
                 System.out.println("read order file");
                 try {
-                    OrderReadWrite.readOrder();
+                    orderController.readOrder();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -137,11 +129,10 @@ public class OrderListUI implements Controller {
             public void handle(MouseEvent event) {
                 System.out.println("write product list");
                 try {
-                    OrderReadWrite.writeProductList();
+                    orderController.writeProductList();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
         });
 
@@ -176,10 +167,10 @@ public class OrderListUI implements Controller {
 
     @Override
     public void onActive() {
-        orders = getOrder();
+        orders = orderController.getAllOrder();
         order_table.setItems(orders);
         order_table.refresh();
-        if(currentUser.getRole().equals("Staff")){
+        if(orderController.getCurrentUser().getRole().equals("Staff")){
             updateBt.setDisable(true);
             productListBt.setDisable(true);
             summaryBt.setDisable(true);
@@ -190,10 +181,5 @@ public class OrderListUI implements Controller {
             summaryBt.setDisable(false);
             userSearchBt.setDisable(false);
         }
-    }
-
-    public ObservableList<Order> getOrder() {
-        ObservableList<Order> orders = FXCollections.observableArrayList(database.getAllOrder());
-        return orders;
     }
 }
