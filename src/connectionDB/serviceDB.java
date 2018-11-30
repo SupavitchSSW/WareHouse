@@ -3,8 +3,8 @@ package connectionDB;
 import product.Product;
 import ordermanagement.OrderProduct;
 import ordermanagement.Order;
-import sample.Pallet;
-import sample.Shelf;
+import product.Pallet;
+import product.Shelf;
 import transaction.Transaction;
 import user.User;
 import java.util.*;
@@ -20,7 +20,8 @@ public class serviceDB {
     }
     public void createProduct(String name, String brand , int price , int quantity){
         em.getTransaction().begin();
-        Product p1 = new Product(name,brand,price,quantity);
+//        int productId, int quantity, int price, int amountInPack, int packCapacity, String name, String brand
+        Product p1 = new Product(0,quantity,price,0, 0, name, brand);
         em.persist(p1);
         em.getTransaction().commit();
     }
@@ -219,31 +220,31 @@ public class serviceDB {
         em.getTransaction().commit();
     }
 
-    public void createShelf(int size, int numberOfPallet){
-        em.getTransaction().begin();
-        Shelf o = new Shelf(size,numberOfPallet);
-        em.persist(o);
-        em.getTransaction().commit();
-    }
-    public void addPallet(int id_shelf , int shelfLocation, int idProduct, int quantityOfProduct, int size){
-        Pallet a = new Pallet(shelfLocation,idProduct,quantityOfProduct,size);
-        em.getTransaction().begin();
-        em.persist(a);
-        em.getTransaction().commit();
-
-        em.getTransaction().begin();
-        String sql = "SELECT c FROM Shelf c Where c.id =" + id_shelf +"";
-        TypedQuery<Shelf> query = em.createQuery(sql, Shelf.class);
-        List<Shelf> results = query.getResultList();
-        results.get(0).addPallet(a);
-        em.getTransaction().commit();
-
-        em.getTransaction().begin();
-        String sqlP = "SELECT c FROM Product c Where c.id =" + idProduct +"";
-        TypedQuery<Product> queryP = em.createQuery(sqlP, Product.class);
-        List<Product> resultsP = queryP.getResultList();
-//        resultsP.get(0).addPallet(a);
-        em.getTransaction().commit();
-    }
+//    public void createShelf(int size, int numberOfPallet){
+//        em.getTransaction().begin();
+//        Shelf o = new Shelf(size,numberOfPallet);
+//        em.persist(o);
+//        em.getTransaction().commit();
+//    }
+//    public void addPallet(int id_shelf , int shelfLocation, int idProduct, int quantityOfProduct, int size){
+//        Pallet a = new Pallet(shelfLocation,idProduct,quantityOfProduct,size);
+//        em.getTransaction().begin();
+//        em.persist(a);
+//        em.getTransaction().commit();
+//
+//        em.getTransaction().begin();
+//        String sql = "SELECT c FROM Shelf c Where c.id =" + id_shelf +"";
+//        TypedQuery<Shelf> query = em.createQuery(sql, Shelf.class);
+//        List<Shelf> results = query.getResultList();
+//        results.get(0).addPallet(a);
+//        em.getTransaction().commit();
+//
+//        em.getTransaction().begin();
+//        String sqlP = "SELECT c FROM Product c Where c.id =" + idProduct +"";
+//        TypedQuery<Product> queryP = em.createQuery(sqlP, Product.class);
+//        List<Product> resultsP = queryP.getResultList();
+////        resultsP.get(0).addPallet(a);
+//        em.getTransaction().commit();
+//    }
 //    public void removeShelf(int id )
 }
