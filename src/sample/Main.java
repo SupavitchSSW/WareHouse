@@ -86,10 +86,10 @@ public class Main extends Application {
         ProductUI ProductUI = new ProductUI(pageController, productController);
         reportController reportController = new reportController(pageController,database,currentUser);
         reportMainController reportMainController = new reportMainController(pageController, reportController,currentUser,database);
-        LoginUI loginUI = new LoginUI(productController,pageController,database);
-        SignUpUI signUpUI = new SignUpUI(productController,pageController,database);
-        UserSearchUI userSearchUI = new UserSearchUI(productController,pageController,database);
-        ProfileUI profileUI = new ProfileUI(productController,pageController, database);
+        LoginUI loginUI = new LoginUI(userController,pageController);
+        SignUpUI signUpUI = new SignUpUI(userController,pageController);
+        UserSearchUI userSearchUI = new UserSearchUI(userController,pageController);
+        ProfileUI profileUI = new ProfileUI(userController,pageController);
 
         // >>>>>>>> add page to pageController <<<<<<<<
         pageController.addPage("orderList", orderListPane, orderListUI);
@@ -97,10 +97,10 @@ public class Main extends Application {
         pageController.addPage("productList", productListPane, ProductUI);
         pageController.addPage("reportMain", reportMainPane, reportMainController);
         pageController.addPage("report", reportPane, reportController);
-        pageController.addPage("login", loginPane, loginController);
-        pageController.addPage("signup", signupPane, signupController);
-        pageController.addPage("user", userPane, userController);
-        pageController.addPage("profile", profilePane, profileController);
+        pageController.addPage("login", loginPane, loginUI);
+        pageController.addPage("signup", signupPane, signUpUI);
+        pageController.addPage("user", userPane, userSearchUI);
+        pageController.addPage("profile", profilePane, profileUI);
 
         //start page
         primaryStage.setTitle("WareHouse Management");

@@ -13,15 +13,11 @@ public class LoginUI implements Controller {
     //String user = "test";
     //String pw = "1234";
     String checkUser, checkPw;
-    User currentUser;
-    serviceDB database;
     private TextField username;
     private PasswordField password;
     private UserController userController;
 
-    public LoginUI(UserController userController,PageController pageController, serviceDB database, User currentUser) {
-        this.database = database;
-        this.currentUser = currentUser;
+    public LoginUI(UserController userController,PageController pageController) {
         this.pageController = pageController;
         this.userController = userController;
     }

@@ -11,15 +11,13 @@ import javafx.scene.control.ChoiceBox;
 import sample.Controller;
 import sample.PageController;
 
-public class SignupController implements Controller {
+public class SignUpUI implements Controller {
     PageController pageController;
-    private User currentUser;
-    private serviceDB database;
+    private UserController userController;
 
-    public SignupController(PageController pageController, serviceDB database,User currentUser) {
-        this.currentUser = currentUser;
+    public SignUpUI(UserController userController,PageController pageController) {
+        this.userController = userController;
         this.pageController = pageController;
-        this.database = database;
     }
 
     @Override
@@ -50,7 +48,7 @@ public class SignupController implements Controller {
                 }
                 else{
                     //System.out.println(rolesel.getItems());
-                    database.createUser(username.getText(), password.getText(), rolesel.getValue().toString(), firstname.getText(), surname.getText(), phonenum.getText());
+                    userController.signup(username.getText(), password.getText(), rolesel.getValue().toString(), firstname.getText(), surname.getText(), phonenum.getText());
                     username.clear();
                     password.clear();
                     firstname.clear();
@@ -68,8 +66,6 @@ public class SignupController implements Controller {
                 pageController.active("login");
             }
         });
-
-
 
     }
 

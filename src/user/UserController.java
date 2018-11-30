@@ -35,11 +35,9 @@ public class UserController {
         }
     }
 
-        Button orderBt = (Button) scene.lookup("#orderButton");
-        Button userSearchBt = (Button) scene.lookup("#userSearchButton");
-        TextField searchBox = (TextField) scene.lookup("#searchBox");
+    public void signup(String username,String password,String rolesel,String firstname,String surname,String phonenum){
+//        (TODO) create staff in database
 
-
-
+    }
 
 }
