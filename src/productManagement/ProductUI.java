@@ -34,7 +34,7 @@ import javax.persistence.*;
 import connectionDB.*;
 import user.User;
 
-public class productListController implements Controller {
+public class ProductUI implements Controller {
     PageController pageController;
     serviceDB database;
     private TableView productListTable;
@@ -42,14 +42,13 @@ public class productListController implements Controller {
     private ObservableList<Product> subEntries;
     private Product selectedProduct;
     private int index, lastID;
-    private User currentUser;
+    private ProductController productController;
     private Button summaryBt,userSearchBt,addProductBt;
 
-    public productListController(PageController pageController, serviceDB database,User currentUser){
-        this.currentUser = currentUser;
-        this.database = database;
+    public ProductUI(PageController pageController, ProductController productController){
         this.pageController = pageController;
-        this.products = getAllProduct();
+        this.productController = productController;
+        this.products = this.productController.getAllProduct();
     }
 
     public void initilize(){
@@ -94,7 +93,7 @@ public class productListController implements Controller {
         productListTable.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent event) {
-                if (event.getClickCount() == 2 && currentUser.getRole().equals("Manager")) {
+                if (event.getClickCount() == 2) { //&& currentUser.getRole().equals("Manager")) {
                     index = productListTable.getSelectionModel().getSelectedIndex();
 
                     Dialog<ButtonType> propertyDialog = new Dialog<>();
@@ -175,14 +174,16 @@ public class productListController implements Controller {
                                 if (Integer.parseInt(quantity.getText()) != selectedProduct.getQuantity()) {
                                     int newQt = Integer.parseInt(quantity.getText());
                                     Date date = new Date();
-                                    database.createTransaction(selectedProduct.getId(),newQt-selectedProduct.getQuantity(),date,"editQuantity");
+                                    productController.createTransaction(selectedProduct.getId(),newQt-selectedProduct.getQuantity(),date,"editQuantity");
+//                                    database.createTransaction(selectedProduct.getId(),newQt-selectedProduct.getQuantity(),date,"editQuantity");
 //                                    System.out.println(new Transaction(selectedProduct.getId(),newQt-selectedProduct.getQuantity(),date,"editQuantity").toString());
                                 }
 //                                <<<<< edit Product >>>>>
-                                database.setProductName(selectedProduct.getId(),name.getText());
-                                database.setProductBrand(selectedProduct.getId(),brand.getText());
-                                database.setProductQuantity(selectedProduct.getId(),Integer.parseInt(quantity.getText()));
-                                database.setProductPrice(selectedProduct.getId(),Integer.parseInt(price.getText()));
+                                productController.changeProductDetail(selectedProduct.getId(),name.getText(),brand.getText(),Integer.parseInt(price.getText()),0,0);
+//                                database.setProductName(selectedProduct.getId(),name.getText());
+//                                database.setProductBrand(selectedProduct.getId(),brand.getText());
+//                                database.setProductQuantity(selectedProduct.getId(),Integer.parseInt(quantity.getText()));
+//                                database.setProductPrice(selectedProduct.getId(),Integer.parseInt(price.getText()));
 //                                selectedProduct.setName(name.getText());
 //                                selectedProduct.setBrand(brand.getText());
 //                                selectedProduct.setQuantity(quantity.getText());
@@ -197,15 +198,17 @@ public class productListController implements Controller {
                             Optional<ButtonType> result = alert.showAndWait();
                             if (result.get() == ButtonType.OK){
                                 if (productListTable.getItems() == subEntries) {
-                                    database.removeProduct(selectedProduct.getId());
+                                    productController.deleteProduct(selectedProduct.getId());
+//                                    database.removeProduct(selectedProduct.getId());
 //                                    products.remove(products.indexOf(subEntries.get(index)));
                                     searchBox.clear();
                                     productListTable.setItems(products);
                                 } else {
-                                    database.removeProduct(selectedProduct.getId());
+                                    productController.deleteProduct(selectedProduct.getId());
+//                                    database.removeProduct(selectedProduct.getId());
 //                                    products.remove(index);
                                 }
-                                products = getAllProduct();
+                                products = productController.getAllProduct();
                                 productListTable.setItems(products);
                                 productListTable.refresh();
                             }
@@ -217,7 +220,7 @@ public class productListController implements Controller {
         addProductBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if (currentUser.getRole().equals("Manager")) {
+//                if (currentUser.getRole().equals("Manager")) {
                     Dialog<ButtonType> addProductDialog = new Dialog<>();
                     addProductDialog.initStyle(StageStyle.UTILITY);
                     addProductDialog.setTitle("Add Product");
@@ -264,14 +267,16 @@ public class productListController implements Controller {
                                     searchBox.clear();
                                     productListTable.setItems(products);
                                 }
-                                database.createProduct(productName.getText(), productBrand.getText(), Integer.parseInt(productPrice.getText()), Integer.parseInt(productQuantity.getText()));
+                                productController.addNewProduct(productName.getText(), productBrand.getText(), Integer.parseInt(productPrice.getText()),0,0,0);
+//                                database.createProduct(productName.getText(), productBrand.getText(), Integer.parseInt(productPrice.getText()), Integer.parseInt(productQuantity.getText()));
                                 //                            products.add(new Product(++lastID, Integer.parseInt(productQuantity.getText()), productName.getText(), productBrand.getText(),Integer.parseInt(productPrice.getText())));
                                 Date date = new Date();
 
                                 // found ERROR!!
 
                                 List<Product> check = database.getAllProduct();
-                                database.createTransaction(check.get(check.size() - 1).getId(), Integer.parseInt(productQuantity.getText()), date, "addProduct");
+                                productController.createTransaction(check.get(check.size() - 1).getId(), Integer.parseInt(productQuantity.getText()), date, "addProduct");
+//                                database.createTransaction(check.get(check.size() - 1).getId(), Integer.parseInt(productQuantity.getText()), date, "addProduct");
                                 //                            System.out.println(new Transaction(lastID,Integer.parseInt(productQuantity.getText()),date,"addProduct").toString());
                                 products = getAllProduct();
                                 productListTable.setItems(products);
@@ -279,7 +284,7 @@ public class productListController implements Controller {
                             }
                         }
                     }
-                }
+//                }
             }
         });
 
@@ -310,7 +315,7 @@ public class productListController implements Controller {
         logoutBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                currentUser.clearUser();
+//                currentUser.clearUser();
                 pageController.active("login");
             }
         });
@@ -322,16 +327,16 @@ public class productListController implements Controller {
 
     @Override
     public void onActive() {
-        System.out.println(currentUser);
-        if (currentUser.getRole().equals("Manager")) {
+//        System.out.println(currentUser);
+//        if (currentUser.getRole().equals("Manager")) {
             summaryBt.setDisable(false);
             userSearchBt.setDisable(false);
             addProductBt.setDisable(false);
-        } else {
-            summaryBt.setDisable(true);
-            userSearchBt.setDisable(true);
-            addProductBt.setDisable(true);
-        }
+//        } else {
+//            summaryBt.setDisable(true);
+//            userSearchBt.setDisable(true);
+//            addProductBt.setDisable(true);
+//        }
         productListTable.setItems(products);
         productListTable.refresh();
     }

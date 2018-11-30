@@ -8,7 +8,8 @@ import javafx.stage.Stage;
 import ordermanagement.OrderController;
 import ordermanagement.OrderDetailUI;
 import ordermanagement.OrderListUI;
-import productManagement.productListController;
+import productManagement.ProductController;
+import productManagement.ProductUI;
 import transaction.Transaction;
 import user.*;
 import report.reportMainController;
@@ -49,6 +50,9 @@ public class Main extends Application {
 
         //oak db
         serviceDB database = new serviceDB();
+//        database.createOrder("test","reeeeeee");
+//        database.addOrderproduct(7,41,"k","p",8);
+//        database.addOrderproduct(7,61,"ki","pp",4);
 //        database.createShelf(10,0);
 //        database.addPallet(1,2,49,4,30);
 //        database.createTransaction(1,2,new Date(),"dfd");
@@ -73,11 +77,12 @@ public class Main extends Application {
 
         // create controller class
         OrderController orderController = new OrderController(database,currentUser);
+        ProductController productController = new ProductController(database);
 
         // >>>>>>> add controller class here <<<<<<
         OrderDetailUI orderDetailUI = new OrderDetailUI(pageController,orderController);
         OrderListUI orderListUI = new OrderListUI(pageController,orderController);
-        productListController productListController = new productListController(pageController, database,currentUser);
+        ProductUI ProductUI = new ProductUI(pageController, productController);
         reportController reportController = new reportController(pageController,database,currentUser);
         reportMainController reportMainController = new reportMainController(pageController, reportController,currentUser,database);
         LoginController loginController = new LoginController(pageController,database,currentUser);
@@ -88,7 +93,7 @@ public class Main extends Application {
         // >>>>>>>> add page to pageController <<<<<<<<
         pageController.addPage("orderList", orderListPane, orderListUI);
         pageController.addPage("orderDetail", orderDetailPane, orderDetailUI);
-        pageController.addPage("productList", productListPane, productListController);
+        pageController.addPage("productList", productListPane, ProductUI);
         pageController.addPage("reportMain", reportMainPane, reportMainController);
         pageController.addPage("report", reportPane, reportController);
         pageController.addPage("login", loginPane, loginController);
