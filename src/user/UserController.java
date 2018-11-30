@@ -40,4 +40,19 @@ public class UserController {
 
     }
 
+    public void changePassword(String password){
+
+    }
+
+    public void changeUserInfo(String name,String surname,String phonenumber){
+
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
 }

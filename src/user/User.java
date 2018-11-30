@@ -7,13 +7,12 @@ public class User implements Serializable{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String username,password,role,firstname,surname,phoneNumber;
+    private String username,password,firstname,surname,phoneNumber;
 
-    public User(String username, String password, String role, String firstname, String surname, String phoneNumber) {
+    public User(String username, String password,String firstname, String surname, String phoneNumber) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.role = role;
         this.firstname = firstname;
         this.surname = surname;
         this.phoneNumber = phoneNumber;
@@ -33,7 +32,6 @@ public class User implements Serializable{
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
                 ", firstname='" + firstname + '\'' +
                 ", surname='" + surname + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
@@ -44,7 +42,6 @@ public class User implements Serializable{
         this.id = 0;
         this.username = "";
         this.password = "";
-        this.role = "";
         this.firstname = "";
         this.surname = "";
         this.phoneNumber = "";
@@ -66,13 +63,6 @@ public class User implements Serializable{
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     public String getFirstname() {
         return firstname;

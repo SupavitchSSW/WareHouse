@@ -15,17 +15,15 @@ import java.util.Optional;
 
 public class ProfileUI implements Controller {
     PageController pageController;
-    User currentUser;
     TextField nameTF,surnameTF,roleTF,telTF;
     private boolean isEdit = false;
     private serviceDB database;
     private Button summaryBt,userSearchBt;
+    private UserController userController;
 
-    public ProfileUI(PageController pageController, serviceDB database, User currentUser) {
-        this.currentUser = currentUser;
+    public ProfileUI(UserController userController,PageController pageController) {
+        this.userController = userController;
         this.pageController = pageController;
-        this.database = database;
-        //currentUser = new User("field","naja","0836889001","staff","123456");
     }
 
     @Override
@@ -57,14 +55,7 @@ public class ProfileUI implements Controller {
                     isEdit = false;
                     editBtn.setText("Edit");
 
-                    database.setFirstname(currentUser.getId(),nameTF.getText());
-                    database.setSurname(currentUser.getId(),surnameTF.getText());
-                    database.setPhoneNumber(currentUser.getId() ,telTF.getText());
-
-                    currentUser.setFirstname(nameTF.getText());
-                    currentUser.setSurname(surnameTF.getText());
-                    currentUser.setPhoneNumber(telTF.getText());
-
+                    userController.changeUserInfo(nameTF.getText(),surnameTF.getText(),telTF.getText());
 
                     nameTF.setEditable(false);
                     surnameTF.setEditable(false);
@@ -110,7 +101,7 @@ public class ProfileUI implements Controller {
                     Optional<ButtonType> changePassResult = changePassDialog.showAndWait();
                     if (changePassResult.get() == confirmButtonType) {
                         if (newPass.getText().equals(cfNewPass.getText())) {
-                            database.setPassword(currentUser.getId(), newPass.getText());
+                            userController.changePassword(newPass.getText());
 
                         } else {
                             Alert alertError = new Alert(Alert.AlertType.ERROR);
@@ -157,22 +148,18 @@ public class ProfileUI implements Controller {
 
     @Override
     public void onActive() {
-        setProfile();
+        nameTF.setText(userController.getCurrentUser().getFirstname());
+        surnameTF.setText(userController.getCurrentUser().getSurname());
+        telTF.setText(userController.getCurrentUser().getPhoneNumber());
+        roleTF.setText(userController.getCurrentUser().getRole());
 
         //check permission
-        if(currentUser.getRole().equals("Staff")){
+        if(userController.getCurrentUser() instanceof Staff){
             summaryBt.setDisable(true);
             userSearchBt.setDisable(true);
         }else{
             summaryBt.setDisable(false);
             userSearchBt.setDisable(false);
         }
-    }
-
-    public void setProfile(){
-        nameTF.setText(currentUser.getFirstname());
-        surnameTF.setText(currentUser.getSurname());
-        telTF.setText(currentUser.getPhoneNumber());
-        roleTF.setText(currentUser.getRole());
     }
 }
