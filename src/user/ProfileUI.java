@@ -154,7 +154,7 @@ public class ProfileUI implements Controller {
         roleTF.setText(userController.getCurrentUser().getRole());
 
         //check permission
-        if(userController.getCurrentUser() instanceof Staff){
+        if(userController.getCurrentUser().getRole().equals("Staff")){
             summaryBt.setDisable(true);
             userSearchBt.setDisable(true);
         }else{

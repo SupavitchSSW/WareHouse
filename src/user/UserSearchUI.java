@@ -14,6 +14,7 @@ import javafx.stage.StageStyle;
 import sample.Controller;
 import sample.PageController;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,35 +25,13 @@ public class UserSearchUI implements Controller{
     private User user;
     private ObservableList<User> users;
     private ObservableList<User> subEntries;
-    private User selectUser,currentUser;
+    private User selectUser;
     private int index, lastID;
-    private serviceDB database;
+    private UserController userController;
 
-    public ObservableList<User> getAllUser(){
-        //users = FXCollections.observableArrayList();
-
-        List<User> results = userController.getAllUser();
-//        for(User u : results){
-//            System.out.println(u);
-//        }
-
-
-        ObservableList<User> users = FXCollections.observableArrayList(results);
-
-//        users.add(new User("Warisa","Saisaema","59011202","Warisa","Saisaema"));
-
-//        users.add(new User("Supavitch","Saengsuwan","59011341","Staff","444444"));
-//        users.add(new User("Sarun","Limpasatirakit","59011371","Staff","565656"));
-//        users.add(new User("Satjaporn","Lertsasipakorn","59011382","Staff","777777"));
-//        users.add(new User("Itiwat","Supensilp","59011578","Staff","134340"));
-        return users;
-    }
-
-    public UserSearchUI( UserController userController, PageController pageController){
-//        this.currentUser = currentUser;
+    public UserSearchUI(UserController userController ,PageController pageController){
         this.pageController = pageController;
-//        this.database = database;
-        this.userController=userController;
+        this.userController = userController;
         this.users = getAllUser();
     }
 
@@ -175,7 +154,7 @@ public class UserSearchUI implements Controller{
 
                                 searchBox.clear();
                             }
-                            database.removeUser(selectUser.getId());
+                            userController.removeUser(selectUser.getId());
                             users = getAllUser();
                             userTable.setItems(users);
                         }
@@ -232,7 +211,7 @@ public class UserSearchUI implements Controller{
 
                 Optional<ButtonType> addManagerResult = addManagerDialog.showAndWait();
                 if (addManagerResult.get() == confirmButtonType ) {
-                    database.createUser(musername.getText(), mpassword.getText(), "Manager", mfirstname.getText(), msurname.getText(), mphonenum.getText());
+                    userController.signup(musername.getText(), mpassword.getText(), "Manager", mfirstname.getText(), msurname.getText(), mphonenum.getText());
                     users = getAllUser();
                     userTable.setItems(users);
                     userTable.refresh();
@@ -249,8 +228,14 @@ public class UserSearchUI implements Controller{
 
     }
 
+    public ObservableList<User> getAllUser(){
+        List<User> result = userController.getAllUser();
+        ObservableList<User> users = FXCollections.observableArrayList(result);
+        return users;
+    }
+
     public void onActive() {
-        users = getAllUser();
+//        users = getAllUser();
         userTable.setItems(users);
     }
 
@@ -261,6 +246,7 @@ public class UserSearchUI implements Controller{
             return null;
         }
     }
+
     public void handleSearchByKey(String oldValue, String newValue) {
         if ( oldValue != null && (newValue.length() < oldValue.length()) ) {
             userTable.setItems(users);

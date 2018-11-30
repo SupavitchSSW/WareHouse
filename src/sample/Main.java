@@ -67,10 +67,11 @@ public class Main extends Application {
         database.addOrderproduct(2,3,"qwe","qee",100);
         database.addOrderproduct(2,9,"qwe","qee",50);*/
 
+        /*
         List<Transaction> results = database.getAllTransactionInMonth(11,2018);
         database.createTransaction(1,1,new Date(),"asdfghj");
         database.createTransaction(1,1,new Date(),"asdfghj");
-        database.createTransaction(1,1,new Date(),"asdfghj");
+        database.createTransaction(1,1,new Date(),"asdfghj");*/
 //        s.setProductBrand(2,"luis");
 
 //        database.closeConnection();
@@ -84,6 +85,7 @@ public class Main extends Application {
         OrderDetailUI orderDetailUI = new OrderDetailUI(pageController,orderController);
         OrderListUI orderListUI = new OrderListUI(pageController,orderController);
         ProductUI ProductUI = new ProductUI(pageController, productController);
+//        reportController reportController = new reportController(pageController,database,currentUser);
         reportController reportController = new reportController(pageController,database,currentUser);
         reportMainController reportMainController = new reportMainController(pageController, reportController,currentUser,database);
         LoginUI loginUI = new LoginUI(userController,pageController);

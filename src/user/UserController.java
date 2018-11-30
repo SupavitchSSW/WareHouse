@@ -5,6 +5,7 @@ import connectionDB.serviceDB;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserController {
@@ -16,9 +17,7 @@ public class UserController {
         this.currentUser = currentUser;
     }
 
-    public List<User> getAllUser() {
-        return warehouse.getAllUser();
-    }
+    // login --------------------------------
 
     public boolean login(String username,String password){
         User u = warehouse.authen(username,password);
@@ -41,10 +40,15 @@ public class UserController {
         }
     }
 
+
+    // signup --------------------------------
+
     public void signup(String username,String password,String rolesel,String firstname,String surname,String phonenum){
 //        (TODO) create staff in database
 
     }
+
+    // profile --------------------------------
 
     public void changePassword(String password){
 
@@ -53,6 +57,18 @@ public class UserController {
     public void changeUserInfo(String name,String surname,String phonenumber){
 
     }
+
+
+    // user search --------------------------------
+
+    public List<User> getAllUser(){
+        return warehouse.getAllUser();
+    }
+
+    public void removeUser(int userId){
+        //(TODO) remove user in warehouse
+    }
+
 
     public User getCurrentUser() {
         return currentUser;
