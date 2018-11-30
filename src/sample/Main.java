@@ -10,15 +10,13 @@ import ordermanagement.OrderDetailUI;
 import ordermanagement.OrderListUI;
 import productManagement.ProductController;
 import productManagement.ProductUI;
-import transaction.Transaction;
+import report.ReportController;
 import user.*;
-import report.reportMainController;
-import report.reportController;
+import report.ReportUI;
 
 import connectionDB.*;
 
 import java.io.IOException;
-import java.util.*;
 
 public class Main extends Application {
     public User currentUser = new User("","","","","","");
@@ -80,14 +78,15 @@ public class Main extends Application {
         OrderController orderController = new OrderController(database,currentUser);
         UserController userController = new UserController(database,currentUser);
         ProductController productController = new ProductController(database);
+        ReportController reportController = new ReportController(database);
 
         // >>>>>>> add controller class here <<<<<<
         OrderDetailUI orderDetailUI = new OrderDetailUI(pageController,orderController);
         OrderListUI orderListUI = new OrderListUI(pageController,orderController);
         ProductUI ProductUI = new ProductUI(pageController, productController);
-//        reportController reportController = new reportController(pageController,database,currentUser);
-        reportController reportController = new reportController(pageController,database,currentUser);
-        reportMainController reportMainController = new reportMainController(pageController, reportController,currentUser,database);
+//        ReportUI ReportUI = new ReportUI(pageController,database,currentUser);
+        ReportUI ReportUI = new ReportUI(reportController,pageController);
+        //reportMainController reportMainController = new reportMainController(pageController, ReportUI,currentUser,database);
         LoginUI loginUI = new LoginUI(userController,pageController);
         SignUpUI signUpUI = new SignUpUI(userController,pageController);
         UserSearchUI userSearchUI = new UserSearchUI(userController,pageController);
@@ -97,8 +96,8 @@ public class Main extends Application {
         pageController.addPage("orderList", orderListPane, orderListUI);
         pageController.addPage("orderDetail", orderDetailPane, orderDetailUI);
         pageController.addPage("productList", productListPane, ProductUI);
-        pageController.addPage("reportMain", reportMainPane, reportMainController);
-        pageController.addPage("report", reportPane, reportController);
+        pageController.addPage("reportMain", reportPane, ReportUI);
+        //pageController.addPage("report", reportPane, ReportUI);
         pageController.addPage("login", loginPane, loginUI);
         pageController.addPage("signup", signupPane, signUpUI);
         pageController.addPage("user", userPane, userSearchUI);

@@ -8,29 +8,31 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.input.MouseEvent;
 import sample.Controller;
 import sample.PageController;
 import transaction.Transaction;
 import user.User;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
-public class reportController implements Controller {
+public class ReportUI implements Controller {
     PageController pageController;
-    serviceDB database;
     private TableView reportTable;
-    private Report report;
     private ObservableList<transaction.Transaction> reports = FXCollections.observableArrayList();
     private ObservableList<Transaction> subEntries;
-    private User currentUser;
-    private Date selectDate;
+    private ReportController reportController;
 
-    public reportController(PageController pageController, serviceDB database, User currentUser) {
+    public ReportUI(ReportController reportController ,PageController pageController) {
         this.pageController = pageController;
-        this.database = database;
-        this.currentUser = currentUser;
+        this.reportController = reportController;
+
     }
 
     public void initilize() {
@@ -41,15 +43,45 @@ public class reportController implements Controller {
         Button userSearchBt = (Button) scene.lookup("#userSearchButton");
         Button logoutBt = (Button) scene.lookup("#logoutButton");
         Button userInfoBt = (Button) scene.lookup("#userInfo");
-        TextField searchBox = (TextField) scene.lookup("#searchBox");
+        //TextField searchBox = (TextField) scene.lookup("#searchBox");
+        Spinner monthBt = (Spinner) scene.lookup("#monthPicker");
+        Spinner yearBt = (Spinner) scene.lookup("#yearPicker");
 
 
-        searchBox.setPromptText("Search");
-        searchBox.textProperty().addListener((observable, oldVal, newVal) -> {
-            handleSearchByKey((String) oldVal, (String) newVal);
-        });
+//        searchBox.setPromptText("Search");
+//        searchBox.textProperty().addListener((observable, oldVal, newVal) -> {
+//            handleSearchByKey((String) oldVal, (String) newVal);
+//        });
 
         reportTable = (TableView) scene.lookup("#report");
+
+        ObservableList<String> months = FXCollections.observableArrayList(//
+                "December", "November", "October", "September", //
+                "August", "July", "June", "May", //
+                "April", "March", "February", "January");
+
+
+        // Value factory.
+        SpinnerValueFactory<String> valueFactoryM = new SpinnerValueFactory.ListSpinnerValueFactory<String>(months);
+
+        Calendar calendar = new GregorianCalendar();
+        int month = calendar.get(Calendar.MONTH);
+        int year = calendar.get(Calendar.YEAR);
+//        System.out.println(months.get(11-month));
+
+        ObservableList<String> years = FXCollections.observableArrayList(Integer.toString(year-4),Integer.toString(year-3),
+                Integer.toString(year-2),Integer.toString(year-1),Integer.toString(year));
+
+        // Value factory.
+        SpinnerValueFactory<String> valueFactoryY = new SpinnerValueFactory.ListSpinnerValueFactory<String>(years);
+
+        valueFactoryM.setValue(months.get(11-month));
+        monthBt.setValueFactory(valueFactoryM);
+
+        valueFactoryY.setValue(Integer.toString(year));
+        yearBt.setValueFactory(valueFactoryY);
+
+
 //yah
         TableColumn<Transaction, Integer> idCol = new TableColumn("Product ID");
         idCol.setMinWidth(160);
@@ -103,16 +135,18 @@ public class reportController implements Controller {
             @Override
             public void handle(MouseEvent event) { pageController.active("profile"); }
         });
+
     }
 
     public void onActive() {
         //System.out.println(selectDate.toLocaleString());
-        System.out.println(selectDate.getMonth()+"_"+selectDate.getYear());
-        List<Transaction> transactions = database.getAllTransactionInMonth(selectDate.getMonth(),selectDate.getYear());
-        for(Transaction t : transactions){
-            System.out.println(t.toString());
-            reports.add(new Transaction(t.getProductId(),t.getChangedQuantity(),t.getDate(),t.getType()));
-        }
+        //System.out.println(selectDate.getMonth()+"_"+selectDate.getYear());
+        List<Transaction> result = reportController.getAllTransaction();
+//        for(Transaction t : transactions){
+//            System.out.println(t.toString());
+//            reports.add(new Transaction(t.getProductId(),t.getChangedQuantity(),t.getDate(),t.getType()));
+//        }
+        reports = FXCollections.observableArrayList(result);
         reportTable.setItems(reports);
     }
 
@@ -141,21 +175,5 @@ public class reportController implements Controller {
             }
         }
         reportTable.setItems(subEntries);
-    }
-    public Report getReport() {
-        return report;
-    }
-
-
-    public void setReport(Report report) {
-        this.report = report;
-    }
-
-    public Date getSelectDate() {
-        return selectDate;
-    }
-
-    public void setSelectDate(Date selectDate) {
-        this.selectDate = selectDate;
     }
 }

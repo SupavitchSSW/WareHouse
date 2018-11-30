@@ -27,7 +27,6 @@ public class UserSearchUI implements Controller{
     private ObservableList<User> subEntries;
     private User selectUser;
     private int index, lastID;
-    private UserController userController;
 
     public UserSearchUI(UserController userController ,PageController pageController){
         this.pageController = pageController;
