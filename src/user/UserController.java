@@ -14,10 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.StageStyle;
 import sample.Controller;
 import sample.PageController;
-import sample.Product;
-import sample.Transaction;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 

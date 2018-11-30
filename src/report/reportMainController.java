@@ -1,36 +1,22 @@
 package report;
 
-import java.text.SimpleDateFormat;
 import connectionDB.serviceDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.stage.StageStyle;
 import sample.Controller;
 import sample.PageController;
-import sample.Product;
-import report.reportController;
 import transaction.Transaction;
 import user.User;
-import connectionDB.*;
 
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.text.DateFormat;
-import java.text.DateFormatSymbols;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-
 
 
 public class reportMainController implements Controller {
@@ -42,8 +28,6 @@ public class reportMainController implements Controller {
     private ObservableList<Report> subEntries;
     private User currentUser;
     private ObservableList<MonthYear> monthYears;
-
-    private Product selectedProduct;
     private int index;
 
     public reportMainController(PageController pageController, reportController reportController, User currentUser, serviceDB database) {

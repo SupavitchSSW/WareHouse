@@ -11,10 +11,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import sample.Controller;
 import sample.PageController;
-import sample.Product;
 import transaction.Transaction;
 import user.User;
-import javax.persistence.*;
 
 import java.util.Date;
 import java.util.List;
