@@ -77,6 +77,7 @@ public class Main extends Application {
 
         // create controller class
         OrderController orderController = new OrderController(database,currentUser);
+        UserController userController = new UserController(database,currentUser);
         ProductController productController = new ProductController(database);
 
         // >>>>>>> add controller class here <<<<<<
@@ -85,10 +86,10 @@ public class Main extends Application {
         ProductUI ProductUI = new ProductUI(pageController, productController);
         reportController reportController = new reportController(pageController,database,currentUser);
         reportMainController reportMainController = new reportMainController(pageController, reportController,currentUser,database);
-        LoginController loginController = new LoginController(pageController,database,currentUser);
-        SignupController signupController = new SignupController(pageController,database,currentUser);
-        UserController userController = new UserController(pageController,database,currentUser);
-        ProfileController profileController = new ProfileController(pageController, database,currentUser);
+        LoginUI loginUI = new LoginUI(productController,pageController,database);
+        SignUpUI signUpUI = new SignUpUI(productController,pageController,database);
+        UserSearchUI userSearchUI = new UserSearchUI(productController,pageController,database);
+        ProfileUI profileUI = new ProfileUI(productController,pageController, database);
 
         // >>>>>>>> add page to pageController <<<<<<<<
         pageController.addPage("orderList", orderListPane, orderListUI);

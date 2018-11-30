@@ -8,7 +8,7 @@ import sample.Controller;
 import sample.PageController;
 import connectionDB.serviceDB;
 
-public class LoginController implements Controller {
+public class LoginUI implements Controller {
     PageController pageController;
     //String user = "test";
     //String pw = "1234";
@@ -17,11 +17,13 @@ public class LoginController implements Controller {
     serviceDB database;
     private TextField username;
     private PasswordField password;
+    private UserController userController;
 
-    public LoginController(PageController pageController, serviceDB database, User currentUser) {
+    public LoginUI(UserController userController,PageController pageController, serviceDB database, User currentUser) {
         this.database = database;
         this.currentUser = currentUser;
         this.pageController = pageController;
+        this.userController = userController;
     }
 
     @Override
@@ -38,31 +40,9 @@ public class LoginController implements Controller {
             public void handle(MouseEvent event) {
                 checkUser = username.getText();
                 checkPw = password.getText();
-                User u = database.authen(checkUser,checkPw);
-                if (u != null) {
-                    //currentUser = database.authen(checkUser,checkPw);
-                    currentUser.setFirstname(u.getFirstname());
-                    currentUser.setPhoneNumber(u.getPhoneNumber());
-                    currentUser.setSurname(u.getSurname());
-                    currentUser.setRole(u.getRole());
-                    currentUser.setUsername(u.getUsername());
-                    currentUser.setPassword(u.getPassword());
-                    currentUser.setId(u.getId());
-                    username.setText("");
-                    password.setText("");
-                    System.out.println("CCC"+u.toString());
+                if(userController.login(checkUser,checkPw)){
                     pageController.active("productList");
                 }
-//                if(checkUser.equals(user) && checkPw.equals(pw)){
-//                    //set login user
-//                    currentUser.setFirstname("test");
-//                    currentUser.setSurname("naja");
-//                    currentUser.setPhoneNumber("085555555");
-//                    currentUser.setRole("Staff");
-//                    currentUser.setId(555);
-//
-//                    pageController.active("productList");
-//                }
                 else{
                     Alert alertError = new Alert(Alert.AlertType.ERROR);
                     username.clear();
@@ -72,7 +52,6 @@ public class LoginController implements Controller {
                     alertError.setContentText("Invalid Username or Password");
                     alertError.showAndWait();
                 }
-
             }
         });
 
