@@ -77,6 +77,7 @@ public class Main extends Application {
 
         // create controller class
         OrderController orderController = new OrderController(database,currentUser);
+        UserController userController = new UserController(database);
         ProductController productController = new ProductController(database);
 
         // >>>>>>> add controller class here <<<<<<
@@ -85,10 +86,11 @@ public class Main extends Application {
         ProductUI ProductUI = new ProductUI(pageController, productController);
         reportController reportController = new reportController(pageController,database,currentUser);
         reportMainController reportMainController = new reportMainController(pageController, reportController,currentUser,database);
-        LoginController loginController = new LoginController(pageController,database,currentUser);
-        SignupController signupController = new SignupController(pageController,database,currentUser);
-        UserController userController = new UserController(pageController,database,currentUser);
-        ProfileController profileController = new ProfileController(pageController, database,currentUser);
+        LoginUI loginUI = new LoginUI(pageController,database);
+        SignUpUI signUpUI = new SignUpUI(pageController,database);
+        UserSearchUI userSearchUI = new UserSearchUI(pageController,database);
+        ProfileUI profileUI = new ProfileUI(pageController, database);
+
 
         // >>>>>>>> add page to pageController <<<<<<<<
         pageController.addPage("orderList", orderListPane, orderListUI);
@@ -96,10 +98,10 @@ public class Main extends Application {
         pageController.addPage("productList", productListPane, ProductUI);
         pageController.addPage("reportMain", reportMainPane, reportMainController);
         pageController.addPage("report", reportPane, reportController);
-        pageController.addPage("login", loginPane, loginController);
-        pageController.addPage("signup", signupPane, signupController);
-        pageController.addPage("user", userPane, userController);
-        pageController.addPage("profile", profilePane, profileController);
+        pageController.addPage("login", loginPane, loginUI);
+        pageController.addPage("signup", signupPane, signUpUI);
+        pageController.addPage("user", userPane, userSearchUI);
+        pageController.addPage("profile", profilePane, profileUI);
 
         //start page
         primaryStage.setTitle("WareHouse Management");

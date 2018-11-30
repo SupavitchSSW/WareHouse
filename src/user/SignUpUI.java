@@ -11,12 +11,12 @@ import javafx.scene.control.ChoiceBox;
 import sample.Controller;
 import sample.PageController;
 
-public class SignupController implements Controller {
+public class SignUpUI implements Controller {
     PageController pageController;
     private User currentUser;
     private serviceDB database;
 
-    public SignupController(PageController pageController, serviceDB database,User currentUser) {
+    public SignUpUI(PageController pageController, serviceDB database, User currentUser) {
         this.currentUser = currentUser;
         this.pageController = pageController;
         this.database = database;
