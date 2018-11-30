@@ -242,7 +242,7 @@ public class serviceDB {
         String sqlP = "SELECT c FROM Product c Where c.id =" + idProduct +"";
         TypedQuery<Product> queryP = em.createQuery(sqlP, Product.class);
         List<Product> resultsP = queryP.getResultList();
-        resultsP.get(0).addPallet(a);
+//        resultsP.get(0).addPallet(a);
         em.getTransaction().commit();
     }
 //    public void removeShelf(int id )

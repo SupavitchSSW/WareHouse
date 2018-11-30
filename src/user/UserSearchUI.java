@@ -19,6 +19,7 @@ import java.util.Optional;
 
 public class UserSearchUI implements Controller{
     PageController pageController;
+    private  UserController userController;
     private TableView userTable;
     private User user;
     private ObservableList<User> users;
@@ -30,13 +31,13 @@ public class UserSearchUI implements Controller{
     public ObservableList<User> getAllUser(){
         //users = FXCollections.observableArrayList();
 
-        List<User> results = database.getAllUser();
+        List<User> results = userController.getAllUser();
 //        for(User u : results){
 //            System.out.println(u);
 //        }
 
 
-        ObservableList<User> users = FXCollections.observableArrayList(database.getAllUser());
+        ObservableList<User> users = FXCollections.observableArrayList(results);
 
 //        users.add(new User("Warisa","Saisaema","59011202","Warisa","Saisaema"));
 
@@ -47,10 +48,11 @@ public class UserSearchUI implements Controller{
         return users;
     }
 
-    public UserSearchUI(PageController pageController, serviceDB database,User currentUser){
-        this.currentUser = currentUser;
+    public UserSearchUI( UserController userController, PageController pageController){
+//        this.currentUser = currentUser;
         this.pageController = pageController;
-        this.database = database;
+//        this.database = database;
+        this.userController=userController;
         this.users = getAllUser();
     }
 

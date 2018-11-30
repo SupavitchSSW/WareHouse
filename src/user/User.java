@@ -7,12 +7,13 @@ public class User implements Serializable{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String username,password,firstname,surname,phoneNumber;
+    private String username,password,role,firstname,surname,phoneNumber;
 
-    public User(String username, String password,String firstname, String surname, String phoneNumber) {
+    public User(String username, String password, String role,String firstname, String surname, String phoneNumber) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.role = role;
         this.firstname = firstname;
         this.surname = surname;
         this.phoneNumber = phoneNumber;
@@ -24,6 +25,14 @@ public class User implements Serializable{
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override

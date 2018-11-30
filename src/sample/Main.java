@@ -108,7 +108,7 @@ public class Main extends Application {
 
         
         //set database to OrderReadWrite
-        OrderReadWrite.setDatabase(database);
+//        OrderReadWrite.setDatabase(database);
 
     }
 

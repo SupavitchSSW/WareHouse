@@ -5,6 +5,8 @@ import connectionDB.serviceDB;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 
+import java.util.List;
+
 public class UserController {
     private serviceDB warehouse;
     private User currentUser;
@@ -12,6 +14,10 @@ public class UserController {
     public UserController(serviceDB warehouse,User currentUser) {
         this.warehouse = warehouse;
         this.currentUser = currentUser;
+    }
+
+    public List<User> getAllUser() {
+        return warehouse.getAllUser();
     }
 
     public boolean login(String username,String password){
