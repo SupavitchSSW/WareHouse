@@ -8,7 +8,7 @@ import sample.Controller;
 import sample.PageController;
 import connectionDB.serviceDB;
 
-public class LoginUI implements Controller {
+public class LoginController implements Controller {
     PageController pageController;
     //String user = "test";
     //String pw = "1234";
@@ -18,7 +18,7 @@ public class LoginUI implements Controller {
     private TextField username;
     private PasswordField password;
 
-    public LoginUI(PageController pageController, serviceDB database, User currentUser) {
+    public LoginController(PageController pageController, serviceDB database, User currentUser) {
         this.database = database;
         this.currentUser = currentUser;
         this.pageController = pageController;
@@ -41,13 +41,13 @@ public class LoginUI implements Controller {
                 User u = database.authen(checkUser,checkPw);
                 if (u != null) {
                     //currentUser = database.authen(checkUser,checkPw);
-                    /*currentUser.setFirstname(u.getFirstname());
+                    currentUser.setFirstname(u.getFirstname());
                     currentUser.setPhoneNumber(u.getPhoneNumber());
                     currentUser.setSurname(u.getSurname());
                     currentUser.setRole(u.getRole());
                     currentUser.setUsername(u.getUsername());
                     currentUser.setPassword(u.getPassword());
-                    currentUser.setId(u.getId());*/
+                    currentUser.setId(u.getId());
                     username.setText("");
                     password.setText("");
                     System.out.println("CCC"+u.toString());

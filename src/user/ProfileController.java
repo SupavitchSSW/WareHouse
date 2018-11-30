@@ -13,7 +13,7 @@ import sample.PageController;
 
 import java.util.Optional;
 
-public class ProfileUI implements Controller {
+public class ProfileController implements Controller {
     PageController pageController;
     User currentUser;
     TextField nameTF,surnameTF,roleTF,telTF;
@@ -21,7 +21,7 @@ public class ProfileUI implements Controller {
     private serviceDB database;
     private Button summaryBt,userSearchBt;
 
-    public ProfileUI(PageController pageController, serviceDB database, User currentUser) {
+    public ProfileController(PageController pageController, serviceDB database,User currentUser) {
         this.currentUser = currentUser;
         this.pageController = pageController;
         this.database = database;
