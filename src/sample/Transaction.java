@@ -5,6 +5,7 @@ import java.util.Date;
 public class Transaction {
     private int productId,changedQuantity;
     private Date date;
+    private int month,year;
     private String type;
 
     public Transaction(int productId, int changedQuantity, Date date, String type) {
@@ -12,6 +13,8 @@ public class Transaction {
         this.changedQuantity = changedQuantity;
         this.date = date;
         this.type = type;
+        this.month = date.getMonth();
+        this.year = date.getYear();
     }
 
     @Override
