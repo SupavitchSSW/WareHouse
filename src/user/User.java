@@ -27,6 +27,7 @@ public class User implements Serializable{
         this.id = id;
     }
 
+
     @Override
     public String toString() {
         return "User{" +
@@ -88,7 +89,6 @@ public class User implements Serializable{
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
 
     public String getRole() {
         return role;
