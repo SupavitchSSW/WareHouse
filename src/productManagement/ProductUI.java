@@ -43,7 +43,7 @@ public class ProductUI implements Controller {
     private Product selectedProduct;
     private int index, lastID;
     private ProductController productController;
-    private Button summaryBt,userSearchBt,addProductBt;
+    private Button summaryBt,userSearchBt,addProductBt,addShelfBt;
 
     public ProductUI(PageController pageController, ProductController productController){
         this.pageController = pageController;
@@ -61,6 +61,7 @@ public class ProductUI implements Controller {
         userSearchBt = (Button) scene.lookup("#userSearchButton");
         Button userInfoBt = (Button) scene.lookup("#userInfo");
         TextField searchBox = (TextField) scene.lookup("#searchBox");
+        addShelfBt = (Button) scene.lookup("addShelfButton");
 
         searchBox.setPromptText("Search");
         searchBox.textProperty().addListener((observable, oldVal, newVal) -> {
@@ -284,6 +285,53 @@ public class ProductUI implements Controller {
                             }
                         }
                     }
+//                }
+            }
+        });
+
+        addShelfBt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Dialog<ButtonType> addShelfDialog = new Dialog<>();
+                addShelfDialog.initStyle(StageStyle.UTILITY);
+                addShelfDialog.setTitle("Add Shelf");
+
+                GridPane addShelfGrid = new GridPane();
+                addShelfGrid.setHgap(10);
+                addShelfGrid.setVgap(20);
+                addShelfGrid.setPadding(new Insets(20, 150, 10, 20));
+
+                TextField shelfName = new TextField();
+                TextField shelfMaxPallet = new TextField();
+
+                addShelfGrid.add(new Label("Name:"), 0, 1);
+                addShelfGrid.add(shelfName, 1, 1);
+                addShelfGrid.add(new Label("Max Pallet:"), 0, 2);
+                addShelfGrid.add(shelfMaxPallet, 1, 2);
+
+                addShelfDialog.getDialogPane().setContent(addShelfGrid);
+
+                addShelfDialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+                Optional<ButtonType> addProductResult = addShelfDialog.showAndWait();
+                if (addProductResult.get() == ButtonType.OK) {
+                    if (shelfName.getText().isEmpty() || shelfMaxPallet.getText().isEmpty()) {
+                        Alert alertError = new Alert(Alert.AlertType.ERROR);
+                        alertError.setTitle("Error to Add Shelf");
+                        alertError.setHeaderText(null);
+                        alertError.setContentText("Invalid information");
+                        alertError.showAndWait();
+                    } else {
+                        if (tryParse(shelfMaxPallet.getText()) == null) {
+                            Alert alertError = new Alert(Alert.AlertType.ERROR);
+                            alertError.setTitle("Error to Add Shelf");
+                            alertError.setHeaderText(null);
+                            alertError.setContentText("Invalid information");
+                            alertError.showAndWait();
+                        } else {
+//                            productController.createShelf(shelfName.getText(),Integer.parseInt(shelfMaxPallet.getText()))
+                        }
+                    }
+                }
 //                }
             }
         });
