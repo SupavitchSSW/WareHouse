@@ -61,7 +61,7 @@ public class ProductUI implements Controller {
         userSearchBt = (Button) scene.lookup("#userSearchButton");
         Button userInfoBt = (Button) scene.lookup("#userInfo");
         TextField searchBox = (TextField) scene.lookup("#searchBox");
-        addShelfBt = (Button) scene.lookup("addShelfButton");
+        addShelfBt = (Button) scene.lookup("#addShelfButton");
 
         searchBox.setPromptText("Search");
         searchBox.textProperty().addListener((observable, oldVal, newVal) -> {

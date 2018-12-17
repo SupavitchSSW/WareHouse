@@ -14,17 +14,15 @@ public class Pallet implements Serializable{
     private int capacity,maxCapacity;
     private List<Product> products = new ArrayList<>();
 
-    public Pallet(int capacity, int maxCapacity, List<Product> products) {
+    public Pallet(int capacity, int maxCapacity) {
         this.capacity = capacity;
         this.maxCapacity = maxCapacity;
-        this.products = products;
     }
 
     public void setProductQuantity(int productId,int quantity){
         for(Product p : products){
             if(p.getProductId() == productId){
                 p.setQuantity(quantity);
-                break;
             }
         }
     }
@@ -37,11 +35,13 @@ public class Pallet implements Serializable{
                 p.setPackCapacity(packCapacity);
                 p.setName(name);
                 p.setBrand(brand);
-                break;
             }
         }
     }
 
+    public void addProduct(int productId, int quantity, int price, int amountInPack, int packCapacity, String name, String brand){
+        products.add(new Product(productId,quantity,price,amountInPack,packCapacity,name,brand));
+    }
     public void addProduct(Product product){
         products.add(product);
     }
@@ -51,7 +51,6 @@ public class Pallet implements Serializable{
             Product a = iter.next();
             if (a.getProductId() == productId) {
                 iter.remove();
-                break;
             }
         }
     }

@@ -21,6 +21,9 @@ public class Shelf implements Serializable {
         this.maxPallet = maxPallet;
     }
 
+    public void addPallet(int capacity, int maxCapacity){
+        pallets.add(new Pallet(capacity,maxCapacity));
+    }
     public void addPallet(Pallet pallet){
         pallets.add(pallet);
     }
@@ -30,7 +33,6 @@ public class Shelf implements Serializable {
             Pallet a = iter.next();
             if (a.getId() == id) {
                 iter.remove();
-                break;
             }
         }
     }

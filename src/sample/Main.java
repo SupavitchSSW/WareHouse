@@ -105,7 +105,7 @@ public class Main extends Application {
 
         //start page
         primaryStage.setTitle("WareHouse Management");
-        pageController.active("reportMain");
+        pageController.active("productList");
 
         
         //set database to OrderReadWrite
