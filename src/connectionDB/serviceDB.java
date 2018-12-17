@@ -5,6 +5,7 @@ import ordermanagement.OrderProduct;
 import ordermanagement.Order;
 import product.Pallet;
 import product.Shelf;
+import product.CatalogueEntry;
 import transaction.Transaction;
 import user.User;
 import java.util.*;
@@ -13,11 +14,92 @@ public class serviceDB {
 
     private EntityManagerFactory emf ;
     private EntityManager em;
-
+    private User currentUser;
     public serviceDB(){
         this.emf = Persistence.createEntityManagerFactory("$objectdb/db/Stock.odb");
         this.em = emf.createEntityManager();
     }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    public List<CatalogueEntry> getCatalogueEntry(){
+        TypedQuery<CatalogueEntry> query = em.createQuery("SELECT w FROM CatalogueEntry w", CatalogueEntry.class);
+        List<CatalogueEntry> resultOrder = query.getResultList();
+        return resultOrder;
+    }
+    public void createShelf(String name, int maxPallet){
+        em.getTransaction().begin();
+        Shelf p1 = new Shelf(name,maxPallet);
+        em.persist(p1);
+        em.getTransaction().commit();
+    }
+    public void addPallet(int shelfId ,int capacity, int maxCapacity){
+
+        em.getTransaction().begin();
+        Pallet p1 = new Pallet(capacity,maxCapacity);
+        em.persist(p1);
+        em.getTransaction().commit();
+
+        em.getTransaction().begin();
+        String sql = "SELECT c FROM Shelf c Where c.id =" + shelfId +"";
+        TypedQuery<Shelf> query = em.createQuery(sql, Shelf.class);
+        List<Shelf> results = query.getResultList();
+        results.get(0).addPallet(p1);
+        em.getTransaction().commit();
+
+    }
+    public void addProductToPallet(int palletId , int productId, int quantity, int price, int amountInPack, int packCapacity, String name, String brand){
+        em.getTransaction().begin();
+        Product p1 = new Product(productId, quantity, price,amountInPack,packCapacity, name, brand);
+        em.persist(p1);
+        em.getTransaction().commit();
+
+        em.getTransaction().begin();
+        String sql = "SELECT c FROM Pallet c Where c.id =" + palletId +"";
+        TypedQuery<Pallet> query = em.createQuery(sql, Pallet.class);
+        List<Pallet> results = query.getResultList();
+        results.get(0).addProduct(p1);
+        em.getTransaction().commit();
+
+    }
+    public void addProductToCatalogueEntry(int productId, int quantity, int price, int amountInPack, int packCapacity, String name, String brand){
+
+        em.getTransaction().begin();
+        Product p1 = new Product(productId, quantity, price,amountInPack,packCapacity, name, brand);
+        em.persist(p1);
+        em.getTransaction().commit();
+
+        em.getTransaction().begin();
+        String sql = "SELECT c FROM CatalogueEntry c Where c.id =" + productId +"";
+        TypedQuery<CatalogueEntry> query = em.createQuery(sql, CatalogueEntry.class);
+        List<CatalogueEntry> results = query.getResultList();
+        results.get(0).addProduct(p1);
+        em.getTransaction().commit();
+    }
+
+    public void removeProductPallet(int palletId , int productId){
+
+        String sql = "SELECT c FROM Pallet c Where c.id =" + palletId +"";
+        TypedQuery<Pallet> query = em.createQuery(sql, Pallet.class);
+        List<Pallet> results = query.getResultList();
+        results.get(0).removeProduct(productId);
+    }
+    public void removeProductCatalogueEntry(int catalogueEntryId , int productId ){
+
+        String sql = "SELECT c FROM CatalogueEntry c Where c.id =" + catalogueEntryId +"";
+        TypedQuery<CatalogueEntry> query = em.createQuery(sql, CatalogueEntry.class);
+        List<CatalogueEntry> results = query.getResultList();
+        results.get(0).removeProduct(productId);
+
+    }
+
+    ////////////////
     public void createProduct(String name, String brand , int price , int quantity){
         em.getTransaction().begin();
 //        int productId, int quantity, int price, int amountInPack, int packCapacity, String name, String brand

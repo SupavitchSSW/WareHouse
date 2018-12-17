@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import javax.persistence.*;
 
+@Entity
 public class CatalogueEntry implements Serializable {
     private int lastid=0,warehouseCapacity=0;
-    private List<Product> products = new ArrayList<>();
+    private List<Product> products = new ArrayList<Product>();
 
     public CatalogueEntry(int warehouseCapacity) {
         this.warehouseCapacity = warehouseCapacity;

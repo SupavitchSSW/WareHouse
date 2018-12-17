@@ -12,7 +12,7 @@ public class Pallet implements Serializable{
     private int id;
 
     private int capacity,maxCapacity;
-    private List<Product> products = new ArrayList<>();
+    private List<Product> products = new ArrayList<Product>();
 
     public Pallet(int capacity, int maxCapacity) {
         this.capacity = capacity;
