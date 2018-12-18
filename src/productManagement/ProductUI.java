@@ -152,6 +152,8 @@ public class ProductUI implements Controller {
                         quantity.setText(Integer.toString(selectedProduct.getQuantity()));
                         TextField price = new TextField();
                         price.setText(Integer.toString(selectedProduct.getPrice()));
+//                        TextField amountInPack = new TextField();
+//                        price.setText(Integer.toString(selectedProduct.getAmountInPack()));
 
                         editGrid.add(new Label("Name:"), 0, 1);
                         editGrid.add(name, 1, 1);
@@ -161,6 +163,8 @@ public class ProductUI implements Controller {
                         editGrid.add(quantity, 1, 3);
                         editGrid.add(new Label("Price:"), 0, 4);
                         editGrid.add(price, 1, 4);
+//                        editGrid.add(new Label("Amount In Pack:"), 0, 4);
+//                        editGrid.add(price, 1, 4);
 
                         ButtonType deleteButtonType = new ButtonType("Delete Product");
 
@@ -179,20 +183,12 @@ public class ProductUI implements Controller {
                                 if (Integer.parseInt(quantity.getText()) != selectedProduct.getQuantity()) {
                                     int newQt = Integer.parseInt(quantity.getText());
                                     Date date = new Date();
-                                    productController.createTransaction(selectedProduct.getId(),newQt-selectedProduct.getQuantity(),date,"editQuantity");
-//                                    database.createTransaction(selectedProduct.getId(),newQt-selectedProduct.getQuantity(),date,"editQuantity");
-//                                    System.out.println(new Transaction(selectedProduct.getId(),newQt-selectedProduct.getQuantity(),date,"editQuantity").toString());
+                                    productController.changeProductQuantity(selectedProduct.getProductId(),newQt);
+                                    productController.createTransaction(selectedProduct.getProductId(),newQt-selectedProduct.getQuantity(),date,"editQuantity");
                                 }
 //                                <<<<< edit Product >>>>>
-                                productController.changeProductDetail(selectedProduct.getId(),name.getText(),brand.getText(),Integer.parseInt(price.getText()),0,0);
-//                                database.setProductName(selectedProduct.getId(),name.getText());
-//                                database.setProductBrand(selectedProduct.getId(),brand.getText());
-//                                database.setProductQuantity(selectedProduct.getId(),Integer.parseInt(quantity.getText()));
-//                                database.setProductPrice(selectedProduct.getId(),Integer.parseInt(price.getText()));
-//                                selectedProduct.setName(name.getText());
-//                                selectedProduct.setBrand(brand.getText());
-//                                selectedProduct.setQuantity(quantity.getText());
-//                                selectedProduct.setPrice(price.getText());
+                                productController.changeProductDetail(selectedProduct.getProductId(),name.getText(),brand.getText(),
+                                        Integer.parseInt(price.getText()),selectedProduct.getAmountInPack(),selectedProduct.getPackCapacity());
                                 productListTable.refresh();
                             }
                         } else if (editResult.get() == deleteButtonType) {
@@ -204,14 +200,10 @@ public class ProductUI implements Controller {
                             if (result.get() == ButtonType.OK){
                                 if (productListTable.getItems() == subEntries) {
                                     productController.deleteProduct(selectedProduct.getProductId(),selectedProduct.getQuantity(),selectedProduct.getPackCapacity());
-//                                    database.removeProduct(selectedProduct.getId());
-//                                    products.remove(products.indexOf(subEntries.get(index)));
                                     searchBox.clear();
                                     productListTable.setItems(products);
                                 } else {
                                     productController.deleteProduct(selectedProduct.getProductId(),selectedProduct.getQuantity(),selectedProduct.getPackCapacity());
-//                                    database.removeProduct(selectedProduct.getId());
-//                                    products.remove(index);
                                 }
                                 products = productController.getAllProduct();
                                 productListTable.setItems(products);
@@ -284,12 +276,8 @@ public class ProductUI implements Controller {
                                 productController.addNewProduct(productName.getText(), productBrand.getText(), Integer.parseInt(productPrice.getText()),
                                         Integer.parseInt(productAmountInPack.getText()), Integer.parseInt(productPackCapacity.getText()),
                                         Integer.parseInt(productQuantity.getText()));
-//                                database.createProduct(productName.getText(), productBrand.getText(), Integer.parseInt(productPrice.getText()), Integer.parseInt(productQuantity.getText()));
-                                //                            products.add(new Product(++lastID, Integer.parseInt(productQuantity.getText()), productName.getText(), productBrand.getText(),Integer.parseInt(productPrice.getText())));
                                 Date date = new Date();
-
                                 // found ERROR!!
-
 //                                List<Product> check = database.getAllProduct();
 //                                productController.createTransaction(check.get(check.size() - 1).getId(), Integer.parseInt(productQuantity.getText()), date, "addProduct");
 //                                database.createTransaction(check.get(check.size() - 1).getId(), Integer.parseInt(productQuantity.getText()), date, "addProduct");
@@ -405,10 +393,7 @@ public class ProductUI implements Controller {
     }
 
     public ObservableList<Product> getAllProduct(){
-        List<Product> results = productController.getAllProduct(); //database.getAllProduct();
-//        for (Product p : results) {
-//            System.out.println(p);
-//        }
+        List<Product> results = productController.getAllProduct();
         ObservableList<Product> products = FXCollections.observableArrayList(results);
         return products;
     }

@@ -21,26 +21,30 @@ public class ProductController {
         this.warehouse = warehouse;
     }
 
-//    need to change
     public ObservableList<Product> getAllProduct(){
         catalogueEntry = warehouse.getCatalogueEntry();
-        List<Product> results = catalogueEntry.getProducts();   //warehouse.getAllProduct();
+        List<Product> results = catalogueEntry.getProducts();
         ObservableList<Product> products = FXCollections.observableArrayList(results);
         return products;
     }
     public void changeProductDetail(int productId, String name, String brand, int price, int amountInPack, int packCapacity) {
-        warehouse.setProductName(productId,name);
-        warehouse.setProductBrand(productId,brand);
-//        warehouse.setProductDetailPallet();
-//        warehouse.setProductDetailCatalogueEntry();
+        warehouse.setProductDetailCatalogue(productId,price,amountInPack,packCapacity,name,brand);
+        shelfs = warehouse.getAllShelf();
+        for (Shelf s : shelfs) {
+            for (Pallet p : s.getPallets()) {
+                warehouse.setProductDetailPallet(p.getId(),productId,price,amountInPack,packCapacity,name,brand);
+            }
+        }
     }
-    public void changeProductQuantity(){
-//        warehouse.setProductQuantityPallet();
-//        warehouse.setProductQuantityCatalogueEntry();
+    public void changeProductQuantity(int productId, int qt){
+//        warehouse.setProductQtPallet(palletId,productId,qt);
+//        warehouse.setProductQtCatalogue(productId,qt);
+//        warehouse.setWarehouseCapacity(warehouse.getWarehouseCapacity());
     }
     public void createTransaction (int productId, int changeQuantity, Date date, String type) {
         warehouse.createTransaction(productId, changeQuantity, date, type);
     }
+
     public void deleteProduct(int productId, int quantity, int packCapacity) {
         warehouse.removeProductCatalogueEntry(productId);
         warehouse.setWarehouseCapacity(warehouse.getWarehouseCapacity()+(quantity*packCapacity));
