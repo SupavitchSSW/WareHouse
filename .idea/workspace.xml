@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="profile and">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/connectionDB/serviceDB.class" beforeDir="false" />
@@ -29,11 +30,27 @@
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/productManagement/productListController$6.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/productManagement/productListController.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/report/Report.class" beforeDir="false" />
+=======
+    <list default="true" id="586fdb3c-e359-4852-a897-dee32b9b09db" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/objectdb/log/archive/odb20181130.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objectdb/db/Stock.odb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/objectdb/db/Stock.odb$" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/objectdb/log/odb20181114.log" beforeDir="false" afterPath="$PROJECT_DIR$/objectdb/log/archive/odb20181114.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/warehouse/connectionDB/serviceDB.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/warehouse/connectionDB/serviceDB.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/warehouse/ordermanagement/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/warehouse/ordermanagement/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/warehouse/ordermanagement/OrderProduct.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/warehouse/ordermanagement/OrderProduct.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/warehouse/product/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/warehouse/product/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/warehouse/productManagement/mainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/warehouse/productManagement/mainPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/warehouse/report/Report.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/warehouse/report/Report.class" afterDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/report/report.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/warehouse/report/report.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/report/reportController$1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/report/reportController$2.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/report/reportController$3.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/report/reportController$4.class" beforeDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/report/reportController.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/sample/Controller.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/sample/Main.class" beforeDir="false" />
@@ -42,6 +59,13 @@
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/sample/PageController.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/sample/Product.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/sample/Transaction.class" beforeDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/out/production/warehouse/report/reportController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/warehouse/report/reportController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/warehouse/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/warehouse/sample/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/warehouse/sample/OrderReadWrite.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/warehouse/sample/OrderReadWrite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/warehouse/sample/PageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/warehouse/sample/PageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/warehouse/sample/Transaction.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/warehouse/sample/Transaction.class" afterDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/user/LoginController$1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/user/LoginController.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/user/ProfileController$1.class" beforeDir="false" />
@@ -50,14 +74,26 @@
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/user/ProfileController$4.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/user/ProfileController$5.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/user/ProfileController.class" beforeDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/user/User.class" beforeDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/out/production/warehouse/user/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/warehouse/user/User.class" afterDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/user/UserController$1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/user/UserController$2.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/user/UserController$3.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/user/UserController$4.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/user/UserController$5.class" beforeDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/out/production/warehouse/user/UserController.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/connectionDB/serviceDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/connectionDB/serviceDB.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/out/production/warehouse/user/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/warehouse/user/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/connectionDB/serviceDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/connectionDB/serviceDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/product/Pallet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/product/Pallet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/productManagement/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/productManagement/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/productManagement/ProductUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/productManagement/ProductUI.java" afterDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -68,109 +104,34 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FUSProjectUsageTrigger">
-    <session id="1049650116">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="11" />
-          <entry key="project.open.time.10" value="1" />
-          <entry key="project.open.time.118" value="1" />
-          <entry key="project.open.time.2" value="1" />
-          <entry key="project.open.time.41" value="1" />
-          <entry key="project.open.time.43" value="3" />
-          <entry key="project.open.time.45" value="2" />
-          <entry key="project.open.time.47" value="1" />
-          <entry key="project.open.time.48" value="1" />
-          <entry key="project.open.time.52" value="1" />
-          <entry key="project.open.time.54" value="1" />
-          <entry key="project.opened" value="13" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="fxml" value="9" />
-          <entry key="java" value="14117" />
-          <entry key="txt" value="610" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="JAVA" value="14117" />
-          <entry key="PLAIN_TEXT" value="610" />
-          <entry key="XML" value="9" />
-        </counts>
-      </usages-collector>
+    <session id="1865891015">
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="fxml" value="17" />
-          <entry key="iml" value="1" />
-          <entry key="java" value="86" />
-          <entry key="md" value="1" />
-          <entry key="txt" value="6" />
+          <entry key="java" value="2" />
+          <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="IDEA_MODULE" value="1" />
-          <entry key="JAVA" value="86" />
-          <entry key="PLAIN_TEXT" value="7" />
-          <entry key="XML" value="17" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.vcs.git.usages">
-        <counts>
-          <entry key="git.branch.checkout.local" value="7" />
-          <entry key="git.branch.create.new" value="2" />
-          <entry key="git.branch.delete.local" value="1" />
-        </counts>
-      </usages-collector>
-    </session>
-    <session id="747053974">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="3" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.47" value="1" />
-          <entry key="project.open.time.49" value="1" />
-          <entry key="project.open.time.8" value="2" />
-          <entry key="project.opened" value="5" />
+          <entry key="JAVA" value="2" />
+          <entry key="XML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="917" />
-          <entry key="txt" value="35" />
+          <entry key="java" value="891" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="917" />
-          <entry key="PLAIN_TEXT" value="35" />
+          <entry key="JAVA" value="891" />
         </counts>
       </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="conf" value="1" />
-          <entry key="fxml" value="2" />
-          <entry key="html" value="1" />
-          <entry key="iml" value="1" />
-          <entry key="java" value="7" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="HTML" value="1" />
-          <entry key="IDEA_MODULE" value="1" />
-          <entry key="JAVA" value="7" />
-          <entry key="PLAIN_TEXT" value="1" />
-          <entry key="XML" value="2" />
-        </counts>
-      </usages-collector>
-    </session>
-    <session id="1558725103">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="1" />
           <entry key="project.open.time.15" value="1" />
+<<<<<<< Updated upstream
           <entry key="project.open.time.32" value="1" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.opened" value="3" />
@@ -259,12 +220,18 @@
           <entry key="JAVA" value="634" />
         </counts>
       </usages-collector>
+=======
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+>>>>>>> Stashed changes
     </session>
   </component>
   <component name="FavoritesManager">
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
+<<<<<<< Updated upstream
     <splitter split-orientation="horizontal" split-proportion="0.51008457">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -357,6 +324,128 @@
         </leaf>
       </split-second>
     </splitter>
+=======
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="427">
+              <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/connectionDB/serviceDB.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="49" column="72" lean-forward="true" selection-start-line="49" selection-start-column="72" selection-end-line="49" selection-end-column="72" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/product/Shelf.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/product/Product.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="13" column="120" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="120" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#706#707#0" expanded="true" />
+                <element signature="e#730#731#0" expanded="true" />
+                <element signature="e#789#790#0" expanded="true" />
+                <element signature="e#821#822#0" expanded="true" />
+                <element signature="e#868#869#0" expanded="true" />
+                <element signature="e#910#911#0" expanded="true" />
+                <element signature="e#942#943#0" expanded="true" />
+                <element signature="e#973#974#0" expanded="true" />
+                <element signature="e#1018#1019#0" expanded="true" />
+                <element signature="e#1058#1059#0" expanded="true" />
+                <element signature="e#1087#1088#0" expanded="true" />
+                <element signature="e#1115#1116#0" expanded="true" />
+                <element signature="e#1154#1155#0" expanded="true" />
+                <element signature="e#1188#1189#0" expanded="true" />
+                <element signature="e#1224#1225#0" expanded="true" />
+                <element signature="e#1259#1260#0" expanded="true" />
+                <element signature="e#1312#1313#0" expanded="true" />
+                <element signature="e#1360#1361#0" expanded="true" />
+                <element signature="e#1396#1397#0" expanded="true" />
+                <element signature="e#1431#1432#0" expanded="true" />
+                <element signature="e#1484#1485#0" expanded="true" />
+                <element signature="e#1532#1533#0" expanded="true" />
+                <element signature="e#1563#1564#0" expanded="true" />
+                <element signature="e#1590#1591#0" expanded="true" />
+                <element signature="e#1630#1631#0" expanded="true" />
+                <element signature="e#1662#1663#0" expanded="true" />
+                <element signature="e#1694#1695#0" expanded="true" />
+                <element signature="e#1722#1723#0" expanded="true" />
+                <element signature="e#1764#1765#0" expanded="true" />
+                <element signature="e#1798#1799#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/productManagement/ProductUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="271" column="52" selection-start-line="271" selection-start-column="52" selection-end-line="271" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/productManagement/ProductController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="393">
+              <caret line="69" column="41" selection-start-line="69" selection-start-column="41" selection-end-line="69" selection-end-column="41" />
+              <folding>
+                <element signature="e#2392#2393#0" expanded="true" />
+                <element signature="e#2445#2446#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/product/Pallet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="680">
+              <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/user/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
+              <folding>
+                <element signature="e#655#656#0" expanded="true" />
+                <element signature="e#680#681#0" expanded="true" />
+                <element signature="e#713#714#0" expanded="true" />
+                <element signature="e#741#742#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+>>>>>>> Stashed changes
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -365,43 +454,13 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>switchScene</find>
-      <find>search</find>
-      <find>handleSearchByKey</find>
-      <find>observable</find>
-      <find>searchBox</find>
-      <find>products</find>
-      <find>orderOwner_TextFielc</find>
-      <find>orderProducts</find>
-      <find>getProducts</find>
-      <find>getOrderProductList</find>
-      <find>setId</find>
-      <find>selectedProduct</find>
-      <find>getOrder</find>
-      <find>All</find>
-      <find>selectUser</find>
-      <find>delete</find>
-      <find>isEdit</find>
-      <find>curre</find>
-      <find>remo</find>
-      <find>summaryBt</find>
-      <find>syste</find>
-      <find>createT</find>
-    </findStrings>
-  </component>
-  <component name="FindManager">
-    <FindUsagesManager>
-      <setting name="OPEN_NEW_TAB" value="false" />
-    </FindUsagesManager>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< Updated upstream
         <option value="$PROJECT_DIR$/src/sample/orderController.java" />
         <option value="$PROJECT_DIR$/src/sample/orderLayout.fxml" />
         <option value="$PROJECT_DIR$/src/sample/sample.java" />
@@ -443,6 +502,13 @@
         <option value="$PROJECT_DIR$/src/product/CatalogueEntry.java" />
         <option value="$PROJECT_DIR$/src/sample/Main.java" />
         <option value="$PROJECT_DIR$/src/connectionDB/serviceDB.java" />
+=======
+        <option value="$PROJECT_DIR$/src/productManagement/ProductUI.java" />
+        <option value="$PROJECT_DIR$/src/connectionDB/serviceDB.java" />
+        <option value="$PROJECT_DIR$/src/sample/Main.java" />
+        <option value="$PROJECT_DIR$/src/product/Pallet.java" />
+        <option value="$PROJECT_DIR$/src/productManagement/ProductController.java" />
+>>>>>>> Stashed changes
       </list>
     </option>
   </component>
@@ -459,8 +525,12 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+<<<<<<< Updated upstream
       <pane id="AndroidView" />
+=======
+>>>>>>> Stashed changes
       <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -539,6 +609,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+<<<<<<< Updated upstream
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="GoToFile.includeJavaFiles" value="false" />
@@ -555,6 +626,13 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
+=======
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545112479025" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/objectdb/bin/objectdb.jar!/" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+>>>>>>> Stashed changes
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -593,6 +671,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+      <changelist id="586fdb3c-e359-4852-a897-dee32b9b09db" name="Default Changelist" comment="" />
       <created>1542009892938</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -780,23 +859,38 @@
       <option name="project" value="LOCAL" />
       <updated>1542187869567</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="foun">
+      <created>1543576295250</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1543576295250</updated>
+    </task>
+    <task id="LOCAL-00028" summary="addShelfBt in productUI">
+      <created>1545039938485</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1545039938485</updated>
+    </task>
+    <task id="LOCAL-00029" summary="checked">
+      <created>1545054630563</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1545054630563</updated>
+    </task>
     <servers />
   </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-  </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <frame x="-6" y="-6" width="1318" height="925" extended-state="6" />
     <editor active="true" />
     <layout>
+<<<<<<< Updated upstream
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.18230277" />
+=======
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.22142857" />
+>>>>>>> Stashed changes
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -804,8 +898,13 @@
       <window_info id="UI Designer" order="5" />
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
+<<<<<<< Updated upstream
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286334" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.2715736" />
+=======
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32830188" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.27044025" />
+>>>>>>> Stashed changes
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -815,6 +914,7 @@
       <window_info anchor="bottom" id="Problems" order="9" />
       <window_info anchor="bottom" id="Changes" order="10" />
       <window_info anchor="bottom" id="Profiler" order="11" />
+<<<<<<< Updated upstream
       <window_info anchor="bottom" id="Event Log" order="12" weight="0.3286334" />
       <window_info anchor="bottom" id="Messages" order="13" visible="true" weight="0.2027897" />
       <window_info anchor="bottom" id="Terminal" order="14" weight="0.32907802" />
@@ -829,6 +929,22 @@
     </layout>
     <layout-to-restore>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.18070363" />
+=======
+      <window_info anchor="bottom" id="Event Log" order="12" weight="0.32830188" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.20377359" />
+      <window_info anchor="bottom" id="Terminal" order="14" weight="0.32907802" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="1" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="2" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="right" id="Ant Build" order="4" weight="0.24940048" />
+      <window_info anchor="right" id="Palette&#9;" order="5" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="right" id="Maven Projects" order="7" weight="0.32933652" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.2704203" />
+>>>>>>> Stashed changes
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -837,7 +953,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286334" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2715736" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.27006507" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -859,6 +975,7 @@
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="right" id="Theme Preview" order="7" />
     </layout-to-restore>
+<<<<<<< Updated upstream
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -885,15 +1002,14 @@
         </entry>
       </map>
     </option>
+=======
+>>>>>>> Stashed changes
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <MESSAGE value="Field first commit" />
-    <MESSAGE value="create new branch &quot;OrderManagement&quot;" />
-    <MESSAGE value="del a in Order class" />
     <MESSAGE value="test" />
     <MESSAGE value="Create &quot;OrderManagement&quot; branch" />
     <MESSAGE value="get select row object" />
@@ -916,13 +1032,13 @@
     <MESSAGE value="Correct Tab / Login Clear Text when login failed / Signup can save role info into database / User Search can delete user from database" />
     <MESSAGE value="Profile Page can edit currently ID information. / UI change a little bit. /" />
     <MESSAGE value="update productList" />
-    <option name="LAST_COMMIT_MESSAGE" value="update productList" />
-  </component>
-  <component name="antWorkspaceConfiguration">
-    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
-    <option name="FILTER_TARGETS" value="false" />
+    <MESSAGE value="foun" />
+    <MESSAGE value="addShelfBt in productUI" />
+    <MESSAGE value="checked" />
+    <option name="LAST_COMMIT_MESSAGE" value="checked" />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< Updated upstream
     <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/javafx.base/javafx/event/EventHandler.java" />
     <entry file="file://$PROJECT_DIR$/src/sample/father.java" />
     <entry file="file://$PROJECT_DIR$/src/sample/child.java" />
@@ -1039,85 +1155,108 @@
     <entry file="file://$PROJECT_DIR$/src/user/test.fxml" />
     <entry file="file://$PROJECT_DIR$/src/user/signup.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
+=======
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/product/CatalogueEntry.java">
+>>>>>>> Stashed changes
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="61" column="54" selection-start-line="61" selection-start-column="54" selection-end-line="61" selection-end-column="54" />
+        <state relative-caret-position="277">
+          <caret line="70" selection-start-line="70" selection-end-line="70" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/user/SignUpUI.java">
+    <entry file="file://$PROJECT_DIR$/src/report/ReportUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-89">
-          <caret line="44" column="48" lean-forward="true" selection-start-line="44" selection-start-column="48" selection-end-line="44" selection-end-column="48" />
+        <state relative-caret-position="1547">
+          <caret line="110" selection-start-line="110" selection-end-line="110" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2595#2596#0" expanded="true" />
-            <element signature="e#2657#2658#0" expanded="true" />
+            <element signature="e#4409#4410#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/report/ReportController.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/PageController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        <state relative-caret-position="799">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ordermanagement/OrderListController.java" />
-    <entry file="file://$PROJECT_DIR$/src/report/reportMainController.java" />
-    <entry file="file://$PROJECT_DIR$/src/productManagement/productListController.java" />
-    <entry file="file://$PROJECT_DIR$/src/sample/Transaction.java">
+    <entry file="file://$PROJECT_DIR$/src/user/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="84" selection-start-line="9" selection-start-column="84" selection-end-line="9" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/user/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ordermanagement/OrderController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/user/LoginUI.java">
-      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="748">
           <caret line="50" column="13" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/user/UserSearchUI.java">
-      <provider selected="true" editor-type-id="text-editor">
+=======
         <state relative-caret-position="391">
-          <caret line="39" column="11" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="e#655#656#0" expanded="true" />
+            <element signature="e#680#681#0" expanded="true" />
+            <element signature="e#713#714#0" expanded="true" />
+            <element signature="e#741#742#0" expanded="true" />
+          </folding>
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/user/ProfileUI.java">
+    <entry file="file://$PROJECT_DIR$/src/product/Product.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="1853">
           <caret line="150" column="11" selection-start-line="150" selection-start-column="11" selection-end-line="150" selection-end-column="11" />
+=======
+        <state relative-caret-position="200">
+          <caret line="13" column="120" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="120" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#706#707#0" expanded="true" />
+            <element signature="e#730#731#0" expanded="true" />
+            <element signature="e#789#790#0" expanded="true" />
+            <element signature="e#821#822#0" expanded="true" />
+            <element signature="e#868#869#0" expanded="true" />
+            <element signature="e#910#911#0" expanded="true" />
+            <element signature="e#942#943#0" expanded="true" />
+            <element signature="e#973#974#0" expanded="true" />
+            <element signature="e#1018#1019#0" expanded="true" />
+            <element signature="e#1058#1059#0" expanded="true" />
+            <element signature="e#1087#1088#0" expanded="true" />
+            <element signature="e#1115#1116#0" expanded="true" />
+            <element signature="e#1154#1155#0" expanded="true" />
+            <element signature="e#1188#1189#0" expanded="true" />
+            <element signature="e#1224#1225#0" expanded="true" />
+            <element signature="e#1259#1260#0" expanded="true" />
+            <element signature="e#1312#1313#0" expanded="true" />
+            <element signature="e#1360#1361#0" expanded="true" />
+            <element signature="e#1396#1397#0" expanded="true" />
+            <element signature="e#1431#1432#0" expanded="true" />
+            <element signature="e#1484#1485#0" expanded="true" />
+            <element signature="e#1532#1533#0" expanded="true" />
+            <element signature="e#1563#1564#0" expanded="true" />
+            <element signature="e#1590#1591#0" expanded="true" />
+            <element signature="e#1630#1631#0" expanded="true" />
+            <element signature="e#1662#1663#0" expanded="true" />
+            <element signature="e#1694#1695#0" expanded="true" />
+            <element signature="e#1722#1723#0" expanded="true" />
+            <element signature="e#1764#1765#0" expanded="true" />
+            <element signature="e#1798#1799#0" expanded="true" />
+          </folding>
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ordermanagement/OrderProduct.java">
+    <entry file="file://$PROJECT_DIR$/src/productManagement/ProductUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+        <state relative-caret-position="211">
+          <caret line="271" column="52" selection-start-line="271" selection-start-column="52" selection-end-line="271" selection-end-column="52" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/product/Pallet.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="697">
           <caret line="58" column="38" selection-start-line="58" selection-start-column="38" selection-end-line="58" selection-end-column="38" />
         </state>
@@ -1157,29 +1296,54 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+=======
+        <state relative-caret-position="680">
+          <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/product/CatalogueEntry.java">
+    <entry file="file://$PROJECT_DIR$/src/product/Shelf.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
+>>>>>>> Stashed changes
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/connectionDB/serviceDB.java">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="153">
           <caret line="9" column="27" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="27" />
+=======
+        <state relative-caret-position="204">
+          <caret line="49" column="72" lean-forward="true" selection-start-line="49" selection-start-column="72" selection-end-line="49" selection-end-column="72" />
+>>>>>>> Stashed changes
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/connectionDB/serviceDB.java">
+    <entry file="file://$PROJECT_DIR$/src/productManagement/ProductController.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="442">
           <caret line="44" column="23" lean-forward="true" selection-start-line="44" selection-start-column="23" selection-end-line="44" selection-end-column="23" />
+=======
+        <state relative-caret-position="393">
+          <caret line="69" column="41" selection-start-line="69" selection-start-column="41" selection-end-line="69" selection-end-column="41" />
+>>>>>>> Stashed changes
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#664#665#0" expanded="true" />
-            <element signature="e#698#699#0" expanded="true" />
-            <element signature="e#750#751#0" expanded="true" />
-            <element signature="e#796#797#0" expanded="true" />
+            <element signature="e#2392#2393#0" expanded="true" />
+            <element signature="e#2445#2446#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1242,7 +1406,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

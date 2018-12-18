@@ -328,7 +328,7 @@ public class ProductUI implements Controller {
                             alertError.setContentText("Invalid information");
                             alertError.showAndWait();
                         } else {
-//                            productController.createShelf(shelfName.getText(),Integer.parseInt(shelfMaxPallet.getText()))
+                            productController.createShelf(shelfName.getText(),Integer.parseInt(shelfMaxPallet.getText()));
                         }
                     }
                 }

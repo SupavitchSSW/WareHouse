@@ -4,7 +4,9 @@ import connectionDB.serviceDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import product.CatalogueEntry;
+import product.Pallet;
 import product.Product;
+import product.Shelf;
 
 import java.util.Date;
 import java.util.List;
@@ -37,15 +39,38 @@ public class ProductController {
         warehouse.createTransaction(productId, changeQuantity, date, type);
     }
     public void deleteProduct(int productId) {
-//        warehouse
+//        getAllShelf -> loop all pallet in all shelf -> removeProductPallet
+//        removeProductCatalogueEntry
     }
     public void addNewProduct(String name, String brand, int price, int amountInPack, int packCapacity, int quantity) {
-
+//        ++catalogueEntry.getLastid()
+//        check wh capacity -> getAllShelf -> empty pallet or addPallet
+//        for (Shelf s: shelfs) {}
+//        for (Pallet p: s.pallets) {
+//            quantityCanAdd = (p.getMaxCapacity()-p.getCapacity()) / packCapacity;
+//            if (quantityCanAdd >= quantity) {
+//                addProductToPallet(quantity)
+//                quantity=0;
+//            }
+//            else {
+//                addProductToPallet(quantityCanAdd)
+//            }
+//            quantity -= quantityCanAdd;
+//        }
+//        while (quantity!=0 && (s.getMaxPallet()-s.pallet.size())!=0 ) {
+//            addPallet(s.getId(),0,100);
+//            quantityCanAdd = s.pallets[-1].getMaxCapacity() / packCapacity;
+//            if (quantityCanAdd >= quantity) {
+//                addProductToPallet(quantity)
+//                quantity=0;
+//            }
+//            else {
+//                addProductToPallet(quantityCanAdd)
+//            }
+//            quantity -= quantityCanAdd;
+//        }
     }
     public void createShelf(String name, int maxPallet) {
-//        warehouse.createShelf(name,maxPallet);
+        warehouse.createShelf(name,maxPallet);
     }
-//    public void removeShelf(int id) {
-//
-//    }
 }

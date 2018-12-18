@@ -90,24 +90,21 @@ public class serviceDB {
     }
 
     public void removeProductPallet(int palletId , int productId){
-
         String sql = "SELECT c FROM Pallet c Where c.id =" + palletId +"";
         TypedQuery<Pallet> query = em.createQuery(sql, Pallet.class);
         List<Pallet> results = query.getResultList();
         em.getTransaction().begin();
         results.get(0).removeProduct(productId);
         em.getTransaction().commit();
-
     }
-    public void removeProductCatalogueEntry(int catalogueEntryId , int productId ){
 
+    public void removeProductCatalogueEntry(int catalogueEntryId , int productId ){
         String sql = "SELECT c FROM CatalogueEntry c Where c.id =" + catalogueEntryId +"";
         TypedQuery<CatalogueEntry> query = em.createQuery(sql, CatalogueEntry.class);
         List<CatalogueEntry> results = query.getResultList();
         em.getTransaction().begin();
         results.get(0).removeProduct(productId);
         em.getTransaction().commit();
-
     }
     public void removePallet(int shelfId , int palletId){
         String sql = "SELECT c FROM Shelf c Where c.id =" + shelfId +"";

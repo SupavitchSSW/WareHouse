@@ -1,0 +1,231 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-30 17:57:18 #1 store] 
+Database 'C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\db\Stock.odb' is opened by 9756@DESKTOP-A953IGJ
+
+[2018-11-30 17:57:18 #2 store] 
+Configuration path: C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\objectdb.conf
+
+[2018-11-30 17:57:19 #3 type] 
+Type product.Product is not enhanced.
+
+[2018-11-30 17:57:19 #4 type] 
+Type user.User is not enhanced.
+
+[2018-11-30 17:57:19 #5 type] 
+Type ordermanagement.OrderProduct is not enhanced.
+
+[2018-11-30 17:57:19 #6 type] 
+Type ordermanagement.Order is not enhanced.
+
+[2018-11-30 17:57:19 #7 type.registry] 
+New type transaction.Transaction
+
+[2018-11-30 17:57:19 #8 type] 
+Type transaction.Transaction is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-30 17:58:47 #1 store] 
+Database 'C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\db\Stock.odb' has been recovered (tr. 86-89)
+
+[2018-11-30 17:58:47 #2 store] 
+Database 'C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\db\Stock.odb' is opened by 9404@DESKTOP-A953IGJ
+
+[2018-11-30 17:58:47 #3 store] 
+Configuration path: C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\objectdb.conf
+
+[2018-11-30 17:58:48 #4 type] 
+Type product.Product is not enhanced.
+
+[2018-11-30 17:58:48 #5 type] 
+Type user.User is not enhanced.
+
+[2018-11-30 17:58:48 #6 type] 
+Type ordermanagement.OrderProduct is not enhanced.
+
+[2018-11-30 17:58:48 #7 type] 
+Type ordermanagement.Order is not enhanced.
+
+[2018-11-30 17:58:48 #8 type] 
+Type transaction.Transaction is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-30 17:59:47 #1 store] 
+Database 'C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\db\Stock.odb' has been recovered (tr. 90-92)
+
+[2018-11-30 17:59:47 #2 store] 
+Database 'C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\db\Stock.odb' is opened by 7808@DESKTOP-A953IGJ
+
+[2018-11-30 17:59:47 #3 store] 
+Configuration path: C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\objectdb.conf
+
+[2018-11-30 17:59:47 #4 type] 
+Type product.Product is not enhanced.
+
+[2018-11-30 17:59:47 #5 type] 
+Type user.User is not enhanced.
+
+[2018-11-30 17:59:47 #6 type] 
+Type ordermanagement.OrderProduct is not enhanced.
+
+[2018-11-30 17:59:47 #7 type] 
+Type ordermanagement.Order is not enhanced.
+
+[2018-11-30 17:59:47 #8 type] 
+Type transaction.Transaction is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-30 18:02:42 #1 store] 
+Database 'C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\db\Stock.odb' has been recovered (tr. 93-95)
+
+[2018-11-30 18:02:42 #2 store] 
+Database 'C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\db\Stock.odb' is opened by 12896@DESKTOP-A953IGJ
+
+[2018-11-30 18:02:42 #3 store] 
+Configuration path: C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\objectdb.conf
+
+[2018-11-30 18:02:43 #4 type] 
+Type product.Product is not enhanced.
+
+[2018-11-30 18:02:43 #5 type] 
+Type user.User is not enhanced.
+
+[2018-11-30 18:02:43 #6 type] 
+Type ordermanagement.OrderProduct is not enhanced.
+
+[2018-11-30 18:02:43 #7 type] 
+Type ordermanagement.Order is not enhanced.
+
+[2018-11-30 18:02:43 #8 type] 
+Type transaction.Transaction is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-30 18:03:13 #1 store] 
+Database 'C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\db\Stock.odb' has been recovered (tr. 96-98)
+
+[2018-11-30 18:03:13 #2 store] 
+Database 'C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\db\Stock.odb' is opened by 2160@DESKTOP-A953IGJ
+
+[2018-11-30 18:03:13 #3 store] 
+Configuration path: C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\objectdb.conf
+
+[2018-11-30 18:03:13 #4 type] 
+Type product.Product is not enhanced.
+
+[2018-11-30 18:03:13 #5 type] 
+Type user.User is not enhanced.
+
+[2018-11-30 18:03:13 #6 type] 
+Type ordermanagement.OrderProduct is not enhanced.
+
+[2018-11-30 18:03:13 #7 type] 
+Type ordermanagement.Order is not enhanced.
+
+[2018-11-30 18:03:13 #8 type] 
+Type transaction.Transaction is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-30 18:19:58 #1 store] 
+Database 'C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\db\Stock.odb' has been recovered (tr. 99-101)
+
+[2018-11-30 18:19:58 #2 store] 
+Database 'C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\db\Stock.odb' is opened by 12276@DESKTOP-A953IGJ
+
+[2018-11-30 18:19:58 #3 store] 
+Configuration path: C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\objectdb.conf
+
+[2018-11-30 18:19:59 #4 type] 
+Type product.Product is not enhanced.
+
+[2018-11-30 18:19:59 #5 type] 
+Type user.User is not enhanced.
+
+[2018-11-30 18:19:59 #6 type] 
+Type ordermanagement.OrderProduct is not enhanced.
+
+[2018-11-30 18:19:59 #7 type] 
+Type ordermanagement.Order is not enhanced.
+
+[2018-11-30 18:19:59 #8 type] 
+Type transaction.Transaction is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-30 18:32:54 #1 store] 
+Database 'C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\db\Stock.odb' has been recovered (tr. 102-102)
+
+[2018-11-30 18:32:54 #2 store] 
+Database 'C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\db\Stock.odb' is opened by 13524@DESKTOP-A953IGJ
+
+[2018-11-30 18:32:54 #3 store] 
+Configuration path: C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\objectdb.conf
+
+[2018-11-30 18:32:54 #4 type] 
+Type product.Product is not enhanced.
+
+[2018-11-30 18:32:54 #5 type] 
+Type user.User is not enhanced.
+
+[2018-11-30 18:32:54 #6 type] 
+Type ordermanagement.OrderProduct is not enhanced.
+
+[2018-11-30 18:32:54 #7 type] 
+Type ordermanagement.Order is not enhanced.
+
+[2018-11-30 18:32:54 #8 type] 
+Type transaction.Transaction is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-30 18:33:26 #1 store] 
+Database 'C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\db\Stock.odb' has been recovered (tr. 103-103)
+
+[2018-11-30 18:33:26 #2 store] 
+Database 'C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\db\Stock.odb' is opened by 13296@DESKTOP-A953IGJ
+
+[2018-11-30 18:33:26 #3 store] 
+Configuration path: C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\objectdb.conf
+
+[2018-11-30 18:33:26 #4 type] 
+Type product.Product is not enhanced.
+
+[2018-11-30 18:33:26 #5 type] 
+Type user.User is not enhanced.
+
+[2018-11-30 18:33:26 #6 type] 
+Type ordermanagement.OrderProduct is not enhanced.
+
+[2018-11-30 18:33:26 #7 type] 
+Type ordermanagement.Order is not enhanced.
+
+[2018-11-30 18:33:26 #8 type] 
+Type transaction.Transaction is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-30 19:30:59 #1 store] 
+Database 'C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\db\Stock.odb' is opened by 9380@DESKTOP-A953IGJ
+
+[2018-11-30 19:30:59 #2 store] 
+Configuration path: C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\objectdb.conf
+
+[2018-11-30 19:31:00 #3 type] 
+Type product.Product is not enhanced.
+
+[2018-11-30 19:31:00 #4 type] 
+Type user.User is not enhanced.
+
+[2018-11-30 19:31:00 #5 type] 
+Type ordermanagement.OrderProduct is not enhanced.
+
+[2018-11-30 19:31:00 #6 type] 
+Type ordermanagement.Order is not enhanced.
+
+[2018-11-30 19:31:00 #7 type] 
+Type transaction.Transaction is not enhanced.
+

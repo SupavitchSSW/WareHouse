@@ -1,0 +1,77 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-12-18 11:34:40 #1 store] 
+Database 'C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\db\Stock.odb' is opened by 9012@DESKTOP-A953IGJ
+
+[2018-12-18 11:34:40 #2 store] 
+Configuration path: C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\objectdb.conf
+
+[2018-12-18 11:37:44 #3 store] 
+Database 'C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\db\Stock.odb' is closed by 9012@DESKTOP-A953IGJ
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-12-18 11:39:00 #1 store] 
+Database 'C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\db\Stock.odb' is opened by 9864@DESKTOP-A953IGJ
+
+[2018-12-18 11:39:00 #2 store] 
+Configuration path: C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\objectdb.conf
+
+[2018-12-18 11:39:00 #3 type] 
+Type product.Shelf is not enhanced.
+
+[2018-12-18 11:39:00 #4 type] 
+Type product.Pallet is not enhanced.
+
+[2018-12-18 11:39:00 #5 type] 
+Type product.Product is not enhanced.
+
+[2018-12-18 11:39:00 #6 type] 
+Type user.User is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-12-18 11:39:53 #1 store] 
+Database 'C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\db\Stock.odb' has been recovered (tr. 19-22)
+
+[2018-12-18 11:39:53 #2 store] 
+Database 'C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\db\Stock.odb' is opened by 8384@DESKTOP-A953IGJ
+
+[2018-12-18 11:39:53 #3 store] 
+Configuration path: C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\objectdb.conf
+
+[2018-12-18 11:39:54 #4 type] 
+Type product.Shelf is not enhanced.
+
+[2018-12-18 11:39:54 #5 type] 
+Type product.Pallet is not enhanced.
+
+[2018-12-18 11:39:54 #6 type] 
+Type product.Product is not enhanced.
+
+[2018-12-18 11:39:54 #7 type] 
+Type user.User is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-12-18 11:40:25 #1 store] 
+Database 'C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\db\Stock.odb' has been recovered (tr. 23-23)
+
+[2018-12-18 11:40:25 #2 store] 
+Database 'C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\db\Stock.odb' is opened by 11728@DESKTOP-A953IGJ
+
+[2018-12-18 11:40:25 #3 store] 
+Configuration path: C:\Users\wrs\Desktop\OOAD Proj\New folder\WareHouse\objectdb\objectdb.conf
+
+[2018-12-18 11:40:25 #4 type] 
+Type product.Shelf is not enhanced.
+
+[2018-12-18 11:40:25 #5 type] 
+Type product.Pallet is not enhanced.
+
+[2018-12-18 11:40:25 #6 type] 
+Type product.Product is not enhanced.
+
+[2018-12-18 11:40:25 #7 type] 
+Type user.User is not enhanced.
+
