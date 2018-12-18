@@ -125,7 +125,37 @@ public class serviceDB {
         em.getTransaction().commit();
 
     }
-
+    public void setProductQtPallet(int palletId , int productId , int qt){
+        String sql = "SELECT c FROM Pallet c Where c.id =" + palletId +"";
+        TypedQuery<Pallet> query = em.createQuery(sql, Pallet.class);
+        List<Pallet> results = query.getResultList();
+        em.getTransaction().begin();
+        results.get(0).setProductQuantity(productId,qt);
+        em.getTransaction().commit();
+    }
+    public void setProductQtCatalogue(int productId, int qt){
+        TypedQuery<CatalogueEntry> query = em.createQuery("SELECT w FROM CatalogueEntry w", CatalogueEntry.class);
+        List<CatalogueEntry> resultOrder = query.getResultList();
+        em.getTransaction().begin();
+        resultOrder.get(0).setProductQuantity(productId , qt);
+        em.getTransaction().commit();
+    }
+    public void setProductDetailPallet(int palletId ,int productId, int price, int amountInPack, int packCapacity, String name, String brand){
+        String sql = "SELECT c FROM Pallet c Where c.id =" + palletId +"";
+        TypedQuery<Pallet> query = em.createQuery(sql, Pallet.class);
+        List<Pallet> results = query.getResultList();
+        em.getTransaction().begin();
+        results.get(0).setProductDetail(productId,price,amountInPack,packCapacity,name,brand);
+        em.getTransaction().commit();
+    }
+    public void setProductDetailCatalogue(int productId, int price, int amountInPack, int packCapacity, String name, String brand){
+        String sql = "SELECT c FROM CatalogueEntry c ";
+        TypedQuery<CatalogueEntry> query = em.createQuery(sql, CatalogueEntry.class);
+        List<CatalogueEntry> results = query.getResultList();
+        em.getTransaction().begin();
+        results.get(0).setProductDetail(productId,price,amountInPack,packCapacity,name,brand);
+        em.getTransaction().commit();
+    }
     ////////////////
     public void createProduct(String name, String brand , int price , int quantity){
         em.getTransaction().begin();
