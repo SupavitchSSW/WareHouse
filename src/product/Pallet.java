@@ -52,6 +52,7 @@ public class Pallet implements Serializable{
             Product a = iter.next();
             if (a.getProductId() == productId) {
                 iter.remove();
+                this.capacity -= (a.getPackCapacity()*a.getQuantity());
             }
         }
     }

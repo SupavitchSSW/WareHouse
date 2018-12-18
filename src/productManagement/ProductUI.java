@@ -203,13 +203,13 @@ public class ProductUI implements Controller {
                             Optional<ButtonType> result = alert.showAndWait();
                             if (result.get() == ButtonType.OK){
                                 if (productListTable.getItems() == subEntries) {
-                                    productController.deleteProduct(selectedProduct.getProductId());
+                                    productController.deleteProduct(selectedProduct.getProductId(),selectedProduct.getQuantity(),selectedProduct.getPackCapacity());
 //                                    database.removeProduct(selectedProduct.getId());
 //                                    products.remove(products.indexOf(subEntries.get(index)));
                                     searchBox.clear();
                                     productListTable.setItems(products);
                                 } else {
-                                    productController.deleteProduct(selectedProduct.getProductId());
+                                    productController.deleteProduct(selectedProduct.getProductId(),selectedProduct.getQuantity(),selectedProduct.getPackCapacity());
 //                                    database.removeProduct(selectedProduct.getId());
 //                                    products.remove(index);
                                 }
