@@ -41,6 +41,7 @@ public class UserSearchUI implements Controller{
 
         Button orderBt = (Button) scene.lookup("#orderButton");
         Button userSearchBt = (Button) scene.lookup("#userSearchButton");
+        summaryBt = (Button) scene.lookup("#summaryButton");
         TextField searchBox = (TextField) scene.lookup("#searchBox");
 
         Button logoutBt = (Button) scene.lookup("#logoutButton");
