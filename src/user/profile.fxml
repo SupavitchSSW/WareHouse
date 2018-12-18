@@ -40,7 +40,7 @@
     </Button>
     <Button id="orderButton" font="$x2" layoutX="645.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" style="-fx-background-radius: 50px; -fx-background-color: DimGray; -fx-border-color: white; -fx-border-radius: 50px; -fx-border-width: 3;" text="Order" textFill="WHITE" />
     <Button id="userSearchButton" font="$x2" layoutX="315.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" style="-fx-background-radius: 50px; -fx-background-color: DimGray; -fx-border-color: white; -fx-border-radius: 50px; -fx-border-width: 3;" text="User Search" textFill="WHITE" />
-    <Button id="summaryButton" font="$x2" layoutX="480.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" style="-fx-background-radius: 50px; -fx-background-color: DimGray; -fx-border-color: white; -fx-border-radius: 50px; -fx-border-width: 3;" text="Summary" textFill="WHITE" />
+    <Button id="summaryButton" font="$x2" layoutX="480.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" style="-fx-background-radius: 50px; -fx-background-color: DimGray; -fx-border-color: white; -fx-border-radius: 50px; -fx-border-width: 3;" text="Report" textFill="WHITE" />
     <Button id="logoutButton" font="$x2" layoutX="810.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" style="-fx-background-radius: 50px; -fx-background-color: DimGray; -fx-border-color: white; -fx-border-radius: 50px; -fx-border-width: 3;" text="Log out" textFill="WHITE" />
     <Text layoutX="338.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PROFILE" textAlignment="CENTER" wrappingWidth="323.10107421875">
       <font>
