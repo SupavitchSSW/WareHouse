@@ -264,6 +264,5 @@ public class UserSearchUI implements Controller{
         }
         userTable.setItems(subEntries);
     }
-
 }
 

@@ -199,9 +199,10 @@ public class OrderController {
                 //order.addOrderProduct(new OrderProduct(Integer.parseInt(obj.get("id").toString()),obj.get("name").toString(),obj.get("brand").toString(),Integer.parseInt(obj.get("amount").toString())));
                 warehouse.addOrderproduct(id,Integer.parseInt(obj.get("id").toString()),obj.get("name").toString(),obj.get("brand").toString(),Integer.parseInt(obj.get("amount").toString()));
             }
-
             System.out.println("Read JSON : "+inputJSON);
             System.out.println(order.toString());
+            File f = new File("OrderAPI/in/"+listOfFile[j].getName());
+            f.delete();
         }
     }
 

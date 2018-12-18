@@ -152,7 +152,6 @@ public class OrderListUI implements Controller {
             boolean match = true;
             Order entryP = (Order) entry;
             String detailEntryP = entryP.getId()+entryP.getName().toUpperCase()+entryP.getStatus();
-            System.out.println(detailEntryP);
             for ( String part: parts ) {
                 if ( ! detailEntryP.contains(part) ) {
                     match = false;
