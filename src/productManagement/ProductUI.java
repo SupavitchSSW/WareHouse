@@ -84,7 +84,7 @@ public class ProductUI implements Controller {
         quantityColumn.setMinWidth(170);
         priceColumn.setMinWidth(140);
 
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         brandColumn.setCellValueFactory(new PropertyValueFactory<>("brand"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
@@ -112,8 +112,8 @@ public class ProductUI implements Controller {
                         selectedProduct = products.get(index);
                     }
 
-                    propertyGrid.add(new Label("Product ID:"), 0, 0);
-                    propertyGrid.add(new Label(Integer.toString(selectedProduct.getId())), 1, 0);
+                    propertyGrid.add(new Label("Product Id:"), 0, 0);
+                    propertyGrid.add(new Label(Integer.toString(selectedProduct.getProductId())), 1, 0);
                     propertyGrid.add(new Label("Product Name:"), 0, 1);
                     propertyGrid.add(new Label(selectedProduct.getName()), 1, 1);
                     propertyGrid.add(new Label("Product Brand:"), 0, 2);
@@ -122,6 +122,10 @@ public class ProductUI implements Controller {
                     propertyGrid.add(new Label(Integer.toString(selectedProduct.getQuantity())), 1, 3);
                     propertyGrid.add(new Label("Product Price:"), 0, 4);
                     propertyGrid.add(new Label(Integer.toString(selectedProduct.getPrice())), 1, 4);
+                    propertyGrid.add(new Label("Product Amount in Pack:"), 0, 5);
+                    propertyGrid.add(new Label(Integer.toString(selectedProduct.getAmountInPack())), 1, 5);
+                    propertyGrid.add(new Label("Pack Capacity:"), 0, 6);
+                    propertyGrid.add(new Label(Integer.toString(selectedProduct.getPackCapacity())), 1, 6);
                     propertyDialog.getDialogPane().setContent(propertyGrid);
 
                     ButtonType editButtonType = new ButtonType("Edit");
@@ -199,13 +203,13 @@ public class ProductUI implements Controller {
                             Optional<ButtonType> result = alert.showAndWait();
                             if (result.get() == ButtonType.OK){
                                 if (productListTable.getItems() == subEntries) {
-                                    productController.deleteProduct(selectedProduct.getId());
+                                    productController.deleteProduct(selectedProduct.getProductId());
 //                                    database.removeProduct(selectedProduct.getId());
 //                                    products.remove(products.indexOf(subEntries.get(index)));
                                     searchBox.clear();
                                     productListTable.setItems(products);
                                 } else {
-                                    productController.deleteProduct(selectedProduct.getId());
+                                    productController.deleteProduct(selectedProduct.getProductId());
 //                                    database.removeProduct(selectedProduct.getId());
 //                                    products.remove(index);
                                 }
@@ -229,35 +233,44 @@ public class ProductUI implements Controller {
                     GridPane addProductGrid = new GridPane();
                     addProductGrid.setHgap(10);
                     addProductGrid.setVgap(20);
-                    addProductGrid.setPadding(new Insets(20, 150, 10, 20));
+                    addProductGrid.setPadding(new Insets(20, 50, 10, 20));
 
                     TextField productName = new TextField();
                     TextField productBrand = new TextField();
                     TextField productQuantity = new TextField();
                     TextField productPrice = new TextField();
+                    TextField productAmountInPack = new TextField();
+                    TextField productPackCapacity = new TextField();
 
                     addProductGrid.add(new Label("Name:"), 0, 1);
                     addProductGrid.add(productName, 1, 1);
-                    addProductGrid.add(new Label("Brand:"), 0, 2);
-                    addProductGrid.add(productBrand, 1, 2);
+                    addProductGrid.add(new Label("Brand:"), 3, 1);
+                    addProductGrid.add(productBrand, 4, 1);
                     addProductGrid.add(new Label("Quantity:"), 0, 3);
                     addProductGrid.add(productQuantity, 1, 3);
-                    addProductGrid.add(new Label("Price:"), 0, 4);
-                    addProductGrid.add(productPrice, 1, 4);
+                    addProductGrid.add(new Label("Price:"), 3, 3);
+                    addProductGrid.add(productPrice, 4, 3);
+                    addProductGrid.add(new Label("Amount in Pack:"), 0, 5);
+                    addProductGrid.add(productAmountInPack, 1, 5);
+                    addProductGrid.add(new Label("Pack Capacity:"), 3, 5);
+                    addProductGrid.add(productPackCapacity, 4, 5);
 
                     addProductDialog.getDialogPane().setContent(addProductGrid);
 
                     addProductDialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
                     Optional<ButtonType> addProductResult = addProductDialog.showAndWait();
                     if (addProductResult.get() == ButtonType.OK) {
-                        if (productName.getText().isEmpty() || productBrand.getText().isEmpty() || productQuantity.getText().isEmpty()) {
+                        if (productName.getText().isEmpty() || productBrand.getText().isEmpty() || productQuantity.getText().isEmpty()
+                                || productPrice.getText().isEmpty() || productPackCapacity.getText().isEmpty()
+                                || productAmountInPack.getText().isEmpty()) {
                             Alert alertError = new Alert(Alert.AlertType.ERROR);
                             alertError.setTitle("Error to Add Product");
                             alertError.setHeaderText(null);
                             alertError.setContentText("Invalid information");
                             alertError.showAndWait();
                         } else {
-                            if (tryParse(productQuantity.getText()) == null || tryParse(productPrice.getText()) == null) {
+                            if (tryParse(productQuantity.getText()) == null || tryParse(productPrice.getText()) == null
+                                    || tryParse(productAmountInPack.getText()) == null || tryParse(productPackCapacity.getText()) == null) {
                                 Alert alertError = new Alert(Alert.AlertType.ERROR);
                                 alertError.setTitle("Error to Add Product");
                                 alertError.setHeaderText(null);
@@ -268,15 +281,17 @@ public class ProductUI implements Controller {
                                     searchBox.clear();
                                     productListTable.setItems(products);
                                 }
-                                productController.addNewProduct(productName.getText(), productBrand.getText(), Integer.parseInt(productPrice.getText()),0,0,0);
+                                productController.addNewProduct(productName.getText(), productBrand.getText(), Integer.parseInt(productPrice.getText()),
+                                        Integer.parseInt(productAmountInPack.getText()), Integer.parseInt(productPackCapacity.getText()),
+                                        Integer.parseInt(productQuantity.getText()));
 //                                database.createProduct(productName.getText(), productBrand.getText(), Integer.parseInt(productPrice.getText()), Integer.parseInt(productQuantity.getText()));
                                 //                            products.add(new Product(++lastID, Integer.parseInt(productQuantity.getText()), productName.getText(), productBrand.getText(),Integer.parseInt(productPrice.getText())));
                                 Date date = new Date();
 
                                 // found ERROR!!
 
-                                List<Product> check = database.getAllProduct();
-                                productController.createTransaction(check.get(check.size() - 1).getId(), Integer.parseInt(productQuantity.getText()), date, "addProduct");
+//                                List<Product> check = database.getAllProduct();
+//                                productController.createTransaction(check.get(check.size() - 1).getId(), Integer.parseInt(productQuantity.getText()), date, "addProduct");
 //                                database.createTransaction(check.get(check.size() - 1).getId(), Integer.parseInt(productQuantity.getText()), date, "addProduct");
                                 //                            System.out.println(new Transaction(lastID,Integer.parseInt(productQuantity.getText()),date,"addProduct").toString());
                                 products = getAllProduct();
@@ -390,7 +405,7 @@ public class ProductUI implements Controller {
     }
 
     public ObservableList<Product> getAllProduct(){
-        List<Product> results = database.getAllProduct();
+        List<Product> results = productController.getAllProduct(); //database.getAllProduct();
 //        for (Product p : results) {
 //            System.out.println(p);
 //        }

@@ -30,10 +30,10 @@ public class serviceDB {
         this.currentUser = currentUser;
     }
 
-    public List<CatalogueEntry> getCatalogueEntry(){
+    public CatalogueEntry getCatalogueEntry(){
         TypedQuery<CatalogueEntry> query = em.createQuery("SELECT w FROM CatalogueEntry w", CatalogueEntry.class);
         List<CatalogueEntry> resultOrder = query.getResultList();
-        return resultOrder;
+        return resultOrder.get(0);
     }
     public void createShelf(String name, int maxPallet){
         em.getTransaction().begin();
@@ -84,7 +84,7 @@ public class serviceDB {
         em.getTransaction().commit();
 
         em.getTransaction().begin();
-        String sql = "SELECT c FROM CatalogueEntry c Where c.id =" + productId +"";
+        String sql = "SELECT c FROM CatalogueEntry c ";
         TypedQuery<CatalogueEntry> query = em.createQuery(sql, CatalogueEntry.class);
         List<CatalogueEntry> results = query.getResultList();
         results.get(0).addProduct(p1);
@@ -100,8 +100,8 @@ public class serviceDB {
         em.getTransaction().commit();
     }
 
-    public void removeProductCatalogueEntry(int catalogueEntryId , int productId ){
-        String sql = "SELECT c FROM CatalogueEntry c Where c.id =" + catalogueEntryId +"";
+    public void removeProductCatalogueEntry(int productId ){
+        String sql = "SELECT c FROM CatalogueEntry c ";
         TypedQuery<CatalogueEntry> query = em.createQuery(sql, CatalogueEntry.class);
         List<CatalogueEntry> results = query.getResultList();
         em.getTransaction().begin();
@@ -255,7 +255,7 @@ public class serviceDB {
         results.get(0).setWarehouseCapacity(capacity);
         em.getTransaction().commit();
     }
-    public int getWarehouseCapacity(int capacity){
+    public int getWarehouseCapacity(){
         String sql = "SELECT c FROM CatalogueEntry c ";
         TypedQuery<CatalogueEntry> query = em.createQuery(sql, CatalogueEntry.class);
         List<CatalogueEntry> results = query.getResultList();

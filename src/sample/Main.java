@@ -49,7 +49,9 @@ public class Main extends Application {
 
         //oak db
         serviceDB database = new serviceDB();
+
         //pass
+//        database.createCatalogueEntry(0);
 //        database.createShelf("pop",9);
 //        database.addPallet(1,0,200);
 //        database.addPallet(1,0,90);

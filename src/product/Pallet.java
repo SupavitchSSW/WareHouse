@@ -40,11 +40,10 @@ public class Pallet implements Serializable{
     }
 
     public void addProduct(int productId, int quantity, int price, int amountInPack, int packCapacity, String name, String brand){
-//        pls check before come in this
-//        this.capacity -= packCapacity*quantity;
         products.add(new Product(productId,quantity,price,amountInPack,packCapacity,name,brand));
     }
     public void addProduct(Product product){
+        this.capacity += product.getPackCapacity()*product.getQuantity();
         products.add(product);
     }
 
@@ -54,9 +53,6 @@ public class Pallet implements Serializable{
             if (a.getProductId() == productId) {
                 iter.remove();
             }
-        }
-        for (Product p : this.products){
-            System.out.println(p.getProductId());
         }
     }
 
