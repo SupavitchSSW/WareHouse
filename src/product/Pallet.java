@@ -20,9 +20,17 @@ public class Pallet implements Serializable{
     }
 
     public void setProductQuantity(int productId,int quantity){
-        for(Product p : products){
-            if(p.getProductId() == productId){
-                p.setQuantity(quantity);
+        for (Iterator<Product> iter = products.listIterator(); iter.hasNext(); ) {
+            Product a = iter.next();
+            if (a.getProductId() == productId) {
+                int changeQt = a.getQuantity()-quantity;
+                if(quantity == 0){
+                    iter.remove();
+                } else {
+                    a.setQuantity(quantity);
+                }
+                this.capacity -= changeQt*a.getPackCapacity();
+                break;
             }
         }
     }
