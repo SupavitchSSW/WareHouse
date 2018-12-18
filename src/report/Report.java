@@ -2,7 +2,7 @@ package report;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import sample.Transaction;
+import transaction.Transaction;
 
 import java.util.Date;
 

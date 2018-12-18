@@ -1,40 +1,26 @@
 package productManagement;
 
-import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Callback;
-import javafx.util.Pair;
 import sample.Controller;
 import sample.PageController;
 import product.Product;
-import sample.Transaction;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.*;
 import connectionDB.*;
 import user.Manager;
 import user.Staff;
-import user.User;
 
 public class ProductUI implements Controller {
     PageController pageController;

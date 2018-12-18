@@ -1,6 +1,5 @@
 package ordermanagement;
 
-import connectionDB.serviceDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -10,21 +9,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.util.converter.IntegerStringConverter;
-import ordermanagement.Order;
 import sample.Controller;
-import sample.OrderReadWrite;
 import sample.PageController;
-import product.Product;
-import sample.Transaction;
-import user.Manager;
 import user.Staff;
-import user.User;
 
-import java.io.IOException;
-import java.util.Date;
-import java.util.List;
 import java.util.Optional;
-import java.util.function.Consumer;
 
 
 public class OrderDetailUI implements Controller {
@@ -259,12 +248,4 @@ public class OrderDetailUI implements Controller {
         //get OrderProduct list in order
         detail_table.setItems(FXCollections.observableArrayList(order.getOrderProducts()));
     }
-
-//    public Order getOrder() {
-//        return order;
-//    }
-//
-//    public void setOrder(Order order) {
-//        this.order = order;
-//    }
 }

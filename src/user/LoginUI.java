@@ -10,8 +10,6 @@ import connectionDB.serviceDB;
 
 public class LoginUI implements Controller {
     PageController pageController;
-    //String user = "test";
-    //String pw = "1234";
     String checkUser, checkPw;
     private TextField username;
     private PasswordField password;

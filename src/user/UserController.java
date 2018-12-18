@@ -10,11 +10,9 @@ import java.util.List;
 
 public class UserController {
     private serviceDB warehouse;
-    private User currentUser;
 
-    public UserController(serviceDB warehouse,User currentUser) {
+    public UserController(serviceDB warehouse) {
         this.warehouse = warehouse;
-        this.currentUser = currentUser;
     }
 
     // login --------------------------------
@@ -65,16 +63,10 @@ public class UserController {
     }
 
     public void removeUser(int userId){
-        //(TODO) remove user in warehouse
         warehouse.removeUser(userId);
     }
 
-
     public User getCurrentUser() {
         return warehouse.getCurrentUser();
-    }
-
-    public void setCurrentUser(User currentUser) {
-        this.currentUser = currentUser;
     }
 }
