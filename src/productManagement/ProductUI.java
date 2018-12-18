@@ -180,7 +180,7 @@ public class ProductUI implements Controller {
                                     int newQt = Integer.parseInt(quantity.getText());
                                     productController.changeProductQuantity(selectedProduct.getProductId(),name.getText(),brand.getText(),
                                             Integer.parseInt(price.getText()),selectedProduct.getAmountInPack(),newQt,newQt-selectedProduct.getQuantity(),
-                                            selectedProduct.getPackCapacity());
+                                            selectedProduct.getPackCapacity(),"editQuantity");
                                 }
 //                                <<<<< edit Product >>>>>
                                 productController.changeProductDetail(selectedProduct.getProductId(),name.getText(),brand.getText(),

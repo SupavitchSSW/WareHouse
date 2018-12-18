@@ -9,6 +9,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import product.CatalogueEntry;
 import product.Product;
+import productManagement.ProductController;
 import sample.OrderReadWrite;
 import user.User;
 
@@ -21,10 +22,12 @@ import java.util.List;
 
 public class OrderController {
     private Order selectOrder;
+    private ProductController productController;
     private static serviceDB warehouse;
 
-    public OrderController(serviceDB warehouse) {
+    public OrderController(serviceDB warehouse, ProductController productController) {
         this.warehouse = warehouse;
+        this.productController = productController;
     }
 
     // ------------------------------------ Order List Controller
@@ -62,12 +65,10 @@ public class OrderController {
         //change order status
         warehouse.setOrderStatus(selectOrder.getId(),"approve");
 
-
-        // (TODO) use method in productController !!
-        //create transaction
-        Date date = new Date();
-        for ( OrderProduct orderProduct: selectOrder.getOrderProducts()){
-            warehouse.createTransaction(orderProduct.getProductId(),orderProduct.getSendQuantity()*-1,date,"approveOrder");
+        // change product quantity
+        for(OrderProduct p : selectOrder.getOrderProducts()){
+            System.out.println(p.toString());
+            productController.changeProductQuantity(p.getProductId(),p.getSendQuantity()*-1,"approveOrder");
         }
 
         //write respond back to customer via json
@@ -77,12 +78,21 @@ public class OrderController {
             e.printStackTrace();
         }
 
-        // (TODO) use method in productController !!
-        //update product quantity
-        List<OrderProduct> orderProducts = selectOrder.getOrderProducts();
-        for(OrderProduct o : orderProducts){
-            warehouse.setProductQuantity(o.getProductId(),o.getQuantity()-o.getSendQuantity());
-        }
+
+//        // (TODO) use method in productController !!
+//        //create transaction
+//        Date date = new Date();
+//        for ( OrderProduct orderProduct: selectOrder.getOrderProducts()){
+//            warehouse.createTransaction(orderProduct.getProductId(),orderProduct.getSendQuantity()*-1,date,"approveOrder");
+//        }
+//
+//
+//        // (TODO) use method in productController !!
+//        //update product quantity
+//        List<OrderProduct> orderProducts = selectOrder.getOrderProducts();
+//        for(OrderProduct o : orderProducts){
+//            warehouse.setProductQuantity(o.getProductId(),o.getQuantity()-o.getSendQuantity());
+//        }
     }
 
     public void rejectOrder(){

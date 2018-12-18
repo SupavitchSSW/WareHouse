@@ -172,7 +172,7 @@ public class OrderListUI implements Controller {
         orders = orderController.getAllOrder();
         order_table.setItems(orders);
         order_table.refresh();
-        if(orderController.getCurrentUser() instanceof Manager){
+        if(orderController.getCurrentUser() instanceof Staff){
             updateBt.setDisable(true);
             productListBt.setDisable(true);
             summaryBt.setDisable(true);

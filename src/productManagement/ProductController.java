@@ -38,7 +38,7 @@ public class ProductController {
         }
     }
 
-    public void changeProductQuantity(int productId, String name, String brand, int price, int amountInPack, int newQt, int changedQt, int packCapacity){
+    public void changeProductQuantity(int productId, String name, String brand, int price, int amountInPack, int newQt, int changedQt, int packCapacity , String type){
 
         if (warehouse.getWarehouseCapacity()-(changedQt*packCapacity)<0) {
             Alert alertError = new Alert(Alert.AlertType.ERROR);
@@ -145,9 +145,49 @@ public class ProductController {
                 warehouse.setProductQtCatalogue(productId, newQt);
                 warehouse.setWarehouseCapacity(warehouse.getWarehouseCapacity() - (changedQt * packCapacity));
             }
-            warehouse.createTransaction(productId,changedQt,new Date(),"editQuantity");
+            warehouse.createTransaction(productId,changedQt,new Date(),type);
         }
     }
+
+    public void changeProductQuantity(int productId, int changedQt, String type) {
+        int packCapacity = 0;
+        int quantity = 0;
+        for (Product pd : catalogueEntry.getProducts()){
+            if (pd.getProductId() == productId){
+                packCapacity = pd.getPackCapacity();
+                quantity = pd.getQuantity();
+                break;
+            }
+        }
+
+        int qt = -changedQt;
+        shelfs = warehouse.getAllShelf();
+        for (Shelf s : shelfs){
+            if (qt==0) break;
+            for (Pallet p : s.getPallets()){
+                if (qt==0) break;
+                for (Product pd : p.getProducts()){
+                    if (qt==0) break;
+                    if (pd.getProductId()==productId) {
+                        int haveQt = pd.getQuantity();
+                        if (haveQt >= qt) {
+                            warehouse.setProductQtPallet(p.getId(),productId,haveQt-qt);
+                            qt=0;
+                            break;
+                        }
+                        else{
+                            warehouse.setProductQtPallet(p.getId(),productId,0);
+                            qt -= haveQt;
+                        }
+                    }
+                }
+            }
+        }
+        warehouse.setProductQtCatalogue(productId, quantity+changedQt);
+        warehouse.setWarehouseCapacity(warehouse.getWarehouseCapacity() - (changedQt * packCapacity));
+        warehouse.createTransaction(productId,changedQt,new Date(),type);
+    }
+
     public void createTransaction (int productId, int changeQuantity, Date date, String type) {
         warehouse.createTransaction(productId, changeQuantity, date, type);
     }
