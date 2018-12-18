@@ -35,6 +35,12 @@ public class Order implements Serializable{
         this.name = name;
         this.owner = owner;
     }
+    public Order(Date date ,String name,String owner,String status){
+        this.date = date;
+        this.name = name;
+        this.owner = owner;
+        this.status = status;
+    }
 
 //    public ObservableList<OrderProduct> getOrderProducts() {
 //        return orderProducts;
