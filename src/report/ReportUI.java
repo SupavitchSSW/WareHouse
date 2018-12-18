@@ -17,10 +17,7 @@ import sample.PageController;
 import transaction.Transaction;
 import user.User;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.*;
 
 public class ReportUI implements Controller {
     PageController pageController;
@@ -28,6 +25,10 @@ public class ReportUI implements Controller {
     private ObservableList<transaction.Transaction> reports = FXCollections.observableArrayList();
     private ObservableList<Transaction> subEntries;
     private ReportController reportController;
+    private         ObservableList<String> months = FXCollections.observableArrayList(//
+            "December", "November", "October", "September", //
+            "August", "July", "June", "May", //
+            "April", "March", "February", "January");
 
     public ReportUI(ReportController reportController ,PageController pageController) {
         this.pageController = pageController;
@@ -49,16 +50,16 @@ public class ReportUI implements Controller {
 
 
 //        searchBox.setPromptText("Search");
-//        searchBox.textProperty().addListener((observable, oldVal, newVal) -> {
-//            handleSearchByKey((String) oldVal, (String) newVal);
-//        });
 
+          monthBt.valueProperty().addListener((observable, oldValue, newValue) -> {
+            handleSearchBySpinner((String) oldValue, (String) newValue);
+        });
+        yearBt.valueProperty().addListener((observable, oldValue, newValue) -> {
+            handleSearchBySpinner((String) oldValue, (String) newValue);
+        });
         reportTable = (TableView) scene.lookup("#report");
 
-        ObservableList<String> months = FXCollections.observableArrayList(//
-                "December", "November", "October", "September", //
-                "August", "July", "June", "May", //
-                "April", "March", "February", "January");
+
 
 
         // Value factory.
@@ -136,44 +137,63 @@ public class ReportUI implements Controller {
             public void handle(MouseEvent event) { pageController.active("profile"); }
         });
 
+
     }
 
     public void onActive() {
         //System.out.println(selectDate.toLocaleString());
         //System.out.println(selectDate.getMonth()+"_"+selectDate.getYear());
+
         List<Transaction> result = reportController.getAllTransaction();
 //        for(Transaction t : transactions){
 //            System.out.println(t.toString());
 //            reports.add(new Transaction(t.getProductId(),t.getChangedQuantity(),t.getDate(),t.getType()));
 //        }
+
         reports = FXCollections.observableArrayList(result);
+
         reportTable.setItems(reports);
+        reportTable.refresh();
     }
 
 
-    public void handleSearchByKey(String oldValue, String newValue) {
-        if ( oldValue != null && (newValue.length() < oldValue.length()) ) {
-            reportTable.setItems(reports);
-        }
+    public void handleSearchBySpinner(String valueFactoryM,String valueFactoryY) {
+        Calendar calendar = new GregorianCalendar();
+        Calendar strCalendar = Calendar.getInstance();
+        String month = strCalendar.getDisplayName(Calendar.MONTH,Calendar.LONG, Locale.ENGLISH);
+        String year = calendar.getDisplayName(Calendar.YEAR,Calendar.LONG, Locale.ENGLISH);
 
-        String[] parts = newValue.toUpperCase().split(" ");
-
+//        if ( reports != null ) {
+//            reportTable.setItems((ObservableList) reports);
+//        }
         subEntries = FXCollections.observableArrayList();
-        for ( Object entry: reportTable.getItems() ) {
-            boolean match = true;
-            Transaction entryP = (Transaction) entry;
-            String detailEntryP = entryP.getProductId()+entryP.getChangedQuantity()+""+entryP.getDate()+""+entryP.getType().toUpperCase();
-            for ( String part: parts ) {
-                if ( ! detailEntryP.contains(part) ) {
-                    match = false;
-                    break;
-                }
-            }
-
-            if ( match ) {
-                subEntries.add(entryP);
+        for(Transaction t : reports){
+            if(months.get(11-t.getDate().getMonth()) == valueFactoryM){
+                subEntries.add(t);
             }
         }
         reportTable.setItems(subEntries);
+
+
+
+        for ( Transaction entry: reports ) {
+            boolean match = true;
+            Transaction entryP = (Transaction) entry;
+//          String detailEntryP = entryP.getProductId()+entryP.getChangedQuantity()+""+entryP.getDate()+""+entryP.getType().toUpperCase();
+            for ( Transaction i: reports ) {
+                if (( month != valueFactoryM) || (year != valueFactoryY)) {
+                    match = false;
+                    break;
+                }
+
+            }
+
+                if ( match ) {
+                    subEntries.add(entryP);
+                }
+        }
+        reportTable.setItems(subEntries);
+        reportTable.refresh();
+        System.out.println("yay");
     }
 }

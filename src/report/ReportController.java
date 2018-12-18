@@ -14,7 +14,7 @@ public class ReportController {
     }
 
     public List<Transaction> getAllTransaction(){
-//        return warehouse.getAllTransaction();
-        return new ArrayList<>();
+        return warehouse.getAllTransaction();
+//        return new ArrayList<>();
     }
 }

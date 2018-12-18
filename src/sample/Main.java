@@ -18,6 +18,7 @@ import report.ReportUI;
 import connectionDB.*;
 
 import java.io.IOException;
+import java.util.Date;
 
 public class Main extends Application {
     public User currentUser = new User("","","","","","");
@@ -51,7 +52,7 @@ public class Main extends Application {
         serviceDB database = new serviceDB();
 
         //pass
-//        database.createCatalogueEntry(0);
+        database.createCatalogueEntry(0);
 //        database.createShelf("pop",9);
 //        database.addPallet(1,0,200);
 //        database.addPallet(1,0,90);
@@ -77,12 +78,10 @@ public class Main extends Application {
         database.addOrderproduct(2,3,"qwe","qee",100);
         database.addOrderproduct(2,9,"qwe","qee",50);*/
 
-        /*
-        List<Transaction> results = database.getAllTransactionInMonth(11,2018);
-        database.createTransaction(1,1,new Date(),"asdfghj");
-        database.createTransaction(1,1,new Date(),"asdfghj");
-        database.createTransaction(1,1,new Date(),"asdfghj");*/
-//        s.setProductBrand(2,"luis");
+
+//        database.createTransaction(1,1,new Date(),"Beverage");
+//        database.createTransaction(1,1,new Date(),"Food");
+//        s.setProductBrand(2,"luis")
 
 //        database.closeConnection();
 
