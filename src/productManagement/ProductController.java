@@ -8,6 +8,7 @@ import product.CatalogueEntry;
 import product.Pallet;
 import product.Product;
 import product.Shelf;
+import user.User;
 
 import java.util.Date;
 import java.util.List;
@@ -291,5 +292,18 @@ public class ProductController {
     public void createShelf(String name, int maxPallet) {
         warehouse.createShelf(name,maxPallet);
         warehouse.setWarehouseCapacity(warehouse.getWarehouseCapacity()+100*maxPallet);
+    }
+
+    public User getCurrentUser() {
+        return warehouse.getCurrentUser();
+    }
+
+    public String shelfInWarehouse() {
+        String st = "Shelf in Warehouse\n";
+        shelfs = warehouse.getAllShelf();
+        for (Shelf s : shelfs) {
+            st += "\tshelf: "+s.getName()+"\t\tpallet: "+s.getPallets().size()+"/"+s.getMaxPallet()+"\n";
+        }
+        return st;
     }
 }

@@ -32,6 +32,8 @@ import java.util.Optional;
 
 import javax.persistence.*;
 import connectionDB.*;
+import user.Manager;
+import user.Staff;
 import user.User;
 
 public class ProductUI implements Controller {
@@ -94,7 +96,7 @@ public class ProductUI implements Controller {
         productListTable.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent event) {
-                if (event.getClickCount() == 2) { //&& currentUser.getRole().equals("Manager")) {
+                if (event.getClickCount() == 2 && (productController.getCurrentUser() instanceof Manager)) {
                     index = productListTable.getSelectionModel().getSelectedIndex();
 
                     Dialog<ButtonType> propertyDialog = new Dialog<>();
@@ -112,20 +114,19 @@ public class ProductUI implements Controller {
                         selectedProduct = products.get(index);
                     }
 
-                    propertyGrid.add(new Label("Product Id:"), 0, 0);
-                    propertyGrid.add(new Label(Integer.toString(selectedProduct.getProductId())), 1, 0);
-                    propertyGrid.add(new Label("Product Name:"), 0, 1);
-                    propertyGrid.add(new Label(selectedProduct.getName()), 1, 1);
-                    propertyGrid.add(new Label("Product Brand:"), 0, 2);
-                    propertyGrid.add(new Label(selectedProduct.getBrand()), 1, 2);
-                    propertyGrid.add(new Label("Product Quantity:"), 0, 3);
-                    propertyGrid.add(new Label(Integer.toString(selectedProduct.getQuantity())), 1, 3);
-                    propertyGrid.add(new Label("Product Price:"), 0, 4);
-                    propertyGrid.add(new Label(Integer.toString(selectedProduct.getPrice())), 1, 4);
-                    propertyGrid.add(new Label("Product Amount in Pack:"), 0, 5);
-                    propertyGrid.add(new Label(Integer.toString(selectedProduct.getAmountInPack())), 1, 5);
-                    propertyGrid.add(new Label("Pack Capacity:"), 0, 6);
-                    propertyGrid.add(new Label(Integer.toString(selectedProduct.getPackCapacity())), 1, 6);
+                    propertyDialog.setHeaderText("Product ID: \t" + Integer.toString(selectedProduct.getProductId()));
+                    propertyGrid.add(new Label("Product Name:"), 0, 0);
+                    propertyGrid.add(new Label(selectedProduct.getName()), 1, 0);
+                    propertyGrid.add(new Label("Product Brand:"), 0, 1);
+                    propertyGrid.add(new Label(selectedProduct.getBrand()), 1, 1);
+                    propertyGrid.add(new Label("Product Quantity:"), 0, 2);
+                    propertyGrid.add(new Label(Integer.toString(selectedProduct.getQuantity())), 1, 2);
+                    propertyGrid.add(new Label("Product Price:"), 0, 3);
+                    propertyGrid.add(new Label(Integer.toString(selectedProduct.getPrice())), 1, 3);
+                    propertyGrid.add(new Label("Product Amount in Pack:"), 0, 4);
+                    propertyGrid.add(new Label(Integer.toString(selectedProduct.getAmountInPack())), 1, 4);
+                    propertyGrid.add(new Label("Pack Capacity:"), 0, 5);
+                    propertyGrid.add(new Label(Integer.toString(selectedProduct.getPackCapacity())), 1, 5);
                     propertyDialog.getDialogPane().setContent(propertyGrid);
 
                     ButtonType editButtonType = new ButtonType("Edit");
@@ -137,7 +138,7 @@ public class ProductUI implements Controller {
                         Dialog<ButtonType> editDialog = new Dialog<>();
                         editDialog.initStyle(StageStyle.UTILITY);
                         editDialog.setTitle("Edit Product Property");
-                        editDialog.setHeaderText("Product ID: \t" + Integer.toString(selectedProduct.getId()));
+                        editDialog.setHeaderText("Product ID: \t" + Integer.toString(selectedProduct.getProductId()));
 
                         GridPane editGrid = new GridPane();
                         editGrid.setHgap(10);
@@ -288,6 +289,7 @@ public class ProductUI implements Controller {
                 Dialog<ButtonType> addShelfDialog = new Dialog<>();
                 addShelfDialog.initStyle(StageStyle.UTILITY);
                 addShelfDialog.setTitle("Add Shelf");
+                addShelfDialog.setHeaderText(productController.shelfInWarehouse());
 
                 GridPane addShelfGrid = new GridPane();
                 addShelfGrid.setHgap(10);
@@ -297,10 +299,10 @@ public class ProductUI implements Controller {
                 TextField shelfName = new TextField();
                 TextField shelfMaxPallet = new TextField();
 
-                addShelfGrid.add(new Label("Name:"), 0, 1);
-                addShelfGrid.add(shelfName, 1, 1);
-                addShelfGrid.add(new Label("Max Pallet:"), 0, 2);
-                addShelfGrid.add(shelfMaxPallet, 1, 2);
+                addShelfGrid.add(new Label("Name:"), 0, 0);
+                addShelfGrid.add(shelfName, 1, 0);
+                addShelfGrid.add(new Label("Max Pallet:"), 0, 1);
+                addShelfGrid.add(shelfMaxPallet, 1, 1);
 
                 addShelfDialog.getDialogPane().setContent(addShelfGrid);
 
@@ -368,16 +370,17 @@ public class ProductUI implements Controller {
 
     @Override
     public void onActive() {
-//        System.out.println(currentUser);
-//        if (currentUser.getRole().equals("Manager")) {
+        if(productController.getCurrentUser() instanceof Staff){
+            summaryBt.setDisable(true);
+            userSearchBt.setDisable(true);
+            addProductBt.setDisable(true);
+            addShelfBt.setDisable(true);
+        }else{
             summaryBt.setDisable(false);
             userSearchBt.setDisable(false);
             addProductBt.setDisable(false);
-//        } else {
-//            summaryBt.setDisable(true);
-//            userSearchBt.setDisable(true);
-//            addProductBt.setDisable(true);
-//        }
+            addShelfBt.setDisable(false);
+        }
         productListTable.setItems(products);
         productListTable.refresh();
     }
