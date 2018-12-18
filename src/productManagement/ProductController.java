@@ -223,31 +223,24 @@ public class ProductController {
                         int quantityCanAdd = (p.getMaxCapacity() - p.getCapacity()) / packCapacity;
                         if (quantityCanAdd >= qty) {
                             warehouse.addProductToPallet(p.getId(), productId, qty, price, amountInPack, packCapacity, name, brand);
-                            System.out.println("pop   "+qty);
                             qty = 0;
                             break;
                         } else if (quantityCanAdd != 0) {
                             warehouse.addProductToPallet(p.getId(), productId, quantityCanAdd, price, amountInPack, packCapacity, name, brand);
-                            System.out.println("rp   "+qty);
                             qty -= quantityCanAdd;
-                            System.out.println("remain   "+qty);
                         }
                     }
                     while (qty != 0 && (s.getMaxPallet() - s.getPallets().size()) != 0) {
-                        System.out.println("create");
                         warehouse.addPallet(s.getId(), 0, 100);
                         Pallet newPallet = s.getPallets().get(s.getPallets().size() - 1);
                         int qtCanAdd = (newPallet.getMaxCapacity()- newPallet.getCapacity()) / packCapacity;
                         if (qtCanAdd >= qty) {
-                            System.out.println("tyt   "+qty);
                             warehouse.addProductToPallet(newPallet.getId(), productId, qty, price, amountInPack, packCapacity, name, brand);
                             qty = 0;
                             break;
                         } else if (qtCanAdd != 0) {
                             warehouse.addProductToPallet(newPallet.getId(), productId, qtCanAdd, price, amountInPack, packCapacity, name, brand);
-                            System.out.println("dsf   "+qty);
                             qty -= qtCanAdd;
-                            System.out.println("fkopgjwrg   "+qty);
                         }
                     }
                 }
