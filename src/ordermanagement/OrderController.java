@@ -10,7 +10,6 @@ import org.json.simple.parser.ParseException;
 import product.CatalogueEntry;
 import product.Product;
 import productManagement.ProductController;
-import sample.OrderReadWrite;
 import user.User;
 
 import java.io.File;
@@ -77,22 +76,6 @@ public class OrderController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-//        // (TODO) use method in productController !!
-//        //create transaction
-//        Date date = new Date();
-//        for ( OrderProduct orderProduct: selectOrder.getOrderProducts()){
-//            warehouse.createTransaction(orderProduct.getProductId(),orderProduct.getSendQuantity()*-1,date,"approveOrder");
-//        }
-//
-//
-//        // (TODO) use method in productController !!
-//        //update product quantity
-//        List<OrderProduct> orderProducts = selectOrder.getOrderProducts();
-//        for(OrderProduct o : orderProducts){
-//            warehouse.setProductQuantity(o.getProductId(),o.getQuantity()-o.getSendQuantity());
-//        }
     }
 
     public void rejectOrder(){
