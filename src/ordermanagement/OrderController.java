@@ -7,6 +7,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import product.CatalogueEntry;
 import product.Product;
 import sample.OrderReadWrite;
 import user.User;
@@ -20,12 +21,10 @@ import java.util.List;
 
 public class OrderController {
     private Order selectOrder;
-    private User currentUser;
     private static serviceDB warehouse;
 
-    public OrderController(serviceDB warehouse,User currentUser) {
+    public OrderController(serviceDB warehouse) {
         this.warehouse = warehouse;
-        this.currentUser = currentUser;
     }
 
     // ------------------------------------ Order List Controller
@@ -36,7 +35,7 @@ public class OrderController {
     }
 
     public User getCurrentUser() {
-        return currentUser;
+        return warehouse.getCurrentUser();
     }
 
     public Order getSelectOrder() {
@@ -45,6 +44,7 @@ public class OrderController {
 
     public void setSelectOrder(Order selectOrder) {
         this.selectOrder = selectOrder;
+        System.out.println(selectOrder);
         updateOrder();
     }
 
@@ -52,8 +52,9 @@ public class OrderController {
 
     public void updateOrder(){
         //update product quantity to select order
+        CatalogueEntry catalogueEntry = warehouse.getCatalogueEntry();
         for ( OrderProduct entry: selectOrder.getOrderProducts() ) {
-            entry.setQuantity(warehouse.getQtbyID(entry.getProductId()));
+            entry.setQuantity(catalogueEntry.getQuantityOf(entry.getProductId()));
         }
     }
 
@@ -91,7 +92,7 @@ public class OrderController {
     // =------------------------------------ Order Read Write
 
     public static void writeProductList() throws IOException {
-        ObservableList<product.Product> products = getProducts();
+        List<Product> products = getCatalog().getProducts();
         JSONObject obj = new JSONObject();
         JSONObject json = new JSONObject();
         JSONArray array = new JSONArray();
@@ -100,8 +101,9 @@ public class OrderController {
         for(Product p:products){
             obj.put("price",p.getPrice());
             obj.put("brand",p.getBrand());
-            obj.put("id",p.getId());
+            obj.put("id",p.getProductId());
             obj.put("name",p.getName());
+            obj.put("amountInPack",p.getAmountInPack());
             array.add(obj.clone());
         }
         json.put("name","PorShop_0011");
@@ -210,9 +212,8 @@ public class OrderController {
         }
     }
 
-    public static ObservableList<product.Product> getProducts(){
-        List<product.Product> results = warehouse.getAllProduct();
-        ObservableList<product.Product> products = FXCollections.observableArrayList(results);
-        return products;
+    public static CatalogueEntry getCatalog(){
+        CatalogueEntry catalogueEntry = warehouse.getCatalogueEntry();
+        return catalogueEntry;
     }
 }

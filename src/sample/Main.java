@@ -87,7 +87,7 @@ public class Main extends Application {
 //        database.closeConnection();
 
         // create controller class
-        OrderController orderController = new OrderController(database,currentUser);
+        OrderController orderController = new OrderController(database);
         UserController userController = new UserController(database,currentUser);
         ProductController productController = new ProductController(database);
         ReportController reportController = new ReportController(database);

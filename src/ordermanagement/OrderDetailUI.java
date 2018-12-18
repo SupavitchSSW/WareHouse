@@ -16,6 +16,7 @@ import sample.OrderReadWrite;
 import sample.PageController;
 import product.Product;
 import sample.Transaction;
+import user.Staff;
 import user.User;
 
 import java.io.IOException;
@@ -227,7 +228,7 @@ public class OrderDetailUI implements Controller {
         status_TextField.setText(order.getStatus());
 
         //check order status
-        if(orderController.getCurrentUser().getRole().equals("Staff") || !order.getStatus().equals("waiting")){
+        if(orderController.getCurrentUser() instanceof Staff || !order.getStatus().equals("waiting")){
             System.out.println("status = "+order.getStatus());
             sendQuantityColumn.setEditable(false);
             approve_btn.setDisable(true);
