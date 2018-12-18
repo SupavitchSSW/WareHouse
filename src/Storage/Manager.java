@@ -1,4 +1,4 @@
-package user;
+package Storage;
 
 import javax.persistence.Entity;
 

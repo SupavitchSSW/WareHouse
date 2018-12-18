@@ -1,6 +1,7 @@
-package user;
+package Presentation;
 
-import connectionDB.serviceDB;
+import Logic.UserController;
+import Storage.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -11,16 +12,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.StageStyle;
-import sample.Controller;
-import sample.PageController;
+import Logic.Controller;
+import Logic.PageController;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 public class UserSearchUI implements Controller{
     PageController pageController;
-    private  UserController userController;
+    private UserController userController;
     private TableView userTable;
     private User user;
     private ObservableList<User> users;

@@ -1,5 +1,6 @@
-package productManagement;
+package Presentation;
 
+import Storage.WarehouseSystem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -10,21 +11,21 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.StageStyle;
-import sample.Controller;
-import sample.PageController;
-import product.Product;
+import Logic.ProductController;
+import Logic.Controller;
+import Logic.PageController;
+import Storage.Product;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import connectionDB.*;
-import user.Manager;
-import user.Staff;
+import Storage.Manager;
+import Storage.Staff;
 
 public class ProductUI implements Controller {
     PageController pageController;
-    serviceDB database;
+    WarehouseSystem database;
     private TableView productListTable;
     private ObservableList<Product> products;
     private ObservableList<Product> subEntries;

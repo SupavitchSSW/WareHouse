@@ -1,8 +1,7 @@
-package report;
+package Storage;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import transaction.Transaction;
 
 import java.util.Date;
 

@@ -1,23 +1,13 @@
-package connectionDB;
+package Storage;
 //import com.sun.org.apache.xpath.internal.operations.Or;
-import product.Product;
-import ordermanagement.OrderProduct;
-import ordermanagement.Order;
-import user.Staff;
-import user.Manager;
-import product.Pallet;
-import product.Shelf;
-import product.CatalogueEntry;
-import transaction.Transaction;
-import user.User;
 import java.util.*;
 import javax.persistence.*;
-public class serviceDB {
+public class WarehouseSystem {
 
     private EntityManagerFactory emf ;
     private EntityManager em;
     private User currentUser;
-    public serviceDB(){
+    public WarehouseSystem(){
         this.emf = Persistence.createEntityManagerFactory("$objectdb/db/Stock.odb");
         this.em = emf.createEntityManager();
     }
@@ -274,6 +264,15 @@ public class serviceDB {
         TypedQuery<Shelf> query = em.createQuery(sql, Shelf.class);
         List<Shelf> results = query.getResultList();
         return results;
+    }
+
+    public void clearEmptyProduct(){
+        String sql = "SELECT c FROM Pallet c ";
+        TypedQuery<Pallet> query = em.createQuery(sql, Pallet.class);
+        List<Pallet> results = query.getResultList();
+        for (Pallet p : results){
+            p.clearEmptyProduct();
+        }
     }
 
     

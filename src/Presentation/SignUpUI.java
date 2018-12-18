@@ -1,15 +1,13 @@
-package user;
+package Presentation;
 
-import connectionDB.serviceDB;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.ChoiceBox;
-import sample.Controller;
-import sample.PageController;
+import Logic.Controller;
+import Logic.PageController;
+import Logic.UserController;
 
 public class SignUpUI implements Controller {
     PageController pageController;

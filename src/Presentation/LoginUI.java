@@ -1,12 +1,12 @@
-package user;
+package Presentation;
 
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import sample.Controller;
-import sample.PageController;
-import connectionDB.serviceDB;
+import Logic.Controller;
+import Logic.PageController;
+import Logic.UserController;
 
 public class LoginUI implements Controller {
     PageController pageController;

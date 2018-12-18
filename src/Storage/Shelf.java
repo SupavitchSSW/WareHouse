@@ -1,5 +1,5 @@
-package product;
-import product.Pallet;
+package Storage;
+import Storage.Pallet;
 
 import java.io.Serializable;
 import javax.persistence.*;

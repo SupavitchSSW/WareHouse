@@ -1,5 +1,7 @@
-package ordermanagement;
+package Presentation;
 
+import Logic.OrderController;
+import Storage.Order;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -9,9 +11,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.util.converter.IntegerStringConverter;
-import sample.Controller;
-import sample.PageController;
-import user.Staff;
+import Storage.OrderProduct;
+import Logic.Controller;
+import Logic.PageController;
+import Storage.Staff;
 
 import java.util.Optional;
 

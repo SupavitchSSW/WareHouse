@@ -1,6 +1,6 @@
-package user;
+package Presentation;
 
-import connectionDB.serviceDB;
+import Storage.WarehouseSystem;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -8,8 +8,9 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.StageStyle;
-import sample.Controller;
-import sample.PageController;
+import Logic.Controller;
+import Logic.PageController;
+import Logic.UserController;
 
 import java.util.Optional;
 
@@ -17,7 +18,7 @@ public class ProfileUI implements Controller {
     PageController pageController;
     TextField nameTF,surnameTF,roleTF,telTF;
     private boolean isEdit = false;
-    private serviceDB database;
+    private WarehouseSystem database;
     private Button summaryBt,userSearchBt;
     private UserController userController;
 

@@ -1,10 +1,7 @@
-package ordermanagement;
+package Storage;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import product.Product;
 import java.util.Date;
 import java.util.*;
 

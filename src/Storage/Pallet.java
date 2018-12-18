@@ -1,4 +1,5 @@
-package product;
+package Storage;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -20,18 +21,21 @@ public class Pallet implements Serializable{
     }
 
     public void setProductQuantity(int productId,int quantity){
-        for (Iterator<Product> iter = products.listIterator(); iter.hasNext(); ) {
-            Product a = iter.next();
-            if (a.getProductId() == productId) {
-                int changeQt = a.getQuantity()-quantity;
-                if(quantity == 0){
-                    iter.remove();
-                } else {
-                    a.setQuantity(quantity);
-                }
-                this.capacity -= changeQt*a.getPackCapacity();
+        for (Product p : products) {
+            if (p.getProductId() == productId) {
+                int changeQt = p.getQuantity()-quantity;
+                p.setQuantity(quantity);
+                this.capacity -= changeQt*p.getPackCapacity();
                 break;
             }
+        }
+    }
+
+    public void clearEmptyProduct() {
+        for (Iterator<Product> iter = products.listIterator(); iter.hasNext(); ) {
+            Product a = iter.next();
+            if (a.getQuantity() == 0)
+                iter.remove();
         }
     }
 
@@ -56,11 +60,10 @@ public class Pallet implements Serializable{
     }
 
     public void removeProduct(int productId){
-        for (Iterator<Product> iter = products.listIterator(); iter.hasNext(); ) {
-            Product a = iter.next();
-            if (a.getProductId() == productId) {
-                iter.remove();
-                this.capacity -= (a.getPackCapacity()*a.getQuantity());
+        for (Product p : products) {
+            if (p.getProductId() == productId) {
+                this.capacity -= (p.getPackCapacity()*p.getQuantity());
+                products.remove(p);
             }
         }
     }

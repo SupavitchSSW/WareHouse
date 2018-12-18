@@ -1,28 +1,26 @@
-package report;
+package Presentation;
 
 
-import connectionDB.serviceDB;
+import Logic.ReportController;
+import Storage.Transaction;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.input.MouseEvent;
-import sample.Controller;
-import sample.PageController;
-import transaction.Transaction;
-import user.User;
+import Logic.Controller;
+import Logic.PageController;
 
 import java.util.*;
 
 public class ReportUI implements Controller {
     PageController pageController;
     private TableView reportTable;
-    private ObservableList<transaction.Transaction> reports = FXCollections.observableArrayList();
+    private ObservableList<Transaction> reports = FXCollections.observableArrayList();
     private ObservableList<Transaction> subEntries;
     private ReportController reportController;
     private         ObservableList<String> months = FXCollections.observableArrayList(//

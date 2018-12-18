@@ -1,4 +1,4 @@
-package product;
+package Storage;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -33,10 +33,9 @@ public class CatalogueEntry implements Serializable {
     }
 
     public void removeProduct(int id){
-        for (Iterator<Product> iter = products.listIterator(); iter.hasNext(); ) {
-            Product a = iter.next();
-            if (a.getProductId() == id) {
-                iter.remove();
+        for (Product p : products) {
+            if (p.getProductId() == id) {
+                products.remove(p);
             }
         }
     }

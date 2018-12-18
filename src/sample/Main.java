@@ -1,24 +1,16 @@
 package sample;
 
+import Logic.*;
+import Presentation.*;
+import Storage.User;
+import Storage.WarehouseSystem;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import ordermanagement.OrderController;
-import ordermanagement.OrderDetailUI;
-import ordermanagement.OrderListUI;
-import product.Product;
-import productManagement.ProductController;
-import productManagement.ProductUI;
-import report.ReportController;
-import user.*;
-import report.ReportUI;
-
-import connectionDB.*;
 
 import java.io.IOException;
-import java.util.Date;
 
 public class Main extends Application {
     public User currentUser = new User("","","","","","");
@@ -27,15 +19,15 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException {
 
         // >>>>>>> add your fxml here <<<<<
-        Pane orderListPane = FXMLLoader.load(getClass().getResource("../ordermanagement/orderList.fxml"));
-        Pane orderDetailPane = FXMLLoader.load(getClass().getResource("../ordermanagement/orderDetail.fxml"));
-        Pane productListPane = FXMLLoader.load(getClass().getResource("../productManagement/mainPage.fxml"));
-        Pane reportMainPane = FXMLLoader.load(getClass().getResource("../report/reportMain.fxml"));
-        Pane reportPane = FXMLLoader.load(getClass().getResource("../report/report.fxml"));
-        Pane loginPane = FXMLLoader.load(getClass().getResource("../user/login.fxml"));
-        Pane signupPane = FXMLLoader.load(getClass().getResource("../user/signup.fxml"));
-        Pane userPane = FXMLLoader.load(getClass().getResource("../user/userPage.fxml"));
-        Pane profilePane = FXMLLoader.load(getClass().getResource("../user/profile.fxml"));
+        Pane orderListPane = FXMLLoader.load(getClass().getResource("../Presentation/orderList.fxml"));
+        Pane orderDetailPane = FXMLLoader.load(getClass().getResource("../Presentation/orderDetail.fxml"));
+        Pane productListPane = FXMLLoader.load(getClass().getResource("../Presentation/mainPage.fxml"));
+        Pane reportMainPane = FXMLLoader.load(getClass().getResource("../Presentation/reportMain.fxml"));
+        Pane reportPane = FXMLLoader.load(getClass().getResource("../Presentation/report.fxml"));
+        Pane loginPane = FXMLLoader.load(getClass().getResource("../Presentation/login.fxml"));
+        Pane signupPane = FXMLLoader.load(getClass().getResource("../Presentation/signup.fxml"));
+        Pane userPane = FXMLLoader.load(getClass().getResource("../Presentation/userPage.fxml"));
+        Pane profilePane = FXMLLoader.load(getClass().getResource("../Presentation/profile.fxml"));
 
 
         //create scene
@@ -48,14 +40,16 @@ public class Main extends Application {
         //create pageController obj
         PageController pageController = new PageController(scene);
 
-        //oak db
-        serviceDB database = new serviceDB();
+        //db
+        WarehouseSystem warehouseSystem = new WarehouseSystem();
+        warehouseSystem.createCatalogueEntry(0);
+        warehouseSystem.createUserManager("w","w","warisa","saisema","0123456789");
 
         // create controller class
-        UserController userController = new UserController(database);
-        ProductController productController = new ProductController(database);
-        ReportController reportController = new ReportController(database);
-        OrderController orderController = new OrderController(database,productController);
+        UserController userController = new UserController(warehouseSystem);
+        ProductController productController = new ProductController(warehouseSystem);
+        ReportController reportController = new ReportController(warehouseSystem);
+        OrderController orderController = new OrderController(warehouseSystem,productController);
 
         // >>>>>>> add controller class here <<<<<<
         OrderDetailUI orderDetailUI = new OrderDetailUI(pageController,orderController);
@@ -79,7 +73,7 @@ public class Main extends Application {
 
         //start page
         primaryStage.setTitle("WareHouse Management");
-        pageController.active("productList");
+        pageController.active("login");
     }
 
     public static void main(String[] args) {

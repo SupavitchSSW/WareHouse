@@ -1,6 +1,4 @@
-package ordermanagement;
-
-import product.Product;
+package Storage;
 
 import javax.persistence.Entity;
 import java.io.Serializable;

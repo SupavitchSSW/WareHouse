@@ -1,16 +1,17 @@
-package ordermanagement;
+package Logic;
 
-import connectionDB.serviceDB;
+import Storage.Order;
+import Storage.WarehouseSystem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import Storage.OrderProduct;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import product.CatalogueEntry;
-import product.Product;
-import productManagement.ProductController;
-import user.User;
+import Storage.CatalogueEntry;
+import Storage.Product;
+import Storage.User;
 
 import java.io.File;
 import java.io.FileReader;
@@ -22,9 +23,9 @@ import java.util.List;
 public class OrderController {
     private Order selectOrder;
     private ProductController productController;
-    private static serviceDB warehouse;
+    private static WarehouseSystem warehouse;
 
-    public OrderController(serviceDB warehouse, ProductController productController) {
+    public OrderController(WarehouseSystem warehouse, ProductController productController) {
         this.warehouse = warehouse;
         this.productController = productController;
     }

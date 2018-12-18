@@ -1,17 +1,15 @@
-package user;
+package Logic;
 
 
-import connectionDB.serviceDB;
-import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
+import Storage.User;
+import Storage.WarehouseSystem;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserController {
-    private serviceDB warehouse;
+    private WarehouseSystem warehouse;
 
-    public UserController(serviceDB warehouse) {
+    public UserController(WarehouseSystem warehouse) {
         this.warehouse = warehouse;
     }
 

@@ -1,24 +1,24 @@
-package productManagement;
+package Logic;
 
-import connectionDB.serviceDB;
+import Storage.WarehouseSystem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
-import product.CatalogueEntry;
-import product.Pallet;
-import product.Product;
-import product.Shelf;
-import user.User;
+import Storage.CatalogueEntry;
+import Storage.Pallet;
+import Storage.Product;
+import Storage.Shelf;
+import Storage.User;
 
 import java.util.Date;
 import java.util.List;
 
 public class ProductController {
-    private serviceDB warehouse;
+    private WarehouseSystem warehouse;
     private CatalogueEntry catalogueEntry;
     private List<Shelf> shelfs;
 
-    public ProductController(serviceDB warehouse) {
+    public ProductController(WarehouseSystem warehouse) {
         this.warehouse = warehouse;
     }
 
@@ -65,7 +65,7 @@ public class ProductController {
                         }
                     }
                     int pIns = s.getPallets().size();
-                    while (qtCheck!=0 && pIns <= s.getMaxPallet()) {
+                    while (qtCheck!=0 && pIns != s.getMaxPallet()) {
                         int q = 100 / packCapacity;
                         if (q >= qtCheck){
                             qtCheck = 0;
@@ -146,6 +146,7 @@ public class ProductController {
                 warehouse.setProductQtCatalogue(productId, newQt);
                 warehouse.setWarehouseCapacity(warehouse.getWarehouseCapacity() - (changedQt * packCapacity));
             }
+            warehouse.clearEmptyProduct();
             warehouse.createTransaction(productId,changedQt,new Date(),type);
         }
     }
@@ -160,7 +161,6 @@ public class ProductController {
                 break;
             }
         }
-//
         int qt = -changedQt;
         shelfs = warehouse.getAllShelf();
         for (Shelf s : shelfs){
@@ -184,6 +184,7 @@ public class ProductController {
                 }
             }
         }
+        warehouse.clearEmptyProduct();
         warehouse.setProductQtCatalogue(productId, quantity+changedQt);
         warehouse.setWarehouseCapacity(warehouse.getWarehouseCapacity() - (changedQt * packCapacity));
         warehouse.createTransaction(productId,changedQt,new Date(),type);
@@ -230,7 +231,7 @@ public class ProductController {
                     }
                 }
                 int pIns = s.getPallets().size();
-                while (qtCheck!=0 && pIns <= s.getMaxPallet()) {
+                while (qtCheck!=0 && pIns != s.getMaxPallet()) {
                     int q = 100 / packCapacity;
                     if (q >= qtCheck){
                         qtCheck = 0;
