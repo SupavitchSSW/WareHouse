@@ -22,10 +22,13 @@ public class UserController {
     public boolean login(String username,String password){
         User u = warehouse.authen(username,password);
         if (u != null) {
-//            (TODO) move this set  current user to warehouse system class
-              setCurrentUser(u);
-
+            warehouse.setCurrentUser(u);
             System.out.println("CCC"+u.toString());
+            if(warehouse.getCurrentUser() instanceof Staff){
+                System.out.println("Role : Staff");
+            }else{
+                System.out.println("Role : Manager");
+            }
             return true;
         }
         else {
