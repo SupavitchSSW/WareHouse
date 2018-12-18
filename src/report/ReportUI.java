@@ -151,49 +151,27 @@ public class ReportUI implements Controller {
 //        }
 
         reports = FXCollections.observableArrayList(result);
-
         reportTable.setItems(reports);
-        reportTable.refresh();
     }
 
 
-    public void handleSearchBySpinner(String valueFactoryM,String valueFactoryY) {
-        Calendar calendar = new GregorianCalendar();
-        Calendar strCalendar = Calendar.getInstance();
-        String month = strCalendar.getDisplayName(Calendar.MONTH,Calendar.LONG, Locale.ENGLISH);
-        String year = calendar.getDisplayName(Calendar.YEAR,Calendar.LONG, Locale.ENGLISH);
+    public void handleSearchBySpinner(String oldValue,String newValue) {
 
-//        if ( reports != null ) {
-//            reportTable.setItems((ObservableList) reports);
-//        }
         subEntries = FXCollections.observableArrayList();
         for(Transaction t : reports){
-            if(months.get(11-t.getDate().getMonth()) == valueFactoryM){
-                subEntries.add(t);
+            if(newValue.matches("20")){
+                //year
+                if(t.getDate().getYear() == Integer.valueOf(newValue)){
+                    subEntries.add(t);
+                }
+            }else{
+                //month
+                if(months.get(11-t.getDate().getMonth()) == newValue){
+                    subEntries.add(t);
+                }
             }
         }
         reportTable.setItems(subEntries);
-
-
-
-        for ( Transaction entry: reports ) {
-            boolean match = true;
-            Transaction entryP = (Transaction) entry;
-//          String detailEntryP = entryP.getProductId()+entryP.getChangedQuantity()+""+entryP.getDate()+""+entryP.getType().toUpperCase();
-            for ( Transaction i: reports ) {
-                if (( month != valueFactoryM) || (year != valueFactoryY)) {
-                    match = false;
-                    break;
-                }
-
-            }
-
-                if ( match ) {
-                    subEntries.add(entryP);
-                }
-        }
-        reportTable.setItems(subEntries);
-        reportTable.refresh();
-        System.out.println("yay");
+        System.out.println(reports.get(0).getDate().getYear());
     }
 }

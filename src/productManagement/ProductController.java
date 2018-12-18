@@ -160,7 +160,7 @@ public class ProductController {
                 break;
             }
         }
-
+//
         int qt = -changedQt;
         shelfs = warehouse.getAllShelf();
         for (Shelf s : shelfs){
