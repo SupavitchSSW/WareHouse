@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import ordermanagement.OrderController;
 import ordermanagement.OrderDetailUI;
 import ordermanagement.OrderListUI;
+import product.Product;
 import productManagement.ProductController;
 import productManagement.ProductUI;
 import report.ReportController;
@@ -48,6 +49,7 @@ public class Main extends Application {
 
         //oak db
         serviceDB database = new serviceDB();
+        database.createShelf("oak",50);
 //        database.createOrder("test","reeeeeee");
 //        database.addOrderproduct(7,41,"k","p",8);
 //        database.addOrderproduct(7,61,"ki","pp",4);
@@ -107,7 +109,7 @@ public class Main extends Application {
         primaryStage.setTitle("WareHouse Management");
         pageController.active("productList");
 
-        
+
         //set database to OrderReadWrite
 //        OrderReadWrite.setDatabase(database);
 

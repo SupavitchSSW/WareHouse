@@ -39,6 +39,12 @@ public class serviceDB {
         em.persist(p1);
         em.getTransaction().commit();
     }
+    public void createCatalogueEntry(int warehouseCapacity){
+        em.getTransaction().begin();
+        CatalogueEntry p1 = new CatalogueEntry(warehouseCapacity);
+        em.persist(p1);
+        em.getTransaction().commit();
+    }
     public void addPallet(int shelfId ,int capacity, int maxCapacity){
 
         em.getTransaction().begin();
@@ -88,14 +94,35 @@ public class serviceDB {
         String sql = "SELECT c FROM Pallet c Where c.id =" + palletId +"";
         TypedQuery<Pallet> query = em.createQuery(sql, Pallet.class);
         List<Pallet> results = query.getResultList();
+        em.getTransaction().begin();
         results.get(0).removeProduct(productId);
+        em.getTransaction().commit();
+
     }
     public void removeProductCatalogueEntry(int catalogueEntryId , int productId ){
 
         String sql = "SELECT c FROM CatalogueEntry c Where c.id =" + catalogueEntryId +"";
         TypedQuery<CatalogueEntry> query = em.createQuery(sql, CatalogueEntry.class);
         List<CatalogueEntry> results = query.getResultList();
+        em.getTransaction().begin();
         results.get(0).removeProduct(productId);
+        em.getTransaction().commit();
+
+    }
+    public void removePallet(int shelfId , int palletId){
+        String sql = "SELECT c FROM Shelf c Where c.id =" + shelfId +"";
+        TypedQuery<Shelf> query = em.createQuery(sql, Shelf.class);
+        List<Shelf> results = query.getResultList();
+        em.getTransaction().begin();
+        results.get(0).removePallet(palletId);
+        em.getTransaction().commit();
+
+        String sql2 = "SELECT c FROM Pallet c Where c.id =" + palletId +"";
+        TypedQuery<Pallet> query2 = em.createQuery(sql2, Pallet.class);
+        List<Pallet> results2 = query2.getResultList();
+        em.getTransaction().begin();
+        em.remove(results2.get(0));
+        em.getTransaction().commit();
 
     }
 
