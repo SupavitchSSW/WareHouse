@@ -210,7 +210,7 @@ public class UserSearchUI implements Controller{
 
                 Optional<ButtonType> addManagerResult = addManagerDialog.showAndWait();
                 if (addManagerResult.get() == confirmButtonType ) {
-                    userController.signup(musername.getText(), mpassword.getText(), "Manager", mfirstname.getText(), msurname.getText(), mphonenum.getText());
+                    userController.signup(musername.getText(), mpassword.getText(), mfirstname.getText(), msurname.getText(), mphonenum.getText());
                     users = getAllUser();
                     userTable.setItems(users);
                     userTable.refresh();

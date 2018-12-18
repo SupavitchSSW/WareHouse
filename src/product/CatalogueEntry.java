@@ -23,6 +23,15 @@ public class CatalogueEntry implements Serializable {
         products.add(new Product(productId,quantity,price,amountInPack,packCapacity,name,brand));
     }
 
+    public int getQuantityOf(int productId){
+        for(Product p : products){
+            if(p.getProductId() == productId){
+                return p.getQuantity();
+            }
+        }
+        return 0;
+    }
+
     public void removeProduct(int id){
         for (Iterator<Product> iter = products.listIterator(); iter.hasNext(); ) {
             Product a = iter.next();

@@ -23,14 +23,8 @@ public class UserController {
         User u = warehouse.authen(username,password);
         if (u != null) {
 //            (TODO) move this set  current user to warehouse system class
-//            currentUser = database.authen(checkUser,checkPw);
-//            currentUser.setFirstname(u.getFirstname());
-//            currentUser.setPhoneNumber(u.getPhoneNumber());
-//            currentUser.setSurname(u.getSurname());
-//            currentUser.setRole(u.getRole());
-//            currentUser.setUsername(u.getUsername());
-//            currentUser.setPassword(u.getPassword());
-//            currentUser.setId(u.getId());
+              setCurrentUser(u);
+
             System.out.println("CCC"+u.toString());
             return true;
         }
@@ -43,8 +37,9 @@ public class UserController {
 
     // signup --------------------------------
 
-    public void signup(String username,String password,String rolesel,String firstname,String surname,String phonenum){
+    public void signup(String username,String password,String firstname,String surname,String phoneNumber){
 //        (TODO) create staff in database
+        warehouse.createUserStaff(username,password,firstname,surname,phoneNumber);
 
     }
 
