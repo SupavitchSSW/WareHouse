@@ -183,7 +183,9 @@ public class ProductUI implements Controller {
                                 if (Integer.parseInt(quantity.getText()) != selectedProduct.getQuantity()) {
                                     int newQt = Integer.parseInt(quantity.getText());
                                     Date date = new Date();
-                                    productController.changeProductQuantity(selectedProduct.getProductId(),newQt);
+                                    productController.changeProductQuantity(selectedProduct.getProductId(),name.getText(),brand.getText(),
+                                            Integer.parseInt(price.getText()),selectedProduct.getAmountInPack(),newQt,newQt-selectedProduct.getQuantity(),
+                                            selectedProduct.getPackCapacity());
                                     productController.createTransaction(selectedProduct.getProductId(),newQt-selectedProduct.getQuantity(),date,"editQuantity");
                                 }
 //                                <<<<< edit Product >>>>>
