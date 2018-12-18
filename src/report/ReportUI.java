@@ -51,12 +51,7 @@ public class ReportUI implements Controller {
 
 //        searchBox.setPromptText("Search");
 
-          monthBt.valueProperty().addListener((observable, oldValue, newValue) -> {
-            handleSearchBySpinner((String) oldValue, (String) newValue);
-        });
-        yearBt.valueProperty().addListener((observable, oldValue, newValue) -> {
-            handleSearchBySpinner((String) oldValue, (String) newValue);
-        });
+
         reportTable = (TableView) scene.lookup("#report");
 
 
@@ -82,6 +77,13 @@ public class ReportUI implements Controller {
         valueFactoryY.setValue(Integer.toString(year));
         yearBt.setValueFactory(valueFactoryY);
 
+        monthBt.valueProperty().addListener((observable, oldValue, newValue) -> {
+            handleSearchBySpinner(11-months.indexOf(newValue) ,Integer.parseInt(yearBt.getValue().toString()));
+        });
+
+        yearBt.valueProperty().addListener((observable, oldValue, newValue) -> {
+            handleSearchBySpinner(11-months.indexOf(monthBt.getValue().toString()),Integer.parseInt(newValue.toString()));
+        });
 
 //yah
         TableColumn<Transaction, Integer> idCol = new TableColumn("Product ID");
@@ -155,23 +157,15 @@ public class ReportUI implements Controller {
     }
 
 
-    public void handleSearchBySpinner(String oldValue,String newValue) {
-
+    public void handleSearchBySpinner(int month,int year) {
         subEntries = FXCollections.observableArrayList();
         for(Transaction t : reports){
-            if(newValue.matches("20")){
-                //year
-                if(t.getDate().getYear() == Integer.valueOf(newValue)){
-                    subEntries.add(t);
-                }
-            }else{
-                //month
-                if(months.get(11-t.getDate().getMonth()) == newValue){
-                    subEntries.add(t);
-                }
+            GregorianCalendar cal = new GregorianCalendar();
+            cal.setGregorianChange(t.getDate());
+            if (month == cal.get(Calendar.MONTH) && year == cal.get(Calendar.YEAR)){
+                subEntries.add(t);
             }
         }
         reportTable.setItems(subEntries);
-        System.out.println(reports.get(0).getDate().getYear());
     }
 }
