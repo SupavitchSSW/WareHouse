@@ -22,15 +22,8 @@ public class UserController {
     public boolean login(String username,String password){
         User u = warehouse.authen(username,password);
         if (u != null) {
-//            (TODO) move this set  current user to warehouse system class
-//            currentUser = database.authen(checkUser,checkPw);
-//            currentUser.setFirstname(u.getFirstname());
-//            currentUser.setPhoneNumber(u.getPhoneNumber());
-//            currentUser.setSurname(u.getSurname());
-//            currentUser.setRole(u.getRole());
-//            currentUser.setUsername(u.getUsername());
-//            currentUser.setPassword(u.getPassword());
-//            currentUser.setId(u.getId());
+              warehouse.setCurrentUser(u);
+
             System.out.println("CCC"+u.toString());
             return true;
         }
@@ -43,23 +36,29 @@ public class UserController {
 
     // signup --------------------------------
 
-    public void signup(String username,String password,String rolesel,String firstname,String surname,String phonenum){
+    public void signup(String username,String password,String firstname,String surname,String phoneNumber){
 //        (TODO) create staff in database
+        warehouse.createUserStaff(username,password,firstname,surname,phoneNumber);
 
     }
 
     // profile --------------------------------
 
     public void changePassword(String password){
+        warehouse.setPassword(warehouse.getCurrentUser().getId(),password);
 
     }
 
     public void changeUserInfo(String name,String surname,String phonenumber){
+        warehouse.changeUserInfo(warehouse.getCurrentUser().getId(),name,surname,phonenumber);
 
     }
 
 
     // user search --------------------------------
+    public void createManager(String username,String password,String firstname,String surname,String phoneNumber){
+        warehouse.createUserManager(username, password, firstname, surname, phoneNumber);
+    }
 
     public List<User> getAllUser(){
         return warehouse.getAllUser();
@@ -67,11 +66,12 @@ public class UserController {
 
     public void removeUser(int userId){
         //(TODO) remove user in warehouse
+        warehouse.removeUser(userId);
     }
 
 
     public User getCurrentUser() {
-        return currentUser;
+        return warehouse.getCurrentUser();
     }
 
     public void setCurrentUser(User currentUser) {

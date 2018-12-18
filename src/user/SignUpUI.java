@@ -48,7 +48,7 @@ public class SignUpUI implements Controller {
                 }
                 else{
                     //System.out.println(rolesel.getItems());
-                    userController.signup(username.getText(), password.getText(), rolesel.getValue().toString(), firstname.getText(), surname.getText(), phonenum.getText());
+                    userController.signup(username.getText(), password.getText(), firstname.getText(), surname.getText(), phonenum.getText());
                     username.clear();
                     password.clear();
                     firstname.clear();

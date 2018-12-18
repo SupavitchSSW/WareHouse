@@ -8,6 +8,7 @@ import product.CatalogueEntry;
 import product.Pallet;
 import product.Product;
 import product.Shelf;
+import user.User;
 
 import java.util.Date;
 import java.util.List;
@@ -38,8 +39,9 @@ public class ProductController {
         }
     }
 
-    public void changeProductQuantity(int productId, String name, String brand, int price, int amountInPack, int newQt, int changedQt, int packCapacity){
-        if (warehouse.getWarehouseCapacity()-(changedQt*packCapacity)<=0) {
+    public void changeProductQuantity(int productId, String name, String brand, int price, int amountInPack, int newQt, int changedQt, int packCapacity , String type){
+
+        if (warehouse.getWarehouseCapacity()-(changedQt*packCapacity)<0) {
             Alert alertError = new Alert(Alert.AlertType.ERROR);
             alertError.setTitle("Can Not Edit Product Quantity");
             alertError.setHeaderText(null);
@@ -47,7 +49,6 @@ public class ProductController {
             alertError.showAndWait();
         }
         else {
-            int qt = changedQt;
             if (changedQt>=0) {
                 int qtCheck = changedQt;
                 shelfs = warehouse.getAllShelf();
@@ -64,9 +65,9 @@ public class ProductController {
                         }
                     }
                     int pIns = s.getPallets().size();
-                    while (qtCheck!=0 && pIns != s.getMaxPallet()) {
+                    while (qtCheck!=0 && pIns <= s.getMaxPallet()) {
                         int q = 100 / packCapacity;
-                        if (q >= qt){
+                        if (q >= qtCheck){
                             qtCheck = 0;
                             break;
                         }
@@ -85,6 +86,7 @@ public class ProductController {
                     alertError.showAndWait();
                 }
                 else {
+                    int qt = changedQt;
                     shelfs = warehouse.getAllShelf();
                     for (Shelf s : shelfs) {
                         if (qt == 0) break;
@@ -102,7 +104,7 @@ public class ProductController {
                         while (qt != 0 && (s.getMaxPallet() - s.getPallets().size()) != 0) {
                             warehouse.addPallet(s.getId(), 0, 100);
                             Pallet newPallet = s.getPallets().get(s.getPallets().size() - 1);
-                            int qtCanAdd = newPallet.getMaxCapacity() / packCapacity;
+                            int qtCanAdd = (newPallet.getMaxCapacity()- newPallet.getCapacity()) / packCapacity;
                             if (qtCanAdd >= qt) {
                                 warehouse.addProductToPallet(newPallet.getId(), productId, qt, price, amountInPack, packCapacity, name, brand);
                                 qt = 0;
@@ -117,9 +119,76 @@ public class ProductController {
                     warehouse.setWarehouseCapacity(warehouse.getWarehouseCapacity() - (changedQt * packCapacity));
                 }
             }
+            else {
+                int qt = -changedQt;
+                shelfs = warehouse.getAllShelf();
+                for (Shelf s : shelfs){
+                    if (qt==0) break;
+                    for (Pallet p : s.getPallets()){
+                        if (qt==0) break;
+                        for (Product pd : p.getProducts()){
+                            if (qt==0) break;
+                            if (pd.getProductId()==productId) {
+                                int haveQt = pd.getQuantity();
+                                if (haveQt >= qt) {
+                                    warehouse.setProductQtPallet(p.getId(),productId,haveQt-qt);
+                                    qt=0;
+                                    break;
+                                }
+                                else{
+                                    warehouse.setProductQtPallet(p.getId(),productId,0);
+                                    qt -= haveQt;
+                                }
+                            }
+                        }
+                    }
+                }
+                warehouse.setProductQtCatalogue(productId, newQt);
+                warehouse.setWarehouseCapacity(warehouse.getWarehouseCapacity() - (changedQt * packCapacity));
+            }
+            warehouse.createTransaction(productId,changedQt,new Date(),type);
         }
-//        warehouse.setProductQtPallet(palletId,productId,qt);
     }
+
+    public void changeProductQuantity(int productId, int changedQt, String type) {
+        int packCapacity = 0;
+        int quantity = 0;
+        for (Product pd : catalogueEntry.getProducts()){
+            if (pd.getProductId() == productId){
+                packCapacity = pd.getPackCapacity();
+                quantity = pd.getQuantity();
+                break;
+            }
+        }
+
+        int qt = -changedQt;
+        shelfs = warehouse.getAllShelf();
+        for (Shelf s : shelfs){
+            if (qt==0) break;
+            for (Pallet p : s.getPallets()){
+                if (qt==0) break;
+                for (Product pd : p.getProducts()){
+                    if (qt==0) break;
+                    if (pd.getProductId()==productId) {
+                        int haveQt = pd.getQuantity();
+                        if (haveQt >= qt) {
+                            warehouse.setProductQtPallet(p.getId(),productId,haveQt-qt);
+                            qt=0;
+                            break;
+                        }
+                        else{
+                            warehouse.setProductQtPallet(p.getId(),productId,0);
+                            qt -= haveQt;
+                        }
+                    }
+                }
+            }
+        }
+        warehouse.setProductQtCatalogue(productId, quantity+changedQt);
+        warehouse.setWarehouseCapacity(warehouse.getWarehouseCapacity() - (changedQt * packCapacity));
+        warehouse.createTransaction(productId,changedQt,new Date(),type);
+    }
+
     public void createTransaction (int productId, int changeQuantity, Date date, String type) {
         warehouse.createTransaction(productId, changeQuantity, date, type);
     }
@@ -136,9 +205,7 @@ public class ProductController {
         }
     }
 
-    public void addNewProduct(String name, String brand, int price, int amountInPack, int packCapacity, int quantity) {
-        int qt = quantity;
-
+    public void addNewProduct(String name, String brand, int price, int amountInPack, int packCapacity, int quantity, Date date) {
         if (quantity*packCapacity > warehouse.getWarehouseCapacity()){
             Alert alertError = new Alert(Alert.AlertType.ERROR);
             alertError.setTitle("Can Not Add Product to Warehouse");
@@ -148,7 +215,6 @@ public class ProductController {
         }
         else {
             int productId = catalogueEntry.getLastid() + 1;
-
             int qtCheck = quantity;
             shelfs = warehouse.getAllShelf();
             for (Shelf s : shelfs){
@@ -164,9 +230,9 @@ public class ProductController {
                     }
                 }
                 int pIns = s.getPallets().size();
-                while (qtCheck!=0 && pIns != s.getMaxPallet()) {
+                while (qtCheck!=0 && pIns <= s.getMaxPallet()) {
                     int q = 100 / packCapacity;
-                    if (q >= qt){
+                    if (q >= qtCheck){
                         qtCheck = 0;
                         break;
                     }
@@ -189,30 +255,33 @@ public class ProductController {
                 warehouse.setLastId(productId);
                 warehouse.setWarehouseCapacity(warehouse.getWarehouseCapacity() - (quantity * packCapacity));
 
+                warehouse.createTransaction(catalogueEntry.getLastid(),quantity,date,"addNewProduct");
+
+                int qty = quantity;
                 for (Shelf s : shelfs) {
-                    if (qt == 0) break;
+                    if (qty == 0) break;
                     for (Pallet p : s.getPallets()) {
                         int quantityCanAdd = (p.getMaxCapacity() - p.getCapacity()) / packCapacity;
-                        if (quantityCanAdd >= quantity) {
-                            warehouse.addProductToPallet(p.getId(), productId, quantity, price, amountInPack, packCapacity, name, brand);
-                            qt = 0;
+                        if (quantityCanAdd >= qty) {
+                            warehouse.addProductToPallet(p.getId(), productId, qty, price, amountInPack, packCapacity, name, brand);
+                            qty = 0;
                             break;
                         } else if (quantityCanAdd != 0) {
                             warehouse.addProductToPallet(p.getId(), productId, quantityCanAdd, price, amountInPack, packCapacity, name, brand);
-                            qt -= quantityCanAdd;
+                            qty -= quantityCanAdd;
                         }
                     }
-                    while (qt != 0 && (s.getMaxPallet() - s.getPallets().size()) != 0) {
+                    while (qty != 0 && (s.getMaxPallet() - s.getPallets().size()) != 0) {
                         warehouse.addPallet(s.getId(), 0, 100);
                         Pallet newPallet = s.getPallets().get(s.getPallets().size() - 1);
-                        int qtCanAdd = newPallet.getMaxCapacity() / packCapacity;
-                        if (qtCanAdd >= qt) {
-                            warehouse.addProductToPallet(newPallet.getId(), productId, qt, price, amountInPack, packCapacity, name, brand);
-                            qt = 0;
+                        int qtCanAdd = (newPallet.getMaxCapacity()- newPallet.getCapacity()) / packCapacity;
+                        if (qtCanAdd >= qty) {
+                            warehouse.addProductToPallet(newPallet.getId(), productId, qty, price, amountInPack, packCapacity, name, brand);
+                            qty = 0;
                             break;
                         } else if (qtCanAdd != 0) {
                             warehouse.addProductToPallet(newPallet.getId(), productId, qtCanAdd, price, amountInPack, packCapacity, name, brand);
-                            qt -= qtCanAdd;
+                            qty -= qtCanAdd;
                         }
                     }
                 }
@@ -223,5 +292,18 @@ public class ProductController {
     public void createShelf(String name, int maxPallet) {
         warehouse.createShelf(name,maxPallet);
         warehouse.setWarehouseCapacity(warehouse.getWarehouseCapacity()+100*maxPallet);
+    }
+
+    public User getCurrentUser() {
+        return warehouse.getCurrentUser();
+    }
+
+    public String shelfInWarehouse() {
+        String st = "Shelf in Warehouse\n";
+        shelfs = warehouse.getAllShelf();
+        for (Shelf s : shelfs) {
+            st += "\tshelf: "+s.getName()+"\t\tpallet: "+s.getPallets().size()+"/"+s.getMaxPallet()+"\n";
+        }
+        return st;
     }
 }

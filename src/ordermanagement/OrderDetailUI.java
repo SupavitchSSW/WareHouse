@@ -16,6 +16,8 @@ import sample.OrderReadWrite;
 import sample.PageController;
 import product.Product;
 import sample.Transaction;
+import user.Manager;
+import user.Staff;
 import user.User;
 
 import java.io.IOException;
@@ -226,26 +228,6 @@ public class OrderDetailUI implements Controller {
         orderDate_TextField.setText(order.getDate().toLocaleString());
         status_TextField.setText(order.getStatus());
 
-        //check order status
-        if(orderController.getCurrentUser().getRole().equals("Staff") || !order.getStatus().equals("waiting")){
-            System.out.println("status = "+order.getStatus());
-            sendQuantityColumn.setEditable(false);
-            approve_btn.setDisable(true);
-            reject_btn.setDisable(true);
-            summaryBt.setDisable(true);
-            userSearchBt.setDisable(true);
-        }else{
-            System.out.println("status = "+order.getStatus());
-            sendQuantityColumn.setEditable(true);
-            approve_btn.setDisable(false);
-            reject_btn.setDisable(false);
-            summaryBt.setDisable(false);
-            userSearchBt.setDisable(false);
-        }
-
-        //get OrderProduct list in order
-        detail_table.setItems(FXCollections.observableArrayList(order.getOrderProducts()));
-
         //check order status for disable button
         if(order.getStatus().equals("waiting")){
             System.out.println("status = waiting");
@@ -258,6 +240,24 @@ public class OrderDetailUI implements Controller {
             approve_btn.setDisable(true);
             reject_btn.setDisable(true);
         }
+
+        //check role
+        if(orderController.getCurrentUser() instanceof Staff){
+            System.out.println("status = "+order.getStatus());
+            summaryBt.setDisable(true);
+            userSearchBt.setDisable(true);
+            sendQuantityColumn.setEditable(false);
+            approve_btn.setDisable(true);
+            reject_btn.setDisable(true);
+        }else{
+            System.out.println("status = "+order.getStatus());
+            sendQuantityColumn.setEditable(true);
+            summaryBt.setDisable(false);
+            userSearchBt.setDisable(false);
+        }
+
+        //get OrderProduct list in order
+        detail_table.setItems(FXCollections.observableArrayList(order.getOrderProducts()));
     }
 
 //    public Order getOrder() {

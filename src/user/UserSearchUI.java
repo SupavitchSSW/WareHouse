@@ -31,7 +31,7 @@ public class UserSearchUI implements Controller{
     public UserSearchUI(UserController userController ,PageController pageController){
         this.pageController = pageController;
         this.userController = userController;
-        this.users = getAllUser();
+
     }
 
     public void initilize(){
@@ -41,6 +41,7 @@ public class UserSearchUI implements Controller{
 
         Button orderBt = (Button) scene.lookup("#orderButton");
         Button userSearchBt = (Button) scene.lookup("#userSearchButton");
+        summaryBt = (Button) scene.lookup("#summaryButton");
         TextField searchBox = (TextField) scene.lookup("#searchBox");
 
         Button logoutBt = (Button) scene.lookup("#logoutButton");
@@ -74,8 +75,6 @@ public class UserSearchUI implements Controller{
         roleCol.setMinWidth(200);
         roleCol.setCellValueFactory(
                 new PropertyValueFactory<>("role"));
-
-
 
 
         userTable.getColumns().addAll(firstNameCol, surnameCol,telCol,roleCol);
@@ -154,7 +153,7 @@ public class UserSearchUI implements Controller{
                                 searchBox.clear();
                             }
                             userController.removeUser(selectUser.getId());
-                            users = getAllUser();
+                            users = FXCollections.observableArrayList(userController.getAllUser());
                             userTable.setItems(users);
                         }
 
@@ -210,12 +209,10 @@ public class UserSearchUI implements Controller{
 
                 Optional<ButtonType> addManagerResult = addManagerDialog.showAndWait();
                 if (addManagerResult.get() == confirmButtonType ) {
-                    userController.signup(musername.getText(), mpassword.getText(), "Manager", mfirstname.getText(), msurname.getText(), mphonenum.getText());
-                    users = getAllUser();
+                    userController.createManager(musername.getText(), mpassword.getText(), mfirstname.getText(), msurname.getText(), mphonenum.getText());
+                    users = FXCollections.observableArrayList(userController.getAllUser());
                     userTable.setItems(users);
                     userTable.refresh();
-
-
                 }
             }
         });
@@ -227,15 +224,11 @@ public class UserSearchUI implements Controller{
 
     }
 
-    public ObservableList<User> getAllUser(){
-        List<User> result = userController.getAllUser();
-        ObservableList<User> users = FXCollections.observableArrayList(result);
-        return users;
-    }
 
     public void onActive() {
-//        users = getAllUser();
+        users = FXCollections.observableArrayList(userController.getAllUser());
         userTable.setItems(users);
+        userTable.refresh();
     }
 
     public static Integer tryParse(String text) {
