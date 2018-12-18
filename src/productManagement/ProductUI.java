@@ -152,8 +152,6 @@ public class ProductUI implements Controller {
                         quantity.setText(Integer.toString(selectedProduct.getQuantity()));
                         TextField price = new TextField();
                         price.setText(Integer.toString(selectedProduct.getPrice()));
-//                        TextField amountInPack = new TextField();
-//                        price.setText(Integer.toString(selectedProduct.getAmountInPack()));
 
                         editGrid.add(new Label("Name:"), 0, 1);
                         editGrid.add(name, 1, 1);
@@ -163,8 +161,6 @@ public class ProductUI implements Controller {
                         editGrid.add(quantity, 1, 3);
                         editGrid.add(new Label("Price:"), 0, 4);
                         editGrid.add(price, 1, 4);
-//                        editGrid.add(new Label("Amount In Pack:"), 0, 4);
-//                        editGrid.add(price, 1, 4);
 
                         ButtonType deleteButtonType = new ButtonType("Delete Product");
 
@@ -182,11 +178,9 @@ public class ProductUI implements Controller {
 //                                <<<<< edit quantity create Transaction >>>>>
                                 if (Integer.parseInt(quantity.getText()) != selectedProduct.getQuantity()) {
                                     int newQt = Integer.parseInt(quantity.getText());
-                                    Date date = new Date();
                                     productController.changeProductQuantity(selectedProduct.getProductId(),name.getText(),brand.getText(),
                                             Integer.parseInt(price.getText()),selectedProduct.getAmountInPack(),newQt,newQt-selectedProduct.getQuantity(),
                                             selectedProduct.getPackCapacity());
-                                    productController.createTransaction(selectedProduct.getProductId(),newQt-selectedProduct.getQuantity(),date,"editQuantity");
                                 }
 //                                <<<<< edit Product >>>>>
                                 productController.changeProductDetail(selectedProduct.getProductId(),name.getText(),brand.getText(),
@@ -277,13 +271,7 @@ public class ProductUI implements Controller {
                                 }
                                 productController.addNewProduct(productName.getText(), productBrand.getText(), Integer.parseInt(productPrice.getText()),
                                         Integer.parseInt(productAmountInPack.getText()), Integer.parseInt(productPackCapacity.getText()),
-                                        Integer.parseInt(productQuantity.getText()));
-                                Date date = new Date();
-                                // found ERROR!!
-//                                List<Product> check = database.getAllProduct();
-//                                productController.createTransaction(check.get(check.size() - 1).getId(), Integer.parseInt(productQuantity.getText()), date, "addProduct");
-//                                database.createTransaction(check.get(check.size() - 1).getId(), Integer.parseInt(productQuantity.getText()), date, "addProduct");
-                                //                            System.out.println(new Transaction(lastID,Integer.parseInt(productQuantity.getText()),date,"addProduct").toString());
+                                        Integer.parseInt(productQuantity.getText()),new Date());
                                 products = getAllProduct();
                                 productListTable.setItems(products);
                                 productListTable.refresh();

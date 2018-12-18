@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import sample.Controller;
 import sample.PageController;
+import user.Manager;
 import user.Staff;
 
 import java.io.IOException;
@@ -171,7 +172,7 @@ public class OrderListUI implements Controller {
         orders = orderController.getAllOrder();
         order_table.setItems(orders);
         order_table.refresh();
-        if(orderController.getCurrentUser() instanceof Staff){
+        if(orderController.getCurrentUser() instanceof Manager){
             updateBt.setDisable(true);
             productListBt.setDisable(true);
             summaryBt.setDisable(true);
