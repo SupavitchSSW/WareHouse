@@ -18,14 +18,6 @@ public class Order implements Serializable{
     private Date date = new Date(100,9,9,18,10);
     private List<OrderProduct> orderProducts = new ArrayList<OrderProduct>();
 
-    public List<OrderProduct> getOrderProducts() {
-        return orderProducts;
-    }
-
-    public void setOrderProducts(List<OrderProduct> orderProducts) {
-        this.orderProducts = orderProducts;
-    }
-
     public Order(){
         this.name = "";
         this.owner = "undefind";
@@ -42,13 +34,17 @@ public class Order implements Serializable{
         this.status = status;
     }
 
-//    public ObservableList<OrderProduct> getOrderProducts() {
-//        return orderProducts;
-//    }
+    public List<OrderProduct> getOrderProducts() {
+        return orderProducts;
+    }
+
+    public void setOrderProducts(List<OrderProduct> orderProducts) {
+        this.orderProducts = orderProducts;
+    }
+
 
     public void addOrderProduct(OrderProduct orderProduct) {
         orderProducts.add(orderProduct);
-
     }
 
     public String getOwner() {
