@@ -42,8 +42,8 @@ public class Main extends Application {
 
         //db
         WarehouseSystem warehouseSystem = new WarehouseSystem();
-        warehouseSystem.createCatalogueEntry(0);
-        warehouseSystem.createUserManager("w","w","warisa","saisema","0123456789");
+//        warehouseSystem.createCatalogueEntry(0);
+//        warehouseSystem.createUserManager("w","w","warisa","saisema","0123456789");
 
         // create controller class
         UserController userController = new UserController(warehouseSystem);
