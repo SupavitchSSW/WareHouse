@@ -197,8 +197,9 @@ public class OrderController {
             array = (JSONArray) json.get("products");
             for(int i =0;i<array.size();i++){
                 obj = (JSONObject) array.get(i);
-                //order.addOrderProduct(new OrderProduct(Integer.parseInt(obj.get("id").toString()),obj.get("name").toString(),obj.get("brand").toString(),Integer.parseInt(obj.get("amount").toString())));
-                warehouse.addOrderproduct(id,Integer.parseInt(obj.get("id").toString()),obj.get("name").toString(),obj.get("brand").toString(),Integer.parseInt(obj.get("amount").toString()));
+                Product p = warehouse.getProductbyID(Integer.parseInt(obj.get("id").toString()));
+                warehouse.addOrderproduct(id,Integer.parseInt(obj.get("id").toString()),p.getName(),p.getBrand(),Integer.parseInt(obj.get("amount").toString()));
+                //warehouse.addOrderproduct(id,Integer.parseInt(obj.get("id").toString()),obj.get("name").toString(),obj.get("brand").toString(),Integer.parseInt(obj.get("amount").toString()));
             }
             System.out.println("Read JSON : "+inputJSON);
             System.out.println(order.toString());
